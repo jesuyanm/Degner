@@ -1,0 +1,2435 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Degner Construction - Building Tomorrow's Infrastructure</title>
+    <style>
+        :root {
+            --primary-yellow: #F7B801;
+            --primary-white: #FFFFFF;
+            --text-dark: #1a1a1a;
+            --text-gray: #666666;
+            --text-light: #999999;
+            --background-light: #FAFAFA;
+            --background-dark: #0F1419;
+            --shadow-light: 0 4px 20px rgba(0, 0, 0, 0.05);
+            --shadow-medium: 0 8px 40px rgba(0, 0, 0, 0.1);
+            --shadow-heavy: 0 20px 60px rgba(0, 0, 0, 0.15);
+            --border-radius: 12px;
+            --transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.7;
+            color: var(--text-dark);
+            background: var(--primary-white);
+            overflow-x: hidden;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--background-light);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--primary-yellow);
+            border-radius: 3px;
+        }
+
+        /* Header */
+        .header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.75);
+            backdrop-filter: blur(20px);
+            z-index: 1000;
+            transition: var(--transition);
+            border-bottom: 1px solid rgba(247, 184, 1, 0.1);
+        }
+
+        .header.scrolled {
+            background: rgba(255, 255, 255, 0.85);
+            box-shadow: var(--shadow-light);
+        }
+
+        .nav-container {
+            max-width: 1600px;
+            margin: 0 auto;
+            padding: 0 3rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 80px;
+        }
+
+        .nav-left {
+            display: flex;
+            align-items: center;
+            gap: 5rem;
+            flex: 1;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            transition: var(--transition);
+        }
+
+        .logo img {
+            height: 75px;
+            transition: var(--transition);
+        }
+
+        .logo:hover {
+            transform: translateY(-2px);
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 0;
+            align-items: center;
+            flex: 1;
+            justify-content: center;
+        }
+
+        .nav-item {
+            position: relative;
+        }
+
+        .nav-item > a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: var(--transition);
+            padding: 2rem 1.5rem;
+            display: flex;
+            align-items: center;
+            height: 80px;
+            white-space: nowrap;
+            position: relative;
+        }
+
+        .nav-item > a:hover {
+            color: var(--primary-yellow);
+        }
+
+        .nav-item > a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            width: 0;
+            height: 3px;
+            background: var(--primary-yellow);
+            transition: var(--transition);
+            transform: translateX(-50%);
+        }
+
+        .nav-item > a:hover::after {
+            width: 100%;
+        }
+
+        .nav-item.active > a {
+            color: var(--primary-yellow);
+        }
+
+        .nav-item.active > a::after {
+            width: 100%;
+        }
+
+        /* Megamenu Dropdowns */
+        .megamenu {
+            position: absolute;
+            top: 100%;
+            left: -3rem;
+            background: var(--primary-white);
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-heavy);
+            padding: 3rem;
+            min-width: 1000px;
+            max-height: 80vh;
+            overflow-y: auto;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: var(--transition);
+            border-top: 4px solid var(--primary-yellow);
+            z-index: 1001;
+        }
+
+        .nav-item:hover .megamenu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+            animation: megamenuSlideIn 0.3s ease-out;
+        }
+
+        @keyframes megamenuSlideIn {
+            0% {
+                opacity: 0;
+                transform: translateY(-20px) scale(0.95);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        .megamenu-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 3rem;
+        }
+
+        .megamenu-section h4 {
+            color: var(--text-dark);
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            position: relative;
+            padding-bottom: 0.75rem;
+        }
+
+        .megamenu-section h4::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 40px;
+            height: 3px;
+            background: var(--primary-yellow);
+        }
+
+        .megamenu-section ul {
+            list-style: none;
+        }
+
+        .megamenu-section ul li {
+            margin-bottom: 1rem;
+        }
+
+        .megamenu-section ul li a {
+            color: var(--text-gray);
+            text-decoration: none;
+            font-size: 1rem;
+            transition: var(--transition);
+            display: flex;
+            align-items: flex-start;
+            gap: 0.75rem;
+            padding: 0.75rem;
+            border-radius: 8px;
+            line-height: 1.5;
+        }
+
+        .megamenu-section ul li a:hover {
+            color: var(--text-dark);
+            background: rgba(247, 184, 1, 0.05);
+            transform: translateX(5px);
+        }
+
+        .megamenu-icon {
+            width: 20px;
+            height: 20px;
+            color: var(--primary-yellow);
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+
+        .megamenu-item-content {
+            flex: 1;
+        }
+
+        .megamenu-item-title {
+            font-weight: 600;
+            color: var(--text-dark);
+            margin-bottom: 0.25rem;
+        }
+
+        .megamenu-item-desc {
+            font-size: 0.9rem;
+            color: var(--text-light);
+            line-height: 1.4;
+        }
+
+        .leadership-profile {
+            background: rgba(247, 184, 1, 0.05);
+            border-radius: 8px;
+            padding: 1.5rem;
+            border-left: 4px solid var(--primary-yellow);
+        }
+
+        .leadership-profile h5 {
+            color: var(--text-dark);
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .leadership-title {
+            color: var(--primary-yellow);
+            font-size: 0.9rem;
+            font-weight: 500;
+            margin-bottom: 0.75rem;
+        }
+
+        .leadership-bio {
+            color: var(--text-gray);
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .language-selector {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: var(--background-light);
+            border-radius: 20px;
+            padding: 0.5rem 1rem;
+            transition: var(--transition);
+        }
+
+        .language-selector:hover {
+            background: var(--primary-yellow);
+            color: var(--primary-white);
+        }
+
+        .language-selector select {
+            background: transparent;
+            border: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            cursor: pointer;
+            outline: none;
+        }
+
+        .search-toggle {
+            background: var(--background-light);
+            border: none;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .search-toggle:hover {
+            background: var(--primary-yellow);
+            color: var(--primary-white);
+            transform: scale(1.1);
+        }
+
+        .search-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 2000;
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transition);
+        }
+
+        .search-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .search-container {
+            background: var(--primary-white);
+            border-radius: var(--border-radius);
+            padding: 2rem;
+            width: 90%;
+            max-width: 600px;
+            transform: scale(0.9);
+            transition: var(--transition);
+        }
+
+        .search-overlay.active .search-container {
+            transform: scale(1);
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 1rem;
+            font-size: 1.2rem;
+            border: 2px solid var(--background-light);
+            border-radius: var(--border-radius);
+            transition: var(--transition);
+            margin-bottom: 1rem;
+        }
+
+        .search-input:focus {
+            outline: none;
+            border-color: var(--primary-yellow);
+            box-shadow: var(--shadow-light);
+        }
+
+        .search-close {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--text-gray);
+            transition: var(--transition);
+        }
+
+        .search-close:hover {
+            color: var(--primary-yellow);
+            transform: scale(1.2);
+        }
+
+        .mobile-menu-toggle {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            padding: 0.5rem;
+        }
+
+        .mobile-menu-toggle span {
+            width: 25px;
+            height: 2px;
+            background: var(--text-dark);
+            margin: 3px 0;
+            transition: var(--transition);
+            border-radius: 2px;
+        }
+
+        .mobile-menu-toggle.active span:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+
+        .mobile-menu-toggle.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .mobile-menu-toggle.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(7px, -6px);
+        }
+
+        .mobile-nav {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 100%;
+            max-width: 400px;
+            height: 100vh;
+            background: var(--primary-white);
+            box-shadow: var(--shadow-heavy);
+            padding: 2rem;
+            transition: var(--transition);
+            z-index: 1500;
+            overflow-y: auto;
+        }
+
+        .mobile-nav.active {
+            right: 0;
+        }
+
+        .mobile-nav-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid var(--background-light);
+        }
+
+        .mobile-nav-close {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--text-gray);
+        }
+
+        .mobile-nav-menu {
+            list-style: none;
+        }
+
+        .mobile-nav-menu > li {
+            margin-bottom: 1rem;
+        }
+
+        .mobile-nav-menu > li > a {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem;
+            background: var(--background-light);
+            border-radius: var(--border-radius);
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 500;
+            transition: var(--transition);
+        }
+
+        .mobile-nav-menu > li > a:hover {
+            background: var(--primary-yellow);
+            color: var(--primary-white);
+        }
+
+        /* Hero Section with Zoom Background */
+        .hero {
+            height: 100vh;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.3)), url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800"><rect fill="%23666" width="1200" height="800"/><text x="50%" y="50%" font-size="40" fill="%23FFF" text-anchor="middle" dy=".3em">Construction Site Background</text></svg>');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            overflow: hidden;
+            opacity: 0;
+            animation: heroZoomIn 20s ease-out infinite;
+        }
+
+        @keyframes heroZoomIn {
+            0% {
+                background-size: 100%;
+            }
+            100% {
+                background-size: 110%;
+            }
+        }
+
+        .hero-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0.8;
+        }
+
+        .particles-canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        .hero-content {
+            max-width: 900px;
+            text-align: center;
+            color: var(--primary-white);
+            z-index: 2;
+            padding: 2rem;
+            animation: heroFadeIn 1.5s ease-out;
+        }
+
+        .hero-subtitle {
+            font-size: 1.1rem;
+            color: var(--primary-yellow);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 1rem;
+            opacity: 0;
+            animation: fadeInUp 1s ease 0.3s forwards;
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 2rem;
+            opacity: 0;
+            animation: fadeInUp 1s ease 0.6s forwards;
+        }
+
+        .hero-description {
+            font-size: 1.3rem;
+            line-height: 1.6;
+            margin-bottom: 3rem;
+            opacity: 0.9;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            opacity: 0;
+            animation: fadeInUp 1s ease 0.9s forwards;
+        }
+
+        .cta-group {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            opacity: 0;
+            animation: fadeInUp 1s ease 1.2s forwards;
+        }
+
+        .cta-primary {
+            background: var(--primary-yellow);
+            color: var(--text-dark);
+            padding: 1rem 2.5rem;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: var(--transition);
+            box-shadow: 0 8px 30px rgba(247, 184, 1, 0.3);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-primary::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.6s ease;
+        }
+
+        .cta-primary:hover::before {
+            left: 100%;
+        }
+
+        .cta-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(247, 184, 1, 0.4);
+        }
+
+        .cta-secondary {
+            background: transparent;
+            color: var(--primary-white);
+            padding: 1rem 2.5rem;
+            text-decoration: none;
+            border: 2px solid var(--primary-white);
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: var(--transition);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .cta-secondary:hover {
+            background: var(--primary-white);
+            color: var(--text-dark);
+            transform: translateY(-3px);
+        }
+
+        /* Scroll Indicator */
+        .scroll-indicator {
+            position: absolute;
+            bottom: 3rem;
+            left: 50%;
+            transform: translateX(-50%);
+            color: var(--primary-yellow);
+            animation: bounce 2s infinite;
+            cursor: pointer;
+            z-index: 2;
+        }
+
+        .scroll-indicator svg {
+            width: 24px;
+            height: 24px;
+        }
+
+        /* Section Base */
+        .section {
+            padding: 8rem 3rem;
+            max-width: 1400px;
+            margin: 0 auto;
+            opacity: 0;
+            transform: translateY(50px);
+            transition: var(--transition);
+        }
+
+        .section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 5rem;
+        }
+
+        .section-subtitle {
+            color: var(--primary-yellow);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        .section-title {
+            font-size: clamp(2rem, 4vw, 3.5rem);
+            font-weight: 700;
+            color: var(--text-dark);
+            line-height: 1.2;
+            margin-bottom: 2rem;
+        }
+
+        .section-description {
+            font-size: 1.2rem;
+            color: var(--text-gray);
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        /* About Section */
+        .about {
+            background: var(--background-light);
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 6rem;
+            align-items: center;
+            margin-top: 4rem;
+        }
+
+        .about-text {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: var(--text-gray);
+        }
+
+        .about-text p {
+            margin-bottom: 2rem;
+        }
+
+        .about-highlight {
+            background: var(--primary-white);
+            padding: 3rem;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-medium);
+            border-left: 5px solid var(--primary-yellow);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .about-highlight::before {
+            content: '"';
+            position: absolute;
+            top: -10px;
+            left: 20px;
+            font-size: 8rem;
+            color: var(--primary-yellow);
+            opacity: 0.1;
+            font-family: serif;
+        }
+
+        .about-highlight p {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--text-dark);
+            line-height: 1.6;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Services Section */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 2.5rem;
+            margin-top: 4rem;
+        }
+
+        .service-card {
+            background: var(--primary-white);
+            padding: 3rem;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-light);
+            transition: var(--transition);
+            border-top: 4px solid transparent;
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary-yellow), #ffcc1a);
+            transform: scaleX(0);
+            transition: var(--transition);
+            transform-origin: left;
+        }
+
+        .service-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-heavy);
+        }
+
+        .service-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--primary-yellow), #ffcc1a);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 2rem;
+            transition: var(--transition);
+        }
+
+        .service-card:hover .service-icon {
+            transform: scale(1.1) rotate(5deg);
+        }
+
+        .service-card h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text-dark);
+            margin-bottom: 1.5rem;
+            transition: var(--transition);
+        }
+
+        .service-card:hover h3 {
+            color: var(--primary-yellow);
+        }
+
+        .service-card p {
+            color: var(--text-gray);
+            line-height: 1.7;
+            font-size: 1rem;
+        }
+
+        /* Our Work Section */
+        .our-work {
+            background: var(--background-light);
+        }
+
+        .project-filters {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin: 3rem 0 4rem 0;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            background: var(--primary-white);
+            border: 2px solid var(--background-light);
+            padding: 0.8rem 1.5rem;
+            border-radius: 50px;
+            font-weight: 500;
+            color: var(--text-gray);
+            cursor: pointer;
+            transition: var(--transition);
+            font-size: 0.9rem;
+        }
+
+        .filter-btn:hover,
+        .filter-btn.active {
+            background: var(--primary-yellow);
+            border-color: var(--primary-yellow);
+            color: var(--text-dark);
+            transform: translateY(-2px);
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+            gap: 3rem;
+            margin: 4rem 0;
+        }
+
+        .project-card {
+            background: var(--primary-white);
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--shadow-light);
+            transition: var(--transition);
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        .project-card.hidden {
+            opacity: 0;
+            transform: scale(0.8);
+            height: 0;
+            margin: 0;
+            overflow: hidden;
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-heavy);
+        }
+
+        .project-image {
+            position: relative;
+            height: 280px;
+            overflow: hidden;
+        }
+
+        .project-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .project-card:hover .project-image img {
+            transform: scale(1.05);
+        }
+
+        .project-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.7));
+            display: flex;
+            align-items: flex-end;
+            padding: 2rem;
+            opacity: 0;
+            transition: var(--transition);
+        }
+
+        .project-card:hover .project-overlay {
+            opacity: 1;
+        }
+
+        .project-details h3 {
+            color: var(--primary-white);
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .project-details p {
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 0.5rem;
+            line-height: 1.5;
+        }
+
+        .project-location {
+            color: var(--primary-yellow);
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        .project-info {
+            padding: 2rem;
+        }
+
+        .project-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .project-type {
+            background: rgba(247, 184, 1, 0.1);
+            color: var(--primary-yellow);
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .project-year {
+            color: var(--text-light);
+            font-weight: 500;
+        }
+
+        .project-info h4 {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--text-dark);
+            margin-bottom: 1rem;
+            line-height: 1.3;
+        }
+
+        .project-info > p {
+            color: var(--text-gray);
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+
+        .project-stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid var(--background-light);
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat-number {
+            display: block;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-yellow);
+            margin-bottom: 0.3rem;
+        }
+
+        .stat-label {
+            font-size: 0.8rem;
+            color: var(--text-light);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .projects-cta {
+            text-align: center;
+            background: var(--primary-white);
+            padding: 4rem 3rem;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-medium);
+            margin-top: 4rem;
+        }
+
+        .projects-cta h3 {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--text-dark);
+            margin-bottom: 1rem;
+        }
+
+        .projects-cta p {
+            font-size: 1.1rem;
+            color: var(--text-gray);
+            margin-bottom: 2rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Stats Section */
+        .stats {
+            background: var(--background-dark);
+            color: var(--primary-white);
+            text-align: center;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 3rem;
+            margin-top: 4rem;
+        }
+
+        .stat-item {
+            transition: var(--transition);
+        }
+
+        .stat-item:hover {
+            transform: translateY(-10px);
+        }
+
+        .stat-number {
+            font-size: 3.5rem;
+            font-weight: 700;
+            color: var(--primary-yellow);
+            display: block;
+            margin-bottom: 1rem;
+            transition: var(--transition);
+        }
+
+        .stat-label {
+            font-size: 1.1rem;
+            color: var(--primary-white);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Contact Section */
+        .contact {
+            background: var(--background-light);
+        }
+
+        .contact-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 5rem;
+            margin-top: 4rem;
+        }
+
+        .contact-info {
+            background: var(--primary-white);
+            padding: 3rem;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-medium);
+            transition: var(--transition);
+        }
+
+        .contact-info:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-heavy);
+        }
+
+        .contact-info h3 {
+            color: var(--text-dark);
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            position: relative;
+            padding-bottom: 1rem;
+        }
+
+        .contact-info h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background: var(--primary-yellow);
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            transition: var(--transition);
+        }
+
+        .contact-item:hover {
+            transform: translateX(10px);
+        }
+
+        .contact-icon {
+            width: 20px;
+            height: 20px;
+            color: var(--primary-yellow);
+        }
+
+        .contact-item strong {
+            color: var(--text-dark);
+            min-width: 80px;
+        }
+
+        .contact-cta {
+            background: var(--primary-yellow);
+            color: var(--text-dark);
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: var(--transition);
+            text-decoration: none;
+            display: inline-block;
+            text-align: center;
+            margin-top: 2rem;
+        }
+
+        .contact-cta:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-medium);
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--background-dark);
+            color: var(--primary-white);
+            text-align: center;
+            padding: 3rem;
+        }
+
+        .footer p {
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        /* Animations */
+        @keyframes heroFadeIn {
+            from {
+                opacity: 0;
+                transform: scale(1.05);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateX(-50%) translateY(0);
+            }
+            40% {
+                transform: translateX(-50%) translateY(-10px);
+            }
+            60% {
+                transform: translateX(-50%) translateY(-5px);
+            }
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 1200px) {
+            .nav-menu {
+                gap: 0;
+            }
+
+            .nav-item > a {
+                padding: 2rem 0.8rem;
+                font-size: 0.9rem;
+            }
+
+            .megamenu {
+                min-width: 900px;
+                left: -2rem;
+            }
+
+            .megamenu-content {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 2rem;
+            }
+        }
+
+        @media (max-width: 1024px) {
+            .nav-menu {
+                display: none;
+            }
+
+            .nav-left {
+                gap: 2rem;
+            }
+
+            .nav-right {
+                gap: 1rem;
+            }
+
+            .language-selector {
+                display: none;
+            }
+
+            .mobile-menu-toggle {
+                display: flex;
+            }
+        }
+
+        @media (max-width: 968px) {
+            .nav-container {
+                padding: 0 2rem;
+                height: 70px;
+            }
+
+            .logo img {
+                height: 65px;
+            }
+
+            .section {
+                padding: 4rem 2rem;
+            }
+
+            .about-content,
+            .contact-content {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 2rem;
+            }
+
+            .cta-group {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .search-container {
+                width: 95%;
+                max-width: 500px;
+            }
+
+            .megamenu {
+                min-width: 350px;
+                left: -1rem;
+                padding: 2rem;
+            }
+
+            .megamenu-content {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .nav-container {
+                padding: 0 1.5rem;
+                height: 65px;
+            }
+
+            .logo img {
+                height: 60px;
+            }
+
+            .section {
+                padding: 3rem 1.5rem;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .service-card,
+            .contact-info {
+                padding: 2rem;
+            }
+
+            .search-toggle {
+                width: 35px;
+                height: 35px;
+            }
+        }
+
+        /* Smooth Scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Loading Animation */
+        .loading {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #0F1419 0%, #1a252f 50%, #2c3e50 100%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            opacity: 1;
+            visibility: visible;
+            transition: var(--transition);
+        }
+
+        .loading.hidden {
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .loading-video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.8;
+        }
+
+        .loading-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            color: var(--primary-white);
+        }
+
+        .loading-text {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--primary-yellow);
+            margin-bottom: 1rem;
+            letter-spacing: 3px;
+        }
+
+        .loading-subtitle {
+            font-size: 1.2rem;
+            color: var(--primary-white);
+            opacity: 0.8;
+        }
+    </style>
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div class="loading" id="loading">
+        <div class="loading-content">
+            <div class="loading-text">DEGNER CONSTRUCTION</div>
+            <div class="loading-subtitle">Building Tomorrow's Infrastructure</div>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <header class="header" id="header">
+        <nav class="nav-container">
+            <div class="nav-left">
+                <div class="logo">
+                    <img src="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 300 100'><rect fill='%23F7B801' width='300' height='100' rx='10'/><text x='150' y='35' font-size='16' fill='white' text-anchor='middle' font-weight='bold'>DEGNER</text><text x='150' y='55' font-size='12' fill='white' text-anchor='middle'>CONSTRUCTION</text><text x='150' y='70' font-size='8' fill='white' text-anchor='middle'>Building Tomorrow</text></svg>" alt="Degner Construction Logo">
+                </div>
+                <ul class="nav-menu">
+                    <li class="nav-item">
+                        <a href="#about">Who We Are</a>
+                        <div class="megamenu">
+                            <div class="megamenu-content">
+                                <div class="megamenu-section">
+                                    <h4>About Us</h4>
+                                    <ul>
+                                        <li>
+                                            <a href="#about">
+                                                <svg class="megamenu-icon" fill="currentColor" viewBox="0 0 20 20">
+                                                    <path d="M10.394 2.08a1 1 0 00-.788 0l-7 3a1 1 0 000 1.84L5.25 8.051a.999.999 0 01.356-.257l4-1.714a1 1 0 11.788 1.838L7.667 9.088l1.94.831a1 1 0 00.787 0l7-3a1 1 0 000-1.838l-7-3z"/>
+                                                </svg>
+                                                <div class="megamenu-item-content">
+                                                    <div class="megamenu-item-title">Company Overview</div>
+                                                    <div class="megamenu-item-desc">Full-service municipal infrastructure contractor specializing in water, sanitary, and storm systems</div>
+                                                </div>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#about">
+                                                <svg class="megamenu-icon" fill="currentColor" viewBox="0 0 20 20">
+                                                    <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                                                </svg>
+                                                <div class="megamenu-item-content">
+                                                    <div class="megamenu-item-title">Our Mission</div>
+                                                    <div class="megamenu-item-desc">Building community value into every project with professional expertise and quality construction</div>
+                                                </div>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#about">
+                                                <svg class="megamenu-icon" fill="currentColor" viewBox="0 0 20 20">
+                                                    <path d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z"/>
+                                                </svg>
+                                                <div class="megamenu-item-content">
+                                                    <div class="megamenu-item-title">Our Values</div>
+                                                    <div class="megamenu-item-desc">Commitment to safety, innovation, and sustainable infrastructure solutions</div>
+                                                </div>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="megamenu-section">
+                                    <h4>Our Leadership</h4>
+                                    <div class="leadership-profile">
+                                        <h5>Dale Degner</h5>
+                                        <div class="leadership-title">President & CEO</div>
+                                        <div class="leadership-bio">Leading Degner Construction with decades of experience in municipal infrastructure development, Dale drives our commitment to building Alberta's essential infrastructure.</div>
+                                    </div>
+                                    <ul style="margin-top: 1.5rem;">
+                                        <li>
+                                            <a href="#about">
+                                                <svg class="megamenu-icon" fill="currentColor" viewBox="0 0 20 20">
+                                                    <path d="M9 6a3 3 0 11-6 0 3 3 0 016 0zM17 6a3 3 0 11-6 0 3 3 0 016 0zM12.93 17c.046-.327.07-.66.07-1a6.97 6.97 0 00-1.5-4.33A5 5 0 0119 16v1h-6.07zM6 11a5 5 0 015 5v1H1v-1a5 5 0 015-5z"/>
+                                                </svg>
+                                                <div class="megamenu-item-content">
+                                                    <div class="megamenu-item-title">Management Team</div>
+                                                    <div class="megamenu-item-desc">Meet our experienced leadership driving innovation in municipal construction</div>
+                                                </div>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="megamenu-section">
+                                    <h4>Our History</h4>
+                                    <ul>
+                                        <li>
+                                            <a href="#about">
+                                                <svg class="megamenu-icon" fill="currentColor" viewBox="0 0 20 20">
+                                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clip-rule="evenodd"/>
+                                                </svg>
+                                                <div class="megamenu-item-content">
+                                                    <div class="megamenu-item-title">Company Timeline</div>
+                                                    <div class="megamenu-item-desc">Decades of building Alberta's essential municipal infrastructure</div>
+                                                </div>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#about">
+                                                <svg class="megamenu-icon" fill="currentColor" viewBox="0 0 20 20">
+                                                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+                                                </svg>
+                                                <div class="megamenu-item-content">
+                                                    <div class="megamenu-item-title">Key Milestones</div>
+                                                    <div class="megamenu-item-desc">Major projects and achievements that shaped our growth</div>
+                                                </div>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="megamenu-section">
+                                    <h4>Our Location</h4>
+                                    <ul>
+                                        <li>
+                                            <a href="#contact">
+                                                <svg class="megamenu-icon" fill="currentColor" viewBox="0 0 20 20">
+                                                    <path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"/>
+                                                </svg>
+                                                <div class="megamenu-item-content">
+                                                    <div class="megamenu-item-title">Acheson, Alberta</div>
+                                                    <div class="megamenu-item-desc">Strategically located to serve municipal infrastructure projects across Alberta</div>
+                                                </div>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#about">
+                                                <svg class="megamenu-icon" fill="currentColor" viewBox="0 0 20 20">
+                                                    <path d="M3 4a1 1 0 011-1h12a1 1 0 011 1v2a1 1 0 01-1 1H4a1 1 0 01-1-1V4zM3 10a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H4a1 1 0 01-1-1v-6zM14 9a1 1 0 00-1 1v6a1 1 0 001 1h2a1 1 0 001-1v-6a1 1 0 00-1-1h-2z"/>
+                                                </svg>
+                                                <div class="megamenu-item-content">
+                                                    <div class="megamenu-item-title">Service Areas</div>
+                                                    <div class="megamenu-item-desc">Comprehensive coverage across Alberta's municipalities and communities</div>
+                                                </div>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="nav-item"><a href="#services">What We Do</a></li>
+                    <li class="nav-item"><a href="#projects">Our Work</a></li>
+                    <li class="nav-item"><a href="#careers">Careers</a></li>
+                    <li class="nav-item"><a href="#equipment">Equipment Fleet</a></li>
+                    <li class="nav-item"><a href="#contact">Contact</a></li>
+                </ul>
+            </div>
+            <div class="nav-right">
+                <div class="language-selector">
+                    <svg width="16" height="16" fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM4.332 8.027a6.012 6.012 0 011.912-2.706C6.512 5.73 6.974 6 7.5 6A1.5 1.5 0 019 7.5V8a2 2 0 004 0 2 2 0 011.523-1.943A5.977 5.977 0 0116 10c0 .34-.028.675-.083 1H15a2 2 0 00-2 2v2.197A5.973 5.973 0 0110 16v-2a2 2 0 00-2-2 2 2 0 01-4 0 2 2 0 00-1.668-1.973z" clip-rule="evenodd"/>
+                    </svg>
+                    <select>
+                        <option value="CA">Canada</option>
+                        <option value="US">United States</option>
+                    </select>
+                </div>
+                <button class="search-toggle" id="searchToggle">
+                    <svg width="20" height="20" fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd"/>
+                    </svg>
+                </button>
+            </div>
+            <div class="mobile-menu-toggle" id="mobileToggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Search Overlay -->
+    <div class="search-overlay" id="searchOverlay">
+        <div class="search-container">
+            <button class="search-close" id="searchClose">&times;</button>
+            <input type="text" class="search-input" placeholder="Search projects, services, careers..." autofocus>
+            <div class="search-suggestions">
+                <p style="color: var(--text-gray); font-size: 0.9rem; margin-top: 1rem;">Try searching: "water services", "our work", "careers", "project management"</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mobile Navigation -->
+    <nav class="mobile-nav" id="mobileNav">
+        <div class="mobile-nav-header">
+            <img src="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 300 100'><rect fill='%23F7B801' width='300' height='100' rx='10'/><text x='150' y='35' font-size='16' fill='white' text-anchor='middle' font-weight='bold'>DEGNER</text><text x='150' y='55' font-size='12' fill='white' text-anchor='middle'>CONSTRUCTION</text><text x='150' y='70' font-size='8' fill='white' text-anchor='middle'>Building Tomorrow</text></svg>" alt="Degner Construction" style="height: 50px;">
+            <button class="mobile-nav-close" id="mobileNavClose">&times;</button>
+        </div>
+        <ul class="mobile-nav-menu">
+            <li><a href="#about">Who We Are <span>→</span></a></li>
+            <li><a href="#services">What We Do <span>→</span></a></li>
+            <li><a href="#projects">Our Work <span>→</span></a></li>
+            <li><a href="#careers">Careers <span>→</span></a></li>
+            <li><a href="#equipment">Equipment Fleet <span>→</span></a></li>
+            <li><a href="#contact">Contact <span>→</span></a></li>
+        </ul>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <canvas class="particles-canvas" id="particles"></canvas>
+        <div class="hero-content">
+            <div class="hero-subtitle">Building Tomorrow</div>
+            <h1>WE BUILD THE PLACES WHERE PEOPLE BUILD HOMES, BUILD BUSINESS AND BUILD DREAMS</h1>
+            <p class="hero-description">Our promise is to build community value into every project while delivering professional expertise, exceptional customer service and quality construction</p>
+            <div class="cta-group">
+                <a href="#contact" class="cta-primary">Start Your Project</a>
+                <a href="#services" class="cta-secondary">What We Do</a>
+            </div>
+        </div>
+        <div class="scroll-indicator" onclick="document.querySelector('#about').scrollIntoView({behavior: 'smooth'})">
+            <svg fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+            </svg>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="section about">
+        <div class="section-header">
+            <div class="section-subtitle">Our Foundation</div>
+            <h2 class="section-title">Building Tomorrow's Infrastructure</h2>
+            <p class="section-description">At Degner Construction, we specialize in creating the essential infrastructure that supports thriving communities across Alberta</p>
+        </div>
+        <div class="about-content">
+            <div class="about-text">
+                <p>With decades of experience in municipal infrastructure, we understand that every project we complete becomes part of the foundation upon which families, businesses, and dreams are built. Our comprehensive approach combines cutting-edge technology with proven methodologies.</p>
+                <p>From water and sanitary systems to storm management facilities, we deliver infrastructure solutions that stand the test of time while meeting the evolving needs of modern communities.</p>
+            </div>
+            <div class="about-highlight">
+                <p>Our promise is to build community value into every project while delivering professional expertise, exceptional customer service and quality construction</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="section">
+        <div class="section-header">
+            <div class="section-subtitle">What We Do</div>
+            <h2 class="section-title">Comprehensive Infrastructure Solutions</h2>
+            <p class="section-description">From planning to completion, we provide full-service municipal infrastructure development</p>
+        </div>
+        <div class="services-grid">
+            <div class="service-card">
+                <div class="service-icon">
+                    <svg fill="white" viewBox="0 0 24 24" width="24" height="24">
+                        <path d="M12 2L2 7v10c0 5.55 3.84 9.74 9 11 5.16-1.26 9-5.45 9-11V7l-10-5z"/>
+                    </svg>
+                </div>
+                <h3>General Contracting</h3>
+                <p>General Contracting for all Aspects of Municipal Infrastructure Projects. We provide comprehensive project management and execution for complex municipal developments.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">
+                    <svg fill="white" viewBox="0 0 24 24" width="24" height="24">
+                        <path d="M12 2c1.1 0 2 .9 2 2s-.9 2-2 2-2-.9-2-2 .9-2 2-2zm9 7h-6v13h-2v-6h-2v6H9V9H3V7h18v2z"/>
+                    </svg>
+                </div>
+                <h3>Water, Sanitary & Storm Services</h3>
+                <p>Installation of Water, Sanitary and Storm Services. Our expert team ensures reliable, efficient systems that meet all municipal standards and regulations.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">
+                    <svg fill="white" viewBox="0 0 24 24" width="24" height="24">
+                        <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                    </svg>
+                </div>
+                <h3>Infrastructure</h3>
+                <p>Infrastructure Rehabilitation and Renewal. We breathe new life into aging infrastructure, extending service life and improving performance.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">
+                    <svg fill="white" viewBox="0 0 24 24" width="24" height="24">
+                        <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/>
+                    </svg>
+                </div>
+                <h3>Storm & Sanitation</h3>
+                <p>Storm and Sanitary Lift Station Construction. Specialized construction of lift stations that ensure proper waste management and flood prevention.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">
+                    <svg fill="white" viewBox="0 0 24 24" width="24" height="24">
+                        <path d="M16 6l2.29 2.29-4.88 4.88-4-4L2 16.59 3.41 18l6-6 4 4 6.3-6.29L22 12V6z"/>
+                    </svg>
+                </div>
+                <h3>Project Management</h3>
+                <p>Project Management and Design Build services. From concept to completion, we manage every aspect of your infrastructure project.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">
+                    <svg fill="white" viewBox="0 0 24 24" width="24" height="24">
+                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                    </svg>
+                </div>
+                <h3>Excavation</h3>
+                <p>Mass excavation for Storm Water Management Facilities. Large-scale excavation services for comprehensive water management solutions.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Our Work Section -->
+    <section id="projects" class="section our-work">
+        <div class="section-header">
+            <div class="section-subtitle">Our Work</div>
+            <h2 class="section-title">Building Communities Across Alberta</h2>
+            <p class="section-description">Explore our portfolio of successful municipal infrastructure projects that strengthen communities and support growth</p>
+        </div>
+        
+        <!-- Project Filters -->
+        <div class="project-filters">
+            <button class="filter-btn active" data-filter="all">All Projects</button>
+            <button class="filter-btn" data-filter="water">Water Systems</button>
+            <button class="filter-btn" data-filter="sanitary">Sanitary Infrastructure</button>
+            <button class="filter-btn" data-filter="storm">Storm Management</button>
+            <button class="filter-btn" data-filter="civil">Civil Infrastructure</button>
+            <button class="filter-btn" data-filter="industrial">Industrial</button>
+        </div>
+
+        <!-- Projects Grid -->
+        <div class="projects-grid">
+            <div class="project-card" data-category="water civil">
+                <div class="project-image">
+                    <img src="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 600 400'><rect fill='%23E8F4FD' width='600' height='400'/><circle cx='300' cy='200' r='100' fill='%23F7B801' opacity='0.3'/><text x='300' y='180' text-anchor='middle' font-size='16' fill='%23666'>Water Treatment</text><text x='300' y='200' text-anchor='middle' font-size='16' fill='%23666'>Facility Project</text><text x='300' y='220' text-anchor='middle' font-size='14' fill='%23999'>Municipal Infrastructure</text></svg>" alt="Water Treatment Facility">
+                    <div class="project-overlay">
+                        <div class="project-details">
+                            <h3>Municipal Water Treatment Facility</h3>
+                            <p>Complete water system installation and treatment facility construction</p>
+                            <span class="project-location">Spruce Grove, AB</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-info">
+                    <div class="project-meta">
+                        <span class="project-type">Water Systems</span>
+                        <span class="project-year">2024</span>
+                    </div>
+                    <h4>Municipal Water Treatment Facility</h4>
+                    <p>State-of-the-art water treatment facility serving 25,000 residents with advanced filtration and distribution systems.</p>
+                    <div class="project-stats">
+                        <div class="stat">
+                            <span class="stat-number">$8.5M</span>
+                            <span class="stat-label">Project Value</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-number">18</span>
+                            <span class="stat-label">Months</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-number">25K</span>
+                            <span class="stat-label">Residents Served</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-card" data-category="sanitary">
+                <div class="project-image">
+                    <img src="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 600 400'><rect fill='%23F0F8E8' width='600' height='400'/><rect x='150' y='150' width='300' height='100' fill='%23F7B801' opacity='0.3' rx='10'/><text x='300' y='180' text-anchor='middle' font-size='16' fill='%23666'>Sanitary Lift Station</text><text x='300' y='200' text-anchor='middle' font-size='16' fill='%23666'>Construction Project</text><text x='300' y='220' text-anchor='middle' font-size='14' fill='%23999'>Waste Management</text></svg>" alt="Sanitary Lift Station">
+                    <div class="project-overlay">
+                        <div class="project-details">
+                            <h3>Regional Sanitary Lift Station</h3>
+                            <p>Advanced waste management and pumping station infrastructure</p>
+                            <span class="project-location">Stony Plain, AB</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-info">
+                    <div class="project-meta">
+                        <span class="project-type">Sanitary Infrastructure</span>
+                        <span class="project-year">2023</span>
+                    </div>
+                    <h4>Regional Sanitary Lift Station</h4>
+                    <p>High-capacity pumping station with redundant systems ensuring reliable waste management for growing communities.</p>
+                    <div class="project-stats">
+                        <div class="stat">
+                            <span class="stat-number">$6.2M</span>
+                            <span class="stat-label">Project Value</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-number">14</span>
+                            <span class="stat-label">Months</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-number">15K</span>
+                            <span class="stat-label">Residents Served</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-card" data-category="storm">
+                <div class="project-image">
+                    <img src="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 600 400'><rect fill='%23E8F0FF' width='600' height='400'/><circle cx='200' cy='150' r='40' fill='%23F7B801' opacity='0.4'/><circle cx='400' cy='250' r='60' fill='%23F7B801' opacity='0.3'/><text x='300' y='180' text-anchor='middle' font-size='16' fill='%23666'>Storm Water</text><text x='300' y='200' text-anchor='middle' font-size='16' fill='%23666'>Management Facility</text><text x='300' y='220' text-anchor='middle' font-size='14' fill='%23999'>Flood Prevention</text></svg>" alt="Storm Management">
+                    <div class="project-overlay">
+                        <div class="project-details">
+                            <h3>Urban Storm Water Management</h3>
+                            <p>Comprehensive flood prevention and drainage infrastructure</p>
+                            <span class="project-location">Leduc, AB</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-info">
+                    <div class="project-meta">
+                        <span class="project-type">Storm Management</span>
+                        <span class="project-year">2024</span>
+                    </div>
+                    <h4>Urban Storm Water Management</h4>
+                    <p>Integrated storm water collection and retention system protecting urban areas from flooding while preserving natural water cycles.</p>
+                    <div class="project-stats">
+                        <div class="stat">
+                            <span class="stat-number">$12.8M</span>
+                            <span class="stat-label">Project Value</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-number">24</span>
+                            <span class="stat-label">Months</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-number">35K</span>
+                            <span class="stat-label">Residents Protected</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-card" data-category="civil">
+                <div class="project-image">
+                    <img src="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 600 400'><rect fill='%23FFF8E8' width='600' height='400'/><rect x='100' y='320' width='400' height='20' fill='%23666'/><rect x='150' y='300' width='50' height='20' fill='%23F7B801'/><rect x='250' y='280' width='50' height='40' fill='%23F7B801'/><rect x='350' y='260' width='50' height='60' fill='%23F7B801'/><text x='300' y='180' text-anchor='middle' font-size='16' fill='%23666'>Municipal Road</text><text x='300' y='200' text-anchor='middle' font-size='16' fill='%23666'>Infrastructure Project</text><text x='300' y='220' text-anchor='middle' font-size='14' fill='%23999'>Transportation</text></svg>" alt="Road Infrastructure">
+                    <div class="project-overlay">
+                        <div class="project-details">
+                            <h3>Municipal Road Infrastructure</h3>
+                            <p>Complete roadway construction and utility installation</p>
+                            <span class="project-location">Parkland County, AB</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-info">
+                    <div class="project-meta">
+                        <span class="project-type">Civil Infrastructure</span>
+                        <span class="project-year">2023</span>
+                    </div>
+                    <h4>Municipal Road Infrastructure</h4>
+                    <p>Complete roadway reconstruction including underground utilities, drainage systems, and surface improvements.</p>
+                    <div class="project-stats">
+                        <div class="stat">
+                            <span class="stat-number">$4.7M</span>
+                            <span class="stat-label">Project Value</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-number">8</span>
+                            <span class="stat-label">Months</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-number">5.2km</span>
+                            <span class="stat-label">Road Length</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-card" data-category="industrial">
+                <div class="project-image">
+                    <img src="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 600 400'><rect fill='%23F5F5F5' width='600' height='400'/><rect x='150' y='200' width='80' height='120' fill='%23666'/><rect x='250' y='180' width='80' height='140' fill='%23666'/><rect x='350' y='160' width='80' height='160' fill='%23666'/><circle cx='190' cy='160' r='15' fill='%23F7B801'/><circle cx='290' cy='140' r='15' fill='%23F7B801'/><circle cx='390' cy='120' r='15' fill='%23F7B801'/><text x='300' y='100' text-anchor='middle' font-size='16' fill='%23666'>Industrial Processing</text><text x='300' y='120' text-anchor='middle' font-size='16' fill='%23666'>Facility Construction</text></svg>" alt="Industrial Facility">
+                    <div class="project-overlay">
+                        <div class="project-details">
+                            <h3>Industrial Processing Facility</h3>
+                            <p>Large-scale industrial infrastructure and utility systems</p>
+                            <span class="project-location">Fort Saskatchewan, AB</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-info">
+                    <div class="project-meta">
+                        <span class="project-type">Industrial</span>
+                        <span class="project-year">2022</span>
+                    </div>
+                    <h4>Industrial Processing Facility</h4>
+                    <p>Complex industrial site development including specialized utility systems and process infrastructure.</p>
+                    <div class="project-stats">
+                        <div class="stat">
+                            <span class="stat-number">$18.3M</span>
+                            <span class="stat-label">Project Value</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-number">36</span>
+                            <span class="stat-label">Months</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-number">150</span>
+                            <span class="stat-label">Jobs Created</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-card" data-category="water">
+                <div class="project-image">
+                    <img src="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 600 400'><rect fill='%23E8F4FD' width='600' height='400'/><rect x='200' y='150' width='200' height='100' fill='%23F7B801' opacity='0.2' rx='10'/><circle cx='250' cy='200' r='30' fill='%236BB6FF' opacity='0.6'/><circle cx='350' cy='200' r='30' fill='%236BB6FF' opacity='0.6'/><text x='300' y='290' text-anchor='middle' font-size='16' fill='%23666'>Water Distribution Network</text><text x='300' y='310' text-anchor='middle' font-size='14' fill='%23999'>Pipeline Installation</text></svg>" alt="Water Distribution">
+                    <div class="project-overlay">
+                        <div class="project-details">
+                            <h3>Regional Water Distribution Network</h3>
+                            <p>Extensive pipeline network and pumping station installation</p>
+                            <span class="project-location">Beaumont, AB</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-info">
+                    <div class="project-meta">
+                        <span class="project-type">Water Systems</span>
+                        <span class="project-year">2023</span>
+                    </div>
+                    <h4>Regional Water Distribution Network</h4>
+                    <p>Comprehensive water distribution system connecting multiple communities with reliable, high-pressure water supply.</p>
+                    <div class="project-stats">
+                        <div class="stat">
+                            <span class="stat-number">$22.1M</span>
+                            <span class="stat-label">Project Value</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-number">28</span>
+                            <span class="stat-label">Months</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-number">45K</span>
+                            <span class="stat-label">Residents Served</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Call to Action -->
+        <div class="projects-cta">
+            <h3>Ready to Start Your Next Infrastructure Project?</h3>
+            <p>Let's discuss how we can bring your vision to life with our proven expertise and commitment to excellence.</p>
+            <a href="#contact" class="cta-primary">Start Your Project</a>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="section stats">
+        <div class="section-header">
+            <div class="section-subtitle" style="color: var(--primary-yellow);">Our Impact</div>
+            <h2 class="section-title" style="color: var(--primary-white);">Building Alberta's Future</h2>
+            <p class="section-description" style="color: rgba(255,255,255,0.8);">Trusted by communities across Alberta for over two decades</p>
+        </div>
+        <div class="stats-grid">
+            <div class="stat-item">
+                <span class="stat-number" data-target="500">0</span>
+                <span class="stat-label">Projects Completed</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number" data-target="25">0</span>
+                <span class="stat-label">Years Experience</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number" data-target="50">0</span>
+                <span class="stat-label">Communities Served</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number" data-target="100">0</span>
+                <span class="stat-label">Client Satisfaction</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section contact">
+        <div class="section-header">
+            <div class="section-subtitle">Get In Touch</div>
+            <h2 class="section-title">Ready to Start Your Project?</h2>
+            <p class="section-description">Contact our team of experts to discuss your municipal infrastructure needs</p>
+        </div>
+        <div class="contact-content">
+            <div class="contact-info">
+                <h3>Contact Information</h3>
+                <div class="contact-item">
+                    <svg class="contact-icon" fill="currentColor" viewBox="0 0 20 20">
+                        <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"/>
+                    </svg>
+                    <div>
+                        <strong>Phone:</strong> 780-960-8723
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <svg class="contact-icon" fill="currentColor" viewBox="0 0 20 20">
+                        <path d="M3 4a1 1 0 011-1h12a1 1 0 011 1v2a1 1 0 01-1 1H4a1 1 0 01-1-1V4zM3 10a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H4a1 1 0 01-1-1v-6zM14 9a1 1 0 00-1 1v6a1 1 0 001 1h2a1 1 0 001-1v-6a1 1 0 00-1-1h-2z"/>
+                    </svg>
+                    <div>
+                        <strong>Fax:</strong> 780-960-8809
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <svg class="contact-icon" fill="currentColor" viewBox="0 0 20 20">
+                        <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"/>
+                        <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"/>
+                    </svg>
+                    <div>
+                        <strong>Email:</strong> info@degner.ca
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <svg class="contact-icon" fill="currentColor" viewBox="0 0 20 20">
+                        <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                    </svg>
+                    <div>
+                        <strong>Quotes:</strong> estimating@degner.ca
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <svg class="contact-icon" fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"/>
+                    </svg>
+                    <div>
+                        <strong>Address:</strong> 27575 Ellis Road, Acheson, Alberta T7X 6N3
+                    </div>
+                </div>
+                <a href="tel:780-960-8723" class="contact-cta">Call Now</a>
+            </div>
+            <div class="contact-info">
+                <h3>Operating Hours</h3>
+                <div class="contact-item">
+                    <svg class="contact-icon" fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clip-rule="evenodd"/>
+                    </svg>
+                    <div>
+                        <strong>Monday - Friday:</strong> 8:00 AM - 5:00 PM
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <svg class="contact-icon" fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clip-rule="evenodd"/>
+                    </svg>
+                    <div>
+                        <strong>Saturday - Sunday:</strong> Closed
+                    </div>
+                </div>
+                <div style="background: rgba(247, 184, 1, 0.1); padding: 1.5rem; border-radius: var(--border-radius); margin-top: 2rem;">
+                    <h4 style="color: var(--primary-yellow); margin-bottom: 1rem; font-size: 1.1rem;">Request a Quote</h4>
+                    <p style="color: var(--text-gray); line-height: 1.6; margin-bottom: 1rem;">
+                        For quote requests, please email <strong style="color: var(--text-dark);">estimating@degner.ca</strong> with your project details.
+                    </p>
+                    <a href="mailto:estimating@degner.ca" class="contact-cta">Request Quote</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>&copy; 2025 Degner Construction. All rights reserved. Building Tomorrow's Infrastructure Today.</p>
+    </footer>
+
+    <script>
+        // Loading Screen
+        window.addEventListener('load', function() {
+            setTimeout(() => {
+                document.getElementById('loading').classList.add('hidden');
+                document.querySelector('.hero').style.animation = 'heroFadeIn 1.2s ease-out forwards, heroZoomIn 20s ease-out infinite';
+            }, 3500);
+        });
+
+        // Header Scroll Effect and Active Navigation
+        const sections = document.querySelectorAll('.section, .hero');
+        const navItems = document.querySelectorAll('.nav-item');
+
+        function updateActiveNav() {
+            let current = '';
+            
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (window.scrollY >= (sectionTop - 200)) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navItems.forEach(item => {
+                item.classList.remove('active');
+                const link = item.querySelector('a');
+                if (link.getAttribute('href') === `#${current}`) {
+                    item.classList.add('active');
+                }
+            });
+        }
+
+        window.addEventListener('scroll', function() {
+            const header = document.getElementById('header');
+            if (window.scrollY > 100) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+            
+            updateActiveNav();
+        });
+
+        updateActiveNav();
+
+        // Particle Animation System
+        class ParticleSystem {
+            constructor(canvas) {
+                this.canvas = canvas;
+                this.ctx = canvas.getContext('2d');
+                this.particles = [];
+                this.connectionDistance = 150;
+                this.mousePos = { x: 0, y: 0 };
+                
+                this.resize();
+                this.init();
+                this.animate();
+                
+                window.addEventListener('resize', () => this.resize());
+                canvas.addEventListener('mousemove', (e) => {
+                    this.mousePos.x = e.clientX;
+                    this.mousePos.y = e.clientY;
+                });
+            }
+            
+            resize() {
+                this.canvas.width = window.innerWidth;
+                this.canvas.height = window.innerHeight;
+            }
+            
+            init() {
+                const particleCount = Math.floor((this.canvas.width * this.canvas.height) / 15000);
+                this.particles = [];
+                
+                for (let i = 0; i < particleCount; i++) {
+                    this.particles.push({
+                        x: Math.random() * this.canvas.width,
+                        y: Math.random() * this.canvas.height,
+                        vx: (Math.random() - 0.5) * 0.5,
+                        vy: (Math.random() - 0.5) * 0.5,
+                        size: Math.random() * 2 + 1
+                    });
+                }
+            }
+            
+            animate() {
+                this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+                
+                this.particles.forEach(particle => {
+                    particle.x += particle.vx;
+                    particle.y += particle.vy;
+                    
+                    if (particle.x < 0 || particle.x > this.canvas.width) particle.vx *= -1;
+                    if (particle.y < 0 || particle.y > this.canvas.height) particle.vy *= -1;
+                    
+                    particle.x = Math.max(0, Math.min(this.canvas.width, particle.x));
+                    particle.y = Math.max(0, Math.min(this.canvas.height, particle.y));
+                });
+                
+                this.particles.forEach((particle, i) => {
+                    this.particles.slice(i + 1).forEach(otherParticle => {
+                        const dx = particle.x - otherParticle.x;
+                        const dy = particle.y - otherParticle.y;
+                        const distance = Math.sqrt(dx * dx + dy * dy);
+                        
+                        if (distance < this.connectionDistance) {
+                            const opacity = 1 - (distance / this.connectionDistance);
+                            this.ctx.strokeStyle = `rgba(247, 184, 1, ${opacity * 0.3})`;
+                            this.ctx.lineWidth = 1;
+                            this.ctx.beginPath();
+                            this.ctx.moveTo(particle.x, particle.y);
+                            this.ctx.lineTo(otherParticle.x, otherParticle.y);
+                            this.ctx.stroke();
+                        }
+                    });
+                });
+                
+                this.particles.forEach(particle => {
+                    this.ctx.fillStyle = 'rgba(247, 184, 1, 0.8)';
+                    this.ctx.beginPath();
+                    this.ctx.arc(particle.x, particle.y, particle.size, 0, Math.PI * 2);
+                    this.ctx.fill();
+                });
+                
+                requestAnimationFrame(() => this.animate());
+            }
+        }
+
+        // Initialize particles after loading
+        setTimeout(() => {
+            const particleCanvas = document.getElementById('particles');
+            if (particleCanvas) {
+                new ParticleSystem(particleCanvas);
+            }
+        }, 3500);
+
+        // Scroll-triggered animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    
+                    if (entry.target.classList.contains('stats')) {
+                        animateStats();
+                    }
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.section').forEach(section => {
+            observer.observe(section);
+        });
+
+        // Stats animation
+        function animateStats() {
+            const statNumbers = document.querySelectorAll('.stat-number');
+            statNumbers.forEach(stat => {
+                const target = parseInt(stat.getAttribute('data-target'));
+                const increment = target / 100;
+                let current = 0;
+                
+                const timer = setInterval(() => {
+                    current += increment;
+                    if (current >= target) {
+                        current = target;
+                        clearInterval(timer);
+                    }
+                    stat.textContent = Math.floor(current) + (target === 100 ? '%' : '+');
+                }, 20);
+            });
+        }
+
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Search functionality
+        const searchToggle = document.getElementById('searchToggle');
+        const searchOverlay = document.getElementById('searchOverlay');
+        const searchClose = document.getElementById('searchClose');
+        const searchInput = document.querySelector('.search-overlay .search-input');
+
+        searchToggle.addEventListener('click', function() {
+            searchOverlay.classList.add('active');
+            setTimeout(() => searchInput.focus(), 300);
+        });
+
+        searchClose.addEventListener('click', function() {
+            searchOverlay.classList.remove('active');
+        });
+
+        searchOverlay.addEventListener('click', function(e) {
+            if (e.target === searchOverlay) {
+                searchOverlay.classList.remove('active');
+            }
+        });
+
+        searchInput.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                const query = this.value.toLowerCase();
+                searchOverlay.classList.remove('active');
+                
+                if (query.includes('service') || query.includes('water') || query.includes('storm') || query.includes('infrastructure')) {
+                    document.querySelector('#services').scrollIntoView({ behavior: 'smooth' });
+                } else if (query.includes('contact') || query.includes('phone') || query.includes('email') || query.includes('quote')) {
+                    document.querySelector('#contact').scrollIntoView({ behavior: 'smooth' });
+                } else if (query.includes('about') || query.includes('company') || query.includes('who we are')) {
+                    document.querySelector('#about').scrollIntoView({ behavior: 'smooth' });
+                } else if (query.includes('career') || query.includes('job')) {
+                    document.querySelector('#contact').scrollIntoView({ behavior: 'smooth' });
+                } else if (query.includes('project') || query.includes('portfolio') || query.includes('work') || query.includes('our work')) {
+                    document.querySelector('#projects').scrollIntoView({ behavior: 'smooth' });
+                }
+                this.value = '';
+            }
+        });
+
+        // Mobile menu functionality
+        const mobileToggle = document.getElementById('mobileToggle');
+        const mobileNav = document.getElementById('mobileNav');
+        const mobileNavClose = document.getElementById('mobileNavClose');
+
+        mobileToggle.addEventListener('click', function() {
+            this.classList.toggle('active');
+            mobileNav.classList.toggle('active');
+            document.body.style.overflow = mobileNav.classList.contains('active') ? 'hidden' : '';
+        });
+
+        mobileNavClose.addEventListener('click', function() {
+            mobileToggle.classList.remove('active');
+            mobileNav.classList.remove('active');
+            document.body.style.overflow = '';
+        });
+
+        document.addEventListener('click', function(e) {
+            if (!mobileNav.contains(e.target) && !mobileToggle.contains(e.target)) {
+                mobileToggle.classList.remove('active');
+                mobileNav.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+        });
+
+        document.querySelectorAll('.mobile-nav-menu a').forEach(link => {
+            link.addEventListener('click', function() {
+                mobileToggle.classList.remove('active');
+                mobileNav.classList.remove('active');
+                document.body.style.overflow = '';
+            });
+        });
+
+        // Escape key functionality
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                searchOverlay.classList.remove('active');
+                mobileToggle.classList.remove('active');
+                mobileNav.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+        });
+
+        // Project Filtering System
+        const filterButtons = document.querySelectorAll('.filter-btn');
+        const projectCards = document.querySelectorAll('.project-card');
+
+        filterButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                // Remove active class from all buttons
+                filterButtons.forEach(btn => btn.classList.remove('active'));
+                // Add active class to clicked button
+                this.classList.add('active');
+                
+                const filterValue = this.getAttribute('data-filter');
+                
+                projectCards.forEach(card => {
+                    const categories = card.getAttribute('data-category');
+                    
+                    if (filterValue === 'all' || categories.includes(filterValue)) {
+                        card.classList.remove('hidden');
+                        setTimeout(() => {
+                            card.style.opacity = '1';
+                            card.style.transform = 'scale(1)';
+                        }, 50);
+                    } else {
+                        card.style.opacity = '0';
+                        card.style.transform = 'scale(0.8)';
+                        setTimeout(() => {
+                            card.classList.add('hidden');
+                        }, 300);
+                    }
+                });
+            });
+        });
+
+        // Enhanced project card interactions
+        document.querySelectorAll('.project-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-10px) scale(1.02)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                if (!this.classList.contains('hidden')) {
+                    this.style.transform = 'translateY(0) scale(1)';
+                }
+            });
+        });
+
+        // Service card hover effects
+        document.querySelectorAll('.service-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-10px) scale(1.02)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0) scale(1)';
+            });
+        });
+
+        // Contact item hover effects
+        document.querySelectorAll('.contact-item').forEach(item => {
+            item.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateX(10px)';
+                this.style.backgroundColor = 'rgba(247, 184, 1, 0.05)';
+                this.style.borderRadius = '8px';
+                this.style.padding = '0.5rem';
+            });
+            
+            item.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateX(0)';
+                this.style.backgroundColor = 'transparent';
+                this.style.padding = '0';
+            });
+        });
+
+        // Parallax effect for hero section
+        window.addEventListener('scroll', function() {
+            const scrolled = window.pageYOffset;
+            const hero = document.querySelector('.hero');
+            if (hero) {
+                hero.style.transform = `translateY(${scrolled * 0.5}px)`;
+            }
+        });
+
+        // Button interaction effects
+        document.querySelectorAll('.cta-primary, .cta-secondary, .contact-cta').forEach(button => {
+            button.addEventListener('click', function(e) {
+                if (this.href && this.href.includes('tel:') || this.href.includes('mailto:')) {
+                    return;
+                }
+                
+                this.style.transform = 'scale(0.95)';
+                setTimeout(() => {
+                    this.style.transform = '';
+                }, 150);
+            });
+        });
+    </script>
+</body>
+</html>
