@@ -325,6 +325,17 @@
             font-weight: 500;
             cursor: pointer;
             outline: none;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Noto Sans', sans-serif;
+        }
+
+        /* .language-selector {
+            display: none !important;
+        } /* Uncomment this line to hide the language selector */
+
+        .language-selector select option {
+            background: var(--primary-white);
+            color: var(--text-dark);
+            padding: 0.5rem;
         }
 
         .search-toggle {
@@ -864,7 +875,7 @@
                 </div>
                 <ul class="nav-menu">
                     <li class="nav-item">
-                        <a href="team.html">Who We Are</a>
+                        <a href="#" onclick="return false;">Who We Are</a>
                         <div class="megamenu">
                             <div class="megamenu-content">
                                 <div class="megamenu-section">
@@ -1002,8 +1013,14 @@
                         <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM4.332 8.027a6.012 6.012 0 011.912-2.706C6.512 5.73 6.974 6 7.5 6A1.5 1.5 0 019 7.5V8a2 2 0 004 0 2 2 0 011.523-1.943A5.977 5.977 0 0116 10c0 .34-.028.675-.083 1H15a2 2 0 00-2 2v2.197A5.973 5.973 0 0110 16v-2a2 2 0 00-2-2 2 2 0 01-4 0 2 2 0 00-1.668-1.973z" clip-rule="evenodd"/>
                     </svg>
                     <select>
-                        <option value="CA">Canada</option>
-                        <option value="US">United States</option>
+                        <option value="CA-EN" selected>Canada (EN)</option>
+                        <option value="CA-FR">Canada (FR)</option>
+                        <option value="US-EN">U.S. (EN)</option>
+                        <option value="AUS-EN">AUS (EN)</option>
+                        <option value="ES">Español</option>
+                        <option value="ZH">中文</option>
+                        <option value="PA">ਪੰਜਾਬੀ</option>
+                        <option value="TL">Tagalog</option>
                     </select>
                 </div>
                 <button class="search-toggle" id="searchToggle">
@@ -1642,6 +1659,50 @@
                 mobileToggle.classList.remove('active');
                 mobileNav.classList.remove('active');
                 document.body.style.overflow = '';
+            }
+        });
+            document.querySelector('.language-selector select').addEventListener('change', function() {
+            const selectedValue = this.value;
+            const selectedText = this.options[this.selectedIndex].text;
+            
+            console.log('Language changed to:', selectedText);
+            
+            // Store user preference
+            localStorage.setItem('selectedLanguage', selectedValue);
+            
+            // You can add functionality here for different languages
+            switch(selectedValue) {
+                case 'CA-EN':
+                    // Handle Canadian English (default)
+                    break;
+                case 'CA-FR':
+                    // Redirect to French version or show French content
+                    alert('French version coming soon!');
+                    break;
+                case 'ES':
+                    alert('Spanish version coming soon!');
+                    break;
+                case 'ZH':
+                    alert('Chinese version coming soon!');
+                    break;
+                case 'PA':
+                    alert('Punjabi version coming soon!');
+                    break;
+                case 'TL':
+                    alert('Tagalog version coming soon!');
+                    break;
+                // Add other cases as needed
+            }
+        });
+
+        // Load saved language preference on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            const savedLanguage = localStorage.getItem('selectedLanguage');
+            if (savedLanguage) {
+                const languageSelect = document.querySelector('.language-selector select');
+                if (languageSelect) {
+                    languageSelect.value = savedLanguage;
+                }
             }
         });
     </script>
