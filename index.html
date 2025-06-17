@@ -1228,8 +1228,7 @@
                 </div>
                 <ul class="nav-menu">
                     <li class="nav-item">
-                        <a href="team.html">
-Who We Are</a>
+                        <a href="team.html">Who We Are</a>
                         <div class="megamenu">
                             <div class="megamenu-content">
                                 <div class="megamenu-section">
@@ -1356,7 +1355,7 @@ Who We Are</a>
                         </div>
                     </li>
                     <li class="nav-item"><a href="#services">What We Do</a></li>
-                    <li class="nav-item"><a href="#projects">Our Projects</a></li>
+                    <li class="nav-item"><a href="projects.html">Our Projects</a></li>
                     <li class="nav-item"><a href="#careers">Careers</a></li>
                     <li class="nav-item"><a href="#contact">Contact</a></li>
                 </ul>
@@ -1405,7 +1404,7 @@ Who We Are</a>
         <ul class="mobile-nav-menu">
             <li><a href="team.html">Our Team <span>→</span></a></li>
             <li><a href="#services">What We Do <span>→</span></a></li>
-            <li><a href="#projects">Our Projects <span>→</span></a></li>
+            <li><a href="projects.html">Our Projects <span>→</span></a></li>
             <li><a href="#careers">Careers <span>→</span></a></li>
             <li><a href="#contact">Contact <span>→</span></a></li>
         </ul>
@@ -1625,7 +1624,7 @@ Who We Are</a>
     </footer>
 
     <script>
-        
+
         // Header Scroll Effect and Active Navigation
         const sections = document.querySelectorAll('.section, .hero');
         const navItems = document.querySelectorAll('.nav-item');
@@ -1752,7 +1751,7 @@ Who We Are</a>
                     window.location.href = 'team.html';} else if (query.includes('career') || query.includes('job')) {
                     document.querySelector('#contact').scrollIntoView({ behavior: 'smooth' });
                 } else if (query.includes('project') || query.includes('portfolio')) {
-                    document.querySelector('#services').scrollIntoView({ behavior: 'smooth' });
+                    window.location.href = 'projects.html';
                 }
                 this.value = '';
             }

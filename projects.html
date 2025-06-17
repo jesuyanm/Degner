@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Our Team - Degner Construction</title>
+    <title>Our Projects - Degner Construction</title>
     <style>
         :root {
             --primary-accent: #000000;
@@ -506,7 +506,7 @@
 
         /* Page Header */
         .page-header {
-            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.4)), url('pic2.png');
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.4)), url('pic5.png');
             background-size: cover;
             background-position: center;
             height: 60vh;
@@ -536,7 +536,7 @@
         /* Main Content */
         .main-content {
             padding: 6rem 3rem;
-            max-width: 1400px;
+            max-width: 1600px;
             margin: 0 auto;
         }
 
@@ -568,92 +568,194 @@
             margin: 0 auto;
         }
 
-        /* Team Grid */
-        .team-grid {
+        /* Project Filters */
+        .project-filters {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            padding: 0.8rem 1.5rem;
+            background: var(--background-light);
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: var(--transition);
+            font-weight: 500;
+            color: var(--text-dark);
+        }
+
+        .filter-btn.active,
+        .filter-btn:hover {
+            background: var(--text-dark);
+            color: var(--primary-white);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-medium);
+        }
+
+        /* Projects Grid */
+        .projects-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 3rem;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 2rem;
             margin-top: 3rem;
         }
 
-        .team-member {
-            background: var(--background-light);
+        .project-card {
+            background: var(--primary-white);
             border-radius: var(--border-radius);
-            padding: 2.5rem;
-            text-align: center;
+            overflow: hidden;
+            box-shadow: var(--shadow-light);
             transition: var(--transition);
+            position: relative;
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-heavy);
+        }
+
+        .project-image {
+            width: 100%;
+            height: 250px;
+            background: linear-gradient(45deg, #f0f2f5, #e1e5e9);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-gray);
+            font-size: 1.1rem;
+            font-weight: 500;
             position: relative;
             overflow: hidden;
         }
 
-        .team-member::before {
+        .project-image::before {
             content: '';
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
-            height: 4px;
-            background: linear-gradient(90deg, var(--text-dark), var(--text-gray));
-            transform: scaleX(0);
-            transition: var(--transition);
-            transform-origin: left;
+            height: 100%;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21,15 16,10 5,21"/></svg>') center/80px no-repeat;
+            opacity: 0.3;
         }
 
-        .team-member:hover::before {
-            transform: scaleX(1);
-        }
-
-        .team-member:hover {
-            transform: translateY(-10px);
-            box-shadow: var(--shadow-heavy);
-            background: var(--primary-white);
-        }
-
-        .team-photo {
-            width: 150px;
-            height: 150px;
-            border-radius: 50%;
-            margin: 0 auto 1.5rem;
+        .project-category {
+            position: absolute;
+            top: 1rem;
+            left: 1rem;
             background: var(--text-dark);
-            display: flex;
-            align-items: center;
-            justify-content: center;
             color: var(--primary-white);
-            font-size: 2.5rem;
-            font-weight: 700;
-            transition: var(--transition);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
-        .team-member:hover .team-photo {
-            transform: scale(1.05);
+        .project-content {
+            padding: 2rem;
         }
 
-        .team-name {
-            font-size: 1.4rem;
+        .project-title {
+            font-size: 1.3rem;
             font-weight: 700;
             color: var(--text-dark);
             margin-bottom: 0.5rem;
         }
 
-        .team-credentials {
-            font-size: 0.9rem;
+        .project-client {
             color: var(--text-gray);
             font-weight: 500;
+            margin-bottom: 1rem;
+            font-size: 0.95rem;
+        }
+
+        .project-description {
+            color: var(--text-gray);
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+            font-size: 0.95rem;
+        }
+
+        .project-details {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .project-detail {
+            font-size: 0.9rem;
+        }
+
+        .project-detail strong {
+            color: var(--text-dark);
+            display: block;
+            margin-bottom: 0.2rem;
+        }
+
+        .project-detail span {
+            color: var(--text-gray);
+        }
+
+        .project-engineer {
+            background: var(--background-light);
+            padding: 1rem;
+            border-radius: var(--border-radius);
+            margin-top: 1rem;
+            text-align: center;
+        }
+
+        .project-engineer strong {
+            color: var(--text-dark);
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .project-engineer span {
+            color: var(--text-gray);
+            font-size: 0.9rem;
+        }
+
+        /* Stats Section */
+        .stats-section {
+            background: var(--background-light);
+            padding: 4rem 3rem;
+            margin: 4rem 0;
+            border-radius: var(--border-radius);
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--text-dark);
             margin-bottom: 0.5rem;
         }
 
-        .team-title {
-            font-size: 1.1rem;
-            color: var(--text-dark);
-            font-weight: 600;
-            margin-bottom: 1.5rem;
-            font-style: italic;
-        }
-
-        .team-bio {
+        .stat-label {
             color: var(--text-gray);
-            line-height: 1.6;
-            font-size: 0.95rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 0.9rem;
         }
 
         /* Footer */
@@ -686,9 +788,13 @@
             .mobile-menu-toggle {
                 display: flex;
             }
+
+            .projects-grid {
+                grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            }
         }
 
-        @media (max-width: 968px) {
+        @media (max-width: 768px) {
             .nav-container {
                 padding: 0 2rem;
                 height: 70px;
@@ -702,18 +808,31 @@
                 padding: 4rem 2rem;
             }
 
-            .team-grid {
+            .projects-grid {
                 grid-template-columns: 1fr;
-                gap: 2rem;
+                gap: 1.5rem;
             }
 
-            .team-member {
-                padding: 2rem;
+            .project-details {
+                grid-template-columns: 1fr;
+            }
+
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
             }
 
             .search-toggle {
                 width: 35px;
                 height: 35px;
+            }
+
+            .project-filters {
+                gap: 0.5rem;
+            }
+
+            .filter-btn {
+                padding: 0.6rem 1rem;
+                font-size: 0.9rem;
             }
         }
 
@@ -725,6 +844,10 @@
 
             .logo img {
                 height: 125px;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr;
             }
         }
     </style>
@@ -903,7 +1026,7 @@
             <button class="search-close" id="searchClose">&times;</button>
             <input type="text" class="search-input" placeholder="Search projects, services, careers..." autofocus>
             <div class="search-suggestions">
-                <p style="color: var(--text-gray); font-size: 0.9rem; margin-top: 1rem;">Try searching: "water services", "careers", "project management"</p>
+                <p style="color: var(--text-gray); font-size: 0.9rem; margin-top: 1rem;">Try searching: "infrastructure", "urban land", "renewal projects"</p>
             </div>
         </div>
     </div>
@@ -926,58 +1049,468 @@
     <!-- Page Header -->
     <section class="page-header">
         <div class="page-header-content">
-            <h1>Our Team</h1>
-            <p>Meet the experienced professionals driving innovation and excellence in municipal infrastructure</p>
+            <h1>Our Projects</h1>
+            <p>Discover our portfolio of successful municipal infrastructure, renewal, and urban development projects across Alberta</p>
         </div>
     </section>
 
     <!-- Main Content -->
     <main class="main-content">
         <div class="section-header">
-            <div class="section-subtitle">Leadership Excellence</div>
-            <h2 class="section-title">Building Tomorrow's Infrastructure Together</h2>
-            <p class="section-description">Our team combines decades of experience with innovative approaches to deliver exceptional municipal infrastructure solutions across Alberta.</p>
+            <div class="section-subtitle">Project Portfolio</div>
+            <h2 class="section-title">Building Communities Through Excellence</h2>
+            <p class="section-description">From complex infrastructure development to residential communities, our diverse project portfolio showcases our commitment to quality, innovation, and community building across Alberta's growing municipalities.</p>
         </div>
 
-        <div class="team-grid">
-            <div class="team-member">
-                <div class="team-photo">
-                    <span>DD</span>
+        <!-- Project Statistics -->
+        <div class="stats-section">
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <div class="stat-number">150+</div>
+                    <div class="stat-label">Projects Completed</div>
                 </div>
-                <h3 class="team-name">Dale Degner</h3>
-                <div class="team-credentials">BCom., MBA</div>
-                <div class="team-title">President</div>
-                <p class="team-bio">With over two decades of leadership in the construction industry, Dale brings strategic vision and operational excellence to every project. His MBA background combined with hands-on construction experience ensures that Degner Construction remains at the forefront of municipal infrastructure development. Dale's commitment to building community value drives the company's mission and values.</p>
+                <div class="stat-item">
+                    <div class="stat-number">2,000+</div>
+                    <div class="stat-label">Residential Lots</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">50+</div>
+                    <div class="stat-label">Infrastructure Projects</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">15+</div>
+                    <div class="stat-label">Municipal Partners</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Project Filters -->
+        <div class="project-filters">
+            <button class="filter-btn active" data-filter="all">All Projects</button>
+            <button class="filter-btn" data-filter="infrastructure">Infrastructure</button>
+            <button class="filter-btn" data-filter="renewal">Renewal</button>
+            <button class="filter-btn" data-filter="urban-land">Urban Land</button>
+        </div>
+
+        <!-- Projects Grid -->
+        <div class="projects-grid" id="projectsGrid">
+            <!-- Infrastructure Projects -->
+            <div class="project-card" data-category="infrastructure">
+                <div class="project-image">
+                    <div class="project-category">Infrastructure</div>
+                    Infrastructure Project Image
+                </div>
+                <div class="project-content">
+                    <h3 class="project-title">Schonsee Stage 14 Offsite</h3>
+                    <div class="project-client">Brookfield Residential</div>
+                    <p class="project-description">A complex deep utility installation featuring 0.5 kilometers of deep sanitary mains with advanced directional drilling technology. This project demonstrated our expertise in navigating challenging underground conditions while maintaining environmental standards and minimizing surface disruption.</p>
+                    <div class="project-details">
+                        <div class="project-detail">
+                            <strong>Location</strong>
+                            <span>City of Edmonton</span>
+                        </div>
+                        <div class="project-detail">
+                            <strong>Completed</strong>
+                            <span>2013</span>
+                        </div>
+                    </div>
+                    <div class="project-engineer">
+                        <strong>Engineering Partner</strong><br>
+                        <span>Sheffer Andrew</span>
+                    </div>
+                </div>
             </div>
 
-            <div class="team-member">
-                <div class="team-photo">
-                    <span>SA</span>
+            <div class="project-card" data-category="infrastructure">
+                <div class="project-image">
+                    <div class="project-category">Infrastructure</div>
+                    Infrastructure Project Image
                 </div>
-                <h3 class="team-name">Shaun Andreas</h3>
-                <div class="team-credentials">CET, MBA</div>
-                <div class="team-title">General Manager</div>
-                <p class="team-bio">Shaun's technical expertise as a Certified Engineering Technologist ensures that every project meets the highest standards of quality and safety. With extensive experience in project management and field operations, he oversees the seamless execution of complex municipal infrastructure projects. His attention to detail and commitment to excellence make him an invaluable leader in our organization.</p>
+                <div class="project-content">
+                    <h3 class="project-title">Melcor Collector Roadway</h3>
+                    <div class="project-client">Melcor Developments</div>
+                    <p class="project-description">A comprehensive collector roadway development project that established critical transportation infrastructure for Edmonton's growing communities. This project included both roadway construction and supporting utility infrastructure to serve future residential development.</p>
+                    <div class="project-details">
+                        <div class="project-detail">
+                            <strong>Location</strong>
+                            <span>City of Edmonton</span>
+                        </div>
+                        <div class="project-detail">
+                            <strong>Completed</strong>
+                            <span>2013</span>
+                        </div>
+                    </div>
+                    <div class="project-engineer">
+                        <strong>Engineering Partner</strong><br>
+                        <span>IBI Group</span>
+                    </div>
+                </div>
             </div>
 
-            <div class="team-member">
-                <div class="team-photo">
-                    <span>MD</span>
+            <div class="project-card" data-category="infrastructure">
+                <div class="project-image">
+                    <div class="project-category">Infrastructure</div>
+                    Infrastructure Project Image
                 </div>
-                <h3 class="team-name">Matt Dudka</h3>
-                <div class="team-credentials">CET</div>
-                <div class="team-title">Project Manager</div>
-                <p class="team-bio">Matt combines technical proficiency with exceptional project management skills to deliver infrastructure projects on time and within budget. His Certified Engineering Technologist credentials and practical field experience enable him to navigate complex project challenges while maintaining clear communication with clients and stakeholders. Matt's dedication to innovative solutions drives project success.</p>
+                <div class="project-content">
+                    <h3 class="project-title">MLC Arterial Roadway</h3>
+                    <div class="project-client">MLC Developments</div>
+                    <p class="project-description">Major arterial roadway construction that established a vital transportation corridor for Edmonton's municipal infrastructure. This high-capacity roadway project required precision engineering and construction to meet heavy traffic load requirements and municipal standards.</p>
+                    <div class="project-details">
+                        <div class="project-detail">
+                            <strong>Location</strong>
+                            <span>City of Edmonton</span>
+                        </div>
+                        <div class="project-detail">
+                            <strong>Completed</strong>
+                            <span>2013</span>
+                        </div>
+                    </div>
+                    <div class="project-engineer">
+                        <strong>Engineering Partner</strong><br>
+                        <span>Stantec</span>
+                    </div>
+                </div>
             </div>
 
-            <div class="team-member">
-                <div class="team-photo">
-                    <span>TT</span>
+            <div class="project-card" data-category="infrastructure">
+                <div class="project-image">
+                    <div class="project-category">Infrastructure</div>
+                    Infrastructure Project Image
                 </div>
-                <h3 class="team-name">Tom Thornton</h3>
-                <div class="team-credentials"></div>
-                <div class="team-title">Operations Manager</div>
-                <p class="team-bio">Tom's operational expertise ensures that our field operations run smoothly and efficiently. With deep knowledge of construction processes and equipment management, he coordinates resources and personnel to maximize productivity while maintaining our high safety standards. His hands-on approach and problem-solving abilities make him essential to our daily operations and project success.</p>
+                <div class="project-content">
+                    <h3 class="project-title">McManes Autogroup Large Diameter Services</h3>
+                    <div class="project-client">McManes Autogroup/Melcor</div>
+                    <p class="project-description">Specialized large diameter truck service infrastructure designed to support commercial automotive operations. This project required custom engineering solutions to handle heavy-duty commercial requirements while integrating with existing municipal infrastructure networks.</p>
+                    <div class="project-details">
+                        <div class="project-detail">
+                            <strong>Location</strong>
+                            <span>City of Edmonton</span>
+                        </div>
+                        <div class="project-detail">
+                            <strong>Completed</strong>
+                            <span>2012</span>
+                        </div>
+                    </div>
+                    <div class="project-engineer">
+                        <strong>Engineering Partner</strong><br>
+                        <span>Select Engineering/IBI Group</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-card" data-category="infrastructure">
+                <div class="project-image">
+                    <div class="project-category">Infrastructure</div>
+                    Infrastructure Project Image
+                </div>
+                <div class="project-content">
+                    <h3 class="project-title">Rohit Land Deep Utilities</h3>
+                    <div class="project-client">Rohit Land Development</div>
+                    <p class="project-description">Extensive deep utility installation spanning 1 kilometer with advanced directional drilling techniques. This project showcased our ability to navigate complex underground conditions while installing critical water and sanitary infrastructure for future residential development.</p>
+                    <div class="project-details">
+                        <div class="project-detail">
+                            <strong>Location</strong>
+                            <span>City of Edmonton</span>
+                        </div>
+                        <div class="project-detail">
+                            <strong>Completed</strong>
+                            <span>2012</span>
+                        </div>
+                    </div>
+                    <div class="project-engineer">
+                        <strong>Engineering Partner</strong><br>
+                        <span>MMM Group</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-card" data-category="infrastructure">
+                <div class="project-image">
+                    <div class="project-category">Infrastructure</div>
+                    Infrastructure Project Image
+                </div>
+                <div class="project-content">
+                    <h3 class="project-title">Lloydminster Large Diameter Pipeline</h3>
+                    <div class="project-client">City of Lloydminster</div>
+                    <p class="project-description">Major municipal infrastructure project featuring 1.2 kilometers of 12-meter deep large diameter pipeline installation. This challenging project required specialized equipment and expertise to install critical water transmission infrastructure at significant depth while maintaining structural integrity.</p>
+                    <div class="project-details">
+                        <div class="project-detail">
+                            <strong>Location</strong>
+                            <span>City of Lloydminster</span>
+                        </div>
+                        <div class="project-detail">
+                            <strong>Completed</strong>
+                            <span>2011</span>
+                        </div>
+                    </div>
+                    <div class="project-engineer">
+                        <strong>Engineering Partner</strong><br>
+                        <span>Select Engineering</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Renewal Projects -->
+            <div class="project-card" data-category="renewal">
+                <div class="project-image">
+                    <div class="project-category">Renewal</div>
+                    Renewal Project Image
+                </div>
+                <div class="project-content">
+                    <h3 class="project-title">St. Albert Sedimentation Control</h3>
+                    <div class="project-client">St. Albert County</div>
+                    <p class="project-description">Environmental infrastructure renewal featuring advanced sedimentation and erosion control structures with a 1350mm outfall system. This project enhanced municipal stormwater management capabilities while implementing sustainable environmental protection measures for long-term water quality improvement.</p>
+                    <div class="project-details">
+                        <div class="project-detail">
+                            <strong>Location</strong>
+                            <span>City of St. Albert</span>
+                        </div>
+                        <div class="project-detail">
+                            <strong>Completed</strong>
+                            <span>2013</span>
+                        </div>
+                    </div>
+                    <div class="project-engineer">
+                        <strong>Engineering Partner</strong><br>
+                        <span>Stantec</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-card" data-category="renewal">
+                <div class="project-image">
+                    <div class="project-category">Renewal</div>
+                    Renewal Project Image
+                </div>
+                <div class="project-content">
+                    <h3 class="project-title">Edmonton Watermain Renewal</h3>
+                    <div class="project-client">City of Edmonton</div>
+                    <p class="project-description">Critical municipal watermain renewal project to upgrade aging infrastructure and improve water distribution reliability. This project involved replacing deteriorated water distribution lines with modern materials while minimizing service disruptions to residents and businesses.</p>
+                    <div class="project-details">
+                        <div class="project-detail">
+                            <strong>Location</strong>
+                            <span>City of Edmonton</span>
+                        </div>
+                        <div class="project-detail">
+                            <strong>Completed</strong>
+                            <span>2013</span>
+                        </div>
+                    </div>
+                    <div class="project-engineer">
+                        <strong>Engineering Partner</strong><br>
+                        <span>Stantec</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-card" data-category="renewal">
+                <div class="project-image">
+                    <div class="project-category">Renewal</div>
+                    Renewal Project Image
+                </div>
+                <div class="project-content">
+                    <h3 class="project-title">Canada Lands Infrastructure Renewal</h3>
+                    <div class="project-client">Canada Lands Company</div>
+                    <p class="project-description">Comprehensive infrastructure renewal involving the removal of 2.8 kilometers of aging AC water and sanitary systems and installation of modern replacement infrastructure. This large-scale renewal project revitalized essential municipal services for a significant urban area.</p>
+                    <div class="project-details">
+                        <div class="project-detail">
+                            <strong>Location</strong>
+                            <span>City of Edmonton</span>
+                        </div>
+                        <div class="project-detail">
+                            <strong>Completed</strong>
+                            <span>2012</span>
+                        </div>
+                    </div>
+                    <div class="project-engineer">
+                        <strong>Engineering Partner</strong><br>
+                        <span>Select Engineering</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-card" data-category="renewal">
+                <div class="project-image">
+                    <div class="project-category">Renewal</div>
+                    Renewal Project Image
+                </div>
+                <div class="project-content">
+                    <h3 class="project-title">Palisades Complete Rehabilitation</h3>
+                    <div class="project-client">Palisades Owners Group</div>
+                    <p class="project-description">Extensive community rehabilitation project covering 15 city blocks with complete deep services renewal. This comprehensive project restored aging infrastructure across a significant residential area, improving utility reliability and service quality for hundreds of residents.</p>
+                    <div class="project-details">
+                        <div class="project-detail">
+                            <strong>Location</strong>
+                            <span>City of Edmonton</span>
+                        </div>
+                        <div class="project-detail">
+                            <strong>Completed</strong>
+                            <span>2011</span>
+                        </div>
+                    </div>
+                    <div class="project-engineer">
+                        <strong>Engineering Partner</strong><br>
+                        <span>Scheffer Andrew</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Urban Land Projects -->
+            <div class="project-card" data-category="urban-land">
+                <div class="project-image">
+                    <div class="project-category">Urban Land</div>
+                    Urban Development Image
+                </div>
+                <div class="project-content">
+                    <h3 class="project-title">Rohit Lands Residential Development</h3>
+                    <div class="project-client">Rohit Lands</div>
+                    <p class="project-description">Large-scale residential development creating 179 fully-serviced residential lots. This comprehensive urban land development project included complete infrastructure installation, utility connections, and roadway construction to support a thriving residential community in Edmonton's growing landscape.</p>
+                    <div class="project-details">
+                        <div class="project-detail">
+                            <strong>Location</strong>
+                            <span>City of Edmonton</span>
+                        </div>
+                        <div class="project-detail">
+                            <strong>Completed</strong>
+                            <span>2013</span>
+                        </div>
+                    </div>
+                    <div class="project-engineer">
+                        <strong>Engineering Partner</strong><br>
+                        <span>MMM Group</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-card" data-category="urban-land">
+                <div class="project-image">
+                    <div class="project-category">Urban Land</div>
+                    Urban Development Image
+                </div>
+                <div class="project-content">
+                    <h3 class="project-title">Qualico Communities Development</h3>
+                    <div class="project-client">Qualico Communities</div>
+                    <p class="project-description">Multi-phase residential community development creating 125 residential lots with complete municipal infrastructure. This project exemplified our ability to deliver large-scale residential developments that integrate seamlessly with existing municipal infrastructure while creating sustainable community spaces.</p>
+                    <div class="project-details">
+                        <div class="project-detail">
+                            <strong>Location</strong>
+                            <span>City of Edmonton</span>
+                        </div>
+                        <div class="project-detail">
+                            <strong>Completed</strong>
+                            <span>2012</span>
+                        </div>
+                    </div>
+                    <div class="project-engineer">
+                        <strong>Engineering Partner</strong><br>
+                        <span>Stantec</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-card" data-category="urban-land">
+                <div class="project-image">
+                    <div class="project-category">Urban Land</div>
+                    Urban Development Image
+                </div>
+                <div class="project-content">
+                    <h3 class="project-title">Brookfield Residential Community</h3>
+                    <div class="project-client">Brookfield Residential</div>
+                    <p class="project-description">Premium residential development featuring 102 fully-serviced lots with advanced infrastructure planning. This community development showcased our expertise in creating high-quality residential environments with comprehensive utility systems and sustainable design principles.</p>
+                    <div class="project-details">
+                        <div class="project-detail">
+                            <strong>Location</strong>
+                            <span>City of Edmonton</span>
+                        </div>
+                        <div class="project-detail">
+                            <strong>Completed</strong>
+                            <span>2012</span>
+                        </div>
+                    </div>
+                    <div class="project-engineer">
+                        <strong>Engineering Partner</strong><br>
+                        <span>Sheffer Andrew</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-card" data-category="urban-land">
+                <div class="project-image">
+                    <div class="project-category">Urban Land</div>
+                    Urban Development Image
+                </div>
+                <div class="project-content">
+                    <h3 class="project-title">Melcor Mixed Development</h3>
+                    <div class="project-client">Melcor Developments</div>
+                    <p class="project-description">Integrated development combining 188 residential lots with collector roadway infrastructure. This large-scale project demonstrated our capability to manage complex multi-component developments that include both residential and transportation infrastructure elements.</p>
+                    <div class="project-details">
+                        <div class="project-detail">
+                            <strong>Location</strong>
+                            <span>City of Edmonton</span>
+                        </div>
+                        <div class="project-detail">
+                            <strong>Completed</strong>
+                            <span>2012</span>
+                        </div>
+                    </div>
+                    <div class="project-engineer">
+                        <strong>Engineering Partner</strong><br>
+                        <span>IBI Group</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-card" data-category="urban-land">
+                <div class="project-image">
+                    <div class="project-category">Urban Land</div>
+                    Urban Development Image
+                </div>
+                <div class="project-content">
+                    <h3 class="project-title">Qualico Fort Saskatchewan</h3>
+                    <div class="project-client">Qualico Communities</div>
+                    <p class="project-description">Strategic residential development in Fort Saskatchewan featuring 96 residential lots with comprehensive infrastructure planning. This project expanded housing opportunities in the region while maintaining high standards for municipal infrastructure and community amenities.</p>
+                    <div class="project-details">
+                        <div class="project-detail">
+                            <strong>Location</strong>
+                            <span>City of Fort Saskatchewan</span>
+                        </div>
+                        <div class="project-detail">
+                            <strong>Completed</strong>
+                            <span>2013</span>
+                        </div>
+                    </div>
+                    <div class="project-engineer">
+                        <strong>Engineering Partner</strong><br>
+                        <span>Al-Terra</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-card" data-category="urban-land">
+                <div class="project-image">
+                    <div class="project-category">Urban Land</div>
+                    Urban Development Image
+                </div>
+                <div class="project-content">
+                    <h3 class="project-title">Qualico Spruce Grove</h3>
+                    <div class="project-client">Qualico Communities</div>
+                    <p class="project-description">Suburban residential development creating 109 residential lots in the growing municipality of Spruce Grove. This project contributed to regional growth while implementing modern infrastructure standards and sustainable development practices for long-term community success.</p>
+                    <div class="project-details">
+                        <div class="project-detail">
+                            <strong>Location</strong>
+                            <span>Spruce Grove</span>
+                        </div>
+                        <div class="project-detail">
+                            <strong>Completed</strong>
+                            <span>2013</span>
+                        </div>
+                    </div>
+                    <div class="project-engineer">
+                        <strong>Engineering Partner</strong><br>
+                        <span>Select Engineering</span>
+                    </div>
+                </div>
             </div>
         </div>
     </main>
@@ -986,7 +1519,8 @@
     <footer class="footer">
         <p>&copy; 2025 Degner Construction. All rights reserved. Building Tomorrow's Infrastructure Today.</p>
     </footer>
-<script>
+
+    <script>
         // Header Scroll Effect
         window.addEventListener('scroll', function() {
             const header = document.getElementById('header');
@@ -1031,8 +1565,6 @@
                     window.location.href = 'index.html#about';
                 } else if (query.includes('career') || query.includes('job')) {
                     window.location.href = 'index.html#contact';
-                } else if (query.includes('project') || query.includes('portfolio')) {
-                    window.location.href = 'index.html#services';
                 } else if (query.includes('team') || query.includes('staff') || query.includes('leadership')) {
                     window.location.href = 'team.html';
                 }
@@ -1070,6 +1602,37 @@
                 mobileToggle.classList.remove('active');
                 mobileNav.classList.remove('active');
                 document.body.style.overflow = '';
+            });
+        });
+
+        // Project filtering
+        const filterButtons = document.querySelectorAll('.filter-btn');
+        const projectCards = document.querySelectorAll('.project-card');
+
+        filterButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                // Remove active class from all buttons
+                filterButtons.forEach(btn => btn.classList.remove('active'));
+                // Add active class to clicked button
+                this.classList.add('active');
+
+                const filterValue = this.getAttribute('data-filter');
+
+                projectCards.forEach(card => {
+                    if (filterValue === 'all' || card.getAttribute('data-category') === filterValue) {
+                        card.style.display = 'block';
+                        setTimeout(() => {
+                            card.style.opacity = '1';
+                            card.style.transform = 'scale(1)';
+                        }, 100);
+                    } else {
+                        card.style.opacity = '0';
+                        card.style.transform = 'scale(0.8)';
+                        setTimeout(() => {
+                            card.style.display = 'none';
+                        }, 300);
+                    }
+                });
             });
         });
 
