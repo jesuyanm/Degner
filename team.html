@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Team - Degner Construction</title>
+    <style>
+        :root {
+            --primary-accent: #000000;
+            --primary-white: #FFFFFF;
+            --text-dark: #0a0a0a;
+            --text-gray: #4a4a4a;
+            --text-light: #888888;
+            --background-light: #f8f9fa;
+            --background-dark: #0F1419;
+            --background-medium: #2a2a2a;
+            --shadow-light: 0 4px 20px rgba(0, 0, 0, 0.08);
+            --shadow-medium: 0 8px 40px rgba(0, 0, 0, 0.12);
+            --shadow-heavy: 0 20px 60px rgba(0, 0, 0, 0.18);
+            --border-radius: 12px;
+            --transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.7;
+            color: var(--text-dark);
+            background: var(--primary-white);
+            overflow-x: hidden;
+        }
+
+        /* Header */
+        .header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            z-index: 1000;
+            box-shadow: var(--shadow-light);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        .nav-container {
+            max-width: 1600px;
+            margin: 0 auto;
+            padding: 0 3rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 80px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo img {
+            height: 60px;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-item a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 500;
+            transition: var(--transition);
+            padding: 1rem;
+        }
+
+        .nav-item a:hover {
+            color: var(--text-gray);
+        }
+
+        .nav-item.active a {
+            color: var(--text-dark);
+            font-weight: 600;
+        }
+
+        /* Page Header */
+        .page-header {
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.4)), url('pic1.png');
+            background-size: cover;
+            background-position: center;
+            height: 60vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: var(--primary-white);
+            margin-top: 80px;
+        }
+
+        .page-header-content h1 {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .page-header-content p {
+            font-size: 1.3rem;
+            max-width: 600px;
+            opacity: 0.9;
+        }
+
+        /* Main Content */
+        .main-content {
+            padding: 6rem 3rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-subtitle {
+            color: var(--text-gray);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        .section-title {
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 700;
+            color: var(--text-dark);
+            margin-bottom: 1.5rem;
+        }
+
+        .section-description {
+            font-size: 1.2rem;
+            color: var(--text-gray);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* Team Grid */
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+            margin-top: 3rem;
+        }
+
+        .team-member {
+            background: var(--background-light);
+            border-radius: var(--border-radius);
+            padding: 2.5rem;
+            text-align: center;
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .team-member::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--text-dark), var(--text-gray));
+            transform: scaleX(0);
+            transition: var(--transition);
+            transform-origin: left;
+        }
+
+        .team-member:hover::before {
+            transform: scaleX(1);
+        }
+
+        .team-member:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-heavy);
+            background: var(--primary-white);
+        }
+
+        .team-photo {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            margin: 0 auto 1.5rem;
+            background: var(--text-dark);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary-white);
+            font-size: 2.5rem;
+            font-weight: 700;
+            transition: var(--transition);
+        }
+
+        .team-member:hover .team-photo {
+            transform: scale(1.05);
+        }
+
+        .team-name {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--text-dark);
+            margin-bottom: 0.5rem;
+        }
+
+        .team-credentials {
+            font-size: 0.9rem;
+            color: var(--text-gray);
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+        }
+
+        .team-title {
+            font-size: 1.1rem;
+            color: var(--text-dark);
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            font-style: italic;
+        }
+
+        .team-bio {
+            color: var(--text-gray);
+            line-height: 1.6;
+            font-size: 0.95rem;
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--background-dark);
+            color: var(--primary-white);
+            text-align: center;
+            padding: 3rem;
+            margin-top: 4rem;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .nav-container {
+                padding: 0 2rem;
+            }
+
+            .main-content {
+                padding: 4rem 2rem;
+            }
+
+            .team-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .team-member {
+                padding: 2rem;
+            }
+
+            .nav-menu {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <nav class="nav-container">
+            <div class="logo">
+                <a href="index.html">
+                    <img src="logo.png" alt="Degner Construction Logo">
+                </a>
+            </div>
+            <ul class="nav-menu">
+                <li class="nav-item"><a href="index.html">Home</a></li>
+                <li class="nav-item"><a href="index.html#about">About</a></li>
+                <li class="nav-item active"><a href="team.html">Our Team</a></li>
+                <li class="nav-item"><a href="index.html#services">Services</a></li>
+                <li class="nav-item"><a href="index.html#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="page-header-content">
+            <h1>Our Team</h1>
+            <p>Meet the experienced professionals driving innovation and excellence in municipal infrastructure</p>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="section-header">
+            <div class="section-subtitle">Leadership Excellence</div>
+            <h2 class="section-title">Building Tomorrow's Infrastructure Together</h2>
+            <p class="section-description">Our team combines decades of experience with innovative approaches to deliver exceptional municipal infrastructure solutions across Alberta.</p>
+        </div>
+
+        <div class="team-grid">
+            <div class="team-member">
+                <div class="team-photo">
+                    <span>DD</span>
+                </div>
+                <h3 class="team-name">Dale Degner</h3>
+                <div class="team-credentials">BCom., MBA</div>
+                <div class="team-title">President</div>
+                <p class="team-bio">With over two decades of leadership in the construction industry, Dale brings strategic vision and operational excellence to every project. His MBA background combined with hands-on construction experience ensures that Degner Construction remains at the forefront of municipal infrastructure development. Dale's commitment to building community value drives the company's mission and values.</p>
+            </div>
+
+            <div class="team-member">
+                <div class="team-photo">
+                    <span>SA</span>
+                </div>
+                <h3 class="team-name">Shaun Andreas</h3>
+                <div class="team-credentials">CET</div>
+                <div class="team-title">General Manager</div>
+                <p class="team-bio">Shaun's technical expertise as a Certified Engineering Technologist ensures that every project meets the highest standards of quality and safety. With extensive experience in project management and field operations, he oversees the seamless execution of complex municipal infrastructure projects. His attention to detail and commitment to excellence make him an invaluable leader in our organization.</p>
+            </div>
+
+            <div class="team-member">
+                <div class="team-photo">
+                    <span>MD</span>
+                </div>
+                <h3 class="team-name">Matt Dudka</h3>
+                <div class="team-credentials">CET</div>
+                <div class="team-title">Project Manager</div>
+                <p class="team-bio">Matt combines technical proficiency with exceptional project management skills to deliver infrastructure projects on time and within budget. His Certified Engineering Technologist credentials and practical field experience enable him to navigate complex project challenges while maintaining clear communication with clients and stakeholders. Matt's dedication to innovative solutions drives project success.</p>
+            </div>
+
+            <div class="team-member">
+                <div class="team-photo">
+                    <span>TT</span>
+                </div>
+                <h3 class="team-name">Tom Thornton</h3>
+                <div class="team-credentials"></div>
+                <div class="team-title">Operations Manager</div>
+                <p class="team-bio">Tom's operational expertise ensures that our field operations run smoothly and efficiently. With deep knowledge of construction processes and equipment management, he coordinates resources and personnel to maximize productivity while maintaining our high safety standards. His hands-on approach and problem-solving abilities make him essential to our daily operations and project success.</p>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>&copy; 2025 Degner Construction. All rights reserved. Building Tomorrow's Infrastructure Today.</p>
+    </footer>
+</body>
+</html>
