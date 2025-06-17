@@ -516,8 +516,7 @@
             background-position: center center;
             background-repeat: no-repeat;
             overflow: hidden;
-            opacity: 0;
-            animation: heroZoomIn 20s ease-out infinite;
+            opacity: 1;
         }
 
         @keyframes heroZoomIn {
@@ -633,8 +632,7 @@
             text-transform: uppercase;
             letter-spacing: 2px;
             margin-bottom: 1rem;
-            opacity: 0;
-            animation: fadeInUp 1s ease 0.3s forwards;
+            opacity: 1;
         }
 
         .hero h1 {
@@ -642,8 +640,7 @@
             font-weight: 700;
             line-height: 1.2;
             margin-bottom: 2rem;
-            opacity: 0;
-            animation: fadeInUp 1s ease 0.6s forwards;
+            opacity: 1;
         }
 
         .hero-description {
@@ -654,8 +651,6 @@
             max-width: 700px;
             margin-left: auto;
             margin-right: auto;
-            opacity: 0;
-            animation: fadeInUp 1s ease 0.9s forwards;
         }
 
         .cta-group {
@@ -663,8 +658,7 @@
             gap: 1.5rem;
             justify-content: center;
             flex-wrap: wrap;
-            opacity: 0;
-            animation: fadeInUp 1s ease 1.2s forwards;
+            opacity: 1;
         }
 
         .cta-primary {
@@ -1222,90 +1216,9 @@
             scroll-behavior: smooth;
         }
 
-        /* Loading Animation */
-        .loading {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, #0F1419 0%, #1a252f 50%, #2c3e50 100%);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            z-index: 9999;
-            opacity: 1;
-            visibility: visible;
-            transition: var(--transition);
-        }
-
-        .loading.hidden {
-            opacity: 0;
-            visibility: hidden;
-        }
-
-        @keyframes groundPulse {
-            0%, 100% {
-                opacity: 0.6;
-                height: 2px;
-            }
-            50% {
-                opacity: 1;
-                height: 3px;
-            }
-        }
-
-        .line-1 {
-            bottom: 40px;
-            left: 50px;
-            width: 30px;
-            animation-delay: 0.8s;
-        }
-
-        .line-2 {
-            bottom: 60px;
-            left: 65px;
-            width: 50px;
-            transform: rotate(-30deg);
-            animation-delay: 1.0s;
-        }
-
-        @keyframes progressLoad {
-            0% {
-                width: 0%;
-            }
-            15% {
-                width: 10%;
-            }
-            30% {
-                width: 25%;
-            }
-            50% {
-                width: 50%;
-            }
-            70% {
-                width: 75%;
-            }
-            90% {
-                width: 95%;
-            }
-            100% {
-                width: 100%;
-            }
-        }
     </style>
 </head>
 <body>
-    <!-- Loading Screen -->
-    <div class="loading" id="loading">
-    <img class="loading-video" src="vid3.gif" alt="Loading animation" />
-    <div class="loading-content">
-        <div class="loading-text">DEGNER CONSTRUCTION</div>
-        <div class="loading-subtitle">Building Tomorrow's Infrastructure</div>
-    </div>
-</div>
-
     <!-- Header -->
     <header class="header" id="header">
         <nav class="nav-container">
@@ -1712,14 +1625,7 @@ Who We Are</a>
     </footer>
 
     <script>
-        // Loading Screen with Line Animation
-        window.addEventListener('load', function() {
-            setTimeout(() => {
-                document.getElementById('loading').classList.add('hidden');
-                document.querySelector('.hero').style.animation = 'heroFadeIn 1.2s ease-out forwards, heroZoomIn 20s ease-out infinite';
-            }, 3500);
-        });
-
+        
         // Header Scroll Effect and Active Navigation
         const sections = document.querySelectorAll('.section, .hero');
         const navItems = document.querySelectorAll('.nav-item');
