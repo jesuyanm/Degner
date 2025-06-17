@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Degner Construction - Building Tomorrow's Infrastructure</title>
+    <title>Safety - Degner Construction</title>
     <style>
         :root {
             --primary-accent: #000000;
@@ -303,41 +303,6 @@
             gap: 2rem;
         }
 
-        .language-selector {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            background: var(--background-light);
-            border-radius: 20px;
-            padding: 0.5rem 1rem;
-            transition: var(--transition);
-        }
-
-        .language-selector:hover {
-            background: var(--text-dark);
-            color: var(--primary-white);
-        }
-
-        .language-selector select {
-            background: transparent;
-            border: none;
-            font-size: 0.9rem;
-            font-weight: 500;
-            cursor: pointer;
-            outline: none;
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Noto Sans', sans-serif;
-        }
-
-        /* .language-selector {
-            display: none !important;
-        } /* Uncomment this line to hide the language selector */
-
-        .language-selector select option {
-            background: var(--primary-white);
-            color: var(--text-dark);
-            padding: 0.5rem;
-        }
-
         .search-toggle {
             background: var(--background-light);
             border: none;
@@ -515,255 +480,42 @@
             color: var(--primary-white);
         }
 
-        /* Hero Section with Zoom Background */
-        .hero {
-            height: 100vh;
-            position: relative;
+        /* Page Header */
+        .page-header {
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.5)), url('pic11.png');
+            background-size: cover;
+            background-position: center;
+            height: 60vh;
             display: flex;
             align-items: center;
             justify-content: center;
-            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.3)), url('pic5.png');
-            background-size: 120% auto;
-            background-position: center center;
-            background-repeat: no-repeat;
-            overflow: hidden;
-            opacity: 1;
-        }
-
-        @keyframes heroZoomIn {
-            0% {
-                background-size: 120% auto;
-            }
-            100% {
-                background-size: 130% auto;
-            }
-        }
-
-        /* Responsive hero scaling */
-        @media (max-width: 1400px) {
-            .hero {
-                background-size: 140% auto;
-            }
-            
-            @keyframes heroZoomIn {
-                0% {
-                    background-size: 140% auto;
-                }
-                100% {
-                    background-size: 150% auto;
-                }
-            }
-        }
-
-        @media (max-width: 1200px) {
-            .hero {
-                background-size: 160% auto;
-            }
-            
-            @keyframes heroZoomIn {
-                0% {
-                    background-size: 160% auto;
-                }
-                100% {
-                    background-size: 170% auto;
-                }
-            }
-        }
-
-        @media (max-width: 968px) {
-            .hero {
-                background-size: 180% auto;
-                background-position: center center;
-            }
-            
-            @keyframes heroZoomIn {
-                0% {
-                    background-size: 180% auto;
-                }
-                100% {
-                    background-size: 190% auto;
-                }
-            }
-        }
-
-        @media (max-width: 768px) {
-            .hero {
-                background-size: 200% auto;
-                background-position: center center;
-            }
-            
-            @keyframes heroZoomIn {
-                0% {
-                    background-size: 200% auto;
-                }
-                100% {
-                    background-size: 210% auto;
-                }
-            }
-        }
-
-        @media (max-width: 600px) {
-            .hero {
-                background-size: 220% auto;
-                background-position: center center;
-            }
-            
-            @keyframes heroZoomIn {
-                0% {
-                    background-size: 220% auto;
-                }
-                100% {
-                    background-size: 230% auto;
-                }
-            }
-        }
-
-        .hero-background {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            opacity: 0.8;
-        }
-
-        .hero-content {
-            max-width: 900px;
             text-align: center;
             color: var(--primary-white);
-            z-index: 2;
-            padding: 2rem;
-            animation: heroFadeIn 1.5s ease-out;
+            margin-top: 80px;
         }
 
-        .hero-subtitle {
-            font-size: 1.1rem;
-            color: var(--primary-white);
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            margin-bottom: 1rem;
-            opacity: 1;
-        }
-
-        .hero h1 {
+        .page-header-content h1 {
             font-size: clamp(2.5rem, 5vw, 4rem);
             font-weight: 700;
-            line-height: 1.2;
-            margin-bottom: 2rem;
-            opacity: 1;
+            margin-bottom: 1rem;
         }
 
-        .hero-description {
+        .page-header-content p {
             font-size: 1.3rem;
-            line-height: 1.6;
-            margin-bottom: 3rem;
+            max-width: 600px;
             opacity: 0.9;
-            max-width: 700px;
-            margin-left: auto;
-            margin-right: auto;
         }
 
-        .cta-group {
-            display: flex;
-            gap: 1.5rem;
-            justify-content: center;
-            flex-wrap: wrap;
-            opacity: 1;
-        }
-
-        .cta-primary {
-            background: var(--primary-white);
-            color: var(--text-dark);
-            padding: 1rem 2.5rem;
-            text-decoration: none;
-            border-radius: 50px;
-            font-weight: 600;
-            font-size: 1rem;
-            transition: var(--transition);
-            box-shadow: 0 8px 30px rgba(255, 255, 255, 0.2);
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .cta-primary::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(0, 0, 0, 0.1), transparent);
-            transition: left 0.6s ease;
-        }
-
-        .cta-primary:hover::before {
-            left: 100%;
-        }
-
-        .cta-primary:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 15px 40px rgba(255, 255, 255, 0.3);
-            background: var(--background-light);
-        }
-
-        .cta-secondary {
-            background: transparent;
-            color: var(--primary-white);
-            padding: 1rem 2.5rem;
-            text-decoration: none;
-            border: 2px solid var(--primary-white);
-            border-radius: 50px;
-            font-weight: 600;
-            font-size: 1rem;
-            transition: var(--transition);
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .cta-secondary:hover {
-            background: var(--primary-white);
-            color: var(--text-dark);
-            transform: translateY(-3px);
-        }
-
-        /* Scroll Indicator */
-        .scroll-indicator {
-            position: absolute;
-            bottom: 3rem;
-            left: 50%;
-            transform: translateX(-50%);
-            color: var(--primary-white);
-            animation: bounce 2s infinite;
-            cursor: pointer;
-            z-index: 2;
-        }
-
-        .scroll-indicator svg {
-            width: 24px;
-            height: 24px;
-        }
-
-        /* Section Base */
-        .section {
-            padding: 8rem 3rem;
-            max-width: 1400px;
+        /* Main Content */
+        .main-content {
+            padding: 6rem 3rem;
+            max-width: 1600px;
             margin: 0 auto;
-            opacity: 0;
-            transform: translateY(50px);
-            transition: var(--transition);
-        }
-
-        .section.visible {
-            opacity: 1;
-            transform: translateY(0);
         }
 
         .section-header {
             text-align: center;
-            margin-bottom: 5rem;
+            margin-bottom: 4rem;
         }
 
         .section-subtitle {
@@ -776,95 +528,91 @@
         }
 
         .section-title {
-            font-size: clamp(2rem, 4vw, 3.5rem);
+            font-size: clamp(2rem, 4vw, 3rem);
             font-weight: 700;
             color: var(--text-dark);
-            line-height: 1.2;
-            margin-bottom: 2rem;
+            margin-bottom: 1.5rem;
         }
 
         .section-description {
             font-size: 1.2rem;
             color: var(--text-gray);
-            max-width: 600px;
+            max-width: 700px;
             margin: 0 auto;
-            line-height: 1.6;
         }
 
-        /* About Section */
-        .about {
-            background: var(--background-light);
-        }
-
-        .about-content {
+        /* Safety Content */
+        .safety-overview {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 6rem;
+            gap: 4rem;
+            margin-bottom: 6rem;
             align-items: center;
-            margin-top: 4rem;
         }
 
-        .about-text {
+        .safety-text {
             font-size: 1.1rem;
             line-height: 1.8;
             color: var(--text-gray);
         }
 
-        .about-text p {
-            margin-bottom: 2rem;
+        .safety-text p {
+            margin-bottom: 1.5rem;
         }
 
-        .about-highlight {
-            background: var(--primary-white);
+        .safety-highlight {
+            background: var(--background-dark);
+            color: var(--primary-white);
             padding: 3rem;
             border-radius: var(--border-radius);
-            box-shadow: var(--shadow-medium);
-            border-left: 5px solid var(--text-dark);
+            text-align: center;
             position: relative;
             overflow: hidden;
         }
 
-        .about-highlight::before {
-            content: '"';
+        .safety-highlight::before {
+            content: '';
             position: absolute;
-            top: -10px;
-            left: 20px;
-            font-size: 8rem;
-            color: var(--text-dark);
-            opacity: 0.1;
-            font-family: serif;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, #FFD700, #FFA500);
         }
 
-        .about-highlight p {
-            font-size: 1.3rem;
-            font-weight: 600;
-            color: var(--text-dark);
+        .safety-highlight h3 {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--primary-white);
+        }
+
+        .safety-highlight p {
+            font-size: 1.2rem;
             line-height: 1.6;
-            position: relative;
-            z-index: 2;
+            opacity: 0.9;
         }
 
-        /* Services Section */
-        .services-grid {
+        /* Safety Programs Grid */
+        .safety-programs {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
             gap: 2.5rem;
-            margin-top: 4rem;
+            margin: 4rem 0;
         }
 
-        .service-card {
+        .safety-program {
             background: var(--primary-white);
-            padding: 3rem;
+            padding: 2.5rem;
             border-radius: var(--border-radius);
             box-shadow: var(--shadow-light);
             transition: var(--transition);
             border-top: 4px solid transparent;
             position: relative;
             overflow: hidden;
-            cursor: pointer;
         }
 
-        .service-card::before {
+        .safety-program::before {
             content: '';
             position: absolute;
             top: 0;
@@ -877,16 +625,16 @@
             transform-origin: left;
         }
 
-        .service-card:hover::before {
+        .safety-program:hover::before {
             transform: scaleX(1);
         }
 
-        .service-card:hover {
+        .safety-program:hover {
             transform: translateY(-10px);
             box-shadow: var(--shadow-heavy);
         }
 
-        .service-icon {
+        .safety-icon {
             width: 60px;
             height: 60px;
             background: linear-gradient(135deg, var(--text-dark), var(--text-gray));
@@ -898,32 +646,85 @@
             transition: var(--transition);
         }
 
-        .service-card:hover .service-icon {
+        .safety-program:hover .safety-icon {
             transform: scale(1.1) rotate(5deg);
         }
 
-        .service-card h3 {
-            font-size: 1.5rem;
+        .safety-program h3 {
+            font-size: 1.4rem;
             font-weight: 700;
             color: var(--text-dark);
-            margin-bottom: 1.5rem;
-            transition: var(--transition);
+            margin-bottom: 1rem;
         }
 
-        .service-card:hover h3 {
-            color: var(--text-gray);
-        }
-
-        .service-card p {
+        .safety-program p {
             color: var(--text-gray);
             line-height: 1.7;
+        }
+
+        /* Safety Coordinator Section */
+        .safety-coordinator {
+            background: var(--background-light);
+            padding: 4rem 3rem;
+            border-radius: var(--border-radius);
+            margin: 4rem 0;
+            text-align: center;
+        }
+
+        .coordinator-profile {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .coordinator-photo {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            margin: 0 auto 2rem;
+            background: var(--text-dark);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary-white);
+            font-size: 2.5rem;
+            font-weight: 700;
+        }
+
+        .coordinator-name {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--text-dark);
+            margin-bottom: 0.5rem;
+        }
+
+        .coordinator-credentials {
             font-size: 1rem;
+            color: var(--text-gray);
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .coordinator-title {
+            font-size: 1.2rem;
+            color: var(--text-dark);
+            font-weight: 500;
+            font-style: italic;
+            margin-bottom: 2rem;
+        }
+
+        .coordinator-bio {
+            font-size: 1.1rem;
+            color: var(--text-gray);
+            line-height: 1.7;
         }
 
         /* Stats Section */
-        .stats {
+        .safety-stats {
             background: var(--background-dark);
             color: var(--primary-white);
+            padding: 4rem 3rem;
+            border-radius: var(--border-radius);
+            margin: 4rem 0;
             text-align: center;
         }
 
@@ -931,7 +732,7 @@
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
             gap: 3rem;
-            margin-top: 4rem;
+            margin-top: 3rem;
         }
 
         .stat-item {
@@ -939,111 +740,22 @@
         }
 
         .stat-item:hover {
-            transform: translateY(-10px);
+            transform: translateY(-5px);
         }
 
         .stat-number {
-            font-size: 3.5rem;
+            font-size: 3rem;
             font-weight: 700;
             color: var(--primary-white);
+            margin-bottom: 0.5rem;
             display: block;
-            margin-bottom: 1rem;
-            transition: var(--transition);
         }
 
         .stat-label {
-            font-size: 1.1rem;
-            color: var(--primary-white);
+            font-size: 1rem;
+            color: rgba(255, 255, 255, 0.9);
             text-transform: uppercase;
             letter-spacing: 1px;
-        }
-
-        /* Contact Section */
-        .contact {
-            background: var(--background-light);
-        }
-
-        .contact-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 5rem;
-            margin-top: 4rem;
-        }
-
-        .contact-info {
-            background: var(--primary-white);
-            padding: 3rem;
-            border-radius: var(--border-radius);
-            box-shadow: var(--shadow-medium);
-            transition: var(--transition);
-        }
-
-        .contact-info:hover {
-            transform: translateY(-5px);
-            box-shadow: var(--shadow-heavy);
-        }
-
-        .contact-info h3 {
-            color: var(--text-dark);
-            font-size: 1.5rem;
-            margin-bottom: 2rem;
-            position: relative;
-            padding-bottom: 1rem;
-        }
-
-        .contact-info h3::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 50px;
-            height: 3px;
-            background: var(--text-dark);
-        }
-
-        .contact-item {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            margin-bottom: 1.5rem;
-            transition: var(--transition);
-        }
-
-        .contact-item:hover {
-            transform: translateX(10px);
-        }
-
-        .contact-icon {
-            width: 20px;
-            height: 20px;
-            color: var(--text-dark);
-        }
-
-        .contact-item strong {
-            color: var(--text-dark);
-            min-width: 80px;
-        }
-
-        .contact-cta {
-            background: var(--text-dark);
-            color: var(--primary-white);
-            padding: 1rem 2rem;
-            border: none;
-            border-radius: 50px;
-            font-weight: 600;
-            font-size: 1rem;
-            cursor: pointer;
-            transition: var(--transition);
-            text-decoration: none;
-            display: inline-block;
-            text-align: center;
-            margin-top: 2rem;
-        }
-
-        .contact-cta:hover {
-            transform: translateY(-3px);
-            box-shadow: var(--shadow-medium);
-            background: var(--text-gray);
         }
 
         /* Footer */
@@ -1052,140 +764,56 @@
             color: var(--primary-white);
             text-align: center;
             padding: 3rem;
-        }
-
-        .footer p {
-            font-size: 0.9rem;
-            opacity: 0.8;
-        }
-
-        /* Animations */
-        @keyframes heroFadeIn {
-            from {
-                opacity: 0;
-                transform: scale(1.05);
-            }
-            to {
-                opacity: 1;
-                transform: scale(1);
-            }
-        }
-
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @keyframes bounce {
-            0%, 20%, 50%, 80%, 100% {
-                transform: translateX(-50%) translateY(0);
-            }
-            40% {
-                transform: translateX(-50%) translateY(-10px);
-            }
-            60% {
-                transform: translateX(-50%) translateY(-5px);
-            }
+            margin-top: 4rem;
         }
 
         /* Mobile Responsive */
-        @media (max-width: 1200px) {
-            .nav-menu {
-                gap: 0;
-            }
-
-            .nav-item > a {
-                padding: 2rem 0.8rem;
-                font-size: 0.9rem;
-            }
-
-            .megamenu {
-                min-width: 900px;
-                left: -2rem;
-            }
-
-            .megamenu-content {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 2rem;
-            }
-        }
-
         @media (max-width: 1024px) {
             .nav-menu {
-                display: none;
-            }
-
-            .nav-left {
-                gap: 2rem;
-            }
-
-            .nav-right {
-                gap: 1rem;
-            }
-
-            .language-selector {
                 display: none;
             }
 
             .mobile-menu-toggle {
                 display: flex;
             }
+
+            .safety-overview {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
         }
 
-        @media (max-width: 968px) {
+        @media (max-width: 768px) {
             .nav-container {
                 padding: 0 2rem;
                 height: 70px;
+            }
+
+            .nav-right {
+                right: 2rem;
             }
 
             .logo img {
                 height: 130px;
             }
 
-            .section {
+            .main-content {
                 padding: 4rem 2rem;
             }
 
-            .about-content,
-            .contact-content {
+            .safety-programs {
                 grid-template-columns: 1fr;
-                gap: 3rem;
+                gap: 2rem;
             }
 
-            .services-grid {
-                grid-template-columns: 1fr;
+            .safety-program,
+            .safety-coordinator {
+                padding: 2rem;
             }
 
             .stats-grid {
                 grid-template-columns: repeat(2, 1fr);
                 gap: 2rem;
-            }
-
-            .cta-group {
-                flex-direction: column;
-                align-items: center;
-            }
-
-            .search-container {
-                width: 95%;
-                max-width: 500px;
-            }
-
-            .megamenu {
-                min-width: 350px;
-                left: -1rem;
-                padding: 2rem;
-            }
-
-            .megamenu-content {
-                grid-template-columns: 1fr;
-                gap: 1.5rem;
             }
         }
 
@@ -1195,38 +823,18 @@
                 height: 65px;
             }
 
-            .logo img {
-                height: 125px;
+            .nav-right {
+                right: 1.5rem;
             }
 
-            .section {
-                padding: 3rem 1.5rem;
+            .logo img {
+                height: 125px;
             }
 
             .stats-grid {
                 grid-template-columns: 1fr;
             }
-
-            .services-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .service-card,
-            .contact-info {
-                padding: 2rem;
-            }
-
-            .search-toggle {
-                width: 35px;
-                height: 35px;
-            }
         }
-
-        /* Smooth Scrolling */
-        html {
-            scroll-behavior: smooth;
-        }
-
     </style>
 </head>
 <body>
@@ -1235,7 +843,9 @@
         <nav class="nav-container">
             <div class="nav-left">
                 <div class="logo">
-                    <img src="logo.png" alt="Degner Construction Logo">
+                    <a href="index.html">
+                        <img src="logo.png" alt="Degner Construction Logo">
+                    </a>
                 </div>
                 <ul class="nav-menu">
                     <li class="nav-item">
@@ -1246,8 +856,7 @@
                                     <h4>About Us</h4>
                                     <ul>
                                         <li>
-                                            <a href="#about">
-
+                                            <a href="index.html#about">
                                                 <svg class="megamenu-icon" fill="currentColor" viewBox="0 0 20 20">
                                                     <path d="M10.394 2.08a1 1 0 00-.788 0l-7 3a1 1 0 000 1.84L5.25 8.051a.999.999 0 01.356-.257l4-1.714a1 1 0 11.788 1.838L7.667 9.088l1.94.831a1 1 0 00.787 0l7-3a1 1 0 000-1.838l-7-3z"/>
                                                 </svg>
@@ -1258,8 +867,7 @@
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="#about">
-
+                                            <a href="index.html#about">
                                                 <svg class="megamenu-icon" fill="currentColor" viewBox="0 0 20 20">
                                                     <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
                                                 </svg>
@@ -1270,8 +878,7 @@
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="#about">
-
+                                            <a href="index.html#about">
                                                 <svg class="megamenu-icon" fill="currentColor" viewBox="0 0 20 20">
                                                     <path d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z"/>
                                                 </svg>
@@ -1293,7 +900,6 @@
                                     <ul style="margin-top: 1.5rem;">
                                         <li>
                                             <a href="team.html">
-
                                                 <svg class="megamenu-icon" fill="currentColor" viewBox="0 0 20 20">
                                                     <path d="M9 6a3 3 0 11-6 0 3 3 0 016 0zM17 6a3 3 0 11-6 0 3 3 0 016 0zM12.93 17c.046-.327.07-.66.07-1a6.97 6.97 0 00-1.5-4.33A5 5 0 0119 16v1h-6.07zM6 11a5 5 0 015 5v1H1v-1a5 5 0 015-5z"/>
                                                 </svg>
@@ -1309,8 +915,7 @@
                                     <h4>Our History</h4>
                                     <ul>
                                         <li>
-                                            <a href="#about">
-
+                                            <a href="index.html#about">
                                                 <svg class="megamenu-icon" fill="currentColor" viewBox="0 0 20 20">
                                                     <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clip-rule="evenodd"/>
                                                 </svg>
@@ -1321,8 +926,7 @@
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="#about">
-
+                                            <a href="index.html#about">
                                                 <svg class="megamenu-icon" fill="currentColor" viewBox="0 0 20 20">
                                                     <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
                                                 </svg>
@@ -1338,7 +942,7 @@
                                     <h4>Our Location</h4>
                                     <ul>
                                         <li>
-                                            <a href="#contact">
+                                            <a href="index.html#contact">
                                                 <svg class="megamenu-icon" fill="currentColor" viewBox="0 0 20 20">
                                                     <path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"/>
                                                 </svg>
@@ -1349,8 +953,7 @@
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="#about">
-
+                                            <a href="index.html#about">
                                                 <svg class="megamenu-icon" fill="currentColor" viewBox="0 0 20 20">
                                                     <path d="M3 4a1 1 0 011-1h12a1 1 0 011 1v2a1 1 0 01-1 1H4a1 1 0 01-1-1V4zM3 10a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H4a1 1 0 01-1-1v-6zM14 9a1 1 0 00-1 1v6a1 1 0 001 1h2a1 1 0 001-1v-6a1 1 0 00-1-1h-2z"/>
                                                 </svg>
@@ -1403,28 +1006,13 @@
                             </div>
                         </div>
                     </li>
-                    <li class="nav-item"><a href="#services">What We Do</a></li>
+                    <li class="nav-item"><a href="index.html#services">What We Do</a></li>
                     <li class="nav-item"><a href="projects.html">Our Projects</a></li>
-                    <li class="nav-item"><a href="#careers">Careers</a></li>
-                    <li class="nav-item"><a href="#contact">Contact</a></li>
+                    <li class="nav-item"><a href="index.html#careers">Careers</a></li>
+                    <li class="nav-item"><a href="index.html#contact">Contact</a></li>
                 </ul>
             </div>
             <div class="nav-right">
-                <div class="language-selector">
-                    <svg width="16" height="16" fill="currentColor" viewBox="0 0 20 20">
-                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM4.332 8.027a6.012 6.012 0 011.912-2.706C6.512 5.73 6.974 6 7.5 6A1.5 1.5 0 019 7.5V8a2 2 0 004 0 2 2 0 011.523-1.943A5.977 5.977 0 0116 10c0 .34-.028.675-.083 1H15a2 2 0 00-2 2v2.197A5.973 5.973 0 0110 16v-2a2 2 0 00-2-2 2 2 0 01-4 0 2 2 0 00-1.668-1.973z" clip-rule="evenodd"/>
-                    </svg>
-                    <select>
-                        <option value="CA-EN" selected>Canada (EN)</option>
-                        <option value="CA-FR">Canada (FR)</option>
-                        <option value="US-EN">U.S. (EN)</option>
-                        <option value="AUS-EN">AUS (EN)</option>
-                        <option value="ES">Español</option>
-                        <option value="ZH">中文</option>
-                        <option value="PA">ਪੰਜਾਬੀ</option>
-                        <option value="TL">Tagalog</option>
-                    </select>
-                </div>
                 <button class="search-toggle" id="searchToggle">
                     <svg width="20" height="20" fill="currentColor" viewBox="0 0 20 20">
                         <path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd"/>
@@ -1443,9 +1031,9 @@
     <div class="search-overlay" id="searchOverlay">
         <div class="search-container">
             <button class="search-close" id="searchClose">&times;</button>
-            <input type="text" class="search-input" placeholder="Search projects, services, careers..." autofocus>
+            <input type="text" class="search-input" placeholder="Search safety programs, training, policies..." autofocus>
             <div class="search-suggestions">
-                <p style="color: var(--text-gray); font-size: 0.9rem; margin-top: 1rem;">Try searching: "water services", "careers", "project management"</p>
+                <p style="color: var(--text-gray); font-size: 0.9rem; margin-top: 1rem;">Try searching: "fall protection", "excavation safety", "safety training"</p>
             </div>
         </div>
     </div>
@@ -1457,222 +1045,189 @@
             <button class="mobile-nav-close" id="mobileNavClose">&times;</button>
         </div>
         <ul class="mobile-nav-menu">
-        <li><a href="team.html">Our Team <span>→</span></a></li>
-        <li><a href="#services">What We Do <span>→</span></a></li>
-        <li><a href="projects.html">Our Projects <span>→</span></a></li>
-        <li><a href="safety.html">Safety <span>→</span></a></li>
-        <li><a href="#careers">Careers <span>→</span></a></li>
-        <li><a href="#contact">Contact <span>→</span></a></li>
-    </ul>
+            <li><a href="team.html">Our Team <span>→</span></a></li>
+            <li><a href="#services">What We Do <span>→</span></a></li>
+            <li><a href="projects.html">Our Projects <span>→</span></a></li>
+            <li><a href="safety.html">Safety <span>→</span></a></li>
+            <li><a href="#careers">Careers <span>→</span></a></li>
+            <li><a href="#contact">Contact <span>→</span></a></li>
+        </ul>
     </nav>
 
-    <!-- Hero Section -->
-    <section id="home" class="hero">
-        <div class="hero-content">
-            <p class="hero-description">Our promise is to build community value into every project while delivering professional expertise, exceptional customer service and quality construction</p>
-            <div class="cta-group">
-                <a href="#contact" class="cta-primary">Start Your Project</a>
-                <a href="#services" class="cta-secondary">What We Do</a>
-            </div>
-        </div>
-        <div class="scroll-indicator" onclick="document.querySelector('#about').scrollIntoView({behavior: 'smooth'})">
-            <svg fill="currentColor" viewBox="0 0 20 20">
-                <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path>
-            </svg>
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="page-header-content">
+            <h1>Safety First</h1>
+            <p>Our commitment to zero incidents through comprehensive safety management and a culture where everyone truly cares about one another</p>
         </div>
     </section>
 
-    <!-- About Section -->
-    <section id="about" class="section about">
+    <!-- Main Content -->
+    <main class="main-content">
         <div class="section-header">
-            <div class="section-subtitle">Our Foundation</div>
-            <h2 class="section-title">Building Tomorrow's Infrastructure</h2>
-            <p class="section-description">At Degner Construction, we specialize in creating the essential infrastructure that supports thriving communities across Alberta</p>
+            <div class="section-subtitle">Safety Excellence</div>
+            <h2 class="section-title">Building a Culture of Safety</h2>
+            <p class="section-description">Safety is at the core of everything we do and is one of our central guiding principles. We promote and foster a culture where people truly care about one another and where everyone shares in our goal of zero incidents.</p>
         </div>
-        <div class="about-content">
-            <div class="about-text">
-                <p>With decades of experience in municipal infrastructure, we understand that every project we complete becomes part of the foundation upon which families, businesses, and dreams are built. Our comprehensive approach combines cutting-edge technology with proven methodologies.</p>
-                <p>From water and sanitary systems to storm management facilities, we deliver infrastructure solutions that stand the test of time while meeting the evolving needs of modern communities.</p>
-            </div>
-            <div class="about-highlight">
-                <p>Our promise is to build community value into every project while delivering professional expertise, exceptional customer service and quality construction</p>
-            </div>
-        </div>
-    </section>
 
-    <!-- Services Section -->
-    <section id="services" class="section">
-        <div class="section-header">
-            <div class="section-subtitle">What We Do</div>
-            <h2 class="section-title">Comprehensive Infrastructure Solutions</h2>
-            <p class="section-description">From planning to completion, we provide full-service municipal infrastructure development</p>
+        <!-- Safety Overview -->
+        <div class="safety-overview">
+            <div class="safety-text">
+                <p>We believe that all entities affected by our operations are entitled to a safe and sustainable environment. At Degner Construction Incorporated we are committed to conducting all our activities in a manner that protects the health and safety of our employees, suppliers, customers, community and the environment.</p>
+                <p>We recognize that our ability to achieve and maintain the highest possible standards in health and safety and adherence to Occupational Health and Safety guidelines can only be achieved through active participation and conscious effort by everyone, everyday and in every task performed.</p>
+                <p>Our Health and Safety programs' emphasis is on continually improving our process and advancing our standards by implementing a rigorous training program customized to specific tasks across our organization. We routinely review our safety procedures as settings change, challenging norms and conventions all with the intention of improving our environment.</p>
+            </div>
+            <div class="safety-highlight">
+                <h3>Our Mandate</h3>
+                <p>To promote and sustain a safe work environment for everyone and continually improve our process.</p>
+            </div>
         </div>
-        <div class="services-grid">
-            <div class="service-card">
-                <div class="service-icon">
+
+        <!-- Safety Programs -->
+        <div id="training" class="section-header">
+            <div class="section-subtitle">Safety Programs</div>
+            <h2 class="section-title">Comprehensive Safety Management</h2>
+        </div>
+
+        <div class="safety-programs">
+            <div class="safety-program">
+                <div class="safety-icon">
                     <svg fill="white" viewBox="0 0 24 24" width="24" height="24">
-                        <path d="M12 2L2 7v10c0 5.55 3.84 9.74 9 11 5.16-1.26 9-5.45 9-11V7l-10-5z"/>
+                        <path d="M12 2L3 7v3c0 5.55 3.84 9.74 9 11 5.16-1.26 9-5.45 9-11V7l-10-5z"/>
                     </svg>
                 </div>
-                <h3>General Contracting</h3>
-                <p>General Contracting for all Aspects of Municipal Infrastructure Projects. We provide comprehensive project management and execution for complex municipal developments.</p>
+                <h3>Fall Protection Program</h3>
+                <p>Comprehensive fall protection protocols including proper harness use, rescue procedures, and 100% tie-off policies for all work at height. Regular inspection and maintenance of fall protection equipment ensures reliability when it matters most.</p>
             </div>
-            <div class="service-card">
-                <div class="service-icon">
+
+            <div class="safety-program">
+                <div class="safety-icon">
                     <svg fill="white" viewBox="0 0 24 24" width="24" height="24">
                         <path d="M12 2c1.1 0 2 .9 2 2s-.9 2-2 2-2-.9-2-2 .9-2 2-2zm9 7h-6v13h-2v-6h-2v6H9V9H3V7h18v2z"/>
                     </svg>
                 </div>
-                <h3>Water, Sanitary & Storm Services</h3>
-                <p>Installation of Water, Sanitary and Storm Services. Our expert team ensures reliable, efficient systems that meet all municipal standards and regulations.</p>
+                <h3>Excavation & Trenching Safety</h3>
+                <p>Specialized protocols for deep utility excavation including soil classification, protective systems, atmospheric monitoring, and emergency egress procedures. Our team is trained in confined space entry and rescue operations.</p>
             </div>
-            <div class="service-card">
-                <div class="service-icon">
-                    <svg fill="white" viewBox="0 0 24 24" width="24" height="24">
-                        <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
-                    </svg>
-                </div>
-                <h3>Infrastructure</h3>
-                <p>Infrastructure Rehabilitation and Renewal. We breathe new life into aging infrastructure, extending service life and improving performance.</p>
-            </div>
-            <div class="service-card">
-                <div class="service-icon">
+
+            <div class="safety-program">
+                <div class="safety-icon">
                     <svg fill="white" viewBox="0 0 24 24" width="24" height="24">
                         <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/>
                     </svg>
                 </div>
-                <h3>Storm & Sanitation</h3>
-                <p>Storm and Sanitary Lift Station Construction. Specialized construction of lift stations that ensure proper waste management and flood prevention.</p>
+                <h3>Electrical Safety Program</h3>
+                <p>Lockout/tagout procedures, electrical hazard identification, and safe work practices around overhead and underground utilities. All electrical work is performed by certified electricians following strict safety protocols.</p>
             </div>
-            <div class="service-card">
-                <div class="service-icon">
+
+            <div class="safety-program">
+                <div class="safety-icon">
                     <svg fill="white" viewBox="0 0 24 24" width="24" height="24">
                         <path d="M16 6l2.29 2.29-4.88 4.88-4-4L2 16.59 3.41 18l6-6 4 4 6.3-6.29L22 12V6z"/>
                     </svg>
                 </div>
-                <h3>Project Management</h3>
-                <p>Project Management and Design Build services. From concept to completion, we manage every aspect of your infrastructure project.</p>
+                <h3>Equipment Safety</h3>
+                <p>Daily equipment inspections, operator certification requirements, and maintenance protocols for all heavy machinery. Specialized training for excavators, compactors, and lifting equipment used in municipal infrastructure projects.</p>
             </div>
-            <div class="service-card">
-                <div class="service-icon">
+
+            <div class="safety-program">
+                <div class="safety-icon">
                     <svg fill="white" viewBox="0 0 24 24" width="24" height="24">
                         <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
                     </svg>
                 </div>
-                <h3>Excavation</h3>
-                <p>Mass excavation for Storm Water Management Facilities. Large-scale excavation services for comprehensive water management solutions.</p>
+                <h3>Personal Protective Equipment</h3>
+                <p>Mandatory PPE requirements including hard hats, safety glasses, high-visibility clothing, and specialized protective equipment for specific tasks. Regular training on proper use, inspection, and maintenance of PPE.</p>
             </div>
-        </div>
-    </section>
 
-    <!-- Stats Section -->
-    <section class="section stats">
-        <div class="section-header">
-            <div class="section-subtitle" style="color: var(--text-light);">Our Impact</div>
-            <h2 class="section-title" style="color: var(--primary-white);">Building Alberta's Future</h2>
-            <p class="section-description" style="color: rgba(255,255,255,0.8);">Trusted by communities across Alberta for over two decades</p>
-        </div>
-        <div class="stats-grid">
-            <div class="stat-item">
-                <span class="stat-number" data-target="500">0</span>
-                <span class="stat-label">Projects Completed</span>
-            </div>
-            <div class="stat-item">
-                <span class="stat-number" data-target="25">0</span>
-                <span class="stat-label">Years Experience</span>
-            </div>
-            <div class="stat-item">
-                <span class="stat-number" data-target="50">0</span>
-                <span class="stat-label">Communities Served</span>
-            </div>
-            <div class="stat-item">
-                <span class="stat-number" data-target="100">0</span>
-                <span class="stat-label">Client Satisfaction</span>
+            <div class="safety-program">
+                <div class="safety-icon">
+                    <svg fill="white" viewBox="0 0 24 24" width="24" height="24">
+                        <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                    </svg>
+                </div>
+                <h3>Environmental Health & Safety</h3>
+                <p>Comprehensive environmental monitoring, hazardous material handling protocols, and emergency response procedures. Special attention to air quality in confined spaces and proper disposal of construction materials.</p>
             </div>
         </div>
-    </section>
 
-    <!-- Contact Section -->
-    <section id="contact" class="section contact">
-        <div class="section-header">
-            <div class="section-subtitle">Get In Touch</div>
-            <h2 class="section-title">Ready to Start Your Project?</h2>
-            <p class="section-description">Contact our team of experts to discuss your municipal infrastructure needs</p>
+        <!-- Safety Coordinator -->
+        <div class="safety-coordinator">
+            <div class="coordinator-profile">
+                <div class="coordinator-photo">
+                    <span>MG</span>
+                </div>
+                <h3 class="coordinator-name">Michelle Gregoire</h3>
+                <div class="coordinator-credentials">NCSO</div>
+                <div class="coordinator-title">Safety Coordinator</div>
+                <p class="coordinator-bio">Michelle brings extensive experience in construction safety management as our National Construction Safety Officer (NCSO). She oversees all safety programs, conducts regular site inspections, and ensures compliance with provincial and federal safety regulations. Michelle's proactive approach to safety management has been instrumental in maintaining our excellent safety record across all municipal infrastructure projects.</p>
+            </div>
         </div>
-        <div class="contact-content">
-            <div class="contact-info">
-                <h3>Contact Information</h3>
-                <div class="contact-item">
-                    <svg class="contact-icon" fill="currentColor" viewBox="0 0 20 20">
-                        <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"/>
-                    </svg>
-                    <div>
-                        <strong>Phone:</strong> 780-960-8723
-                    </div>
-                </div>
-                <div class="contact-item">
-                    <svg class="contact-icon" fill="currentColor" viewBox="0 0 20 20">
-                        <path d="M3 4a1 1 0 011-1h12a1 1 0 011 1v2a1 1 0 01-1 1H4a1 1 0 01-1-1V4zM3 10a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H4a1 1 0 01-1-1v-6zM14 9a1 1 0 00-1 1v6a1 1 0 001 1h2a1 1 0 001-1v-6a1 1 0 00-1-1h-2z"/>
-                    </svg>
-                    <div>
-                        <strong>Fax:</strong> 780-960-8809
-                    </div>
-                </div>
-                <div class="contact-item">
-                    <svg class="contact-icon" fill="currentColor" viewBox="0 0 20 20">
-                        <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"/>
-                        <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"/>
-                    </svg>
-                    <div>
-                        <strong>Email:</strong> info@degner.ca
-                    </div>
-                </div>
-                <div class="contact-item">
-                    <svg class="contact-icon" fill="currentColor" viewBox="0 0 20 20">
+
+        <!-- Safety Policies Section -->
+        <div id="policies" class="section-header">
+            <div class="section-subtitle">Safety Policies</div>
+            <h2 class="section-title">Protocols & Procedures</h2>
+        </div>
+
+        <div class="safety-programs">
+            <div class="safety-program">
+                <div class="safety-icon">
+                    <svg fill="white" viewBox="0 0 24 24" width="24" height="24">
                         <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
                     </svg>
-                    <div>
-                        <strong>Quotes:</strong> estimating@degner.ca
-                    </div>
                 </div>
-                <div class="contact-item">
-                    <svg class="contact-icon" fill="currentColor" viewBox="0 0 20 20">
-                        <path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"/>
-                    </svg>
-                    <div>
-                        <strong>Address:</strong> 27575 Ellis Road, Acheson, Alberta T7X 6N3
-                    </div>
-                </div>
-                <a href="tel:780-960-8723" class="contact-cta">Call Now</a>
+                <h3>Daily Safety Briefings</h3>
+                <p>Every workday begins with a tailgate safety meeting covering specific hazards, weather conditions, and emergency procedures. These briefings ensure all team members are aware of potential risks and safety measures for the day's activities.</p>
             </div>
-            <div class="contact-info">
-                <h3>Operating Hours</h3>
-                <div class="contact-item">
-                    <svg class="contact-icon" fill="currentColor" viewBox="0 0 20 20">
-                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clip-rule="evenodd"/>
+
+            <div class="safety-program">
+                <div class="safety-icon">
+                    <svg fill="white" viewBox="0 0 24 24" width="24" height="24">
+                        <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/>
                     </svg>
-                    <div>
-                        <strong>Monday - Friday:</strong> 8:00 AM - 5:00 PM
-                    </div>
                 </div>
-                <div class="contact-item">
-                    <svg class="contact-icon" fill="currentColor" viewBox="0 0 20 20">
-                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clip-rule="evenodd"/>
+                <h3>Incident Reporting & Investigation</h3>
+                <p>Comprehensive incident reporting system with immediate investigation protocols. All near-misses and incidents are thoroughly analyzed to prevent recurrence and improve our safety procedures.</p>
+            </div>
+
+            <div class="safety-program">
+                <div class="safety-icon">
+                    <svg fill="white" viewBox="0 0 24 24" width="24" height="24">
+                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
                     </svg>
-                    <div>
-                        <strong>Saturday - Sunday:</strong> Closed
-                    </div>
                 </div>
-                <div style="background: rgba(0, 0, 0, 0.05); padding: 1.5rem; border-radius: var(--border-radius); margin-top: 2rem;">
-                    <h4 style="color: var(--text-dark); margin-bottom: 1rem; font-size: 1.1rem;">Request a Quote</h4>
-                    <p style="color: var(--text-gray); line-height: 1.6; margin-bottom: 1rem;">
-                        For quote requests, please email <strong style="color: var(--text-dark);">estimating@degner.ca</strong> with your project details.
-                    </p>
-                    <a href="mailto:estimating@degner.ca" class="contact-cta">Request Quote</a>
+                <h3>Contractor Safety Requirements</h3>
+                <p>All subcontractors must meet our stringent safety standards including proof of safety training, insurance coverage, and compliance with our safety management system before being permitted on any project site.</p>
+            </div>
+        </div>
+
+        <!-- Safety Statistics -->
+        <div class="safety-stats">
+            <div class="section-header">
+                <div class="section-subtitle" style="color: rgba(255,255,255,0.7);">Safety Performance</div>
+                <h2 class="section-title" style="color: var(--primary-white);">Our Safety Record</h2>
+            </div>
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <span class="stat-number">0</span>
+                    <span class="stat-label">Lost Time Incidents (2024)</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">100%</span>
+                    <span class="stat-label">Safety Training Compliance</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">25+</span>
+                    <span class="stat-label">Years Safety Excellence</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">500+</span>
+                    <span class="stat-label">Projects Completed Safely</span>
                 </div>
             </div>
         </div>
-    </section>
+    </main>
 
     <!-- Footer -->
     <footer class="footer">
@@ -1680,31 +1235,7 @@
     </footer>
 
     <script>
-
-        // Header Scroll Effect and Active Navigation
-        const sections = document.querySelectorAll('.section, .hero');
-        const navItems = document.querySelectorAll('.nav-item');
-
-        function updateActiveNav() {
-            let current = '';
-            
-            sections.forEach(section => {
-                const sectionTop = section.offsetTop;
-                const sectionHeight = section.clientHeight;
-                if (window.scrollY >= (sectionTop - 200)) {
-                    current = section.getAttribute('id');
-                }
-            });
-
-            navItems.forEach(item => {
-                item.classList.remove('active');
-                const link = item.querySelector('a');
-                if (link.getAttribute('href') === `#${current}`) {
-                    item.classList.add('active');
-                }
-            });
-        }
-
+        // Header Scroll Effect
         window.addEventListener('scroll', function() {
             const header = document.getElementById('header');
             if (window.scrollY > 100) {
@@ -1712,65 +1243,6 @@
             } else {
                 header.classList.remove('scrolled');
             }
-            
-            updateActiveNav();
-        });
-
-        updateActiveNav();
-
-        // Scroll-triggered animations
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -100px 0px'
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                    
-                    if (entry.target.classList.contains('stats')) {
-                        animateStats();
-                    }
-                }
-            });
-        }, observerOptions);
-
-        document.querySelectorAll('.section').forEach(section => {
-            observer.observe(section);
-        });
-
-        // Stats animation
-        function animateStats() {
-            const statNumbers = document.querySelectorAll('.stat-number');
-            statNumbers.forEach(stat => {
-                const target = parseInt(stat.getAttribute('data-target'));
-                const increment = target / 100;
-                let current = 0;
-                
-                const timer = setInterval(() => {
-                    current += increment;
-                    if (current >= target) {
-                        current = target;
-                        clearInterval(timer);
-                    }
-                    stat.textContent = Math.floor(current) + (target === 100 ? '%' : '+');
-                }, 20);
-            });
-        }
-
-        // Smooth scrolling for navigation
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
-            });
         });
 
         // Search functionality
@@ -1799,15 +1271,12 @@
                 const query = this.value.toLowerCase();
                 searchOverlay.classList.remove('active');
                 
-                if (query.includes('service') || query.includes('water') || query.includes('storm') || query.includes('infrastructure')) {
-                    document.querySelector('#services').scrollIntoView({ behavior: 'smooth' });
-                } else if (query.includes('contact') || query.includes('phone') || query.includes('email') || query.includes('quote')) {
-                    document.querySelector('#contact').scrollIntoView({ behavior: 'smooth' });
-                } else if (query.includes('team') || query.includes('staff') || query.includes('leadership')) {
-                    window.location.href = 'team.html';} else if (query.includes('career') || query.includes('job')) {
-                    document.querySelector('#contact').scrollIntoView({ behavior: 'smooth' });
-                } else if (query.includes('project') || query.includes('portfolio')) {
-                    window.location.href = 'projects.html';
+                if (query.includes('training') || query.includes('fall') || query.includes('ppe')) {
+                    document.querySelector('#training').scrollIntoView({ behavior: 'smooth' });
+                } else if (query.includes('policy') || query.includes('procedure') || query.includes('protocol')) {
+                    document.querySelector('#policies').scrollIntoView({ behavior: 'smooth' });
+                } else if (query.includes('contact') || query.includes('phone') || query.includes('email')) {
+                    window.location.href = 'index.html#contact';
                 }
                 this.value = '';
             }
@@ -1855,99 +1324,18 @@
             }
         });
 
-        // Service card hover effects
-        document.querySelectorAll('.service-card').forEach(card => {
-            card.addEventListener('mouseenter', function() {
-                this.style.transform = 'translateY(-10px) scale(1.02)';
-            });
-            
-            card.addEventListener('mouseleave', function() {
-                this.style.transform = 'translateY(0) scale(1)';
-            });
-        });
-
-        // Contact item hover effects
-        document.querySelectorAll('.contact-item').forEach(item => {
-            item.addEventListener('mouseenter', function() {
-                this.style.transform = 'translateX(10px)';
-                this.style.backgroundColor = 'rgba(0, 0, 0, 0.05)';
-                this.style.borderRadius = '8px';
-                this.style.padding = '0.5rem';
-            });
-            
-            item.addEventListener('mouseleave', function() {
-                this.style.transform = 'translateX(0)';
-                this.style.backgroundColor = 'transparent';
-                this.style.padding = '0';
-            });
-        });
-
-        // Parallax effect for hero section
-        window.addEventListener('scroll', function() {
-            const scrolled = window.pageYOffset;
-            const hero = document.querySelector('.hero');
-            if (hero) {
-                hero.style.transform = `translateY(${scrolled * 0.5}px)`;
-            }
-        });
-
-        document.querySelectorAll('.cta-primary, .cta-secondary, .contact-cta').forEach(button => {
-            button.addEventListener('click', function(e) {
-                if (this.href && this.href.includes('tel:') || this.href.includes('mailto:')) {
-                    return;
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
                 }
-                
-                this.style.transform = 'scale(0.95)';
-                setTimeout(() => {
-                    this.style.transform = '';
-                }, 150);
             });
-        });
-        
-        // Language selector functionality
-        document.querySelector('.language-selector select').addEventListener('change', function() {
-            const selectedValue = this.value;
-            const selectedText = this.options[this.selectedIndex].text;
-            
-            console.log('Language changed to:', selectedText);
-            
-            // Store user preference
-            localStorage.setItem('selectedLanguage', selectedValue);
-            
-            // You can add functionality here for different languages
-            switch(selectedValue) {
-                case 'CA-EN':
-                    // Handle Canadian English (default)
-                    break;
-                case 'CA-FR':
-                    // Redirect to French version or show French content
-                    alert('French version coming soon!');
-                    break;
-                case 'ES':
-                    alert('Spanish version coming soon!');
-                    break;
-                case 'ZH':
-                    alert('Chinese version coming soon!');
-                    break;
-                case 'PA':
-                    alert('Punjabi version coming soon!');
-                    break;
-                case 'TL':
-                    alert('Tagalog version coming soon!');
-                    break;
-                // Add other cases as needed
-            }
-        });
-
-        // Load saved language preference on page load
-        document.addEventListener('DOMContentLoaded', function() {
-            const savedLanguage = localStorage.getItem('selectedLanguage');
-            if (savedLanguage) {
-                const languageSelect = document.querySelector('.language-selector select');
-                if (languageSelect) {
-                    languageSelect.value = savedLanguage;
-                }
-            }
         });
     </script>
 </body>
