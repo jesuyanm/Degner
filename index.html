@@ -1405,7 +1405,7 @@
                     </li>
                     <li class="nav-item"><a href="#services">What We Do</a></li>
                     <li class="nav-item"><a href="projects.html">Our Projects</a></li>
-                    <li class="nav-item"><a href="#careers">Careers</a></li>
+                    <li class="nav-item"><a href="careers.html">Careers</a></li>
                     <li class="nav-item"><a href="#contact">Contact</a></li>
                 </ul>
             </div>
@@ -1461,7 +1461,7 @@
         <li><a href="#services">What We Do <span>→</span></a></li>
         <li><a href="projects.html">Our Projects <span>→</span></a></li>
         <li><a href="safety.html">Safety <span>→</span></a></li>
-        <li><a href="#careers">Careers <span>→</span></a></li>
+        <li><a href="careers.html">Careers <span>→</span></a></li>
         <li><a href="#contact">Contact <span>→</span></a></li>
     </ul>
     </nav>
@@ -1804,8 +1804,9 @@
                 } else if (query.includes('contact') || query.includes('phone') || query.includes('email') || query.includes('quote')) {
                     document.querySelector('#contact').scrollIntoView({ behavior: 'smooth' });
                 } else if (query.includes('team') || query.includes('staff') || query.includes('leadership')) {
-                    window.location.href = 'team.html';} else if (query.includes('career') || query.includes('job')) {
-                    document.querySelector('#contact').scrollIntoView({ behavior: 'smooth' });
+                    window.location.href = 'team.html';
+                } else if (query.includes('career') || query.includes('job') || query.includes('hiring') || query.includes('work')) {
+                    window.location.href = 'careers.html';
                 } else if (query.includes('project') || query.includes('portfolio')) {
                     window.location.href = 'projects.html';
                 }

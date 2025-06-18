@@ -1,0 +1,1538 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Careers - Degner Construction</title>
+    <style>
+        :root {
+            --primary-accent: #000000;
+            --primary-white: #FFFFFF;
+            --text-dark: #0a0a0a;
+            --text-gray: #4a4a4a;
+            --text-light: #888888;
+            --background-light: #f8f9fa;
+            --background-dark: #0F1419;
+            --background-medium: #2a2a2a;
+            --shadow-light: 0 4px 20px rgba(0, 0, 0, 0.08);
+            --shadow-medium: 0 8px 40px rgba(0, 0, 0, 0.12);
+            --shadow-heavy: 0 20px 60px rgba(0, 0, 0, 0.18);
+            --border-radius: 12px;
+            --transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.7;
+            color: var(--text-dark);
+            background: var(--primary-white);
+            overflow-x: hidden;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--background-light);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--text-dark);
+            border-radius: 3px;
+        }
+
+        /* Header */
+        .header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(20px);
+            z-index: 1000;
+            transition: var(--transition);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        .header.scrolled {
+            background: rgba(255, 255, 255, 0.95);
+            box-shadow: var(--shadow-light);
+        }
+
+        .nav-container {
+            max-width: 1600px;
+            margin: 0 auto;
+            padding: 0 3rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 80px;
+            position: relative;
+        }
+
+        .nav-left {
+            display: flex;
+            align-items: center;
+            gap: 5rem;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            transition: var(--transition);
+        }
+
+        .logo img {
+            height: 140px;
+            transition: var(--transition);
+            filter: grayscale(100%) contrast(1.2);
+        }
+
+        .logo:hover {
+            transform: translateY(-2px);
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 0;
+            align-items: center;
+            flex: 1;
+            justify-content: center;
+        }
+
+        .nav-item {
+            position: relative;
+        }
+
+        .nav-item > a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: var(--transition);
+            padding: 2rem 1.5rem;
+            display: flex;
+            align-items: center;
+            height: 80px;
+            white-space: nowrap;
+            position: relative;
+        }
+
+        .nav-item > a:hover {
+            color: var(--text-gray);
+        }
+
+        .nav-item > a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            width: 0;
+            height: 3px;
+            background: var(--text-dark);
+            transition: var(--transition);
+            transform: translateX(-50%);
+        }
+
+        .nav-item > a:hover::after {
+            width: 100%;
+        }
+
+        .nav-item.active > a {
+            color: var(--text-dark);
+            font-weight: 600;
+        }
+
+        .nav-item.active > a::after {
+            width: 100%;
+        }
+
+        /* Megamenu Dropdowns */
+        .megamenu {
+            position: absolute;
+            top: 100%;
+            left: -3rem;
+            background: var(--primary-white);
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-heavy);
+            padding: 3rem;
+            min-width: 1000px;
+            max-height: 80vh;
+            overflow-y: auto;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: var(--transition);
+            border-top: 4px solid var(--text-dark);
+            z-index: 1001;
+        }
+
+        .nav-item:hover .megamenu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+            animation: megamenuSlideIn 0.3s ease-out;
+        }
+
+        @keyframes megamenuSlideIn {
+            0% {
+                opacity: 0;
+                transform: translateY(-20px) scale(0.95);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        .megamenu-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 3rem;
+        }
+
+        .megamenu-section h4 {
+            color: var(--text-dark);
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            position: relative;
+            padding-bottom: 0.75rem;
+        }
+
+        .megamenu-section h4::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 40px;
+            height: 3px;
+            background: var(--text-dark);
+        }
+
+        .megamenu-section ul {
+            list-style: none;
+        }
+
+        .megamenu-section ul li {
+            margin-bottom: 1rem;
+        }
+
+        .megamenu-section ul li a {
+            color: var(--text-gray);
+            text-decoration: none;
+            font-size: 1rem;
+            transition: var(--transition);
+            display: flex;
+            align-items: flex-start;
+            gap: 0.75rem;
+            padding: 0.75rem;
+            border-radius: 8px;
+            line-height: 1.5;
+        }
+
+        .megamenu-section ul li a:hover {
+            color: var(--text-dark);
+            background: rgba(0, 0, 0, 0.05);
+            transform: translateX(5px);
+        }
+
+        .megamenu-icon {
+            width: 20px;
+            height: 20px;
+            color: var(--text-dark);
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+
+        .megamenu-item-content {
+            flex: 1;
+        }
+
+        .megamenu-item-title {
+            font-weight: 600;
+            color: var(--text-dark);
+            margin-bottom: 0.25rem;
+        }
+
+        .megamenu-item-desc {
+            font-size: 0.9rem;
+            color: var(--text-light);
+            line-height: 1.4;
+        }
+
+        .leadership-profile {
+            background: rgba(0, 0, 0, 0.05);
+            border-radius: 8px;
+            padding: 1.5rem;
+            border-left: 4px solid var(--text-dark);
+        }
+
+        .leadership-profile h5 {
+            color: var(--text-dark);
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .leadership-title {
+            color: var(--text-gray);
+            font-size: 0.9rem;
+            font-weight: 500;
+            margin-bottom: 0.75rem;
+        }
+
+        .leadership-bio {
+            color: var(--text-gray);
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+            position: absolute;
+            right: 3rem;
+        }
+
+        .language-selector {
+            display: none !important;
+        }
+
+        .search-toggle {
+            background: var(--background-light);
+            border: none;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .search-toggle:hover {
+            background: var(--text-dark);
+            color: var(--primary-white);
+            transform: scale(1.1);
+        }
+
+        .search-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 2000;
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transition);
+        }
+
+        .search-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .search-container {
+            background: var(--primary-white);
+            border-radius: var(--border-radius);
+            padding: 2rem;
+            width: 90%;
+            max-width: 600px;
+            transform: scale(0.9);
+            transition: var(--transition);
+        }
+
+        .search-overlay.active .search-container {
+            transform: scale(1);
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 1rem;
+            font-size: 1.2rem;
+            border: 2px solid var(--background-light);
+            border-radius: var(--border-radius);
+            transition: var(--transition);
+            margin-bottom: 1rem;
+        }
+
+        .search-input:focus {
+            outline: none;
+            border-color: var(--text-dark);
+            box-shadow: var(--shadow-light);
+        }
+
+        .search-close {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--text-gray);
+            transition: var(--transition);
+        }
+
+        .search-close:hover {
+            color: var(--text-dark);
+            transform: scale(1.2);
+        }
+
+        .mobile-menu-toggle {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            padding: 0.5rem;
+        }
+
+        .mobile-menu-toggle span {
+            width: 25px;
+            height: 2px;
+            background: var(--text-dark);
+            margin: 3px 0;
+            transition: var(--transition);
+            border-radius: 2px;
+        }
+
+        .mobile-menu-toggle.active span:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+
+        .mobile-menu-toggle.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .mobile-menu-toggle.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(7px, -6px);
+        }
+
+        .mobile-nav {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 100%;
+            max-width: 400px;
+            height: 100vh;
+            background: var(--primary-white);
+            box-shadow: var(--shadow-heavy);
+            padding: 2rem;
+            transition: var(--transition);
+            z-index: 1500;
+            overflow-y: auto;
+        }
+
+        .mobile-nav.active {
+            right: 0;
+        }
+
+        .mobile-nav-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid var(--background-light);
+        }
+
+        .mobile-nav-close {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--text-gray);
+        }
+
+        .mobile-nav-menu {
+            list-style: none;
+        }
+
+        .mobile-nav-menu > li {
+            margin-bottom: 1rem;
+        }
+
+        .mobile-nav-menu > li > a {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem;
+            background: var(--background-light);
+            border-radius: var(--border-radius);
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 500;
+            transition: var(--transition);
+        }
+
+        .mobile-nav-menu > li > a:hover {
+            background: var(--text-dark);
+            color: var(--primary-white);
+        }
+
+        /* Page Header */
+        .page-header {
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.4)), url('pic5.png');
+            background-size: cover;
+            background-position: center;
+            height: 60vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: var(--primary-white);
+            margin-top: 80px;
+        }
+
+        .page-header-content h1 {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .page-header-content p {
+            font-size: 1.3rem;
+            max-width: 600px;
+            opacity: 0.9;
+        }
+
+        /* Main Content */
+        .main-content {
+            padding: 6rem 3rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-subtitle {
+            color: var(--text-gray);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        .section-title {
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 700;
+            color: var(--text-dark);
+            margin-bottom: 1.5rem;
+        }
+
+        .section-description {
+            font-size: 1.2rem;
+            color: var(--text-gray);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* Why Work With Us Section */
+        .why-work-section {
+            background: var(--background-light);
+            padding: 4rem 3rem;
+            margin: 4rem 0;
+            border-radius: var(--border-radius);
+        }
+
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .benefit-card {
+            background: var(--primary-white);
+            padding: 2.5rem;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-light);
+            transition: var(--transition);
+            text-align: center;
+        }
+
+        .benefit-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-heavy);
+        }
+
+        .benefit-icon {
+            width: 60px;
+            height: 60px;
+            background: var(--text-dark);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            color: var(--primary-white);
+        }
+
+        .benefit-card h3 {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--text-dark);
+            margin-bottom: 1rem;
+        }
+
+        .benefit-card p {
+            color: var(--text-gray);
+            line-height: 1.6;
+        }
+
+        /* Current Openings Section */
+        .openings-section {
+            margin: 4rem 0;
+        }
+
+        .job-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .job-card {
+            background: var(--primary-white);
+            border: 2px solid var(--background-light);
+            border-radius: var(--border-radius);
+            padding: 2rem;
+            transition: var(--transition);
+        }
+
+        .job-card:hover {
+            border-color: var(--text-dark);
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-medium);
+        }
+
+        .job-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--text-dark);
+            margin-bottom: 0.5rem;
+        }
+
+        .job-category {
+            color: var(--text-gray);
+            font-weight: 500;
+            margin-bottom: 1rem;
+        }
+
+        .job-description {
+            color: var(--text-gray);
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+
+        .job-requirements {
+            margin-bottom: 1.5rem;
+        }
+
+        .job-requirements h4 {
+            color: var(--text-dark);
+            font-size: 1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .job-requirements ul {
+            color: var(--text-gray);
+            margin-left: 1.5rem;
+        }
+
+        .apply-btn {
+            background: var(--text-dark);
+            color: var(--primary-white);
+            padding: 0.8rem 1.5rem;
+            border: none;
+            border-radius: 25px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .apply-btn:hover {
+            background: var(--text-gray);
+            transform: translateY(-2px);
+        }
+
+        /* Application Process Section */
+        .process-section {
+            background: var(--background-light);
+            padding: 4rem 3rem;
+            margin: 4rem 0;
+            border-radius: var(--border-radius);
+        }
+
+        .process-steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .process-step {
+            text-align: center;
+            position: relative;
+        }
+
+        .step-number {
+            width: 60px;
+            height: 60px;
+            background: var(--text-dark);
+            color: var(--primary-white);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin: 0 auto 1rem;
+        }
+
+        .process-step h3 {
+            color: var(--text-dark);
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+        }
+
+        .process-step p {
+            color: var(--text-gray);
+            line-height: 1.6;
+        }
+
+        /* Culture Section */
+        .culture-section {
+            margin: 4rem 0;
+        }
+
+        .culture-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .culture-item {
+            position: relative;
+            height: 250px;
+            background: var(--background-light);
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-gray);
+            font-size: 1.1rem;
+            transition: var(--transition);
+        }
+
+        .culture-item:hover {
+            transform: scale(1.02);
+        }
+
+        .culture-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0,0,0,0.8));
+            color: var(--primary-white);
+            padding: 2rem;
+            transform: translateY(100%);
+            transition: var(--transition);
+        }
+
+        .culture-item:hover .culture-overlay {
+            transform: translateY(0);
+        }
+
+        /* Contact Section */
+        .contact-section {
+            background: var(--background-dark);
+            color: var(--primary-white);
+            padding: 4rem 3rem;
+            text-align: center;
+            border-radius: var(--border-radius);
+            margin: 4rem 0;
+        }
+
+        .contact-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .contact-section p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            margin: 2rem 0;
+            flex-wrap: wrap;
+        }
+
+        .contact-item {
+            text-align: center;
+        }
+
+        .contact-item strong {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+        }
+
+        .contact-item a {
+            color: var(--primary-white);
+            text-decoration: none;
+            opacity: 0.9;
+            transition: var(--transition);
+        }
+
+        .contact-item a:hover {
+            opacity: 1;
+            transform: translateY(-2px);
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--background-dark);
+            color: var(--primary-white);
+            text-align: center;
+            padding: 3rem;
+            margin-top: 4rem;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 1024px) {
+            .nav-menu {
+                display: none;
+            }
+
+            .nav-left {
+                gap: 2rem;
+            }
+
+            .nav-right {
+                gap: 1rem;
+            }
+
+            .mobile-menu-toggle {
+                display: flex;
+            }
+        }
+
+        @media (max-width: 968px) {
+            .nav-container {
+                padding: 0 2rem;
+                height: 70px;
+            }
+
+            .nav-right {
+                right: 2rem;
+            }
+
+            .logo img {
+                height: 130px;
+            }
+
+            .main-content {
+                padding: 4rem 2rem;
+            }
+
+            .why-work-section,
+            .process-section,
+            .contact-section {
+                padding: 3rem 2rem;
+            }
+
+            .benefits-grid,
+            .job-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-info {
+                flex-direction: column;
+                gap: 1.5rem;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .nav-container {
+                padding: 0 1.5rem;
+                height: 65px;
+            }
+
+            .nav-right {
+                right: 1.5rem;
+            }
+
+            .logo img {
+                height: 125px;
+            }
+
+            .main-content {
+                padding: 3rem 1.5rem;
+            }
+
+            .search-toggle {
+                width: 35px;
+                height: 35px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header" id="header">
+        <nav class="nav-container">
+            <div class="nav-left">
+                <div class="logo">
+                    <a href="index.html">
+                        <img src="logo.png" alt="Degner Construction Logo">
+                    </a>
+                </div>
+                <ul class="nav-menu">
+                    <li class="nav-item">
+                        <a href="#" onclick="return false;">Who We Are</a>
+                        <div class="megamenu">
+                            <div class="megamenu-content">
+                                <div class="megamenu-section">
+                                    <h4>About Us</h4>
+                                    <ul>
+                                        <li>
+                                            <a href="index.html#about">
+                                                <svg class="megamenu-icon" fill="currentColor" viewBox="0 0 20 20">
+                                                    <path d="M10.394 2.08a1 1 0 00-.788 0l-7 3a1 1 0 000 1.84L5.25 8.051a.999.999 0 01.356-.257l4-1.714a1 1 0 11.788 1.838L7.667 9.088l1.94.831a1 1 0 00.787 0l7-3a1 1 0 000-1.838l-7-3z"/>
+                                                </svg>
+                                                <div class="megamenu-item-content">
+                                                    <div class="megamenu-item-title">Company Overview</div>
+                                                    <div class="megamenu-item-desc">Full-service municipal infrastructure contractor specializing in water, sanitary, and storm systems</div>
+                                                </div>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="index.html#about">
+                                                <svg class="megamenu-icon" fill="currentColor" viewBox="0 0 20 20">
+                                                    <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                                                </svg>
+                                                <div class="megamenu-item-content">
+                                                    <div class="megamenu-item-title">Our Mission</div>
+                                                    <div class="megamenu-item-desc">Building community value into every project with professional expertise and quality construction</div>
+                                                </div>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="index.html#about">
+                                                <svg class="megamenu-icon" fill="currentColor" viewBox="0 0 20 20">
+                                                    <path d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z"/>
+                                                </svg>
+                                                <div class="megamenu-item-content">
+                                                    <div class="megamenu-item-title">Our Values</div>
+                                                    <div class="megamenu-item-desc">Commitment to safety, innovation, and sustainable infrastructure solutions</div>
+                                                </div>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="megamenu-section">
+                                    <h4>Our Leadership</h4>
+                                    <div class="leadership-profile">
+                                        <h5>Dale Degner</h5>
+                                        <div class="leadership-title">President & CEO</div>
+                                        <div class="leadership-bio">Leading Degner Construction with decades of experience in municipal infrastructure development, Dale drives our commitment to building Alberta's essential infrastructure.</div>
+                                    </div>
+                                    <ul style="margin-top: 1.5rem;">
+                                        <li>
+                                            <a href="team.html">
+                                                <svg class="megamenu-icon" fill="currentColor" viewBox="0 0 20 20">
+                                                    <path d="M9 6a3 3 0 11-6 0 3 3 0 016 0zM17 6a3 3 0 11-6 0 3 3 0 016 0zM12.93 17c.046-.327.07-.66.07-1a6.97 6.97 0 00-1.5-4.33A5 5 0 0119 16v1h-6.07zM6 11a5 5 0 015 5v1H1v-1a5 5 0 015-5z"/>
+                                                </svg>
+                                                <div class="megamenu-item-content">
+                                                    <div class="megamenu-item-title">Management Team</div>
+                                                    <div class="megamenu-item-desc">Meet our experienced leadership driving innovation in municipal construction</div>
+                                                </div>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="megamenu-section">
+                                    <h4>Our History</h4>
+                                    <ul>
+                                        <li>
+                                            <a href="index.html#about">
+                                                <svg class="megamenu-icon" fill="currentColor" viewBox="0 0 20 20">
+                                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clip-rule="evenodd"/>
+                                                </svg>
+                                                <div class="megamenu-item-content">
+                                                    <div class="megamenu-item-title">Company Timeline</div>
+                                                    <div class="megamenu-item-desc">Decades of building Alberta's essential municipal infrastructure</div>
+                                                </div>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="index.html#about">
+                                                <svg class="megamenu-icon" fill="currentColor" viewBox="0 0 20 20">
+                                                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+                                                </svg>
+                                                <div class="megamenu-item-content">
+                                                    <div class="megamenu-item-title">Key Milestones</div>
+                                                    <div class="megamenu-item-desc">Major projects and achievements that shaped our growth</div>
+                                                </div>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="megamenu-section">
+                                    <h4>Our Location</h4>
+                                    <ul>
+                                        <li>
+                                            <a href="index.html#contact">
+                                                <svg class="megamenu-icon" fill="currentColor" viewBox="0 0 20 20">
+                                                    <path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"/>
+                                                </svg>
+                                                <div class="megamenu-item-content">
+                                                    <div class="megamenu-item-title">Acheson, Alberta</div>
+                                                    <div class="megamenu-item-desc">Strategically located to serve municipal infrastructure projects across Alberta</div>
+                                                </div>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="index.html#about">
+                                                <svg class="megamenu-icon" fill="currentColor" viewBox="0 0 20 20">
+                                                    <path d="M3 4a1 1 0 011-1h12a1 1 0 011 1v2a1 1 0 01-1 1H4a1 1 0 01-1-1V4zM3 10a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H4a1 1 0 01-1-1v-6zM14 9a1 1 0 00-1 1v6a1 1 0 001 1h2a1 1 0 001-1v-6a1 1 0 00-1-1h-2z"/>
+                                                </svg>
+                                                <div class="megamenu-item-content">
+                                                    <div class="megamenu-item-title">Service Areas</div>
+                                                    <div class="megamenu-item-desc">Comprehensive coverage across Alberta's municipalities and communities</div>
+                                                </div>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="megamenu-section">
+                                    <h4>Safety First</h4>
+                                    <ul>
+                                        <li>
+                                            <a href="safety.html">
+                                                <svg class="megamenu-icon" fill="currentColor" viewBox="0 0 20 20">
+                                                    <path d="M10 2L3 7v3c0 5.55 3.84 9.74 9 11 5.16-1.26 9-5.45 9-11V7l-10-5zM8 14l-3-3 1.41-1.41L8 11.17l5.59-5.58L15 7l-7 7z"/>
+                                                </svg>
+                                                <div class="megamenu-item-content">
+                                                    <div class="megamenu-item-title">Safety Program</div>
+                                                    <div class="megamenu-item-desc">Our commitment to zero incidents and comprehensive safety management</div>
+                                                </div>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="safety.html#training">
+                                                <svg class="megamenu-icon" fill="currentColor" viewBox="0 0 20 20">
+                                                    <path d="M10.394 2.08a1 1 0 00-.788 0l-7 3a1 1 0 000 1.84L5.25 8.051a.999.999 0 01.356-.257l4-1.714a1 1 0 11.788 1.838L7.667 9.088l1.94.831a1 1 0 00.787 0l7-3a1 1 0 000-1.838l-7-3z"/>
+                                                </svg>
+                                                <div class="megamenu-item-content">
+                                                    <div class="megamenu-item-title">Safety Training</div>
+                                                    <div class="megamenu-item-desc">Comprehensive training programs for all team members</div>
+                                                </div>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="safety.html#policies">
+                                                <svg class="megamenu-icon" fill="currentColor" viewBox="0 0 20 20">
+                                                    <path d="M4 4a2 2 0 00-2 2v8a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2H4zm0 2h12v8H4V6z"/>
+                                                </svg>
+                                                <div class="megamenu-item-content">
+                                                    <div class="megamenu-item-title">Safety Policies</div>
+                                                    <div class="megamenu-item-desc">Detailed safety protocols and procedures for municipal infrastructure</div>
+                                                </div>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="nav-item"><a href="index.html#services">What We Do</a></li>
+                    <li class="nav-item"><a href="projects.html">Our Projects</a></li>
+                    <li class="nav-item"><a href="safety.html">Safety</a></li>
+                    <li class="nav-item active"><a href="careers.html">Careers</a></li>
+                    <li class="nav-item"><a href="index.html#contact">Contact</a></li>
+                </ul>
+            </div>
+            <div class="nav-right">
+                <button class="search-toggle" id="searchToggle">
+                    <svg width="20" height="20" fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd"/>
+                    </svg>
+                </button>
+            </div>
+            <div class="mobile-menu-toggle" id="mobileToggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Search Overlay -->
+    <div class="search-overlay" id="searchOverlay">
+        <div class="search-container">
+            <button class="search-close" id="searchClose">&times;</button>
+            <input type="text" class="search-input" placeholder="Search careers, benefits, opportunities..." autofocus>
+            <div class="search-suggestions">
+                <p style="color: var(--text-gray); font-size: 0.9rem; margin-top: 1rem;">Try searching: "foreman", "benefits", "safety training"</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mobile Navigation -->
+    <nav class="mobile-nav" id="mobileNav">
+        <div class="mobile-nav-header">
+            <img src="logo.png" alt="Degner Construction" style="height: 50px;">
+            <button class="mobile-nav-close" id="mobileNavClose">&times;</button>
+        </div>
+        <ul class="mobile-nav-menu">
+            <li><a href="team.html">Our Team <span>→</span></a></li>
+            <li><a href="index.html#services">What We Do <span>→</span></a></li>
+            <li><a href="projects.html">Our Projects <span>→</span></a></li>
+            <li><a href="safety.html">Safety <span>→</span></a></li>
+            <li><a href="careers.html">Careers <span>→</span></a></li>
+            <li><a href="index.html#contact">Contact <span>→</span></a></li>
+        </ul>
+    </nav>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="page-header-content">
+            <h1>Join Our Team</h1>
+            <p>Build your career with one of Edmonton's premier municipal infrastructure contractors</p>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="section-header">
+            <div class="section-subtitle">Career Opportunities</div>
+            <h2 class="section-title">Build Your Future with Degner Construction</h2>
+            <p class="section-description">Join a team that values professional growth, safety, and excellence. We're always looking for talented individuals who share our commitment to building Alberta's essential infrastructure.</p>
+        </div>
+
+        <!-- Why Work With Us Section -->
+        <section class="why-work-section">
+            <div class="section-header">
+                <h2 class="section-title">Why Choose Degner Construction?</h2>
+                <p class="section-description">We offer more than just a job - we provide a career path with opportunities for growth, competitive benefits, and a supportive team environment.</p>
+            </div>
+            
+            <div class="benefits-grid">
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <svg width="24" height="24" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M4 4a2 2 0 00-2 2v4a2 2 0 002 2V6h10a2 2 0 00-2-2H4zM14 6a2 2 0 012 2v4a2 2 0 01-2 2H8a2 2 0 01-2-2V8a2 2 0 012-2h6zM4 14a2 2 0 002 2h8a2 2 0 002-2v-2a2 2 0 00-2-2H6a2 2 0 00-2 2v2z"/>
+                        </svg>
+                    </div>
+                    <h3>Competitive Compensation</h3>
+                    <p>We offer competitive wages that reflect your skills and experience, with regular performance-based increases and advancement opportunities.</p>
+                </div>
+
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <svg width="24" height="24" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                        </svg>
+                    </div>
+                    <h3>Comprehensive Benefits</h3>
+                    <p>Health and dental benefits after 3 months, plus additional perks that support your well-being and work-life balance.</p>
+                </div>
+
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <svg width="24" height="24" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M10.394 2.08a1 1 0 00-.788 0l-7 3a1 1 0 000 1.84L5.25 8.051a.999.999 0 01.356-.257l4-1.714a1 1 0 11.788 1.838L7.667 9.088l1.94.831a1 1 0 00.787 0l7-3a1 1 0 000-1.838l-7-3z"/>
+                        </svg>
+                    </div>
+                    <h3>Safety Training</h3>
+                    <p>Comprehensive safety training programs to ensure every team member goes home safely every day. Your safety is our top priority.</p>
+                </div>
+
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <svg width="24" height="24" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M13 6a3 3 0 11-6 0 3 3 0 016 0zM8 8a2 2 0 012-2h4a2 2 0 012 2v6a2 2 0 01-2 2H6a2 2 0 01-2-2V8a2 2 0 012-2h2z"/>
+                        </svg>
+                    </div>
+                    <h3>Professional Growth</h3>
+                    <p>Clear advancement opportunities with mentorship from experienced professionals and ongoing skills development programs.</p>
+                </div>
+
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <svg width="24" height="24" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z"/>
+                        </svg>
+                    </div>
+                    <h3>Team Environment</h3>
+                    <p>Work with a professional and fun team that values collaboration, respect, and shared success on every project.</p>
+                </div>
+
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <svg width="24" height="24" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+                        </svg>
+                    </div>
+                    <h3>Industry Leadership</h3>
+                    <p>Be part of one of Edmonton's premier contractors, working on high-profile municipal infrastructure projects across Alberta.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Current Openings Section -->
+        <section class="openings-section">
+            <div class="section-header">
+                <h2 class="section-title">Current Opportunities</h2>
+                <p class="section-description">We're currently recruiting for the following positions for the upcoming construction season. All positions offer competitive wages and comprehensive benefits.</p>
+            </div>
+
+            <div class="job-grid">
+                <div class="job-card">
+                    <h3 class="job-title">Foreman</h3>
+                    <div class="job-category">Leadership • Field Operations</div>
+                    <p class="job-description">Lead field crews in municipal infrastructure construction projects. Oversee daily operations, ensure safety compliance, and coordinate with project management.</p>
+                    <div class="job-requirements">
+                        <h4>Requirements:</h4>
+                        <ul>
+                            <li>5+ years construction experience</li>
+                            <li>Leadership and team management skills</li>
+                            <li>Safety certification preferred</li>
+                            <li>Municipal infrastructure experience an asset</li>
+                        </ul>
+                    </div>
+                    <a href="mailto:hr@degner.ca?subject=Foreman Position Application" class="apply-btn">Apply Now</a>
+                </div>
+
+                <div class="job-card">
+                    <h3 class="job-title">Topman</h3>
+                    <div class="job-category">Field Operations • Skilled Trade</div>
+                    <p class="job-description">Assist in field operations for municipal infrastructure projects. Support crew coordination and ensure project specifications are met.</p>
+                    <div class="job-requirements">
+                        <h4>Requirements:</h4>
+                        <ul>
+                            <li>3+ years construction experience</li>
+                            <li>Strong communication skills</li>
+                            <li>Valid driver's license</li>
+                            <li>Ability to work in team environment</li>
+                        </ul>
+                    </div>
+                    <a href="mailto:hr@degner.ca?subject=Topman Position Application" class="apply-btn">Apply Now</a>
+                </div>
+
+                <div class="job-card">
+                    <h3 class="job-title">Pipelayers</h3>
+                    <div class="job-category">Skilled Trade • Infrastructure</div>
+                    <p class="job-description">Install and maintain water, sanitary, and storm pipeline systems. Work with modern equipment and follow municipal specifications.</p>
+                    <div class="job-requirements">
+                        <h4>Requirements:</h4>
+                        <ul>
+                            <li>Pipelaying experience preferred</li>
+                            <li>Physical fitness required</li>
+                            <li>Safety training an asset</li>
+                            <li>Willingness to learn and advance</li>
+                        </ul>
+                    </div>
+                    <a href="mailto:hr@degner.ca?subject=Pipelayer Position Application" class="apply-btn">Apply Now</a>
+                </div>
+
+                <div class="job-card">
+                    <h3 class="job-title">Equipment Operators</h3>
+                    <div class="job-category">Heavy Equipment • Skilled Trade</div>
+                    <p class="job-description">Operate excavators, dozers, wheel loaders, and packers for municipal infrastructure projects. Multiple positions available.</p>
+                    <div class="job-requirements">
+                        <h4>Available Positions:</h4>
+                        <ul>
+                            <li>Mainline Excavator Operators</li>
+                            <li>Side Hoe Excavator Operators</li>
+                            <li>Dozer Operators</li>
+                            <li>Wheel Loader Operators</li>
+                            <li>Packer Operators</li>
+                        </ul>
+                    </div>
+                    <a href="mailto:hr@degner.ca?subject=Equipment Operator Position Application" class="apply-btn">Apply Now</a>
+                </div>
+
+                <div class="job-card">
+                    <h3 class="job-title">General Labourers</h3>
+                    <div class="job-category">Entry Level • Construction</div>
+                    <p class="job-description">Support all aspects of municipal infrastructure construction. Excellent opportunity for career growth and skills development.</p>
+                    <div class="job-requirements">
+                        <h4>Requirements:</h4>
+                        <ul>
+                            <li>Strong work ethic</li>
+                            <li>Physical fitness required</li>
+                            <li>Valid driver's license preferred</li>
+                            <li>Willingness to learn</li>
+                        </ul>
+                    </div>
+                    <a href="mailto:hr@degner.ca?subject=General Labourer Position Application" class="apply-btn">Apply Now</a>
+                </div>
+
+                <div class="job-card">
+                    <h3 class="job-title">Pipelayer Helpers</h3>
+                    <div class="job-category">Entry Level • Infrastructure</div>
+                    <p class="job-description">Assist experienced pipelayers in water, sanitary, and storm system installation. Great entry point into skilled trades.</p>
+                    <div class="job-requirements">
+                        <h4>Requirements:</h4>
+                        <ul>
+                            <li>Basic construction knowledge helpful</li>
+                            <li>Physical fitness required</li>
+                            <li>Team player attitude</li>
+                            <li>Eager to learn pipeline systems</li>
+                        </ul>
+                    </div>
+                    <a href="mailto:hr@degner.ca?subject=Pipelayer Helper Position Application" class="apply-btn">Apply Now</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Company Culture Section -->
+        <section class="culture-section">
+            <div class="section-header">
+                <h2 class="section-title">Life at Degner Construction</h2>
+                <p class="section-description">See what makes our workplace special - from our modern equipment and safe work environments to team building and professional development opportunities.</p>
+            </div>
+
+            <div class="culture-gallery">
+                <div class="culture-item">
+                    [Team Meeting Photo Placeholder]
+                    <div class="culture-overlay">
+                        <h3>Team Collaboration</h3>
+                        <p>Regular team meetings ensure everyone is aligned and informed</p>
+                    </div>
+                </div>
+                <div class="culture-item">
+                    [Equipment & Technology Photo Placeholder]
+                    <div class="culture-overlay">
+                        <h3>Modern Equipment</h3>
+                        <p>Work with state-of-the-art construction equipment and technology</p>
+                    </div>
+                </div>
+                <div class="culture-item">
+                    [Safety Training Photo Placeholder]
+                    <div class="culture-overlay">
+                        <h3>Safety First</h3>
+                        <p>Comprehensive safety training keeps our team protected</p>
+                    </div>
+                </div>
+                <div class="culture-item">
+                    [Project Site Photo Placeholder]
+                    <div class="culture-overlay">
+                        <h3>Quality Projects</h3>
+                        <p>Work on high-profile municipal infrastructure across Alberta</p>
+                    </div>
+                </div>
+                <div class="culture-item">
+                    [Team Building Photo Placeholder]
+                    <div class="culture-overlay">
+                        <h3>Team Events</h3>
+                        <p>Regular team building activities strengthen our workplace culture</p>
+                    </div>
+                </div>
+                <div class="culture-item">
+                    [Professional Development Photo Placeholder]
+                    <div class="culture-overlay">
+                        <h3>Career Growth</h3>
+                        <p>Ongoing training and development opportunities for advancement</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Application Process Section -->
+        <section class="process-section">
+            <div class="section-header">
+                <h2 class="section-title">How to Apply</h2>
+                <p class="section-description">Ready to join our team? Here's how our straightforward application process works.</p>
+            </div>
+
+            <div class="process-steps">
+                <div class="process-step">
+                    <div class="step-number">1</div>
+                    <h3>Submit Your Resume</h3>
+                    <p>Email your resume to hr@degner.ca or fax to 780-960-8809. Include the position you're applying for in the subject line.</p>
+                </div>
+                <div class="process-step">
+                    <div class="step-number">2</div>
+                    <h3>Initial Review</h3>
+                    <p>Our team will review your application and contact qualified candidates within one week for next steps.</p>
+                </div>
+                <div class="process-step">
+                    <div class="step-number">3</div>
+                    <h3>Interview Process</h3>
+                    <p>Meet with our hiring team to discuss your experience, career goals, and how you'll contribute to our projects.</p>
+                </div>
+                <div class="process-step">
+                    <div class="step-number">4</div>
+                    <h3>Welcome Aboard</h3>
+                    <p>Successful candidates receive a comprehensive orientation, safety training, and are paired with experienced mentors.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Contact Section -->
+    <section class="contact-section">
+        <h2>Ready to Start Your Career?</h2>
+        <p>Join one of Edmonton's premier municipal infrastructure contractors and build your future with us.</p>
+        
+        <div class="contact-info">
+            <div class="contact-item">
+                <strong>Email Your Resume</strong>
+                <a href="mailto:hr@degner.ca">hr@degner.ca</a>
+            </div>
+            <div class="contact-item">
+                <strong>Fax</strong>
+                <span>780-960-8809</span>
+            </div>
+            <div class="contact-item">
+                <strong>Phone</strong>
+                <a href="tel:780-960-8723">780-960-8723</a>
+            </div>
+        </div>
+
+        <p style="margin-top: 2rem; opacity: 0.8;">Questions about specific positions or our application process? Don't hesitate to reach out - we're here to help you find the right opportunity.</p>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>&copy; 2025 Degner Construction. All rights reserved. Building Tomorrow's Infrastructure Today.</p>
+    </footer>
+
+    <script>
+        // Header Scroll Effect
+        window.addEventListener('scroll', function() {
+            const header = document.getElementById('header');
+            if (window.scrollY > 100) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // Search functionality
+        const searchToggle = document.getElementById('searchToggle');
+        const searchOverlay = document.getElementById('searchOverlay');
+        const searchClose = document.getElementById('searchClose');
+        const searchInput = document.querySelector('.search-overlay .search-input');
+
+        searchToggle.addEventListener('click', function() {
+            searchOverlay.classList.add('active');
+            setTimeout(() => searchInput.focus(), 300);
+        });
+
+        searchClose.addEventListener('click', function() {
+            searchOverlay.classList.remove('active');
+        });
+
+        searchOverlay.addEventListener('click', function(e) {
+            if (e.target === searchOverlay) {
+                searchOverlay.classList.remove('active');
+            }
+        });
+
+        searchInput.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                const query = this.value.toLowerCase();
+                searchOverlay.classList.remove('active');
+                
+                if (query.includes('foreman') || query.includes('operator') || query.includes('pipelayer')) {
+                    document.querySelector('.openings-section').scrollIntoView({ behavior: 'smooth' });
+                } else if (query.includes('benefit') || query.includes('salary') || query.includes('compensation')) {
+                    document.querySelector('.why-work-section').scrollIntoView({ behavior: 'smooth' });
+                } else if (query.includes('apply') || query.includes('resume') || query.includes('contact')) {
+                    document.querySelector('.contact-section').scrollIntoView({ behavior: 'smooth' });
+                } else if (query.includes('culture') || query.includes('team') || query.includes('environment')) {
+                    document.querySelector('.culture-section').scrollIntoView({ behavior: 'smooth' });
+                }
+                this.value = '';
+            }
+        });
+
+        // Mobile menu functionality
+        const mobileToggle = document.getElementById('mobileToggle');
+        const mobileNav = document.getElementById('mobileNav');
+        const mobileNavClose = document.getElementById('mobileNavClose');
+
+        mobileToggle.addEventListener('click', function() {
+            this.classList.toggle('active');
+            mobileNav.classList.toggle('active');
+            document.body.style.overflow = mobileNav.classList.contains('active') ? 'hidden' : '';
+        });
+
+        mobileNavClose.addEventListener('click', function() {
+            mobileToggle.classList.remove('active');
+            mobileNav.classList.remove('active');
+            document.body.style.overflow = '';
+        });
+
+        document.addEventListener('click', function(e) {
+            if (!mobileNav.contains(e.target) && !mobileToggle.contains(e.target)) {
+                mobileToggle.classList.remove('active');
+                mobileNav.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+        });
+
+        document.querySelectorAll('.mobile-nav-menu a').forEach(link => {
+            link.addEventListener('click', function() {
+                mobileToggle.classList.remove('active');
+                mobileNav.classList.remove('active');
+                document.body.style.overflow = '';
+            });
+        });
+
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                searchOverlay.classList.remove('active');
+                mobileToggle.classList.remove('active');
+                mobileNav.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+        });
+
+        // Smooth scrolling for apply buttons
+        document.querySelectorAll('.apply-btn').forEach(button => {
+            button.addEventListener('click', function(e) {
+                this.style.transform = 'scale(0.95)';
+                setTimeout(() => {
+                    this.style.transform = '';
+                }, 150);
+            });
+        });
+    </script>
+</body>
+</html>
