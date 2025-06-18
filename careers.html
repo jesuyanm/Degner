@@ -71,16 +71,16 @@
             margin: 0 auto;
             padding: 0 3rem;
             display: flex;
-            justify-content: center;
+            justify-content: space-between;
             align-items: center;
             height: 80px;
-            position: relative;
         }
 
         .nav-left {
             display: flex;
             align-items: center;
             gap: 5rem;
+            flex: 1;
         }
 
         .logo {
@@ -301,12 +301,41 @@
             display: flex;
             align-items: center;
             gap: 2rem;
-            position: absolute;
-            right: 3rem;
         }
 
         .language-selector {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: var(--background-light);
+            border-radius: 20px;
+            padding: 0.5rem 1rem;
+            transition: var(--transition);
+        }
+
+        .language-selector:hover {
+            background: var(--text-dark);
+            color: var(--primary-white);
+        }
+
+        .language-selector select {
+            background: transparent;
+            border: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            cursor: pointer;
+            outline: none;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Noto Sans', sans-serif;
+        }
+
+        /* .language-selector {
             display: none !important;
+        } /* Uncomment this line to hide the language selector */
+
+        .language-selector select option {
+            background: var(--primary-white);
+            color: var(--text-dark);
+            padding: 0.5rem;
         }
 
         .search-toggle {
@@ -830,6 +859,27 @@
         }
 
         /* Mobile Responsive */
+        @media (max-width: 1200px) {
+            .nav-menu {
+                gap: 0;
+            }
+
+            .nav-item > a {
+                padding: 2rem 0.8rem;
+                font-size: 0.9rem;
+            }
+
+            .megamenu {
+                min-width: 900px;
+                left: -2rem;
+            }
+
+            .megamenu-content {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 2rem;
+            }
+        }
+
         @media (max-width: 1024px) {
             .nav-menu {
                 display: none;
@@ -843,6 +893,10 @@
                 gap: 1rem;
             }
 
+            .language-selector {
+                display: none;
+            }
+
             .mobile-menu-toggle {
                 display: flex;
             }
@@ -854,31 +908,47 @@
                 height: 70px;
             }
 
-            .nav-right {
-                right: 2rem;
-            }
-
             .logo img {
                 height: 130px;
             }
 
-            .main-content {
+            .section {
                 padding: 4rem 2rem;
             }
 
-            .why-work-section,
-            .process-section,
-            .contact-section {
-                padding: 3rem 2rem;
+            .about-content,
+            .contact-content {
+                grid-template-columns: 1fr;
+                gap: 3rem;
             }
 
-            .benefits-grid,
-            .job-grid {
+            .services-grid {
                 grid-template-columns: 1fr;
             }
 
-            .contact-info {
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 2rem;
+            }
+
+            .cta-group {
                 flex-direction: column;
+                align-items: center;
+            }
+
+            .search-container {
+                width: 95%;
+                max-width: 500px;
+            }
+
+            .megamenu {
+                min-width: 350px;
+                left: -1rem;
+                padding: 2rem;
+            }
+
+            .megamenu-content {
+                grid-template-columns: 1fr;
                 gap: 1.5rem;
             }
         }
@@ -889,16 +959,25 @@
                 height: 65px;
             }
 
-            .nav-right {
-                right: 1.5rem;
-            }
-
             .logo img {
                 height: 125px;
             }
 
-            .main-content {
+            .section {
                 padding: 3rem 1.5rem;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .service-card,
+            .contact-info {
+                padding: 2rem;
             }
 
             .search-toggle {
@@ -906,6 +985,12 @@
                 height: 35px;
             }
         }
+
+        /* Smooth Scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+
     </style>
 </head>
 <body>
@@ -1079,12 +1164,26 @@
                     </li>
                     <li class="nav-item"><a href="index.html#services">What We Do</a></li>
                     <li class="nav-item"><a href="projects.html">Our Projects</a></li>
-                    <li class="nav-item"><a href="safety.html">Safety</a></li>
                     <li class="nav-item active"><a href="careers.html">Careers</a></li>
                     <li class="nav-item"><a href="index.html#contact">Contact</a></li>
                 </ul>
             </div>
             <div class="nav-right">
+                <div class="language-selector">
+                    <svg width="16" height="16" fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM4.332 8.027a6.012 6.012 0 011.912-2.706C6.512 5.73 6.974 6 7.5 6A1.5 1.5 0 019 7.5V8a2 2 0 004 0 2 2 0 011.523-1.943A5.977 5.977 0 0116 10c0 .34-.028.675-.083 1H15a2 2 0 00-2 2v2.197A5.973 5.973 0 0110 16v-2a2 2 0 00-2-2 2 2 0 01-4 0 2 2 0 00-1.668-1.973z" clip-rule="evenodd"/>
+                    </svg>
+                    <select>
+                        <option value="CA-EN" selected>Canada (EN)</option>
+                        <option value="CA-FR">Canada (FR)</option>
+                        <option value="US-EN">U.S. (EN)</option>
+                        <option value="AUS-EN">AUS (EN)</option>
+                        <option value="ES">Español</option>
+                        <option value="ZH">中文</option>
+                        <option value="PA">ਪੰਜਾਬੀ</option>
+                        <option value="TL">Tagalog</option>
+                    </select>
+                </div>
                 <button class="search-toggle" id="searchToggle">
                     <svg width="20" height="20" fill="currentColor" viewBox="0 0 20 20">
                         <path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd"/>
@@ -1118,11 +1217,11 @@
         </div>
         <ul class="mobile-nav-menu">
             <li><a href="team.html">Our Team <span>→</span></a></li>
-            <li><a href="index.html#services">What We Do <span>→</span></a></li>
+            <li><a href="#services">What We Do <span>→</span></a></li>
             <li><a href="projects.html">Our Projects <span>→</span></a></li>
             <li><a href="safety.html">Safety <span>→</span></a></li>
             <li><a href="careers.html">Careers <span>→</span></a></li>
-            <li><a href="index.html#contact">Contact <span>→</span></a></li>
+            <li><a href="#contact">Contact <span>→</span></a></li>
         </ul>
     </nav>
 
@@ -1532,6 +1631,51 @@
                     this.style.transform = '';
                 }, 150);
             });
+        });
+        // Language selector functionality
+        document.querySelector('.language-selector select').addEventListener('change', function() {
+            const selectedValue = this.value;
+            const selectedText = this.options[this.selectedIndex].text;
+            
+            console.log('Language changed to:', selectedText);
+            
+            // Store user preference
+            localStorage.setItem('selectedLanguage', selectedValue);
+            
+            // You can add functionality here for different languages
+            switch(selectedValue) {
+                case 'CA-EN':
+                    // Handle Canadian English (default)
+                    break;
+                case 'CA-FR':
+                    // Redirect to French version or show French content
+                    alert('French version coming soon!');
+                    break;
+                case 'ES':
+                    alert('Spanish version coming soon!');
+                    break;
+                case 'ZH':
+                    alert('Chinese version coming soon!');
+                    break;
+                case 'PA':
+                    alert('Punjabi version coming soon!');
+                    break;
+                case 'TL':
+                    alert('Tagalog version coming soon!');
+                    break;
+                // Add other cases as needed
+            }
+        });
+
+        // Load saved language preference on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            const savedLanguage = localStorage.getItem('selectedLanguage');
+            if (savedLanguage) {
+                const languageSelect = document.querySelector('.language-selector select');
+                if (languageSelect) {
+                    languageSelect.value = savedLanguage;
+                }
+            }
         });
     </script>
 </body>
