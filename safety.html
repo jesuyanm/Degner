@@ -303,43 +303,9 @@
             gap: 2rem;
         }
 
-        .language-selector {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            background: var(--background-light);
-            border-radius: 20px;
-            padding: 0.5rem 1rem;
-            transition: var(--transition);
-        }
-
-        .language-selector:hover {
-            background: var(--text-dark);
-            color: var(--primary-white);
-        }
-
-        .language-selector select {
-            background: transparent;
-            border: none;
-            font-size: 0.9rem;
-            font-weight: 500;
-            cursor: pointer;
-            outline: none;
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Noto Sans', sans-serif;
-        }
-
-        /* .language-selector {
-            display: none !important;
-        } /* Uncomment this line to hide the language selector */
-
-        .language-selector select option {
-            background: var(--primary-white);
-            color: var(--text-dark);
-            padding: 0.5rem;
-        }
 
         .search-toggle {
-            background: var(--background-light);
+            background: transparent;
             border: none;
             border-radius: 50%;
             width: 40px;
@@ -357,39 +323,30 @@
             transform: scale(1.1);
         }
 
+        .header.scrolled .search-toggle {
+            background: var(--background-light);
+        }
+
         .search-overlay {
             position: fixed;
             top: 0;
-            left: 0;
+            right: -100%;
             width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.8);
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            max-width: 400px;
+            height: 100vh;
+            background: var(--primary-white);
+            box-shadow: var(--shadow-heavy);
             z-index: 2000;
-            opacity: 0;
-            visibility: hidden;
             transition: var(--transition);
+            overflow-y: auto;
         }
 
         .search-overlay.active {
-            opacity: 1;
-            visibility: visible;
+            right: 0;
         }
 
         .search-container {
-            background: var(--primary-white);
-            border-radius: var(--border-radius);
             padding: 2rem;
-            width: 90%;
-            max-width: 600px;
-            transform: scale(0.9);
-            transition: var(--transition);
-        }
-
-        .search-overlay.active .search-container {
-            transform: scale(1);
         }
 
         .search-input {
@@ -408,10 +365,68 @@
             box-shadow: var(--shadow-light);
         }
 
+        .search-suggestions {
+            margin-top: 0.5rem;
+        }
+
+        .suggestion-item {
+            display: flex;
+            flex-direction: column;
+            padding: 0.75rem 1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background 0.15s;
+            border: none;
+            background: none;
+            width: 100%;
+            text-align: left;
+            margin-bottom: 0.25rem;
+            font-family: inherit;
+        }
+
+        .suggestion-item:hover,
+        .suggestion-item:focus {
+            background: var(--background-light);
+            outline: none;
+        }
+
+        .suggestion-header {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        .suggestion-title {
+            font-weight: 600;
+            color: var(--text-dark);
+            font-size: 0.95rem;
+        }
+
+        .suggestion-category {
+            font-size: 0.7rem;
+            background: var(--background-light);
+            color: var(--text-gray);
+            padding: 0.15rem 0.5rem;
+            border-radius: 10px;
+            white-space: nowrap;
+        }
+
+        .suggestion-desc {
+            color: var(--text-gray);
+            font-size: 0.82rem;
+            margin-top: 0.25rem;
+            line-height: 1.4;
+        }
+
+        .search-hint,
+        .search-no-results {
+            color: var(--text-gray);
+            font-size: 0.875rem;
+            padding: 0.5rem 1rem;
+        }
+
         .search-close {
-            position: absolute;
-            top: 1rem;
-            right: 1rem;
             background: none;
             border: none;
             font-size: 1.5rem;
@@ -429,7 +444,7 @@
             display: none;
             flex-direction: column;
             cursor: pointer;
-            padding: 0.5rem;
+            padding: 0.75rem;
         }
 
         .mobile-menu-toggle span {
@@ -526,7 +541,8 @@
             justify-content: center;
             text-align: center;
             color: var(--primary-white);
-            margin-top: 80px;
+            margin-top: 0;
+            padding-top: 80px;
         }
 
         .page-header-content h1 {
@@ -816,10 +832,6 @@
                 gap: 1rem;
             }
 
-            .language-selector {
-                display: none;
-            }
-
             .mobile-menu-toggle {
                 display: flex;
             }
@@ -851,6 +863,19 @@
             .search-toggle {
                 width: 35px;
                 height: 35px;
+            }
+
+            .safety-overview {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .safety-programs {
+                grid-template-columns: 1fr;
+            }
+
+            .safety-highlight {
+                padding: 2rem;
             }
         }
 
@@ -1020,21 +1045,6 @@
                 </ul>
             </div>
             <div class="nav-right">
-                <div class="language-selector">
-                    <svg width="16" height="16" fill="currentColor" viewBox="0 0 20 20">
-                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM4.332 8.027a6.012 6.012 0 011.912-2.706C6.512 5.73 6.974 6 7.5 6A1.5 1.5 0 019 7.5V8a2 2 0 004 0 2 2 0 011.523-1.943A5.977 5.977 0 0116 10c0 .34-.028.675-.083 1H15a2 2 0 00-2 2v2.197A5.973 5.973 0 0110 16v-2a2 2 0 00-2-2 2 2 0 01-4 0 2 2 0 00-1.668-1.973z" clip-rule="evenodd"/>
-                    </svg>
-                    <select>
-                        <option value="CA-EN" selected>Canada (EN)</option>
-                        <option value="CA-FR">Canada (FR)</option>
-                        <option value="US-EN">U.S. (EN)</option>
-                        <option value="AUS-EN">AUS (EN)</option>
-                        <option value="ES">Español</option>
-                        <option value="ZH">中文</option>
-                        <option value="PA">ਪੰਜਾਬੀ</option>
-                        <option value="TL">Tagalog</option>
-                    </select>
-                </div>
                 <button class="search-toggle" id="searchToggle">
                     <svg width="20" height="20" fill="currentColor" viewBox="0 0 20 20">
                         <path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd"/>
@@ -1052,11 +1062,12 @@
     <!-- Search Overlay -->
     <div class="search-overlay" id="searchOverlay">
         <div class="search-container">
-            <button class="search-close" id="searchClose">&times;</button>
-            <input type="text" class="search-input" placeholder="Search projects, services, careers..." autofocus>
-            <div class="search-suggestions">
-                <p style="color: var(--text-gray); font-size: 0.9rem; margin-top: 1rem;">Try searching: "water services", "careers", "project management"</p>
+            <div class="mobile-nav-header">
+                <img src="logo.png" alt="Degner Construction" style="height: 50px;">
+                <button class="search-close" id="searchClose">&times;</button>
             </div>
+            <input type="text" class="search-input" placeholder="Search projects, services, careers...">
+            <div class="search-suggestions"></div>
         </div>
     </div>
 
@@ -1080,24 +1091,20 @@
     <section class="page-header">
         <div class="page-header-content">
             <h1>Safety First</h1>
-            <p>Our commitment to zero incidents through comprehensive safety management and a culture where everyone truly cares about one another</p>
         </div>
     </section>
 
     <!-- Main Content -->
     <main class="main-content">
         <div class="section-header">
-            <div class="section-subtitle">Safety Excellence</div>
             <h2 class="section-title">Building a Culture of Safety</h2>
-            <p class="section-description">Safety is at the core of everything we do and is one of our central guiding principles. We promote and foster a culture where people truly care about one another and where everyone shares in our goal of zero incidents.</p>
         </div>
 
         <!-- Safety Overview -->
         <div class="safety-overview">
             <div class="safety-text">
-                <p>We believe that all entities affected by our operations are entitled to a safe and sustainable environment. At Degner Construction Incorporated we are committed to conducting all our activities in a manner that protects the health and safety of our employees, suppliers, customers, community and the environment.</p>
-                <p>We recognize that our ability to achieve and maintain the highest possible standards in health and safety and adherence to Occupational Health and Safety guidelines can only be achieved through active participation and conscious effort by everyone, everyday and in every task performed.</p>
-                <p>Our Health and Safety programs' emphasis is on continually improving our process and advancing our standards by implementing a rigorous training program customized to specific tasks across our organization. We routinely review our safety procedures as settings change, challenging norms and conventions all with the intention of improving our environment.</p>
+                <p>We are committed to protecting the health and safety of our employees, suppliers, customers, community, and environment in every task we perform.</p>
+                <p>Our safety programs emphasize continuous improvement through rigorous, task-specific training and regular review of procedures — challenging norms with the intention of raising our standards.</p>
             </div>
             <div class="safety-highlight">
                 <h3>Our Mandate</h3>
@@ -1115,7 +1122,7 @@
                 <h3 class="coordinator-name">Michelle Gregoire</h3>
                 <div class="coordinator-credentials">NCSO</div>
                 <div class="coordinator-title">Safety Coordinator</div>
-                <p class="coordinator-bio">Michelle brings extensive experience in construction safety management as our National Construction Safety Officer (NCSO). She oversees all safety programs, conducts regular site inspections, and ensures compliance with provincial and federal safety regulations. Michelle's proactive approach to safety management has been instrumental in maintaining our excellent safety record across all municipal infrastructure projects.</p>
+                <p class="coordinator-bio">Oversees all safety programs, conducts site inspections, and ensures compliance with provincial and federal regulations across all projects.</p>
             </div>
         </div>
 
@@ -1133,7 +1140,7 @@
                     </svg>
                 </div>
                 <h3>Daily Safety Briefings</h3>
-                <p>Every workday begins with a tailgate safety meeting covering specific hazards, weather conditions, and emergency procedures. These briefings ensure all team members are aware of potential risks and safety measures for the day's activities.</p>
+                <p>Every workday begins with a tailgate safety meeting covering hazards, weather, and emergency procedures.</p>
             </div>
 
             <div class="safety-program">
@@ -1143,7 +1150,7 @@
                     </svg>
                 </div>
                 <h3>Incident Reporting & Investigation</h3>
-                <p>Comprehensive incident reporting system with immediate investigation protocols. All near-misses and incidents are thoroughly analyzed to prevent recurrence and improve our safety procedures.</p>
+                <p>All near-misses and incidents are immediately investigated and analyzed to prevent recurrence.</p>
             </div>
 
             <div class="safety-program">
@@ -1153,7 +1160,7 @@
                     </svg>
                 </div>
                 <h3>Contractor Safety Requirements</h3>
-                <p>All subcontractors must meet our stringent safety standards including proof of safety training, insurance coverage, and compliance with our safety management system before being permitted on any project site.</p>
+                <p>All subcontractors must meet our safety standards — training, insurance, and SMS compliance — before setting foot on site.</p>
             </div>
         </div>
 
@@ -1179,39 +1186,153 @@
         const searchClose = document.getElementById('searchClose');
         const searchInput = document.querySelector('.search-overlay .search-input');
 
+        const searchItems = [
+            // Pages
+            { title: 'Home', desc: 'Degner Construction — Alberta municipal infrastructure contractor', category: 'Page', url: 'index.html', keywords: ['home', 'homepage', 'degner', 'start', 'main'] },
+            { title: 'Our Projects', desc: 'Portfolio of completed infrastructure projects across Alberta', category: 'Page', url: 'projects.html', keywords: ['projects', 'portfolio', 'work', 'completed', 'gallery', 'schonsee', 'melcor', 'qualico', 'brookfield'] },
+            { title: 'Our Team', desc: 'Meet Dale Degner, Shaun Andreas, Matt Dudka, and Tom Thornton', category: 'Page', url: 'team.html', keywords: ['team', 'staff', 'people', 'leadership', 'crew', 'employees', 'dale', 'shaun', 'matt', 'tom'] },
+            { title: 'Careers', desc: 'Job opportunities at Degner Construction — foremen, operators, labourers', category: 'Page', url: 'careers.html', keywords: ['careers', 'jobs', 'hiring', 'work', 'employment', 'apply', 'openings', 'positions', 'join our team'] },
+            { title: 'Safety', desc: 'Our health and safety commitment — zero incidents, COR certified', category: 'Page', url: 'safety.html', keywords: ['safety', 'health', 'cor', 'certification', 'training', 'programs', 'zero incidents', 'michelle', 'gregoire', 'ncso'] },
+            // Company
+            { title: 'About Degner Construction', desc: 'Full-service municipal infrastructure contractor specializing in water, sanitary, and storm systems', category: 'About', url: 'index.html#about', keywords: ['about', 'company', 'who we are', 'history', 'story', 'alberta', 'acheson', 'edmonton', 'municipal infrastructure'] },
+            { title: 'Our Mission', desc: 'Building community value into every project with professional expertise and quality construction', category: 'About', url: 'index.html#about', keywords: ['mission', 'values', 'community', 'quality', 'purpose', 'vision'] },
+            { title: 'Location — Acheson, Alberta', desc: '27575 Ellis Road, Acheson, Alberta T7X 6N3 — strategically located to serve municipalities across Alberta', category: 'Contact', url: 'index.html#contact', keywords: ['acheson', 'alberta', 'ellis road', 'location', 'address', 'where', 't7x 6n3'] },
+            { title: '25 Years of Experience', desc: 'Over 25 years building Alberta\'s essential municipal infrastructure', category: 'About', url: 'index.html#about', keywords: ['25 years', 'experience', 'decades', 'established', 'founded'] },
+            { title: '500+ Projects Completed', desc: '500+ projects completed across 50+ Alberta communities', category: 'About', url: 'index.html#about', keywords: ['500 projects', '50 communities', 'stats', 'numbers', 'track record'] },
+            // Contact
+            { title: 'Contact Us', desc: 'Phone: 780-960-8723 | Email: info@degner.ca | Fax: 780-960-8809', category: 'Contact', url: 'index.html#contact', keywords: ['contact', 'phone', 'call', '780-960-8723', 'reach', 'get in touch', 'hours', 'monday friday'] },
+            { title: 'Request a Quote', desc: 'Send project details to estimating@degner.ca or call 780-960-8723', category: 'Contact', url: 'index.html#contact', keywords: ['quote', 'estimate', 'bid', 'estimating@degner.ca', 'request', 'pricing', 'tender'] },
+            { title: 'HR & Employment Inquiries', desc: 'Send your resume to hr@degner.ca to apply for a position', category: 'Contact', url: 'careers.html', keywords: ['hr', 'human resources', 'hr@degner.ca', 'resume', 'apply', 'employment contact'] },
+            { title: 'Office Hours', desc: 'Monday – Friday 8:00 AM – 5:00 PM, closed weekends', category: 'Contact', url: 'index.html#contact', keywords: ['hours', 'open', 'office hours', 'monday', 'friday', '8am', '5pm', 'closed', 'weekend'] },
+            // Services
+            { title: 'General Contracting', desc: 'Full-service general contracting for all aspects of municipal infrastructure projects — project management, execution, complex developments', category: 'Service', url: 'index.html#services', keywords: ['general contracting', 'gc', 'contractor', 'municipal', 'project execution', 'construction management'] },
+            { title: 'Water, Sanitary & Storm Services', desc: 'Installation of water, sanitary and storm services — reliable, efficient systems meeting all municipal standards', category: 'Service', url: 'index.html#services', keywords: ['water', 'sanitary', 'storm', 'services', 'watermain', 'sewer', 'storm sewer', 'municipal standards', 'installation'] },
+            { title: 'Infrastructure Rehabilitation', desc: 'Infrastructure rehabilitation and renewal — extending service life and improving performance of aging systems', category: 'Service', url: 'index.html#services', keywords: ['rehabilitation', 'renewal', 'aging infrastructure', 'repair', 'upgrade', 'replacement', 'renewal', 'revitalize'] },
+            { title: 'Lift Station Construction', desc: 'Storm and sanitary lift station construction for proper waste management and flood prevention', category: 'Service', url: 'index.html#services', keywords: ['lift station', 'pump station', 'storm lift', 'sanitary lift', 'flood prevention', 'waste management', 'pumping'] },
+            { title: 'Project Management & Design Build', desc: 'Comprehensive project management and design build from concept to completion', category: 'Service', url: 'index.html#services', keywords: ['project management', 'design build', 'design-build', 'concept to completion', 'pm', 'turnkey', 'epc'] },
+            { title: 'Mass Excavation', desc: 'Mass excavation for storm water management facilities — large-scale earthworks and water management solutions', category: 'Service', url: 'index.html#services', keywords: ['excavation', 'mass excavation', 'earthworks', 'grading', 'stormwater management', 'dig', 'earth moving', 'pond', 'retention'] },
+            { title: 'Directional Drilling', desc: 'Horizontal directional drilling — trenchless technology for underground pipe installation with minimal surface disruption', category: 'Service', url: 'index.html#services', keywords: ['directional drilling', 'hdd', 'horizontal drilling', 'trenchless', 'boring', 'no-dig', 'pipe bursting'] },
+            { title: 'Road Restoration', desc: 'Asphalt and concrete road restoration after underground utility work', category: 'Service', url: 'index.html#services', keywords: ['road', 'road restoration', 'asphalt', 'concrete', 'pavement', 'paving', 'reinstatement', 'roadway'] },
+            // Projects — Infrastructure
+            { title: 'Schonsee Stage 14 Offsite', desc: 'Deep sanitary main — 0.5km with directional drilling. Client: Brookfield Residential. City of Edmonton, 2013', category: 'Project', url: 'projects.html', keywords: ['schonsee', 'brookfield', 'directional drilling', 'sanitary mains', 'edmonton', 'sheffer andrew', 'deep utility', '0.5 kilometers'] },
+            { title: 'Melcor Collector Roadway', desc: 'Collector roadway with utility infrastructure for Edmonton communities. Client: Melcor Developments, 2013', category: 'Project', url: 'projects.html', keywords: ['melcor', 'collector roadway', 'roadway', 'transportation infrastructure', 'edmonton', 'ibi group', 'residential development'] },
+            { title: 'MLC Arterial Roadway', desc: 'Major arterial roadway for Edmonton\'s municipal infrastructure. Client: MLC Developments, 2013', category: 'Project', url: 'projects.html', keywords: ['mlc', 'arterial roadway', 'arterial', 'transportation corridor', 'edmonton', 'stantec', 'heavy traffic'] },
+            // Projects — Renewal
+            { title: 'St. Albert Sedimentation Control', desc: 'Environmental renewal with sedimentation/erosion control and 1350mm outfall. Client: St. Albert County, 2013', category: 'Project', url: 'projects.html', keywords: ['st albert', 'saint albert', 'sedimentation', 'erosion control', 'outfall', 'stormwater', 'environmental', 'stantec', '1350mm'] },
+            { title: 'Edmonton Watermain Renewal', desc: 'Critical watermain renewal to upgrade aging infrastructure and improve water distribution reliability. City of Edmonton, 2013', category: 'Project', url: 'projects.html', keywords: ['edmonton', 'watermain renewal', 'water main', 'aging infrastructure', 'water distribution', 'reliability', 'stantec'] },
+            { title: 'Canada Lands Infrastructure Renewal', desc: 'Removal of 2.8km of aging AC water and sanitary systems with modern replacement infrastructure. City of Edmonton, 2012', category: 'Project', url: 'projects.html', keywords: ['canada lands', 'infrastructure renewal', '2.8 kilometers', 'ac water', 'sanitary', 'replacement', 'edmonton', 'select engineering'] },
+            // Projects — Urban Land
+            { title: 'Rohit Lands Residential', desc: '179 fully-serviced residential lots with infrastructure and roadway. City of Edmonton, 2013', category: 'Project', url: 'projects.html', keywords: ['rohit', 'residential development', '179 lots', 'serviced lots', 'mmm group', 'edmonton', 'urban land'] },
+            { title: 'Qualico Communities Development', desc: '125 residential lots with full municipal infrastructure. City of Edmonton, 2012', category: 'Project', url: 'projects.html', keywords: ['qualico', '125 lots', 'residential community', 'stantec', 'edmonton', 'multi-phase', 'municipal infrastructure'] },
+            { title: 'Brookfield Residential Community', desc: '102 fully-serviced lots with advanced infrastructure planning. City of Edmonton, 2012', category: 'Project', url: 'projects.html', keywords: ['brookfield', '102 lots', 'premium residential', 'sheffer andrew', 'edmonton', 'serviced lots', 'sustainable design'] },
+            { title: 'Melcor Mixed Development', desc: '188 residential lots with collector roadway. City of Edmonton, 2012', category: 'Project', url: 'projects.html', keywords: ['melcor mixed', '188 lots', 'mixed development', 'collector roadway', 'ibi group', 'edmonton', 'multi-component'] },
+            { title: 'Qualico Fort Saskatchewan', desc: '96 residential lots in Fort Saskatchewan. Client: Qualico Communities, 2013', category: 'Project', url: 'projects.html', keywords: ['qualico', 'fort saskatchewan', '96 lots', 'al-terra', 'suburban', 'residential', 'housing'] },
+            { title: 'Qualico Spruce Grove', desc: '109 residential lots in Spruce Grove. Client: Qualico Communities, 2013', category: 'Project', url: 'projects.html', keywords: ['qualico', 'spruce grove', '109 lots', 'select engineering', 'suburban', 'residential', 'municipal standards'] },
+            // Team
+            { title: 'Dale Degner — President', desc: 'BCom., MBA. Over two decades of leadership — strategic vision, operational excellence, and community value', category: 'Team', url: 'team.html', keywords: ['dale degner', 'president', 'bcom', 'mba', 'owner', 'founder', 'leadership', 'ceo', 'degner'] },
+            { title: 'Shaun Andreas — General Manager', desc: 'CET, MBA. Certified Engineering Technologist overseeing project quality, safety, and field operations', category: 'Team', url: 'team.html', keywords: ['shaun andreas', 'general manager', 'cet', 'mba', 'certified engineering technologist', 'project management', 'field operations'] },
+            { title: 'Matt Dudka — Project Manager', desc: 'CET. Technical project management — on-time, on-budget delivery with client communication focus', category: 'Team', url: 'team.html', keywords: ['matt dudka', 'project manager', 'cet', 'certified engineering technologist', 'budget', 'schedule', 'client'] },
+            { title: 'Tom Thornton — Operations Manager', desc: 'Operational expertise in field operations, equipment management, and resource coordination', category: 'Team', url: 'team.html', keywords: ['tom thornton', 'operations manager', 'operations', 'equipment management', 'resources', 'field', 'productivity'] },
+            // Careers — Positions
+            { title: 'Foreman', desc: 'Lead field crews in municipal infrastructure — daily operations, safety compliance, project coordination. 5+ years experience required', category: 'Career', url: 'careers.html', keywords: ['foreman', 'crew lead', 'site lead', 'field operations', 'leadership', 'safety compliance', '5 years'] },
+            { title: 'Topman', desc: 'Field operations support — crew coordination, project specifications, municipal infrastructure. 3+ years experience', category: 'Career', url: 'careers.html', keywords: ['topman', 'top man', 'field operations', 'crew coordination', '3 years', 'specifications', 'driver\'s license'] },
+            { title: 'Pipelayers', desc: 'Install and maintain water, sanitary, and storm pipeline systems with modern equipment to municipal specs', category: 'Career', url: 'careers.html', keywords: ['pipelayer', 'pipe layer', 'pipeline', 'water sanitary storm', 'pipe installation', 'pipelaying', 'pipe laying'] },
+            { title: 'Equipment Operators', desc: 'Operate excavators, dozers, wheel loaders, and packers — mainline, side hoe, dozer, loader, packer positions', category: 'Career', url: 'careers.html', keywords: ['equipment operator', 'excavator', 'dozer', 'wheel loader', 'packer', 'mainline', 'side hoe', 'heavy equipment', 'operate', 'machine operator'] },
+            { title: 'General Labourers', desc: 'Support all aspects of construction — excellent entry point for career growth. Strong work ethic and fitness required', category: 'Career', url: 'careers.html', keywords: ['labourer', 'laborer', 'general labour', 'entry level', 'construction', 'work ethic', 'labour', 'helper'] },
+            { title: 'Pipelayer Helpers', desc: 'Assist experienced pipelayers in water, sanitary, storm installation — great entry point to skilled trades', category: 'Career', url: 'careers.html', keywords: ['pipelayer helper', 'helper', 'entry level', 'pipeline', 'skilled trades', 'water sanitary', 'assistant'] },
+            // Benefits
+            { title: 'Competitive Wages & Compensation', desc: 'Competitive wages reflecting skills and experience, with regular performance-based increases', category: 'Benefit', url: 'careers.html', keywords: ['wages', 'pay', 'salary', 'compensation', 'competitive', 'performance', 'increase', 'raise'] },
+            { title: 'Health & Dental Benefits', desc: 'Comprehensive health and dental benefits after 3 months, plus additional perks for well-being', category: 'Benefit', url: 'careers.html', keywords: ['health benefits', 'dental', 'benefits', '3 months', 'well-being', 'extended health', 'insurance', 'rrsp'] },
+            { title: 'Professional Growth & Advancement', desc: 'Clear career advancement with mentorship from experienced professionals and ongoing skills development', category: 'Benefit', url: 'careers.html', keywords: ['professional growth', 'advancement', 'career', 'mentorship', 'development', 'skills', 'promotion', 'training'] },
+            { title: 'Safety Training Programs', desc: 'Comprehensive safety training ensuring every team member goes home safely every day', category: 'Benefit', url: 'careers.html', keywords: ['safety training', 'training', 'safe', 'certification', 'first aid', 'whmis', 'safety courses'] },
+            // Safety
+            { title: 'Safety Culture', desc: 'We promote a culture where people truly care about one another and everyone shares the goal of zero incidents', category: 'Safety', url: 'safety.html', keywords: ['safety culture', 'zero incidents', 'culture', 'care', 'everyone', 'commitment', 'workplace safety'] },
+            { title: 'Health & Safety Commitment', desc: 'Protecting employees, suppliers, customers, community and the environment through OHS compliance', category: 'Safety', url: 'safety.html', keywords: ['health and safety', 'ohs', 'occupational health', 'compliance', 'regulations', 'protect', 'environment', 'sustainable'] },
+            { title: 'Safety Mandate', desc: '"To promote and sustain a safe work environment for everyone and continually improve our process"', category: 'Safety', url: 'safety.html', keywords: ['safety mandate', 'mandate', 'promote', 'sustain', 'safe environment', 'continually improve'] },
+            { title: 'Michelle Gregoire — Safety Coordinator', desc: 'NCSO (National Construction Safety Officer) — site inspections, safety program oversight, regulatory compliance', category: 'Safety', url: 'safety.html', keywords: ['michelle gregoire', 'safety coordinator', 'ncso', 'national construction safety officer', 'site inspection', 'compliance', 'regulations'] },
+            { title: 'Daily Safety Briefings', desc: 'Tailgate safety meetings every workday covering hazards, weather conditions, and emergency procedures', category: 'Safety', url: 'safety.html', keywords: ['daily briefing', 'tailgate meeting', 'safety meeting', 'hazards', 'weather', 'emergency procedures', 'toolbox'] },
+            { title: 'Incident Reporting & Investigation', desc: 'Comprehensive reporting system — all near-misses and incidents analyzed to prevent recurrence', category: 'Safety', url: 'safety.html', keywords: ['incident reporting', 'investigation', 'near miss', 'near-miss', 'accident', 'prevent', 'recurrence', 'reporting system'] },
+            { title: 'Contractor Safety Requirements', desc: 'All subcontractors must meet our stringent safety standards — training, insurance, and SMS compliance required', category: 'Safety', url: 'safety.html', keywords: ['contractor', 'subcontractor', 'safety requirements', 'sms', 'safety management system', 'insurance', 'standards'] },
+        ];
+
+        function renderSuggestions(query) {
+            const container = document.querySelector('.search-suggestions');
+            if (!query || query.length < 2) {
+                container.innerHTML = '<p class="search-hint">Try: "water main", "foreman", "safety programs"</p>';
+                return;
+            }
+            const q = query.toLowerCase();
+            const results = searchItems.filter(item =>
+                item.title.toLowerCase().includes(q) ||
+                item.desc.toLowerCase().includes(q) ||
+                item.keywords.some(k => k.includes(q))
+            ).slice(0, 8);
+            if (results.length === 0) {
+                container.innerHTML = '<p class="search-no-results">No results for "' + query + '"</p>';
+                return;
+            }
+            container.innerHTML = results.map(item => `
+                <button class="suggestion-item" data-url="${item.url}">
+                    <div class="suggestion-header">
+                        <span class="suggestion-title">${item.title}</span>
+                        <span class="suggestion-category">${item.category}</span>
+                    </div>
+                    <span class="suggestion-desc">${item.desc}</span>
+                </button>
+            `).join('');
+            container.querySelectorAll('.suggestion-item').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    searchOverlay.classList.remove('active');
+                    document.body.style.overflow = '';
+                    searchInput.value = '';
+                    renderSuggestions('');
+                    window.location.href = this.dataset.url;
+                });
+            });
+        }
+
         searchToggle.addEventListener('click', function() {
             searchOverlay.classList.add('active');
+            document.body.style.overflow = 'hidden';
+            renderSuggestions('');
             setTimeout(() => searchInput.focus(), 300);
         });
 
         searchClose.addEventListener('click', function() {
             searchOverlay.classList.remove('active');
+            document.body.style.overflow = '';
+            searchInput.value = '';
+            renderSuggestions('');
         });
 
-        searchOverlay.addEventListener('click', function(e) {
-            if (e.target === searchOverlay) {
+        document.addEventListener('click', function(e) {
+            if (searchOverlay.classList.contains('active') && !searchOverlay.contains(e.target) && !searchToggle.contains(e.target)) {
                 searchOverlay.classList.remove('active');
+                document.body.style.overflow = '';
+                searchInput.value = '';
+                renderSuggestions('');
             }
         });
 
-        searchInput.addEventListener('keypress', function(e) {
+        searchInput.addEventListener('input', function() {
+            renderSuggestions(this.value.trim());
+        });
+
+        searchInput.addEventListener('keydown', function(e) {
             if (e.key === 'Enter') {
-                const query = this.value.toLowerCase();
+                const topResult = document.querySelector('.suggestion-item');
                 searchOverlay.classList.remove('active');
-                
-                if (query.includes('service') || query.includes('water') || query.includes('storm') || query.includes('infrastructure')) {
-                    document.querySelector('#services').scrollIntoView({ behavior: 'smooth' });
-                } else if (query.includes('contact') || query.includes('phone') || query.includes('email') || query.includes('quote')) {
-                    document.querySelector('#contact').scrollIntoView({ behavior: 'smooth' });
-                } else if (query.includes('team') || query.includes('staff') || query.includes('leadership')) {
-                    window.location.href = 'team.html';
-                } else if (query.includes('career') || query.includes('job') || query.includes('hiring') || query.includes('work')) {
-                    window.location.href = 'careers.html';
-                } else if (query.includes('project') || query.includes('portfolio')) {
-                    window.location.href = 'projects.html';
-                }
+                document.body.style.overflow = '';
                 this.value = '';
+                renderSuggestions('');
+                if (topResult) window.location.href = topResult.dataset.url;
             }
+        });
+
+        // Logo — always go to top of homepage
+        document.querySelector('.logo a').addEventListener('click', function(e) {
+            const onHome = window.location.pathname.endsWith('index.html') || window.location.pathname === '/' || window.location.pathname.endsWith('/');
+            if (onHome) { e.preventDefault(); window.scrollTo({ top: 0, behavior: 'smooth' }); }
         });
 
         // Mobile menu functionality
@@ -1268,96 +1389,6 @@
                     });
                 }
             });
-        });
-        // Language selector functionality
-        document.querySelector('.language-selector select').addEventListener('change', function() {
-            const selectedValue = this.value;
-            const selectedText = this.options[this.selectedIndex].text;
-            
-            console.log('Language changed to:', selectedText);
-            
-            // Store user preference
-            localStorage.setItem('selectedLanguage', selectedValue);
-            
-            // You can add functionality here for different languages
-            switch(selectedValue) {
-                case 'CA-EN':
-                    // Handle Canadian English (default)
-                    break;
-                case 'CA-FR':
-                    // Redirect to French version or show French content
-                    alert('French version coming soon!');
-                    break;
-                case 'ES':
-                    alert('Spanish version coming soon!');
-                    break;
-                case 'ZH':
-                    alert('Chinese version coming soon!');
-                    break;
-                case 'PA':
-                    alert('Punjabi version coming soon!');
-                    break;
-                case 'TL':
-                    alert('Tagalog version coming soon!');
-                    break;
-                // Add other cases as needed
-            }
-        });
-
-        // Load saved language preference on page load
-        document.addEventListener('DOMContentLoaded', function() {
-            const savedLanguage = localStorage.getItem('selectedLanguage');
-            if (savedLanguage) {
-                const languageSelect = document.querySelector('.language-selector select');
-                if (languageSelect) {
-                    languageSelect.value = savedLanguage;
-                }
-            }
-        });
-        // Language selector functionality
-        document.querySelector('.language-selector select').addEventListener('change', function() {
-            const selectedValue = this.value;
-            const selectedText = this.options[this.selectedIndex].text;
-            
-            console.log('Language changed to:', selectedText);
-            
-            // Store user preference
-            localStorage.setItem('selectedLanguage', selectedValue);
-            
-            // You can add functionality here for different languages
-            switch(selectedValue) {
-                case 'CA-EN':
-                    // Handle Canadian English (default)
-                    break;
-                case 'CA-FR':
-                    // Redirect to French version or show French content
-                    alert('French version coming soon!');
-                    break;
-                case 'ES':
-                    alert('Spanish version coming soon!');
-                    break;
-                case 'ZH':
-                    alert('Chinese version coming soon!');
-                    break;
-                case 'PA':
-                    alert('Punjabi version coming soon!');
-                    break;
-                case 'TL':
-                    alert('Tagalog version coming soon!');
-                    break;
-                // Add other cases as needed
-            }
-        });
-
-        // Load saved language preference on page load
-        document.addEventListener('DOMContentLoaded', function() {
-            const savedLanguage = localStorage.getItem('selectedLanguage');
-            if (savedLanguage) {
-                const languageSelect = document.querySelector('.language-selector select');
-                if (languageSelect) {
-                    languageSelect.value = savedLanguage;
-                }
-            }
         });
     </script>
 </body>
