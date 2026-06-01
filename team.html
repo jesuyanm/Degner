@@ -683,9 +683,6 @@
             -webkit-backdrop-filter: blur(10px);
             z-index: 3000;
             align-items: center;
-            justify-content: center;
-            flex-direction: column;
-            padding: 2rem;
         }
 
         .team-modal.active {
@@ -710,22 +707,30 @@
             color: var(--primary-white);
         }
 
-        .modal-layout {
+        .modal-track-wrapper {
+            width: 100%;
             display: flex;
             align-items: center;
-            justify-content: center;
-            gap: 1.25rem;
-            width: 100%;
-            max-width: 95vw;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            scrollbar-width: none;
+            gap: 1.5rem;
+            padding: 1.5rem 0;
+            cursor: grab;
         }
 
-        .modal-cards-row {
-            position: relative;
-            flex-shrink: 0;
-            width: min(520px, 70vw);
+        .modal-track-wrapper::-webkit-scrollbar {
+            display: none;
+        }
+
+        .modal-track-wrapper:active {
+            cursor: grabbing;
         }
 
         .modal-nav-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
             background: rgba(255,255,255,0.15);
             backdrop-filter: blur(8px);
             -webkit-backdrop-filter: blur(8px);
@@ -740,16 +745,17 @@
             align-items: center;
             justify-content: center;
             flex-shrink: 0;
-            transition: var(--transition);
+            transition: background var(--transition);
             line-height: 1;
-            position: relative;
-            z-index: 2;
+            z-index: 10;
         }
+
+        #modalPrev { left: 1.5rem; }
+        #modalNext { right: 1.5rem; }
 
         .modal-nav-btn:hover {
             background: rgba(255,255,255,0.3);
         }
-
 
         .team-modal-inner {
             background: rgba(255, 255, 255, 0.9);
@@ -757,35 +763,21 @@
             -webkit-backdrop-filter: blur(24px);
             border: 1px solid rgba(255, 255, 255, 0.6);
             border-radius: var(--border-radius);
-            width: 100%;
+            width: min(520px, 70vw);
+            flex-shrink: 0;
             overflow: hidden;
             box-shadow: 0 20px 60px rgba(0,0,0,0.25);
             display: flex;
             flex-direction: column;
-        }
-
-        #modalCard {
-            position: relative;
-            z-index: 2;
-        }
-
-        #modalCardPrev,
-        #modalCardNext {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
+            scroll-snap-align: center;
             opacity: 0.45;
-            z-index: 1;
-            pointer-events: none;
+            transform: scale(0.75);
+            transition: opacity 0.35s ease, transform 0.35s ease;
         }
 
-        #modalCardPrev {
-            transform: translateX(calc(-87.5% - 1.25rem)) scale(0.75);
-        }
-
-        #modalCardNext {
-            transform: translateX(calc(87.5% + 1.25rem)) scale(0.75);
+        .team-modal-inner.active-card {
+            opacity: 1;
+            transform: scale(1);
         }
 
         .team-modal-photo {
@@ -837,7 +829,7 @@
         }
 
         @media (max-width: 700px) {
-            .modal-cards-row {
+            .team-modal-inner {
                 width: min(320px, 85vw);
             }
             .modal-nav-btn {
@@ -845,6 +837,8 @@
                 height: 36px;
                 font-size: 1.25rem;
             }
+            #modalPrev { left: 0.5rem; }
+            #modalNext { right: 0.5rem; }
         }
 
         /* Footer */
@@ -1208,15 +1202,9 @@
     <!-- Team Modal Carousel -->
     <div class="team-modal" id="teamModal">
         <button class="team-modal-close" id="teamModalClose">&times;</button>
-        <div class="modal-layout">
-            <button class="modal-nav-btn" id="modalPrev">&#8249;</button>
-            <div class="modal-cards-row">
-                <div class="team-modal-inner" id="modalCardPrev"></div>
-                <div class="team-modal-inner" id="modalCard"></div>
-                <div class="team-modal-inner" id="modalCardNext"></div>
-            </div>
-            <button class="modal-nav-btn" id="modalNext">&#8250;</button>
-        </div>
+        <button class="modal-nav-btn" id="modalPrev">&#8249;</button>
+        <div class="modal-track-wrapper" id="modalTrackWrapper"></div>
+        <button class="modal-nav-btn" id="modalNext">&#8250;</button>
     </div>
 
     <!-- Footer -->
@@ -1227,9 +1215,7 @@
 <script>
         // Team modal
         const modal = document.getElementById('teamModal');
-        const modalCard = document.getElementById('modalCard');
-        const modalCardPrev = document.getElementById('modalCardPrev');
-        const modalCardNext = document.getElementById('modalCardNext');
+        const trackWrapper = document.getElementById('modalTrackWrapper');
         const prevBtn = document.getElementById('modalPrev');
         const nextBtn = document.getElementById('modalNext');
 
@@ -1243,6 +1229,7 @@
 
         const total = membersData.length;
         let currentIndex = 0;
+        let cards = [];
 
         function cardHTML(d) {
             return `
@@ -1255,28 +1242,86 @@
                 </div>`;
         }
 
-        function renderCard(index) {
-            modalCard.innerHTML = cardHTML(membersData[index]);
-            modalCardPrev.innerHTML = cardHTML(membersData[(index - 1 + total) % total]);
-            modalCardNext.innerHTML = cardHTML(membersData[(index + 1) % total]);
+        function buildCards() {
+            trackWrapper.innerHTML = '';
+            cards = membersData.map(d => {
+                const el = document.createElement('div');
+                el.className = 'team-modal-inner';
+                el.innerHTML = cardHTML(d);
+                trackWrapper.appendChild(el);
+                return el;
+            });
+        }
+
+        function setPadding() {
+            const wrapperW = trackWrapper.clientWidth;
+            const cardW = cards[0] ? cards[0].offsetWidth : Math.min(520, wrapperW * 0.7);
+            const pad = Math.max(0, (wrapperW - cardW) / 2);
+            trackWrapper.style.paddingInline = pad + 'px';
+            trackWrapper.style.scrollPaddingInline = pad + 'px';
+        }
+
+        function updateActiveCard(index) {
+            currentIndex = index;
+            cards.forEach((c, i) => c.classList.toggle('active-card', i === index));
+        }
+
+        function scrollToCard(index, behavior = 'smooth') {
+            const card = cards[index];
+            if (!card) return;
+            const wrapperW = trackWrapper.clientWidth;
+            const target = card.offsetLeft - (wrapperW - card.offsetWidth) / 2;
+            trackWrapper.scrollTo({ left: Math.max(0, target), behavior });
         }
 
         function openModal(index) {
-            currentIndex = index;
-            renderCard(index);
+            buildCards();
             modal.classList.add('active');
             document.body.style.overflow = 'hidden';
+            requestAnimationFrame(() => {
+                setPadding();
+                scrollToCard(index, 'instant');
+                updateActiveCard(index);
+            });
         }
 
         function navigate(dir) {
-            currentIndex = (currentIndex + dir + total) % total;
-            renderCard(currentIndex);
+            const next = (currentIndex + dir + total) % total;
+            scrollToCard(next);
+            updateActiveCard(next);
         }
 
         function closeModal() {
             modal.classList.remove('active');
             document.body.style.overflow = '';
         }
+
+        // Update active card while scrolling
+        let scrollTimer;
+        trackWrapper.addEventListener('scroll', () => {
+            clearTimeout(scrollTimer);
+            scrollTimer = setTimeout(() => {
+                const center = trackWrapper.scrollLeft + trackWrapper.clientWidth / 2;
+                let closest = 0, minDist = Infinity;
+                cards.forEach((card, i) => {
+                    const dist = Math.abs(card.offsetLeft + card.offsetWidth / 2 - center);
+                    if (dist < minDist) { minDist = dist; closest = i; }
+                });
+                updateActiveCard(closest);
+            }, 60);
+        });
+
+        // Drag-to-scroll (mouse)
+        let dragStart = null;
+        trackWrapper.addEventListener('mousedown', e => { dragStart = { x: e.clientX, left: trackWrapper.scrollLeft }; });
+        trackWrapper.addEventListener('mousemove', e => {
+            if (!dragStart) return;
+            trackWrapper.scrollLeft = dragStart.left - (e.clientX - dragStart.x);
+        });
+        trackWrapper.addEventListener('mouseup', () => { dragStart = null; });
+        trackWrapper.addEventListener('mouseleave', () => { dragStart = null; });
+
+        window.addEventListener('resize', () => { if (modal.classList.contains('active')) { setPadding(); scrollToCard(currentIndex, 'instant'); } });
 
         document.querySelectorAll('.team-member').forEach((m, i) => m.addEventListener('click', () => openModal(i)));
         prevBtn.addEventListener('click', () => navigate(-1));
