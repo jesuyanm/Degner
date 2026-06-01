@@ -1213,7 +1213,7 @@
         <p>&copy; <script>document.write(new Date().getFullYear());</script> Degner Construction. All rights reserved. Building Tomorrow's Infrastructure Today.</p>
     </footer>
 <script>
-        // Team modal
+        // Team modal — infinite scroll carousel (3× clones)
         const modal = document.getElementById('teamModal');
         const trackWrapper = document.getElementById('modalTrackWrapper');
         const prevBtn = document.getElementById('modalPrev');
@@ -1229,7 +1229,9 @@
 
         const total = membersData.length;
         let currentIndex = 0;
-        let cards = [];
+        let allCards = [];
+        let isJumping = false;
+        let scrollTimer;
 
         function cardHTML(d) {
             return `
@@ -1244,34 +1246,68 @@
 
         function buildCards() {
             trackWrapper.innerHTML = '';
-            cards = membersData.map(d => {
-                const el = document.createElement('div');
-                el.className = 'team-modal-inner';
-                el.innerHTML = cardHTML(d);
-                trackWrapper.appendChild(el);
-                return el;
-            });
+            allCards = [];
+            for (let copy = 0; copy < 3; copy++) {
+                membersData.forEach(d => {
+                    const el = document.createElement('div');
+                    el.className = 'team-modal-inner';
+                    el.innerHTML = cardHTML(d);
+                    trackWrapper.appendChild(el);
+                    allCards.push(el);
+                });
+            }
+        }
+
+        // Width of one full set of cards (used for infinite jump)
+        function sectionWidth() {
+            return allCards.length >= total + 1
+                ? allCards[total].offsetLeft - allCards[0].offsetLeft
+                : 0;
         }
 
         function setPadding() {
+            if (!allCards[0]) return;
             const wrapperW = trackWrapper.clientWidth;
-            const cardW = cards[0] ? cards[0].offsetWidth : Math.min(520, wrapperW * 0.7);
+            const cardW = allCards[0].offsetWidth;
             const pad = Math.max(0, (wrapperW - cardW) / 2);
             trackWrapper.style.paddingInline = pad + 'px';
             trackWrapper.style.scrollPaddingInline = pad + 'px';
         }
 
-        function updateActiveCard(index) {
-            currentIndex = index;
-            cards.forEach((c, i) => c.classList.toggle('active-card', i === index));
-        }
-
-        function scrollToCard(index, behavior = 'smooth') {
-            const card = cards[index];
+        function scrollToIdx(idx, behavior = 'smooth') {
+            const card = allCards[idx];
             if (!card) return;
             const wrapperW = trackWrapper.clientWidth;
             const target = card.offsetLeft - (wrapperW - card.offsetWidth) / 2;
             trackWrapper.scrollTo({ left: Math.max(0, target), behavior });
+        }
+
+        function nearestIdx() {
+            const center = trackWrapper.scrollLeft + trackWrapper.clientWidth / 2;
+            let closest = 0, minDist = Infinity;
+            allCards.forEach((card, i) => {
+                const dist = Math.abs(card.offsetLeft + card.offsetWidth / 2 - center);
+                if (dist < minDist) { minDist = dist; closest = i; }
+            });
+            return closest;
+        }
+
+        function updateActive(idx) {
+            allCards.forEach((c, i) => c.classList.toggle('active-card', i === idx));
+            currentIndex = idx % total;
+        }
+
+        // After scroll settles: highlight active card and jump from clone to real copy
+        function checkAndJump() {
+            const idx = nearestIdx();
+            updateActive(idx);
+            if (idx < total || idx >= total * 2) {
+                const target = (idx % total) + total;
+                isJumping = true;
+                scrollToIdx(target, 'instant');
+                updateActive(target);
+                requestAnimationFrame(() => { isJumping = false; });
+            }
         }
 
         function openModal(index) {
@@ -1280,15 +1316,14 @@
             document.body.style.overflow = 'hidden';
             requestAnimationFrame(() => {
                 setPadding();
-                scrollToCard(index, 'instant');
-                updateActiveCard(index);
+                scrollToIdx(total + index, 'instant');
+                updateActive(total + index);
             });
         }
 
         function navigate(dir) {
-            const next = (currentIndex + dir + total) % total;
-            scrollToCard(next);
-            updateActiveCard(next);
+            const next = Math.max(0, Math.min(allCards.length - 1, nearestIdx() + dir));
+            scrollToIdx(next);
         }
 
         function closeModal() {
@@ -1296,32 +1331,35 @@
             document.body.style.overflow = '';
         }
 
-        // Update active card while scrolling
-        let scrollTimer;
         trackWrapper.addEventListener('scroll', () => {
+            if (isJumping) return;
+            updateActive(nearestIdx());
             clearTimeout(scrollTimer);
-            scrollTimer = setTimeout(() => {
-                const center = trackWrapper.scrollLeft + trackWrapper.clientWidth / 2;
-                let closest = 0, minDist = Infinity;
-                cards.forEach((card, i) => {
-                    const dist = Math.abs(card.offsetLeft + card.offsetWidth / 2 - center);
-                    if (dist < minDist) { minDist = dist; closest = i; }
-                });
-                updateActiveCard(closest);
-            }, 60);
+            scrollTimer = setTimeout(checkAndJump, 120);
         });
 
-        // Drag-to-scroll (mouse)
+        // Mouse drag-to-scroll with snap-on-release
         let dragStart = null;
-        trackWrapper.addEventListener('mousedown', e => { dragStart = { x: e.clientX, left: trackWrapper.scrollLeft }; });
+        trackWrapper.addEventListener('mousedown', e => {
+            dragStart = { x: e.clientX, left: trackWrapper.scrollLeft };
+            e.preventDefault();
+        });
         trackWrapper.addEventListener('mousemove', e => {
             if (!dragStart) return;
             trackWrapper.scrollLeft = dragStart.left - (e.clientX - dragStart.x);
         });
-        trackWrapper.addEventListener('mouseup', () => { dragStart = null; });
-        trackWrapper.addEventListener('mouseleave', () => { dragStart = null; });
+        window.addEventListener('mouseup', () => {
+            if (!dragStart) return;
+            dragStart = null;
+            scrollToIdx(nearestIdx()); // snap to nearest card
+        });
 
-        window.addEventListener('resize', () => { if (modal.classList.contains('active')) { setPadding(); scrollToCard(currentIndex, 'instant'); } });
+        window.addEventListener('resize', () => {
+            if (!modal.classList.contains('active')) return;
+            const idx = (currentIndex + total);
+            setPadding();
+            scrollToIdx(idx, 'instant');
+        });
 
         document.querySelectorAll('.team-member').forEach((m, i) => m.addEventListener('click', () => openModal(i)));
         prevBtn.addEventListener('click', () => navigate(-1));
