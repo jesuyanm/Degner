@@ -1002,16 +1002,16 @@
 
         /* Memberships Strip */
         .memberships-strip {
-            padding: 3rem;
+            padding: 2.5rem 3rem;
             background: var(--primary-white);
             text-align: center;
         }
 
         .memberships-strip h2 {
-            font-size: 1.4rem;
+            font-size: clamp(1.5rem, 3vw, 2.5rem);
             font-weight: 700;
             color: var(--text-dark);
-            margin-bottom: 2rem;
+            margin-bottom: 1.75rem;
             display: inline-block;
             padding-bottom: 0.5rem;
             border-bottom: 3px solid var(--text-dark);
@@ -1019,21 +1019,22 @@
 
         .memberships-logos {
             display: flex;
-            justify-content: center;
+            justify-content: space-between;
             align-items: center;
-            gap: 1.5rem;
+            gap: 2rem;
             flex-wrap: wrap;
         }
 
         .membership-logo {
             background: var(--primary-white);
             border-radius: 8px;
-            padding: 1.25rem 2rem;
+            padding: 1.5rem 2.5rem;
             display: flex;
             align-items: center;
             justify-content: center;
             transition: var(--transition);
             border: 1px solid rgba(0,0,0,0.12);
+            flex: 1;
             min-width: 180px;
         }
 
@@ -1044,7 +1045,7 @@
         }
 
         .membership-logo img {
-            height: 70px;
+            height: 90px;
             width: auto;
             object-fit: contain;
             transition: var(--transition);
