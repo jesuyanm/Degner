@@ -559,14 +559,14 @@
 
         /* Main Content */
         .main-content {
-            padding: 6rem 3rem;
+            padding: 3rem;
             max-width: 1400px;
             margin: 0 auto;
         }
 
         .section-header {
             text-align: center;
-            margin-bottom: 4rem;
+            margin-bottom: 1.75rem;
         }
 
         .section-subtitle {
@@ -574,19 +574,19 @@
             font-weight: 600;
             text-transform: uppercase;
             letter-spacing: 2px;
-            font-size: 0.9rem;
-            margin-bottom: 1rem;
+            font-size: 0.85rem;
+            margin-bottom: 0.5rem;
         }
 
         .section-title {
-            font-size: clamp(2rem, 4vw, 3rem);
+            font-size: clamp(1.5rem, 3vw, 2.5rem);
             font-weight: 700;
             color: var(--text-dark);
-            margin-bottom: 1.5rem;
+            margin-bottom: 1rem;
         }
 
         .section-description {
-            font-size: 1.2rem;
+            font-size: 1rem;
             color: var(--text-gray);
             max-width: 700px;
             margin: 0 auto;
@@ -595,9 +595,9 @@
         /* Team Grid */
         .team-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 3rem;
-            margin-top: 3rem;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
         }
 
         .team-member {
@@ -653,21 +653,21 @@
         }
 
         .team-name {
-            font-size: 1.4rem;
+            font-size: 1.15rem;
             font-weight: 700;
             color: var(--text-dark);
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.3rem;
         }
 
         .team-credentials {
-            font-size: 0.9rem;
+            font-size: 0.8rem;
             color: var(--text-gray);
             font-weight: 500;
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.3rem;
         }
 
         .team-title {
-            font-size: 1.1rem;
+            font-size: 0.95rem;
             color: var(--text-dark);
             font-weight: 600;
             margin-bottom: 1.5rem;
@@ -752,6 +752,25 @@
 
             .logo img {
                 height: 125px;
+            }
+
+            .main-content {
+                padding: 1.5rem;
+            }
+
+            .team-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .team-member {
+                padding: 1.5rem;
+            }
+
+            .footer {
+                flex-direction: column;
+                gap: 0.5rem;
+                text-align: center;
+                padding: 1.5rem;
             }
         }
     </style>
