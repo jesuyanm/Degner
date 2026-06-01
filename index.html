@@ -1062,6 +1062,56 @@
             background: var(--text-gray);
         }
 
+        /* Memberships Strip */
+        .memberships-strip {
+            padding: 3rem;
+            background: var(--primary-white);
+            text-align: center;
+        }
+
+        .memberships-strip h2 {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--text-dark);
+            margin-bottom: 2rem;
+            display: inline-block;
+            padding-bottom: 0.5rem;
+            border-bottom: 3px solid var(--text-dark);
+        }
+
+        .memberships-logos {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .membership-logo {
+            background: var(--primary-white);
+            border-radius: 8px;
+            padding: 1.25rem 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+            border: 1px solid rgba(0,0,0,0.12);
+            min-width: 180px;
+        }
+
+        .membership-logo:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-medium);
+            border-color: rgba(0,0,0,0.2);
+        }
+
+        .membership-logo img {
+            height: 70px;
+            width: auto;
+            object-fit: contain;
+            transition: var(--transition);
+        }
+
         /* Footer */
         .footer {
             background: var(--background-dark);
@@ -1632,6 +1682,25 @@
                     <a href="mailto:estimating@degner.ca" class="contact-cta">Request Quote</a>
                 </div>
             </div>
+        </div>
+    </section>
+
+    <!-- Memberships -->
+    <section class="memberships-strip">
+        <h2>Our Memberships</h2>
+        <div class="memberships-logos">
+            <a href="https://www.youracsa.ca/" target="_blank" rel="noopener" class="membership-logo">
+                <img src="pic14.png" alt="Alberta Construction Safety Association">
+            </a>
+            <a href="https://www.bildedmonton.com/" target="_blank" rel="noopener" class="membership-logo">
+                <img src="pic15.png" alt="Urban Development Institute Edmonton Region">
+            </a>
+            <a href="https://www.arhca.ab.ca/" target="_blank" rel="noopener" class="membership-logo">
+                <img src="pic16.png" alt="Alberta Roadbuilders & Heavy Construction Association">
+            </a>
+            <a href="https://www.edmca.com/" target="_blank" rel="noopener" class="membership-logo">
+                <img src="pic17.png" alt="Edmonton Construction Association">
+            </a>
         </div>
     </section>
 

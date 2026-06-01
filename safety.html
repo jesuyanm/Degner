@@ -671,26 +671,34 @@
             margin-bottom: 1rem;
         }
 
-        .memberships-list {
-            list-style: none;
-            padding: 0;
+        .memberships-logos {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
         }
 
-        .memberships-list li {
-            color: var(--text-gray);
-            font-size: 0.95rem;
-            line-height: 1.5;
-            padding: 0.5rem 0 0.5rem 1.5rem;
-            border-bottom: 1px solid var(--background-light);
-            position: relative;
+        .membership-logo {
+            background: var(--primary-white);
+            border-radius: 8px;
+            padding: 0.75rem 1.25rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+            border: 1px solid rgba(0,0,0,0.12);
         }
 
-        .memberships-list li::before {
-            content: '✓';
-            position: absolute;
-            left: 0;
-            color: var(--text-dark);
-            font-weight: 700;
+        .membership-logo:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-medium);
+            border-color: rgba(0,0,0,0.2);
+        }
+
+        .membership-logo img {
+            height: 50px;
+            width: auto;
+            object-fit: contain;
+            transition: var(--transition);
         }
 
         .partnership-cert {
@@ -1266,13 +1274,20 @@
         <div class="memberships-section">
             <div class="memberships-text">
                 <h3>Industry Memberships</h3>
-                <ul class="memberships-list">
-                    <li>Members in good standing — <strong>Workers Compensation Board (WCB)</strong></li>
-                    <li>Members — <strong>Alberta Construction Safety Association (ACSA)</strong></li>
-                    <li>Active <strong>Regional Safety Committee (RSCM)</strong> member — Video &amp; Poster Committees</li>
-                    <li><strong>Canadian Society of Safety Engineering</strong> Conference &amp; Trade Show participant</li>
-                    <li>Supporting <strong>Skills Canada</strong> — encouraging students into trades and construction</li>
-                </ul>
+                <div class="memberships-logos">
+                    <a href="https://www.youracsa.ca/" target="_blank" rel="noopener" class="membership-logo">
+                        <img src="pic14.png" alt="Alberta Construction Safety Association">
+                    </a>
+                    <a href="https://www.bildedmonton.com/" target="_blank" rel="noopener" class="membership-logo">
+                        <img src="pic15.png" alt="Urban Development Institute Edmonton Region">
+                    </a>
+                    <a href="https://www.arhca.ab.ca/" target="_blank" rel="noopener" class="membership-logo">
+                        <img src="pic16.png" alt="Alberta Roadbuilders & Heavy Construction Association">
+                    </a>
+                    <a href="https://www.edmca.com/" target="_blank" rel="noopener" class="membership-logo">
+                        <img src="pic17.png" alt="Edmonton Construction Association">
+                    </a>
+                </div>
             </div>
             <div class="partnership-cert">
                 <img src="pic13.png" alt="Partnerships in Injury Reduction Certificate" class="cert-img" id="certImg">
