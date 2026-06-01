@@ -716,7 +716,13 @@
             justify-content: center;
             gap: 1.25rem;
             width: 100%;
-            max-width: min(680px, 95vw);
+            max-width: 95vw;
+        }
+
+        .modal-cards-row {
+            position: relative;
+            flex-shrink: 0;
+            width: min(520px, 70vw);
         }
 
         .modal-nav-btn {
@@ -751,11 +757,35 @@
             -webkit-backdrop-filter: blur(24px);
             border: 1px solid rgba(255, 255, 255, 0.6);
             border-radius: var(--border-radius);
-            width: min(520px, 70vw);
+            width: 100%;
             overflow: hidden;
             box-shadow: 0 20px 60px rgba(0,0,0,0.25);
             display: flex;
             flex-direction: column;
+        }
+
+        #modalCard {
+            position: relative;
+            z-index: 2;
+        }
+
+        #modalCardPrev,
+        #modalCardNext {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            opacity: 0.45;
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        #modalCardPrev {
+            transform: translateX(calc(-87.5% - 1.25rem)) scale(0.75);
+        }
+
+        #modalCardNext {
+            transform: translateX(calc(87.5% + 1.25rem)) scale(0.75);
         }
 
         .team-modal-photo {
@@ -807,7 +837,7 @@
         }
 
         @media (max-width: 700px) {
-            .team-modal-inner {
+            .modal-cards-row {
                 width: min(320px, 85vw);
             }
             .modal-nav-btn {
@@ -1180,7 +1210,11 @@
         <button class="team-modal-close" id="teamModalClose">&times;</button>
         <div class="modal-layout">
             <button class="modal-nav-btn" id="modalPrev">&#8249;</button>
-            <div class="team-modal-inner" id="modalCard"></div>
+            <div class="modal-cards-row">
+                <div class="team-modal-inner" id="modalCardPrev"></div>
+                <div class="team-modal-inner" id="modalCard"></div>
+                <div class="team-modal-inner" id="modalCardNext"></div>
+            </div>
             <button class="modal-nav-btn" id="modalNext">&#8250;</button>
         </div>
     </div>
@@ -1194,6 +1228,8 @@
         // Team modal
         const modal = document.getElementById('teamModal');
         const modalCard = document.getElementById('modalCard');
+        const modalCardPrev = document.getElementById('modalCardPrev');
+        const modalCardNext = document.getElementById('modalCardNext');
         const prevBtn = document.getElementById('modalPrev');
         const nextBtn = document.getElementById('modalNext');
 
@@ -1208,16 +1244,21 @@
         const total = membersData.length;
         let currentIndex = 0;
 
-        function renderCard(index) {
-            const data = membersData[index];
-            modalCard.innerHTML = `
-                <div class="team-modal-photo"><span>${data.initials}</span></div>
+        function cardHTML(d) {
+            return `
+                <div class="team-modal-photo"><span>${d.initials}</span></div>
                 <div class="team-modal-info">
-                    <div class="team-modal-name">${data.name}</div>
-                    ${data.credentials ? `<div class="team-modal-credentials">${data.credentials}</div>` : ''}
-                    <div class="team-modal-title">${data.title}</div>
-                    <p class="team-modal-bio">${data.bio}</p>
+                    <div class="team-modal-name">${d.name}</div>
+                    ${d.credentials ? `<div class="team-modal-credentials">${d.credentials}</div>` : ''}
+                    <div class="team-modal-title">${d.title}</div>
+                    <p class="team-modal-bio">${d.bio}</p>
                 </div>`;
+        }
+
+        function renderCard(index) {
+            modalCard.innerHTML = cardHTML(membersData[index]);
+            modalCardPrev.innerHTML = cardHTML(membersData[(index - 1 + total) % total]);
+            modalCardNext.innerHTML = cardHTML(membersData[(index + 1) % total]);
         }
 
         function openModal(index) {
