@@ -559,7 +559,7 @@
 
         /* Main Content */
         .main-content {
-            padding: 6rem 3rem;
+            padding: 4rem 3rem;
             max-width: 1600px;
             margin: 0 auto;
         }
@@ -596,8 +596,8 @@
         .safety-overview {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-            margin-bottom: 6rem;
+            gap: 3rem;
+            margin-bottom: 3rem;
             align-items: center;
         }
 
@@ -622,13 +622,7 @@
         }
 
         .safety-highlight::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 4px;
-            background: linear-gradient(90deg, #FFD700, #FFA500);
+            display: none;
         }
 
         .safety-highlight h3 {
@@ -644,12 +638,123 @@
             opacity: 0.9;
         }
 
+        /* Award Banner */
+        .award-banner {
+            background: var(--background-dark);
+            color: var(--primary-white);
+            padding: 2rem 3rem;
+            border-radius: var(--border-radius);
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .award-banner p {
+            font-size: 1.05rem;
+            font-weight: 500;
+            line-height: 1.7;
+            opacity: 0.9;
+        }
+
+        /* Industry Memberships */
+        .memberships-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+            margin-bottom: 3rem;
+        }
+
+        .memberships-text h3 {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--text-dark);
+            margin-bottom: 1rem;
+        }
+
+        .memberships-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .memberships-list li {
+            color: var(--text-gray);
+            font-size: 0.95rem;
+            line-height: 1.5;
+            padding: 0.5rem 0 0.5rem 1.5rem;
+            border-bottom: 1px solid var(--background-light);
+            position: relative;
+        }
+
+        .memberships-list li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--text-dark);
+            font-weight: 700;
+        }
+
+        .partnership-cert {
+            display: flex;
+            justify-content: center;
+        }
+
+        .cert-img {
+            max-width: 100%;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-medium);
+            cursor: zoom-in;
+            transition: var(--transition);
+        }
+
+        .cert-img:hover {
+            box-shadow: var(--shadow-heavy);
+            transform: scale(1.02);
+        }
+
+        /* Lightbox */
+        .lightbox {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.92);
+            z-index: 3000;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .lightbox.active {
+            display: flex;
+        }
+
+        .lightbox-img {
+            max-width: 90vw;
+            max-height: 90vh;
+            object-fit: contain;
+            border-radius: var(--border-radius);
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: 1.5rem;
+            right: 2rem;
+            font-size: 2.5rem;
+            color: var(--primary-white);
+            cursor: pointer;
+            line-height: 1;
+            transition: var(--transition);
+            user-select: none;
+        }
+
+        .lightbox-close:hover {
+            opacity: 0.7;
+        }
+
         /* Safety Programs Grid */
         .safety-programs {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 2.5rem;
-            margin: 4rem 0;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
         }
 
         .safety-program {
@@ -713,60 +818,85 @@
             line-height: 1.7;
         }
 
-        /* Safety Coordinator Section */
-        .safety-coordinator {
+        /* Safety Coordinator Card — mirrors team-member style, scaled down */
+        .coordinator-card {
             background: var(--background-light);
-            padding: 4rem 3rem;
             border-radius: var(--border-radius);
-            margin: 4rem 0;
+            padding: 1.75rem;
             text-align: center;
+            position: relative;
+            overflow: hidden;
+            transition: var(--transition);
         }
 
-        .coordinator-profile {
-            max-width: 600px;
-            margin: 0 auto;
+        .coordinator-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, var(--text-dark), var(--text-gray));
+            transform: scaleX(0);
+            transition: var(--transition);
+            transform-origin: left;
+        }
+
+        .coordinator-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .coordinator-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-medium);
+            background: var(--primary-white);
         }
 
         .coordinator-photo {
-            width: 150px;
-            height: 150px;
+            width: 90px;
+            height: 90px;
             border-radius: 50%;
-            margin: 0 auto 2rem;
+            margin: 0 auto 1rem;
             background: var(--text-dark);
             display: flex;
             align-items: center;
             justify-content: center;
             color: var(--primary-white);
-            font-size: 2.5rem;
+            font-size: 1.3rem;
             font-weight: 700;
+            transition: var(--transition);
+        }
+
+        .coordinator-card:hover .coordinator-photo {
+            transform: scale(1.05);
         }
 
         .coordinator-name {
-            font-size: 1.8rem;
+            font-size: 1.1rem;
             font-weight: 700;
             color: var(--text-dark);
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.3rem;
         }
 
         .coordinator-credentials {
-            font-size: 1rem;
+            font-size: 0.8rem;
             color: var(--text-gray);
-            font-weight: 600;
-            margin-bottom: 0.5rem;
+            font-weight: 500;
+            margin-bottom: 0.3rem;
         }
 
         .coordinator-title {
-            font-size: 1.2rem;
+            font-size: 0.9rem;
             color: var(--text-dark);
-            font-weight: 500;
+            font-weight: 600;
             font-style: italic;
-            margin-bottom: 2rem;
+            margin-bottom: 0.75rem;
         }
 
         .coordinator-bio {
-            font-size: 1.1rem;
+            font-size: 0.85rem;
             color: var(--text-gray);
-            line-height: 1.7;
+            line-height: 1.6;
         }
 
         /* Stats Section */
@@ -813,9 +943,16 @@
         .footer {
             background: var(--background-dark);
             color: var(--primary-white);
-            text-align: center;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
             padding: 3rem;
-            margin-top: 4rem;
+        }
+
+        .footer p, .footer-credit {
+            font-size: 0.9rem;
+            opacity: 0.8;
+            margin: 0;
         }
 
         /* Mobile Responsive */
@@ -876,6 +1013,15 @@
 
             .safety-highlight {
                 padding: 2rem;
+            }
+
+            .award-banner {
+                padding: 2rem;
+            }
+
+            .memberships-section {
+                grid-template-columns: 1fr;
+                gap: 2rem;
             }
         }
 
@@ -1096,42 +1242,44 @@
 
     <!-- Main Content -->
     <main class="main-content">
-        <div class="section-header">
-            <h2 class="section-title">Building a Culture of Safety</h2>
-        </div>
 
         <!-- Safety Overview -->
         <div class="safety-overview">
             <div class="safety-text">
-                <p>We are committed to protecting the health and safety of our employees, suppliers, customers, community, and environment in every task we perform.</p>
-                <p>Our safety programs emphasize continuous improvement through rigorous, task-specific training and regular review of procedures — challenging norms with the intention of raising our standards.</p>
+                <p>At Degner Construction, we believe all entities affected by our operations are entitled to a safe and sustainable environment. We conduct every activity protecting the health and safety of our employees, suppliers, customers, community, and the environment — achieved through active participation and conscious effort by everyone, in every task performed. Our people are among the best trained in the industry, routinely participating in external safety committees and continually reviewing procedures to raise standards, not just meet them.</p>
             </div>
-            <div class="safety-highlight">
-                <h3>Our Mandate</h3>
-                <p>To promote and sustain a safe work environment for everyone and continually improve our process.</p>
-            </div>
-        </div>
-
-
-        <!-- Safety Coordinator -->
-        <div class="safety-coordinator">
-            <div class="coordinator-profile">
-                <div class="coordinator-photo">
-                    <span>MG</span>
-                </div>
+            <div class="coordinator-card">
+                <div class="coordinator-photo"><span>MG</span></div>
                 <h3 class="coordinator-name">Michelle Gregoire</h3>
-                <div class="coordinator-credentials">NCSO</div>
+                <div class="coordinator-credentials">NCSO &middot; COR Peer Auditor &middot; H&amp;S Administrator</div>
                 <div class="coordinator-title">Safety Coordinator</div>
-                <p class="coordinator-bio">Oversees all safety programs, conducts site inspections, and ensures compliance with provincial and federal regulations across all projects.</p>
+                <p class="coordinator-bio">Experienced Safety Coordinator with expertise in Workplace Safety, Safety Management Systems, Hazard Analysis, and Construction Safety. Holds a National Construction Safety Officer designation with COR Peer Auditor status, a Health &amp; Safety Administrator Certificate from the Alberta Construction Safety Association, and a Certificate in Occupational Health and Safety from the University of New Brunswick.</p>
             </div>
         </div>
 
-        <!-- Safety Policies Section -->
-        <div id="policies" class="section-header">
-            <div class="section-subtitle">Safety Policies</div>
-            <h2 class="section-title">Protocols & Procedures</h2>
+        <!-- Trailblazer Award -->
+        <div class="award-banner">
+            <p>In 2011, the Alberta Construction Safety Association presented Degner Construction Incorporated with the <strong>"Trailblazer"</strong> award — recognizing outstanding dedication to the enhancement of safety &amp; health in the workplace.</p>
         </div>
 
+        <!-- Memberships + Certificate -->
+        <div class="memberships-section">
+            <div class="memberships-text">
+                <h3>Industry Memberships</h3>
+                <ul class="memberships-list">
+                    <li>Members in good standing — <strong>Workers Compensation Board (WCB)</strong></li>
+                    <li>Members — <strong>Alberta Construction Safety Association (ACSA)</strong></li>
+                    <li>Active <strong>Regional Safety Committee (RSCM)</strong> member — Video &amp; Poster Committees</li>
+                    <li><strong>Canadian Society of Safety Engineering</strong> Conference &amp; Trade Show participant</li>
+                    <li>Supporting <strong>Skills Canada</strong> — encouraging students into trades and construction</li>
+                </ul>
+            </div>
+            <div class="partnership-cert">
+                <img src="pic13.png" alt="Partnerships in Injury Reduction Certificate" class="cert-img" id="certImg">
+            </div>
+        </div>
+
+        <!-- Protocols -->
         <div class="safety-programs">
             <div class="safety-program">
                 <div class="safety-icon">
@@ -1142,17 +1290,15 @@
                 <h3>Daily Safety Briefings</h3>
                 <p>Every workday begins with a tailgate safety meeting covering hazards, weather, and emergency procedures.</p>
             </div>
-
             <div class="safety-program">
                 <div class="safety-icon">
                     <svg fill="white" viewBox="0 0 24 24" width="24" height="24">
                         <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/>
                     </svg>
                 </div>
-                <h3>Incident Reporting & Investigation</h3>
+                <h3>Incident Reporting &amp; Investigation</h3>
                 <p>All near-misses and incidents are immediately investigated and analyzed to prevent recurrence.</p>
             </div>
-
             <div class="safety-program">
                 <div class="safety-icon">
                     <svg fill="white" viewBox="0 0 24 24" width="24" height="24">
@@ -1164,8 +1310,17 @@
             </div>
         </div>
 
+    </main>
+
+    <!-- Lightbox -->
+    <div class="lightbox" id="lightbox">
+        <span class="lightbox-close" id="lightboxClose">&times;</span>
+        <img src="pic13.png" alt="Partnerships in Injury Reduction Certificate" class="lightbox-img">
+    </div>
+
     <!-- Footer -->
     <footer class="footer">
+        <span class="footer-credit">Designed by Emet Solutions</span>
         <p>&copy; <script>document.write(new Date().getFullYear());</script> Degner Construction. All rights reserved. Building Tomorrow's Infrastructure Today.</p>
     </footer>
 
@@ -1375,6 +1530,30 @@
                 mobileNav.classList.remove('active');
                 document.body.style.overflow = '';
             }
+        });
+
+        // Lightbox for certificate image
+        const certImg = document.getElementById('certImg');
+        const lightbox = document.getElementById('lightbox');
+        const lightboxClose = document.getElementById('lightboxClose');
+
+        certImg.addEventListener('click', function() {
+            lightbox.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        });
+
+        function closeLightbox() {
+            lightbox.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        lightboxClose.addEventListener('click', closeLightbox);
+        lightbox.addEventListener('click', function(e) {
+            if (e.target === lightbox) closeLightbox();
+        });
+
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') closeLightbox();
         });
 
         // Smooth scrolling for anchor links

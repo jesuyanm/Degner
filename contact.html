@@ -562,10 +562,17 @@
         /* Footer */
         .footer {
             background: var(--background-dark);
-            color: rgba(255, 255, 255, 0.7);
-            text-align: center;
-            padding: 2rem;
+            color: var(--primary-white);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 3rem;
+        }
+
+        .footer p, .footer-credit {
             font-size: 0.9rem;
+            opacity: 0.8;
+            margin: 0;
         }
 
         /* Responsive */
@@ -888,6 +895,7 @@
 
     <!-- Footer -->
     <footer class="footer">
+        <span class="footer-credit">Designed by Emet Solutions</span>
         <p>&copy; <script>document.write(new Date().getFullYear());</script> Degner Construction. All rights reserved. Building Tomorrow's Infrastructure Today.</p>
     </footer>
 
