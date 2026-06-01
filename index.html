@@ -532,105 +532,22 @@
 
         /* Hero Section with Zoom Background */
         .hero {
-            height: 100vh;
+            height: 68vh;
             position: relative;
             display: flex;
             align-items: center;
             justify-content: center;
             background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.3)), url('pic5.png');
-            background-size: 120% auto;
+            background-size: cover;
             background-position: center center;
             background-repeat: no-repeat;
-            overflow: hidden;
+            overflow: visible;
             opacity: 1;
         }
 
         @keyframes heroZoomIn {
-            0% {
-                background-size: 120% auto;
-            }
-            100% {
-                background-size: 130% auto;
-            }
-        }
-
-        /* Responsive hero scaling */
-        @media (max-width: 1400px) {
-            .hero {
-                background-size: 140% auto;
-            }
-            
-            @keyframes heroZoomIn {
-                0% {
-                    background-size: 140% auto;
-                }
-                100% {
-                    background-size: 150% auto;
-                }
-            }
-        }
-
-        @media (max-width: 1200px) {
-            .hero {
-                background-size: 160% auto;
-            }
-            
-            @keyframes heroZoomIn {
-                0% {
-                    background-size: 160% auto;
-                }
-                100% {
-                    background-size: 170% auto;
-                }
-            }
-        }
-
-        @media (max-width: 968px) {
-            .hero {
-                background-size: 180% auto;
-                background-position: center center;
-            }
-            
-            @keyframes heroZoomIn {
-                0% {
-                    background-size: 180% auto;
-                }
-                100% {
-                    background-size: 190% auto;
-                }
-            }
-        }
-
-        @media (max-width: 768px) {
-            .hero {
-                background-size: 200% auto;
-                background-position: center center;
-            }
-            
-            @keyframes heroZoomIn {
-                0% {
-                    background-size: 200% auto;
-                }
-                100% {
-                    background-size: 210% auto;
-                }
-            }
-        }
-
-        @media (max-width: 600px) {
-            .hero {
-                background-size: 220% auto;
-                background-position: center center;
-            }
-            
-            @keyframes heroZoomIn {
-                0% {
-                    background-size: 220% auto;
-                }
-                100% {
-                    background-size: 230% auto;
-                }
-            }
+            0% { background-size: cover; }
+            100% { background-size: 110% auto; }
         }
 
         .hero-background {
@@ -763,22 +680,37 @@
 
         /* Section Base */
         .section {
-            padding: 5rem 3rem;
-            max-width: 1400px;
-            margin: 0 auto;
+            padding: 3rem;
             opacity: 0;
-            transform: translateY(50px);
-            transition: var(--transition);
+            transition: opacity 0.5s ease;
         }
 
         .section.visible {
             opacity: 1;
-            transform: translateY(0);
+        }
+
+        /* Full-width coloured sections — inner content capped at 1400px */
+        .contact {
+            background: var(--background-light);
+        }
+
+        .about-content, .contact-content,
+        .services-grid, .stats-grid,
+        .section-header {
+            max-width: 1400px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .stats {
+            background: var(--background-dark);
+            color: var(--primary-white);
+            text-align: center;
         }
 
         .section-header {
             text-align: center;
-            margin-bottom: 3rem;
+            margin-bottom: 1.75rem;
         }
 
         .section-subtitle {
@@ -786,55 +718,62 @@
             font-weight: 600;
             text-transform: uppercase;
             letter-spacing: 2px;
-            font-size: 0.9rem;
-            margin-bottom: 1rem;
+            font-size: 0.85rem;
+            margin-bottom: 0.5rem;
         }
 
         .section-title {
-            font-size: clamp(2rem, 4vw, 3.5rem);
+            font-size: clamp(1.5rem, 3vw, 2.5rem);
             font-weight: 700;
             color: var(--text-dark);
             line-height: 1.2;
-            margin-bottom: 2rem;
+            margin-bottom: 1rem;
         }
 
         .section-description {
-            font-size: 1.2rem;
+            font-size: 1rem;
             color: var(--text-gray);
             max-width: 600px;
             margin: 0 auto;
             line-height: 1.6;
         }
 
-        /* About Section */
+        /* About Section — overlaps hero */
         .about {
-            background: var(--background-light);
+            background: var(--primary-white);
+            position: relative;
+            z-index: 1;
+            margin-top: -5rem;
+            max-width: 1400px;
+            margin-left: auto;
+            margin-right: auto;
+            box-shadow: 0 -8px 40px rgba(0, 0, 0, 0.18);
         }
 
         .about-content {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 6rem;
+            gap: 3rem;
             align-items: center;
-            margin-top: 4rem;
+            margin-top: 1.5rem;
         }
 
         .about-text {
-            font-size: 1.1rem;
-            line-height: 1.8;
+            font-size: 1rem;
+            line-height: 1.7;
             color: var(--text-gray);
         }
 
         .about-text p {
-            margin-bottom: 2rem;
+            margin-bottom: 1rem;
         }
 
         .about-highlight {
             background: var(--primary-white);
-            padding: 3rem;
+            padding: 1.75rem;
             border-radius: var(--border-radius);
             box-shadow: var(--shadow-medium);
-            border-left: 5px solid var(--text-dark);
+            border-left: 4px solid var(--text-dark);
             position: relative;
             overflow: hidden;
         }
@@ -844,14 +783,14 @@
             position: absolute;
             top: -10px;
             left: 20px;
-            font-size: 8rem;
+            font-size: 6rem;
             color: var(--text-dark);
             opacity: 0.1;
             font-family: serif;
         }
 
         .about-highlight p {
-            font-size: 1.3rem;
+            font-size: 1.1rem;
             font-weight: 600;
             color: var(--text-dark);
             line-height: 1.6;
@@ -862,14 +801,14 @@
         /* Services Section */
         .services-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-            gap: 2.5rem;
-            margin-top: 4rem;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
         }
 
         .service-card {
             background: var(--primary-white);
-            padding: 3rem;
+            padding: 1.75rem;
             border-radius: var(--border-radius);
             box-shadow: var(--shadow-light);
             transition: var(--transition);
@@ -897,19 +836,19 @@
         }
 
         .service-card:hover {
-            transform: translateY(-10px);
+            transform: translateY(-6px);
             box-shadow: var(--shadow-heavy);
         }
 
         .service-icon {
-            width: 60px;
-            height: 60px;
+            width: 48px;
+            height: 48px;
             background: linear-gradient(135deg, var(--text-dark), var(--text-gray));
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin-bottom: 2rem;
+            margin-bottom: 1.25rem;
             transition: var(--transition);
         }
 
@@ -918,10 +857,10 @@
         }
 
         .service-card h3 {
-            font-size: 1.5rem;
+            font-size: 1.15rem;
             font-weight: 700;
             color: var(--text-dark);
-            margin-bottom: 1.5rem;
+            margin-bottom: 0.75rem;
             transition: var(--transition);
         }
 
@@ -931,23 +870,20 @@
 
         .service-card p {
             color: var(--text-gray);
-            line-height: 1.7;
-            font-size: 1rem;
+            line-height: 1.6;
+            font-size: 0.9rem;
         }
 
         /* Stats Section */
         .stats {
-            background: var(--background-dark);
-            color: var(--primary-white);
-            text-align: center;
-            padding: 4rem 4rem;
+            padding: 2.5rem 3rem;
         }
 
         .stats-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 2rem;
-            margin-top: 2rem;
+            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.25rem;
         }
 
         .stat-item {
@@ -955,20 +891,20 @@
         }
 
         .stat-item:hover {
-            transform: translateY(-10px);
+            transform: translateY(-6px);
         }
 
         .stat-number {
-            font-size: 2.5rem;
+            font-size: 2rem;
             font-weight: 700;
             color: var(--primary-white);
             display: block;
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.25rem;
             transition: var(--transition);
         }
 
         .stat-label {
-            font-size: 0.9rem;
+            font-size: 0.8rem;
             color: var(--primary-white);
             text-transform: uppercase;
             letter-spacing: 1px;
@@ -982,29 +918,29 @@
         .contact-content {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 3rem;
-            margin-top: 2rem;
+            gap: 1.5rem;
+            margin-top: 1rem;
         }
 
         .contact-info {
             background: var(--primary-white);
-            padding: 2rem;
+            padding: 1.25rem;
             border-radius: var(--border-radius);
-            box-shadow: var(--shadow-medium);
+            box-shadow: var(--shadow-light);
             transition: var(--transition);
         }
 
         .contact-info:hover {
-            transform: translateY(-5px);
-            box-shadow: var(--shadow-heavy);
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-medium);
         }
 
         .contact-info h3 {
             color: var(--text-dark);
-            font-size: 1.2rem;
-            margin-bottom: 1.25rem;
+            font-size: 1rem;
+            margin-bottom: 0.75rem;
             position: relative;
-            padding-bottom: 0.75rem;
+            padding-bottom: 0.5rem;
         }
 
         .contact-info h3::after {
@@ -1012,53 +948,55 @@
             position: absolute;
             bottom: 0;
             left: 0;
-            width: 50px;
-            height: 3px;
+            width: 40px;
+            height: 2px;
             background: var(--text-dark);
         }
 
         .contact-item {
             display: flex;
             align-items: center;
-            gap: 1rem;
-            margin-bottom: 1rem;
+            gap: 0.75rem;
+            margin-bottom: 0.6rem;
             transition: var(--transition);
+            font-size: 0.9rem;
         }
 
         .contact-item:hover {
-            transform: translateX(10px);
+            transform: translateX(5px);
         }
 
         .contact-icon {
-            width: 20px;
-            height: 20px;
+            width: 16px;
+            height: 16px;
             color: var(--text-dark);
+            flex-shrink: 0;
         }
 
         .contact-item strong {
             color: var(--text-dark);
-            min-width: 80px;
+            min-width: 60px;
         }
 
         .contact-cta {
             background: var(--text-dark);
             color: var(--primary-white);
-            padding: 0.75rem 1.75rem;
+            padding: 0.5rem 1.25rem;
             border: none;
             border-radius: 50px;
             font-weight: 600;
-            font-size: 0.95rem;
+            font-size: 0.85rem;
             cursor: pointer;
             transition: var(--transition);
             text-decoration: none;
             display: inline-block;
             text-align: center;
-            margin-top: 1.25rem;
+            margin-top: 0.75rem;
         }
 
         .contact-cta:hover {
-            transform: translateY(-3px);
-            box-shadow: var(--shadow-medium);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-light);
             background: var(--text-gray);
         }
 
@@ -1676,9 +1614,9 @@
                         <strong>Saturday - Sunday:</strong> Closed
                     </div>
                 </div>
-                <div style="background: rgba(0, 0, 0, 0.05); padding: 1.25rem; border-radius: var(--border-radius); margin-top: 1.25rem;">
-                    <h4 style="color: var(--text-dark); margin-bottom: 0.75rem; font-size: 1.1rem;">Request a Quote</h4>
-                    <p style="color: var(--text-gray); margin-bottom: 1rem;">Email <strong style="color: var(--text-dark);">estimating@degner.ca</strong></p>
+                <div style="background: rgba(0, 0, 0, 0.05); padding: 0.75rem 1rem; border-radius: var(--border-radius); margin-top: 0.75rem;">
+                    <h4 style="color: var(--text-dark); margin-bottom: 0.4rem; font-size: 0.95rem;">Request a Quote</h4>
+                    <p style="color: var(--text-gray); margin-bottom: 0.5rem; font-size: 0.875rem;">Email <strong style="color: var(--text-dark);">estimating@degner.ca</strong></p>
                     <a href="mailto:estimating@degner.ca" class="contact-cta">Request Quote</a>
                 </div>
             </div>
@@ -1768,6 +1706,10 @@
         }, observerOptions);
 
         document.querySelectorAll('.section').forEach(section => {
+            const rect = section.getBoundingClientRect();
+            if (rect.top < window.innerHeight && rect.bottom > 0) {
+                section.classList.add('visible');
+            }
             observer.observe(section);
         });
 
@@ -2001,41 +1943,6 @@
             }
         });
 
-        // Service card hover effects
-        document.querySelectorAll('.service-card').forEach(card => {
-            card.addEventListener('mouseenter', function() {
-                this.style.transform = 'translateY(-10px) scale(1.02)';
-            });
-            
-            card.addEventListener('mouseleave', function() {
-                this.style.transform = 'translateY(0) scale(1)';
-            });
-        });
-
-        // Contact item hover effects
-        document.querySelectorAll('.contact-item').forEach(item => {
-            item.addEventListener('mouseenter', function() {
-                this.style.transform = 'translateX(10px)';
-                this.style.backgroundColor = 'rgba(0, 0, 0, 0.05)';
-                this.style.borderRadius = '8px';
-                this.style.padding = '0.5rem';
-            });
-            
-            item.addEventListener('mouseleave', function() {
-                this.style.transform = 'translateX(0)';
-                this.style.backgroundColor = 'transparent';
-                this.style.padding = '0';
-            });
-        });
-
-        // Parallax effect for hero section
-        window.addEventListener('scroll', function() {
-            const scrolled = window.pageYOffset;
-            const hero = document.querySelector('.hero');
-            if (hero) {
-                hero.style.transform = `translateY(${scrolled * 0.5}px)`;
-            }
-        });
 
         document.querySelectorAll('.cta-primary, .cta-secondary, .contact-cta').forEach(button => {
             button.addEventListener('click', function(e) {
