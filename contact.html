@@ -472,16 +472,21 @@
             display: grid;
             grid-template-columns: 1fr 1.6fr;
             gap: 3rem;
-            align-items: start;
+            align-items: stretch;
         }
 
         /* Info column */
+        .contact-info-block {
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+        }
         .contact-info-block h2 {
             font-size: 1.4rem;
             font-weight: 700;
             margin-bottom: 0.5rem;
             position: relative;
-            padding-bottom: 0.75rem;
+            padding-bottom: 0.5rem;
         }
 
         .contact-info-block h2::after {
@@ -498,7 +503,7 @@
             display: flex;
             align-items: flex-start;
             gap: 0.75rem;
-            margin-top: 1rem;
+            margin-top: 0.75rem;
             color: var(--text-gray);
             font-size: 0.9rem;
         }
@@ -506,16 +511,33 @@
         .contact-detail svg { flex-shrink: 0; margin-top: 3px; color: var(--text-dark); }
         .contact-detail a { color: var(--text-gray); text-decoration: none; }
         .contact-detail a:hover { color: var(--text-dark); }
-        .contact-detail strong { color: var(--text-dark); display: block; margin-bottom: 0.15rem; }
+        .contact-detail strong { color: var(--text-dark); display: block; margin-bottom: 0.1rem; }
 
         /* Form column */
-        .contact-form-block { align-self: end; }
+        /* .contact-form-block { align-self: end; } */
+        
+        .contact-form-block { 
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
 
-        .contact-form { display: flex; flex-direction: column; gap: 0.75rem; }
+        .contact-form { 
+            display: flex; 
+            flex-direction: column; 
+            gap: 0.75rem;
+            height: 100%;
+        }
 
         .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; }
 
         .form-field {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-field.message-field {
+            flex: 1;
             display: flex;
             flex-direction: column;
         }
@@ -540,7 +562,10 @@
             background: var(--primary-white);
         }
 
-        .form-field textarea { height: 120px; }
+        .form-field textarea { 
+            flex: 1;
+            min-height: 120px; 
+        }
 
         .form-submit {
             background: var(--text-dark);
@@ -554,6 +579,7 @@
             transition: var(--transition);
             letter-spacing: 0.5px;
             align-self: flex-end;
+            margin-top: 0.25rem;
         }
 
         .form-submit:hover { background: var(--text-gray); transform: translateY(-2px); box-shadow: var(--shadow-medium); }
@@ -884,7 +910,7 @@
                     <input type="text" name="subject" placeholder="Subject" required>
                 </div>
 
-                <div class="form-field">
+                <div class="form-field message-field">
                     <textarea name="message" placeholder="Message" required></textarea>
                 </div>
 
