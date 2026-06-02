@@ -828,8 +828,10 @@
             display: flex;
             align-items: center;
             overflow-x: auto;
+            overflow-y: hidden;
             scroll-snap-type: x mandatory;
             scrollbar-width: none;
+            touch-action: pan-x;
             gap: 1.5rem;
             padding: 2rem 0;
             cursor: grab;
@@ -2066,6 +2068,13 @@
                 mobileToggle.classList.remove('active');
                 mobileNav.classList.remove('active');
                 document.body.style.overflow = '';
+            }
+            if (projectModal.classList.contains('active')) {
+                if (e.key === 'ArrowLeft' || e.key === 'ArrowRight' || e.key === 'ArrowUp' || e.key === 'ArrowDown') {
+                    e.preventDefault();
+                    if (e.key === 'ArrowLeft') projectModalPrev.click();
+                    if (e.key === 'ArrowRight') projectModalNext.click();
+                }
             }
         });
     </script>

@@ -774,8 +774,10 @@
             display: flex;
             align-items: center;
             overflow-x: auto;
+            overflow-y: hidden;
             scroll-snap-type: x mandatory;
             scrollbar-width: none;
+            touch-action: pan-x;
             gap: 1.5rem;
             padding: 1.5rem 0;
             cursor: grab;
@@ -1598,8 +1600,11 @@
                 document.body.style.overflow = '';
             }
             if (modal.classList.contains('active')) {
-                if (e.key === 'ArrowLeft') navigate(-1);
-                if (e.key === 'ArrowRight') navigate(1);
+                if (e.key === 'ArrowLeft' || e.key === 'ArrowRight' || e.key === 'ArrowUp' || e.key === 'ArrowDown') {
+                    e.preventDefault();
+                    if (e.key === 'ArrowLeft') navigate(-1);
+                    if (e.key === 'ArrowRight') navigate(1);
+                }
             }
         });
     </script>
