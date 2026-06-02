@@ -630,159 +630,183 @@
             margin: 0 auto;
         }
 
-        /* Project Filters */
-        .project-filters {
-            display: flex;
-            justify-content: center;
-            gap: 1rem;
-            margin-bottom: 3rem;
-            flex-wrap: wrap;
+        /* Project Sections */
+        .project-section {
+            margin-bottom: 2.5rem;
         }
 
-        .filter-btn {
-            padding: 0.8rem 1.5rem;
-            background: var(--background-light);
-            border: none;
-            border-radius: 25px;
-            cursor: pointer;
-            transition: var(--transition);
-            font-weight: 500;
+        .project-section-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 0.75rem;
+        }
+
+        .project-section-left {
+            display: flex;
+            align-items: baseline;
+            gap: 0.75rem;
+        }
+
+        .project-section-title {
+            font-size: 1.25rem;
+            font-weight: 700;
             color: var(--text-dark);
         }
 
-        .filter-btn.active,
-        .filter-btn:hover {
+        .project-section-count {
+            font-size: 0.8rem;
+            color: var(--text-light);
+            font-weight: 500;
+        }
+
+        .project-section-nav {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .carousel-btn {
             background: var(--text-dark);
             color: var(--primary-white);
-            transform: translateY(-2px);
-            box-shadow: var(--shadow-medium);
-        }
-
-        /* Projects Grid */
-        .projects-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 1.25rem;
-            margin-top: 1.5rem;
-        }
-
-        .project-card {
-            background: var(--primary-white);
-            border-radius: var(--border-radius);
-            overflow: hidden;
-            box-shadow: var(--shadow-light);
-            transition: var(--transition);
-            position: relative;
-        }
-
-        .project-card:hover {
-            transform: translateY(-10px);
-            box-shadow: var(--shadow-heavy);
-        }
-
-        .project-image {
-            width: 100%;
-            height: 250px;
-            background: linear-gradient(45deg, #f0f2f5, #e1e5e9);
+            border: none;
+            border-radius: 50%;
+            width: 34px;
+            height: 34px;
+            font-size: 1.2rem;
+            cursor: pointer;
             display: flex;
             align-items: center;
             justify-content: center;
+            transition: var(--transition);
+            line-height: 1;
+            flex-shrink: 0;
+        }
+
+        .carousel-btn:hover {
+            background: var(--text-gray);
+            transform: scale(1.1);
+        }
+
+        /* Carousel track */
+        .project-track {
+            display: flex;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            scrollbar-width: none;
+            gap: 1.25rem;
+            padding-bottom: 0.5rem;
+            cursor: grab;
+        }
+
+        .project-track::-webkit-scrollbar { display: none; }
+        .project-track:active { cursor: grabbing; }
+
+        /* Project card — carousel style */
+        .project-card {
+            scroll-snap-align: center;
+            flex-shrink: 0;
+            width: min(460px, 78vw);
+            background: var(--primary-white);
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-light);
+            border-top: 3px solid var(--text-dark);
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.6rem;
+            transition: var(--transition);
+        }
+
+        .project-card:hover {
+            box-shadow: var(--shadow-medium);
+            transform: translateY(-4px);
+        }
+
+        .project-card-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .project-badge {
+            background: var(--background-light);
             color: var(--text-gray);
-            font-size: 1.1rem;
-            font-weight: 500;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .project-image::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21,15 16,10 5,21"/></svg>') center/80px no-repeat;
-            opacity: 0.3;
-        }
-
-        .project-category {
-            position: absolute;
-            top: 1rem;
-            left: 1rem;
-            background: var(--text-dark);
-            color: var(--primary-white);
-            padding: 0.5rem 1rem;
+            padding: 0.2rem 0.65rem;
             border-radius: 20px;
-            font-size: 0.8rem;
+            font-size: 0.72rem;
             font-weight: 600;
             text-transform: uppercase;
-            letter-spacing: 1px;
+            letter-spacing: 0.5px;
         }
 
-        .project-content {
-            padding: 2rem;
+        .project-year {
+            font-size: 0.82rem;
+            color: var(--text-light);
+            font-weight: 500;
         }
 
         .project-title {
-            font-size: 1.3rem;
+            font-size: 1.15rem;
             font-weight: 700;
             color: var(--text-dark);
-            margin-bottom: 0.5rem;
+            line-height: 1.3;
         }
 
         .project-client {
+            font-size: 0.88rem;
             color: var(--text-gray);
             font-weight: 500;
-            margin-bottom: 1rem;
-            font-size: 0.95rem;
         }
 
         .project-description {
+            font-size: 0.88rem;
             color: var(--text-gray);
-            line-height: 1.6;
-            margin-bottom: 1.5rem;
-            font-size: 0.95rem;
+            line-height: 1.65;
+            flex: 1;
         }
 
-        .project-details {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 1rem;
-            margin-bottom: 1rem;
+        .project-card-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 0.75rem;
+            border-top: 1px solid rgba(0,0,0,0.07);
+            margin-top: auto;
+            gap: 0.5rem;
         }
 
-        .project-detail {
-            font-size: 0.9rem;
+        .project-card-footer span {
+            font-size: 0.78rem;
+            color: var(--text-light);
         }
 
-        .project-detail strong {
-            color: var(--text-dark);
-            display: block;
-            margin-bottom: 0.2rem;
-        }
-
-        .project-detail span {
+        .project-card-footer .proj-location {
+            font-weight: 600;
             color: var(--text-gray);
         }
 
-        .project-engineer {
-            background: var(--background-light);
-            padding: 1rem;
-            border-radius: var(--border-radius);
-            margin-top: 1rem;
-            text-align: center;
+        /* Dots */
+        .carousel-dots {
+            display: flex;
+            justify-content: center;
+            gap: 0.4rem;
+            margin-top: 0.75rem;
         }
 
-        .project-engineer strong {
-            color: var(--text-dark);
-            font-size: 0.85rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
+        .carousel-dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 3px;
+            background: #ddd;
+            border: none;
+            cursor: pointer;
+            padding: 0;
+            transition: var(--transition);
         }
 
-        .project-engineer span {
-            color: var(--text-gray);
-            font-size: 0.9rem;
+        .carousel-dot.active {
+            background: var(--text-dark);
+            width: 18px;
         }
 
         /* Stats Section */
@@ -853,9 +877,6 @@
                 display: flex;
             }
 
-            .projects-grid {
-                grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            }
         }
 
         @media (max-width: 968px) {
@@ -872,15 +893,6 @@
                 padding: 2rem;
             }
 
-            .projects-grid {
-                grid-template-columns: 1fr;
-                gap: 1.25rem;
-            }
-
-            .project-details {
-                grid-template-columns: 1fr;
-            }
-
             .stats-grid {
                 grid-template-columns: repeat(2, 1fr);
             }
@@ -888,15 +900,6 @@
             .search-toggle {
                 width: 35px;
                 height: 35px;
-            }
-
-            .project-filters {
-                gap: 0.5rem;
-            }
-
-            .filter-btn {
-                padding: 0.6rem 1rem;
-                font-size: 0.9rem;
             }
         }
 
@@ -912,10 +915,6 @@
 
             .main-content {
                 padding: 1.5rem;
-            }
-
-            .projects-grid {
-                grid-template-columns: 1fr;
             }
 
             .footer {
@@ -1165,319 +1164,213 @@
 
     <main class="main-content">
 
-        <!-- Project Filters -->
-        <div class="project-filters">
-            <button class="filter-btn active" data-filter="all">All Projects</button>
-            <button class="filter-btn" data-filter="infrastructure">Infrastructure</button>
-            <button class="filter-btn" data-filter="renewal">Renewal</button>
-            <button class="filter-btn" data-filter="urban-land">Urban Land</button>
-        </div>
-
-        <!-- Projects Grid -->
-        <div class="projects-grid" id="projectsGrid">
-            <!-- Infrastructure Projects -->
-            <div class="project-card" data-category="infrastructure">
-                <div class="project-image">
-                    <div class="project-category">Infrastructure</div>
+        <!-- Infrastructure -->
+        <section class="project-section">
+            <div class="project-section-header">
+                <div class="project-section-left">
+                    <h2 class="project-section-title">Infrastructure</h2>
+                    <span class="project-section-count">3 projects</span>
                 </div>
-                <div class="project-content">
+                <div class="project-section-nav">
+                    <button class="carousel-btn" id="prev-infrastructure">&#8249;</button>
+                    <button class="carousel-btn" id="next-infrastructure">&#8250;</button>
+                </div>
+            </div>
+            <div class="project-track" id="track-infrastructure">
+                <div class="project-card">
+                    <div class="project-card-top">
+                        <span class="project-badge">Infrastructure</span>
+                        <span class="project-year">2013</span>
+                    </div>
                     <h3 class="project-title">Schonsee Stage 14 Offsite</h3>
                     <div class="project-client">Brookfield Residential</div>
                     <p class="project-description">0.5km of deep sanitary mains installed using advanced directional drilling with minimal surface disruption.</p>
-                    <div class="project-details">
-                        <div class="project-detail">
-                            <strong>Location</strong>
-                            <span>City of Edmonton</span>
-                        </div>
-                        <div class="project-detail">
-                            <strong>Completed</strong>
-                            <span>2013</span>
-                        </div>
-                    </div>
-                    <div class="project-engineer">
-                        <strong>Engineering Partner</strong><br>
+                    <div class="project-card-footer">
+                        <span class="proj-location">City of Edmonton</span>
                         <span>Sheffer Andrew</span>
                     </div>
                 </div>
-            </div>
-
-            <div class="project-card" data-category="infrastructure">
-                <div class="project-image">
-                    <div class="project-category">Infrastructure</div>
-                </div>
-                <div class="project-content">
+                <div class="project-card">
+                    <div class="project-card-top">
+                        <span class="project-badge">Infrastructure</span>
+                        <span class="project-year">2013</span>
+                    </div>
                     <h3 class="project-title">Melcor Collector Roadway</h3>
                     <div class="project-client">Melcor Developments</div>
                     <p class="project-description">Collector roadway with supporting utility infrastructure serving Edmonton's growing residential communities.</p>
-                    <div class="project-details">
-                        <div class="project-detail">
-                            <strong>Location</strong>
-                            <span>City of Edmonton</span>
-                        </div>
-                        <div class="project-detail">
-                            <strong>Completed</strong>
-                            <span>2013</span>
-                        </div>
-                    </div>
-                    <div class="project-engineer">
-                        <strong>Engineering Partner</strong><br>
+                    <div class="project-card-footer">
+                        <span class="proj-location">City of Edmonton</span>
                         <span>IBI Group</span>
                     </div>
                 </div>
-            </div>
-
-            <div class="project-card" data-category="infrastructure">
-                <div class="project-image">
-                    <div class="project-category">Infrastructure</div>
-                </div>
-                <div class="project-content">
+                <div class="project-card">
+                    <div class="project-card-top">
+                        <span class="project-badge">Infrastructure</span>
+                        <span class="project-year">2013</span>
+                    </div>
                     <h3 class="project-title">MLC Arterial Roadway</h3>
                     <div class="project-client">MLC Developments</div>
                     <p class="project-description">High-capacity arterial roadway built to heavy traffic load requirements and municipal standards.</p>
-                    <div class="project-details">
-                        <div class="project-detail">
-                            <strong>Location</strong>
-                            <span>City of Edmonton</span>
-                        </div>
-                        <div class="project-detail">
-                            <strong>Completed</strong>
-                            <span>2013</span>
-                        </div>
-                    </div>
-                    <div class="project-engineer">
-                        <strong>Engineering Partner</strong><br>
+                    <div class="project-card-footer">
+                        <span class="proj-location">City of Edmonton</span>
                         <span>Stantec</span>
                     </div>
                 </div>
             </div>
+            <div class="carousel-dots" id="dots-infrastructure"></div>
+        </section>
 
-            <!-- Renewal Projects -->
-            <div class="project-card" data-category="renewal">
-                <div class="project-image">
-                    <div class="project-category">Renewal</div>
+        <!-- Renewal -->
+        <section class="project-section">
+            <div class="project-section-header">
+                <div class="project-section-left">
+                    <h2 class="project-section-title">Renewal</h2>
+                    <span class="project-section-count">3 projects</span>
                 </div>
-                <div class="project-content">
+                <div class="project-section-nav">
+                    <button class="carousel-btn" id="prev-renewal">&#8249;</button>
+                    <button class="carousel-btn" id="next-renewal">&#8250;</button>
+                </div>
+            </div>
+            <div class="project-track" id="track-renewal">
+                <div class="project-card">
+                    <div class="project-card-top">
+                        <span class="project-badge">Renewal</span>
+                        <span class="project-year">2013</span>
+                    </div>
                     <h3 class="project-title">St. Albert Sedimentation Control</h3>
                     <div class="project-client">St. Albert County</div>
                     <p class="project-description">Sedimentation and erosion control renewal with a 1350mm outfall system improving long-term stormwater management.</p>
-                    <div class="project-details">
-                        <div class="project-detail">
-                            <strong>Location</strong>
-                            <span>City of St. Albert</span>
-                        </div>
-                        <div class="project-detail">
-                            <strong>Completed</strong>
-                            <span>2013</span>
-                        </div>
-                    </div>
-                    <div class="project-engineer">
-                        <strong>Engineering Partner</strong><br>
+                    <div class="project-card-footer">
+                        <span class="proj-location">City of St. Albert</span>
                         <span>Stantec</span>
                     </div>
                 </div>
-            </div>
-
-            <div class="project-card" data-category="renewal">
-                <div class="project-image">
-                    <div class="project-category">Renewal</div>
-                </div>
-                <div class="project-content">
+                <div class="project-card">
+                    <div class="project-card-top">
+                        <span class="project-badge">Renewal</span>
+                        <span class="project-year">2013</span>
+                    </div>
                     <h3 class="project-title">Edmonton Watermain Renewal</h3>
                     <div class="project-client">City of Edmonton</div>
                     <p class="project-description">Aging watermain replaced with modern distribution lines, minimizing service disruptions to residents and businesses.</p>
-                    <div class="project-details">
-                        <div class="project-detail">
-                            <strong>Location</strong>
-                            <span>City of Edmonton</span>
-                        </div>
-                        <div class="project-detail">
-                            <strong>Completed</strong>
-                            <span>2013</span>
-                        </div>
-                    </div>
-                    <div class="project-engineer">
-                        <strong>Engineering Partner</strong><br>
+                    <div class="project-card-footer">
+                        <span class="proj-location">City of Edmonton</span>
                         <span>Stantec</span>
                     </div>
                 </div>
-            </div>
-
-            <div class="project-card" data-category="renewal">
-                <div class="project-image">
-                    <div class="project-category">Renewal</div>
-                </div>
-                <div class="project-content">
+                <div class="project-card">
+                    <div class="project-card-top">
+                        <span class="project-badge">Renewal</span>
+                        <span class="project-year">2012</span>
+                    </div>
                     <h3 class="project-title">Canada Lands Infrastructure Renewal</h3>
                     <div class="project-client">Canada Lands Company</div>
                     <p class="project-description">Removal of 2.8km of aging AC water and sanitary systems, replaced with modern infrastructure.</p>
-                    <div class="project-details">
-                        <div class="project-detail">
-                            <strong>Location</strong>
-                            <span>City of Edmonton</span>
-                        </div>
-                        <div class="project-detail">
-                            <strong>Completed</strong>
-                            <span>2012</span>
-                        </div>
-                    </div>
-                    <div class="project-engineer">
-                        <strong>Engineering Partner</strong><br>
+                    <div class="project-card-footer">
+                        <span class="proj-location">City of Edmonton</span>
                         <span>Select Engineering</span>
                     </div>
                 </div>
             </div>
+            <div class="carousel-dots" id="dots-renewal"></div>
+        </section>
 
-            <!-- Urban Land Projects -->
-            <div class="project-card" data-category="urban-land">
-                <div class="project-image">
-                    <div class="project-category">Urban Land</div>
+        <!-- Urban Land -->
+        <section class="project-section">
+            <div class="project-section-header">
+                <div class="project-section-left">
+                    <h2 class="project-section-title">Urban Land</h2>
+                    <span class="project-section-count">6 projects</span>
                 </div>
-                <div class="project-content">
+                <div class="project-section-nav">
+                    <button class="carousel-btn" id="prev-urban-land">&#8249;</button>
+                    <button class="carousel-btn" id="next-urban-land">&#8250;</button>
+                </div>
+            </div>
+            <div class="project-track" id="track-urban-land">
+                <div class="project-card">
+                    <div class="project-card-top">
+                        <span class="project-badge">Urban Land</span>
+                        <span class="project-year">2013</span>
+                    </div>
                     <h3 class="project-title">Rohit Lands Residential Development</h3>
                     <div class="project-client">Rohit Lands</div>
                     <p class="project-description">179 fully-serviced residential lots with complete infrastructure, utilities, and roadway construction.</p>
-                    <div class="project-details">
-                        <div class="project-detail">
-                            <strong>Location</strong>
-                            <span>City of Edmonton</span>
-                        </div>
-                        <div class="project-detail">
-                            <strong>Completed</strong>
-                            <span>2013</span>
-                        </div>
-                    </div>
-                    <div class="project-engineer">
-                        <strong>Engineering Partner</strong><br>
+                    <div class="project-card-footer">
+                        <span class="proj-location">City of Edmonton</span>
                         <span>MMM Group</span>
                     </div>
                 </div>
-            </div>
-
-            <div class="project-card" data-category="urban-land">
-                <div class="project-image">
-                    <div class="project-category">Urban Land</div>
-                </div>
-                <div class="project-content">
+                <div class="project-card">
+                    <div class="project-card-top">
+                        <span class="project-badge">Urban Land</span>
+                        <span class="project-year">2012</span>
+                    </div>
                     <h3 class="project-title">Qualico Communities Development</h3>
                     <div class="project-client">Qualico Communities</div>
                     <p class="project-description">125 fully-serviced residential lots delivered across multiple phases with complete municipal infrastructure.</p>
-                    <div class="project-details">
-                        <div class="project-detail">
-                            <strong>Location</strong>
-                            <span>City of Edmonton</span>
-                        </div>
-                        <div class="project-detail">
-                            <strong>Completed</strong>
-                            <span>2012</span>
-                        </div>
-                    </div>
-                    <div class="project-engineer">
-                        <strong>Engineering Partner</strong><br>
+                    <div class="project-card-footer">
+                        <span class="proj-location">City of Edmonton</span>
                         <span>Stantec</span>
                     </div>
                 </div>
-            </div>
-
-            <div class="project-card" data-category="urban-land">
-                <div class="project-image">
-                    <div class="project-category">Urban Land</div>
-                </div>
-                <div class="project-content">
+                <div class="project-card">
+                    <div class="project-card-top">
+                        <span class="project-badge">Urban Land</span>
+                        <span class="project-year">2012</span>
+                    </div>
                     <h3 class="project-title">Brookfield Residential Community</h3>
                     <div class="project-client">Brookfield Residential</div>
                     <p class="project-description">102 fully-serviced residential lots with advanced infrastructure planning and sustainable design.</p>
-                    <div class="project-details">
-                        <div class="project-detail">
-                            <strong>Location</strong>
-                            <span>City of Edmonton</span>
-                        </div>
-                        <div class="project-detail">
-                            <strong>Completed</strong>
-                            <span>2012</span>
-                        </div>
-                    </div>
-                    <div class="project-engineer">
-                        <strong>Engineering Partner</strong><br>
+                    <div class="project-card-footer">
+                        <span class="proj-location">City of Edmonton</span>
                         <span>Sheffer Andrew</span>
                     </div>
                 </div>
-            </div>
-
-            <div class="project-card" data-category="urban-land">
-                <div class="project-image">
-                    <div class="project-category">Urban Land</div>
-                </div>
-                <div class="project-content">
+                <div class="project-card">
+                    <div class="project-card-top">
+                        <span class="project-badge">Urban Land</span>
+                        <span class="project-year">2012</span>
+                    </div>
                     <h3 class="project-title">Melcor Mixed Development</h3>
                     <div class="project-client">Melcor Developments</div>
                     <p class="project-description">188 residential lots combined with collector roadway infrastructure in a single integrated development.</p>
-                    <div class="project-details">
-                        <div class="project-detail">
-                            <strong>Location</strong>
-                            <span>City of Edmonton</span>
-                        </div>
-                        <div class="project-detail">
-                            <strong>Completed</strong>
-                            <span>2012</span>
-                        </div>
-                    </div>
-                    <div class="project-engineer">
-                        <strong>Engineering Partner</strong><br>
+                    <div class="project-card-footer">
+                        <span class="proj-location">City of Edmonton</span>
                         <span>IBI Group</span>
                     </div>
                 </div>
-            </div>
-
-            <div class="project-card" data-category="urban-land">
-                <div class="project-image">
-                    <div class="project-category">Urban Land</div>
-                </div>
-                <div class="project-content">
+                <div class="project-card">
+                    <div class="project-card-top">
+                        <span class="project-badge">Urban Land</span>
+                        <span class="project-year">2013</span>
+                    </div>
                     <h3 class="project-title">Qualico Fort Saskatchewan</h3>
                     <div class="project-client">Qualico Communities</div>
                     <p class="project-description">96 fully-serviced residential lots expanding housing in Fort Saskatchewan to municipal standards.</p>
-                    <div class="project-details">
-                        <div class="project-detail">
-                            <strong>Location</strong>
-                            <span>City of Fort Saskatchewan</span>
-                        </div>
-                        <div class="project-detail">
-                            <strong>Completed</strong>
-                            <span>2013</span>
-                        </div>
-                    </div>
-                    <div class="project-engineer">
-                        <strong>Engineering Partner</strong><br>
+                    <div class="project-card-footer">
+                        <span class="proj-location">Fort Saskatchewan</span>
                         <span>Al-Terra</span>
                     </div>
                 </div>
-            </div>
-
-            <div class="project-card" data-category="urban-land">
-                <div class="project-image">
-                    <div class="project-category">Urban Land</div>
-                </div>
-                <div class="project-content">
+                <div class="project-card">
+                    <div class="project-card-top">
+                        <span class="project-badge">Urban Land</span>
+                        <span class="project-year">2013</span>
+                    </div>
                     <h3 class="project-title">Qualico Spruce Grove</h3>
                     <div class="project-client">Qualico Communities</div>
                     <p class="project-description">109 residential lots serviced with modern infrastructure in the growing municipality of Spruce Grove.</p>
-                    <div class="project-details">
-                        <div class="project-detail">
-                            <strong>Location</strong>
-                            <span>Spruce Grove</span>
-                        </div>
-                        <div class="project-detail">
-                            <strong>Completed</strong>
-                            <span>2013</span>
-                        </div>
-                    </div>
-                    <div class="project-engineer">
-                        <strong>Engineering Partner</strong><br>
+                    <div class="project-card-footer">
+                        <span class="proj-location">Spruce Grove</span>
                         <span>Select Engineering</span>
                     </div>
                 </div>
             </div>
-        </div>
+            <div class="carousel-dots" id="dots-urban-land"></div>
+        </section>
+
     </main>
 
     <!-- Footer -->
@@ -1687,35 +1580,61 @@
             });
         });
 
-        // Project filtering
-        const filterButtons = document.querySelectorAll('.filter-btn');
-        const projectCards = document.querySelectorAll('.project-card');
+        // Project carousels
+        ['infrastructure', 'renewal', 'urban-land'].forEach(id => {
+            const track   = document.getElementById(`track-${id}`);
+            const prevBtn = document.getElementById(`prev-${id}`);
+            const nextBtn = document.getElementById(`next-${id}`);
+            const dotsEl  = document.getElementById(`dots-${id}`);
+            const cards   = Array.from(track.querySelectorAll('.project-card'));
 
-        filterButtons.forEach(button => {
-            button.addEventListener('click', function() {
-                // Remove active class from all buttons
-                filterButtons.forEach(btn => btn.classList.remove('active'));
-                // Add active class to clicked button
-                this.classList.add('active');
-
-                const filterValue = this.getAttribute('data-filter');
-
-                projectCards.forEach(card => {
-                    if (filterValue === 'all' || card.getAttribute('data-category') === filterValue) {
-                        card.style.display = 'block';
-                        setTimeout(() => {
-                            card.style.opacity = '1';
-                            card.style.transform = 'scale(1)';
-                        }, 100);
-                    } else {
-                        card.style.opacity = '0';
-                        card.style.transform = 'scale(0.8)';
-                        setTimeout(() => {
-                            card.style.display = 'none';
-                        }, 300);
-                    }
-                });
+            // Build dots
+            cards.forEach((_, i) => {
+                const dot = document.createElement('button');
+                dot.className = 'carousel-dot' + (i === 0 ? ' active' : '');
+                dot.setAttribute('aria-label', `Project ${i + 1}`);
+                dot.addEventListener('click', () => scrollTo(i));
+                dotsEl.appendChild(dot);
             });
+
+            function setPadding() {
+                const pad = Math.max(0, (track.clientWidth - (cards[0]?.offsetWidth || 0)) / 2);
+                track.style.paddingInline = pad + 'px';
+                track.style.scrollPaddingInline = pad + 'px';
+            }
+
+            function nearest() {
+                const center = track.scrollLeft + track.clientWidth / 2;
+                return cards.reduce((best, card, i) => {
+                    const dist = Math.abs(card.offsetLeft + card.offsetWidth / 2 - center);
+                    return dist < best.dist ? { i, dist } : best;
+                }, { i: 0, dist: Infinity }).i;
+            }
+
+            function scrollTo(i, behavior = 'smooth') {
+                const card = cards[i];
+                if (!card) return;
+                track.scrollTo({ left: card.offsetLeft - (track.clientWidth - card.offsetWidth) / 2, behavior });
+            }
+
+            function updateDots(i) {
+                dotsEl.querySelectorAll('.carousel-dot').forEach((d, j) => d.classList.toggle('active', j === i));
+            }
+
+            let st;
+            track.addEventListener('scroll', () => { clearTimeout(st); st = setTimeout(() => updateDots(nearest()), 60); });
+
+            prevBtn.addEventListener('click', () => scrollTo(Math.max(0, nearest() - 1)));
+            nextBtn.addEventListener('click', () => scrollTo(Math.min(cards.length - 1, nearest() + 1)));
+
+            // Mouse drag
+            let drag = null;
+            track.addEventListener('mousedown', e => { drag = { x: e.clientX, left: track.scrollLeft }; e.preventDefault(); });
+            track.addEventListener('mousemove', e => { if (drag) track.scrollLeft = drag.left - (e.clientX - drag.x); });
+            window.addEventListener('mouseup', () => { if (drag) { drag = null; scrollTo(nearest()); } });
+
+            requestAnimationFrame(() => { setPadding(); scrollTo(0, 'instant'); updateDots(0); });
+            window.addEventListener('resize', () => { setPadding(); scrollTo(nearest(), 'instant'); });
         });
 
         document.addEventListener('keydown', function(e) {
