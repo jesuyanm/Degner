@@ -680,6 +680,9 @@
             transition: var(--transition);
             line-height: 1;
             flex-shrink: 0;
+            /* Hidden until JS confirms the track is scrollable — avoids a flash of
+               arrows on page load for carousels that don't need them. */
+            visibility: hidden;
         }
 
         .carousel-btn:hover {
@@ -2027,6 +2030,10 @@
             const dotsEl  = document.getElementById(`dots-${id}`);
             const cards   = Array.from(track.querySelectorAll('.project-card'));
 
+            // Tracks whether the last pointer interaction was a drag (so we don't
+            // treat the release of a swipe as a click that opens a project modal).
+            let drag = null, dragMoved = false;
+
             // Inject image area into each card
             cards.forEach(card => {
                 const label = card.querySelector('.project-badge').textContent;
@@ -2044,7 +2051,7 @@
                 img.appendChild(yr);
                 card.insertBefore(img, card.firstChild);
 
-                card.addEventListener('click', () => openProjectModal(card, id));
+                card.addEventListener('click', () => { if (!dragMoved) openProjectModal(card, id); });
             });
 
             // Build dots
@@ -2077,10 +2084,14 @@
 
             function updateDots(i) {
                 dotsEl.querySelectorAll('.carousel-dot').forEach((d, j) => d.classList.toggle('active', j === i));
-                const noScroll = track.scrollWidth <= track.clientWidth + 1;
+                // Base arrow visibility on actual scroll position, not the nearest-card
+                // index — the last card never reaches the left edge under scroll-snap,
+                // so an index-based check would leave the next arrow stuck on at the end.
+                const maxScroll = track.scrollWidth - track.clientWidth;
+                const noScroll = maxScroll <= 1;
                 dotsEl.style.display = noScroll ? 'none' : '';
-                prevBtn.style.visibility = (noScroll || i <= 0) ? 'hidden' : 'visible';
-                nextBtn.style.visibility = (noScroll || i >= cards.length - 1) ? 'hidden' : 'visible';
+                prevBtn.style.visibility = (noScroll || track.scrollLeft <= 1) ? 'hidden' : 'visible';
+                nextBtn.style.visibility = (noScroll || track.scrollLeft >= maxScroll - 1) ? 'hidden' : 'visible';
             }
 
             track.addEventListener('scroll', () => updateDots(nearest()));
@@ -2095,10 +2106,10 @@
                 scrollTo(next); updateDots(next);
             });
 
-            let drag = null;
-            track.addEventListener('mousedown', e => { drag = { x: e.clientX, left: track.scrollLeft }; track.style.transition = 'none'; e.preventDefault(); });
+            track.addEventListener('mousedown', e => { drag = { x: e.clientX, left: track.scrollLeft }; dragMoved = false; track.style.transition = 'none'; e.preventDefault(); });
             track.addEventListener('mousemove', e => {
                 if (!drag) return;
+                if (Math.abs(e.clientX - drag.x) > 5) dragMoved = true;
                 const desired = drag.left - (e.clientX - drag.x);
                 const max = track.scrollWidth - track.clientWidth;
                 if (desired < 0) {
@@ -2120,7 +2131,10 @@
                 scrollTo(nearest());
             });
 
-            updateDots(0);
+            // Set arrow/dot state immediately so scrollable carousels show their arrows
+            // without a frame of delay; re-run once more after layout settles as a safety net.
+            updateDots(nearest());
+            requestAnimationFrame(() => updateDots(nearest()));
         });
 
         document.addEventListener('keydown', function(e) {
