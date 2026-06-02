@@ -848,7 +848,7 @@
             overflow: hidden;
             opacity: 0.45;
             transform: scale(0.75);
-            transition: opacity 0.35s ease, transform 0.35s ease;
+            transition: opacity 0.2s ease, transform 0.2s ease;
             display: flex;
             flex-direction: column;
             max-height: 82vh;
@@ -1020,6 +1020,7 @@
         }
 
         .project-description {
+            display: none; /* shown in modal only */
             font-size: 0.88rem;
             color: var(--text-gray);
             line-height: 1.65;
@@ -1852,7 +1853,7 @@
         const projectModalPrev  = document.getElementById('projectModalPrev');
         const projectModalNext  = document.getElementById('projectModalNext');
 
-        let modalCards = [], modalTotal = 0, modalIsJumping = false, modalScrollTimer;
+        let modalCards = [], modalTotal = 0, modalNavTarget = -1;
 
         function buildModalCardEl(d) {
             const el = document.createElement('div');
@@ -1906,23 +1907,11 @@
             modalCards.forEach((c, i) => c.classList.toggle('active-card', i === idx));
         }
 
-        function modalCheckAndJump() {
-            const idx = modalNearest();
-            modalUpdateActive(idx);
-            if (idx < modalTotal || idx >= modalTotal * 2) {
-                const target = (idx % modalTotal) + modalTotal;
-                modalIsJumping = true;
-                modalScrollTo(target, 'instant');
-                modalUpdateActive(target);
-                requestAnimationFrame(() => { modalIsJumping = false; });
-            }
-        }
-
         function openProjectModal(clickedCard, categoryId) {
-            const catTrack  = document.getElementById(`track-${categoryId}`);
-            const catCards  = Array.from(catTrack.querySelectorAll('.project-card'));
-            const startIdx  = catCards.indexOf(clickedCard);
-            const dataList  = catCards.map(card => ({
+            const catTrack = document.getElementById(`track-${categoryId}`);
+            const catCards = Array.from(catTrack.querySelectorAll('.project-card'));
+            const startIdx = catCards.indexOf(clickedCard);
+            const dataList = catCards.map(card => ({
                 title:    card.querySelector('.project-title').textContent,
                 client:   card.querySelector('.project-client').textContent,
                 category: card.querySelector('.project-badge').textContent,
@@ -1935,20 +1924,18 @@
             modalTotal = dataList.length;
             projectModalTrack.innerHTML = '';
             modalCards = [];
-            for (let copy = 0; copy < 3; copy++) {
-                dataList.forEach(d => {
-                    const el = buildModalCardEl(d);
-                    projectModalTrack.appendChild(el);
-                    modalCards.push(el);
-                });
-            }
+            dataList.forEach(d => {
+                const el = buildModalCardEl(d);
+                projectModalTrack.appendChild(el);
+                modalCards.push(el);
+            });
 
             projectModal.classList.add('active');
             document.body.style.overflow = 'hidden';
             requestAnimationFrame(() => {
                 modalSetPadding();
-                modalScrollTo(modalTotal + startIdx, 'instant');
-                modalUpdateActive(modalTotal + startIdx);
+                modalScrollTo(startIdx, 'instant');
+                modalUpdateActive(startIdx);
             });
         }
 
@@ -1959,25 +1946,33 @@
             modalCards = [];
         }
 
+        // Update active immediately on scroll; ignore scroll events mid-nav-animation
         projectModalTrack.addEventListener('scroll', () => {
-            if (modalIsJumping) return;
-            modalUpdateActive(modalNearest());
-            clearTimeout(modalScrollTimer);
-            modalScrollTimer = setTimeout(modalCheckAndJump, 120);
+            const n = modalNearest();
+            if (modalNavTarget < 0 || modalNavTarget === n) {
+                modalNavTarget = -1;
+                modalUpdateActive(n);
+            }
         });
 
         // Mouse drag
         let modalDrag = null;
         projectModalTrack.addEventListener('mousedown', e => { modalDrag = { x: e.clientX, left: projectModalTrack.scrollLeft }; e.preventDefault(); });
         projectModalTrack.addEventListener('mousemove', e => { if (modalDrag) projectModalTrack.scrollLeft = modalDrag.left - (e.clientX - modalDrag.x); });
-        window.addEventListener('mouseup', () => { if (modalDrag) { modalDrag = null; modalScrollTo(modalNearest()); } });
+        window.addEventListener('mouseup', () => { if (modalDrag) { modalDrag = null; modalNavTarget = -1; modalScrollTo(modalNearest()); } });
 
         projectModalPrev.addEventListener('click', () => {
-            const next = Math.max(0, Math.min(modalCards.length - 1, modalNearest() - 1));
+            if (!modalCards.length) return;
+            const next = Math.max(0, modalNearest() - 1);
+            modalNavTarget = next;
+            modalUpdateActive(next);
             modalScrollTo(next);
         });
         projectModalNext.addEventListener('click', () => {
-            const next = Math.max(0, Math.min(modalCards.length - 1, modalNearest() + 1));
+            if (!modalCards.length) return;
+            const next = Math.min(modalCards.length - 1, modalNearest() + 1);
+            modalNavTarget = next;
+            modalUpdateActive(next);
             modalScrollTo(next);
         });
 
