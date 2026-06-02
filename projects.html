@@ -709,17 +709,223 @@
             background: var(--primary-white);
             border-radius: var(--border-radius);
             box-shadow: var(--shadow-light);
-            border-top: 3px solid var(--text-dark);
             padding: 1.5rem;
             display: flex;
             flex-direction: column;
             gap: 0.6rem;
             transition: var(--transition);
+            cursor: pointer;
+            overflow: hidden;
         }
 
         .project-card:hover {
             box-shadow: var(--shadow-medium);
             transform: translateY(-4px);
+        }
+
+        /* Card image area (injected by JS) */
+        .project-card-image {
+            height: 140px;
+            margin: -1.5rem -1.5rem 0.75rem;
+            background: linear-gradient(135deg, var(--background-dark) 0%, #1e2d3d 100%);
+            display: flex;
+            align-items: flex-end;
+            padding: 0.875rem 1.25rem;
+            position: relative;
+            overflow: hidden;
+            flex-shrink: 0;
+        }
+
+        .project-card-image[data-label="Infrastructure"] { background: linear-gradient(135deg, #0f1a2e, #1c3050); }
+        .project-card-image[data-label="Renewal"]        { background: linear-gradient(135deg, #0d1f17, #183328); }
+        .project-card-image[data-label="Urban Land"]     { background: linear-gradient(135deg, #1e1508, #302212); }
+
+        .project-card-image::after {
+            content: attr(data-label);
+            position: absolute;
+            right: 0.5rem;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 3.5rem;
+            font-weight: 900;
+            color: rgba(255,255,255,0.06);
+            white-space: nowrap;
+            line-height: 1;
+            letter-spacing: -1px;
+            pointer-events: none;
+        }
+
+        .project-img-badge {
+            background: rgba(255,255,255,0.12);
+            color: rgba(255,255,255,0.9);
+            padding: 0.2rem 0.65rem;
+            border-radius: 20px;
+            font-size: 0.72rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        /* Project detail modal */
+        .project-modal {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(15, 20, 25, 0.75);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            z-index: 3000;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+        }
+
+        .project-modal.active { display: flex; }
+
+        .project-modal-close {
+            position: fixed;
+            top: 1.25rem;
+            right: 1.5rem;
+            font-size: 2rem;
+            cursor: pointer;
+            color: rgba(255,255,255,0.85);
+            background: none;
+            border: none;
+            z-index: 10;
+            line-height: 1;
+            transition: var(--transition);
+        }
+
+        .project-modal-close:hover { color: var(--primary-white); }
+
+        .project-modal-box {
+            background: var(--primary-white);
+            border-radius: var(--border-radius);
+            width: min(580px, 94vw);
+            max-height: 88vh;
+            overflow-y: auto;
+            box-shadow: 0 24px 64px rgba(0,0,0,0.35);
+            animation: modalIn 0.3s ease;
+        }
+
+        @keyframes modalIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+
+        .project-modal-image {
+            height: 200px;
+            display: flex;
+            align-items: flex-end;
+            padding: 1.5rem;
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(135deg, var(--background-dark), #1e2d3d);
+            flex-shrink: 0;
+        }
+
+        .project-modal-image[data-label="Infrastructure"] { background: linear-gradient(135deg, #0f1a2e, #1c3050); }
+        .project-modal-image[data-label="Renewal"]        { background: linear-gradient(135deg, #0d1f17, #183328); }
+        .project-modal-image[data-label="Urban Land"]     { background: linear-gradient(135deg, #1e1508, #302212); }
+
+        .project-modal-image::after {
+            content: attr(data-label);
+            position: absolute;
+            right: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 7rem;
+            font-weight: 900;
+            color: rgba(255,255,255,0.05);
+            white-space: nowrap;
+            line-height: 1;
+            letter-spacing: -2px;
+            pointer-events: none;
+        }
+
+        .project-modal-cat {
+            background: rgba(255,255,255,0.12);
+            color: rgba(255,255,255,0.9);
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .project-modal-body { padding: 1.75rem; }
+
+        .project-modal-title {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--text-dark);
+            line-height: 1.3;
+            margin-bottom: 0.3rem;
+        }
+
+        .project-modal-client {
+            font-size: 0.92rem;
+            color: var(--text-gray);
+            font-weight: 500;
+            margin-bottom: 1rem;
+        }
+
+        .project-modal-desc {
+            font-size: 0.92rem;
+            color: var(--text-gray);
+            line-height: 1.72;
+            margin-bottom: 1.5rem;
+        }
+
+        .project-modal-details {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+            padding: 1.125rem;
+            background: var(--background-light);
+            border-radius: 8px;
+            margin-bottom: 1.5rem;
+        }
+
+        .project-modal-detail strong {
+            display: block;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--text-light);
+            margin-bottom: 0.3rem;
+        }
+
+        .project-modal-detail span {
+            font-size: 0.88rem;
+            font-weight: 600;
+            color: var(--text-dark);
+        }
+
+        .project-modal-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: var(--text-dark);
+            color: var(--primary-white);
+            padding: 0.75rem 1.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 600;
+            transition: var(--transition);
+        }
+
+        .project-modal-cta:hover {
+            background: var(--text-gray);
+            transform: translateY(-2px);
+        }
+
+        @media (max-width: 600px) {
+            .project-modal-details { grid-template-columns: 1fr 1fr; }
         }
 
         .project-card-top {
@@ -1136,7 +1342,7 @@
     <!-- Page Header -->
     <section class="page-header">
         <div class="page-header-content">
-            <h1>Our Projects</h1>
+            <h1>Featured Projects</h1>
         </div>
     </section>
 
@@ -1169,7 +1375,6 @@
             <div class="project-section-header">
                 <div class="project-section-left">
                     <h2 class="project-section-title">Infrastructure</h2>
-                    <span class="project-section-count">3 projects</span>
                 </div>
                 <div class="project-section-nav">
                     <button class="carousel-btn" id="prev-infrastructure">&#8249;</button>
@@ -1225,7 +1430,6 @@
             <div class="project-section-header">
                 <div class="project-section-left">
                     <h2 class="project-section-title">Renewal</h2>
-                    <span class="project-section-count">3 projects</span>
                 </div>
                 <div class="project-section-nav">
                     <button class="carousel-btn" id="prev-renewal">&#8249;</button>
@@ -1281,7 +1485,6 @@
             <div class="project-section-header">
                 <div class="project-section-left">
                     <h2 class="project-section-title">Urban Land</h2>
-                    <span class="project-section-count">6 projects</span>
                 </div>
                 <div class="project-section-nav">
                     <button class="carousel-btn" id="prev-urban-land">&#8249;</button>
@@ -1372,6 +1575,12 @@
         </section>
 
     </main>
+
+    <!-- Project Detail Modal -->
+    <div class="project-modal" id="projectModal">
+        <button class="project-modal-close" id="projectModalClose">&times;</button>
+        <div class="project-modal-box" id="projectModalBox"></div>
+    </div>
 
     <!-- Footer -->
     <footer class="footer">
@@ -1580,6 +1789,49 @@
             });
         });
 
+        // Project detail modal
+        const projectModal = document.getElementById('projectModal');
+        const projectModalBox = document.getElementById('projectModalBox');
+
+        function openProjectModal(card) {
+            const title    = card.querySelector('.project-title').textContent;
+            const client   = card.querySelector('.project-client').textContent;
+            const category = card.querySelector('.project-badge').textContent;
+            const year     = card.querySelector('.project-year').textContent;
+            const location = card.querySelector('.proj-location').textContent;
+            const engineer = card.querySelector('.project-card-footer span:last-child').textContent;
+            const desc     = card.querySelector('.project-description').textContent;
+
+            projectModalBox.innerHTML = `
+                <div class="project-modal-image" data-label="${category}">
+                    <span class="project-modal-cat">${category}</span>
+                </div>
+                <div class="project-modal-body">
+                    <h2 class="project-modal-title">${title}</h2>
+                    <div class="project-modal-client">${client}</div>
+                    <p class="project-modal-desc">${desc}</p>
+                    <div class="project-modal-details">
+                        <div class="project-modal-detail"><strong>Location</strong><span>${location}</span></div>
+                        <div class="project-modal-detail"><strong>Completed</strong><span>${year}</span></div>
+                        <div class="project-modal-detail"><strong>Engineering</strong><span>${engineer}</span></div>
+                    </div>
+                    <a href="contact.html" class="project-modal-cta">
+                        Discuss a Similar Project
+                        <svg width="15" height="15" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"/></svg>
+                    </a>
+                </div>`;
+            projectModal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeProjectModal() {
+            projectModal.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        document.getElementById('projectModalClose').addEventListener('click', closeProjectModal);
+        projectModal.addEventListener('click', e => { if (e.target === projectModal) closeProjectModal(); });
+
         // Project carousels
         ['infrastructure', 'renewal', 'urban-land'].forEach(id => {
             const track   = document.getElementById(`track-${id}`);
@@ -1587,6 +1839,21 @@
             const nextBtn = document.getElementById(`next-${id}`);
             const dotsEl  = document.getElementById(`dots-${id}`);
             const cards   = Array.from(track.querySelectorAll('.project-card'));
+
+            // Inject image area into each card
+            cards.forEach(card => {
+                const label = card.querySelector('.project-badge').textContent;
+                const img = document.createElement('div');
+                img.className = 'project-card-image';
+                img.dataset.label = label;
+                const badge = document.createElement('span');
+                badge.className = 'project-img-badge';
+                badge.textContent = label;
+                img.appendChild(badge);
+                card.insertBefore(img, card.firstChild);
+
+                card.addEventListener('click', () => openProjectModal(card));
+            });
 
             // Build dots
             cards.forEach((_, i) => {
@@ -1627,7 +1894,6 @@
             prevBtn.addEventListener('click', () => scrollTo(Math.max(0, nearest() - 1)));
             nextBtn.addEventListener('click', () => scrollTo(Math.min(cards.length - 1, nearest() + 1)));
 
-            // Mouse drag
             let drag = null;
             track.addEventListener('mousedown', e => { drag = { x: e.clientX, left: track.scrollLeft }; e.preventDefault(); });
             track.addEventListener('mousemove', e => { if (drag) track.scrollLeft = drag.left - (e.clientX - drag.x); });
@@ -1639,6 +1905,7 @@
 
         document.addEventListener('keydown', function(e) {
             if (e.key === 'Escape') {
+                if (projectModal.classList.contains('active')) { closeProjectModal(); return; }
                 searchOverlay.classList.remove('active');
                 mobileToggle.classList.remove('active');
                 mobileNav.classList.remove('active');
