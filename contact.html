@@ -600,6 +600,101 @@
             margin: 0;
         }
 
+        /* Form success state */
+        .form-success {
+            display: flex;
+            flex-direction: column;
+            gap: 1.25rem;
+            height: 100%;
+            justify-content: center;
+            animation: successFadeIn 0.5s ease forwards;
+        }
+
+        @keyframes successFadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+
+        .success-icon {
+            width: 52px;
+            height: 52px;
+            background: var(--text-dark);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .success-heading {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text-dark);
+            line-height: 1.3;
+        }
+
+        .success-body {
+            font-size: 0.95rem;
+            color: var(--text-gray);
+            line-height: 1.75;
+        }
+
+        .success-urgent {
+            font-size: 0.9rem;
+            color: var(--text-gray);
+            padding: 0.75rem 1rem;
+            background: var(--background-light);
+            border-radius: 8px;
+            border-left: 3px solid var(--text-dark);
+        }
+
+        .success-urgent a {
+            color: var(--text-dark);
+            font-weight: 600;
+            text-decoration: none;
+        }
+
+        .success-explore {
+            margin-top: 0.25rem;
+        }
+
+        .success-explore-label {
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--text-light);
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-bottom: 0.75rem;
+        }
+
+        .success-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.65rem;
+        }
+
+        .success-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.45rem;
+            padding: 0.55rem 1rem;
+            border: 1.5px solid #e0e0e0;
+            border-radius: 50px;
+            text-decoration: none;
+            color: var(--text-dark);
+            font-size: 0.88rem;
+            font-weight: 500;
+            transition: var(--transition);
+            background: var(--primary-white);
+        }
+
+        .success-link:hover {
+            background: var(--text-dark);
+            color: var(--primary-white);
+            border-color: var(--text-dark);
+            transform: translateY(-2px);
+        }
+
         /* Responsive */
         @media (max-width: 1024px) {
             .nav-menu { display: none; }
@@ -894,8 +989,8 @@
             <form class="contact-form" action="https://api.web3forms.com/submit" method="POST">
                 <input type="hidden" name="access_key" value="a387d1f3-a78e-49d0-9a62-3d903738b2be">
                 <input type="hidden" name="subject" value="Website Contact Form Submission">
-                <input type="hidden" name="redirect" value="https://jesuyanm.github.io/Degner/contact.html">
                 <input type="hidden" name="from_name" value="Degner Website">
+                <input type="checkbox" name="botcheck" style="display:none;">
 
                 <div class="form-row">
                     <div class="form-field">
@@ -926,6 +1021,72 @@
     </footer>
 
     <script>
+        // Contact form — show thank-you in place of form on success
+        document.querySelector('.contact-form').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            const form = this;
+            const btn = form.querySelector('.form-submit');
+            const name = form.querySelector('[name="name"]').value.trim().split(' ')[0];
+
+            btn.textContent = 'Sending…';
+            btn.disabled = true;
+
+            try {
+                const res = await fetch('https://api.web3forms.com/submit', {
+                    method: 'POST',
+                    body: new FormData(form)
+                });
+                const json = await res.json();
+
+                if (json.success) {
+                    document.querySelector('.contact-form-block').innerHTML = `
+                        <div class="form-success">
+                            <div class="success-icon">
+                                <svg width="26" height="26" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+                            </div>
+                            <h3 class="success-heading">Thank you, ${name}!<br>We've received your message.</h3>
+                            <p class="success-body">
+                                Our team reviews all inquiries during business hours and will be in touch
+                                <strong>within 1–2 business days</strong> (Monday – Friday, 8:00 AM – 5:00 PM MST).
+                                We look forward to connecting with you.
+                            </p>
+                            <p class="success-urgent">
+                                Need a faster response? Call us directly at
+                                <a href="tel:780-960-8723">780-960-8723</a> or email
+                                <a href="mailto:info@degner.ca">info@degner.ca</a>.
+                            </p>
+                            <div class="success-explore">
+                                <p class="success-explore-label">While you wait, explore more</p>
+                                <div class="success-links">
+                                    <a href="projects.html" class="success-link">
+                                        <svg width="15" height="15" fill="currentColor" viewBox="0 0 20 20"><path d="M7 3a1 1 0 000 2h6a1 1 0 100-2H7zM4 7a1 1 0 011-1h10a1 1 0 110 2H5a1 1 0 01-1-1zM2 11a2 2 0 012-2h12a2 2 0 012 2v4a2 2 0 01-2 2H4a2 2 0 01-2-2v-4z"/></svg>
+                                        Our Projects
+                                    </a>
+                                    <a href="careers.html" class="success-link">
+                                        <svg width="15" height="15" fill="currentColor" viewBox="0 0 20 20"><path d="M9 6a3 3 0 11-6 0 3 3 0 016 0zM17 6a3 3 0 11-6 0 3 3 0 016 0zM12.93 17c.046-.327.07-.66.07-1a6.97 6.97 0 00-1.5-4.33A5 5 0 0119 16v1h-6.07zM6 11a5 5 0 015 5v1H1v-1a5 5 0 015-5z"/></svg>
+                                        Join Our Team
+                                    </a>
+                                    <a href="safety.html" class="success-link">
+                                        <svg width="15" height="15" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2L3 7v3c0 5.55 3.84 9.74 9 11 5.16-1.26 9-5.45 9-11V7l-10-5z"/></svg>
+                                        Safety Culture
+                                    </a>
+                                    <a href="index.html#services" class="success-link">
+                                        <svg width="15" height="15" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M11.49 3.17c-.38-1.56-2.6-1.56-2.98 0a1.532 1.532 0 01-2.286.948c-1.372-.836-2.942.734-2.106 2.106.54.886.061 2.042-.947 2.287-1.561.379-1.561 2.6 0 2.978a1.532 1.532 0 01.947 2.287c-.836 1.372.734 2.942 2.106 2.106a1.532 1.532 0 012.287.947c.379 1.561 2.6 1.561 2.978 0a1.533 1.533 0 012.287-.947c1.372.836 2.942-.734 2.106-2.106a1.533 1.533 0 01.947-2.287c1.561-.379 1.561-2.6 0-2.978a1.532 1.532 0 01-.947-2.287c.836-1.372-.734-2.942-2.106-2.106a1.532 1.532 0 01-2.287-.947zM10 13a3 3 0 100-6 3 3 0 000 6z" clip-rule="evenodd"/></svg>
+                                        What We Do
+                                    </a>
+                                </div>
+                            </div>
+                        </div>`;
+                } else {
+                    btn.textContent = 'Send Inquiry';
+                    btn.disabled = false;
+                }
+            } catch {
+                btn.textContent = 'Send Inquiry';
+                btn.disabled = false;
+            }
+        });
+
         // Header Scroll Effect
         window.addEventListener('scroll', function() {
             const header = document.getElementById('header');
