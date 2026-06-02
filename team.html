@@ -1009,7 +1009,7 @@
                     </a>
                 </div>
                 <ul class="nav-menu">
-                    <li class="nav-item">
+                    <li class="nav-item active">
                         <a href="#" onclick="return false;">Who We Are</a>
                         <div class="megamenu">
                             <div class="megamenu-content">
@@ -1017,7 +1017,7 @@
                                     <h4>About Us</h4>
                                     <ul>
                                         <li>
-                                            <a href="#about">
+                                            <a href="index.html#about">
 
                                                 <svg class="megamenu-icon" fill="currentColor" viewBox="0 0 20 20">
                                                     <path d="M10.394 2.08a1 1 0 00-.788 0l-7 3a1 1 0 000 1.84L5.25 8.051a.999.999 0 01.356-.257l4-1.714a1 1 0 11.788 1.838L7.667 9.088l1.94.831a1 1 0 00.787 0l7-3a1 1 0 000-1.838l-7-3z"/>
@@ -1029,7 +1029,7 @@
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="#about">
+                                            <a href="index.html#about">
 
                                                 <svg class="megamenu-icon" fill="currentColor" viewBox="0 0 20 20">
                                                     <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
@@ -1041,7 +1041,7 @@
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="#about">
+                                            <a href="index.html#about">
 
                                                 <svg class="megamenu-icon" fill="currentColor" viewBox="0 0 20 20">
                                                     <path d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z"/>
@@ -1080,7 +1080,7 @@
                                     <h4>Our History</h4>
                                     <ul>
                                         <li>
-                                            <a href="#about">
+                                            <a href="index.html#about">
 
                                                 <svg class="megamenu-icon" fill="currentColor" viewBox="0 0 20 20">
                                                     <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clip-rule="evenodd"/>
@@ -1092,7 +1092,7 @@
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="#about">
+                                            <a href="index.html#about">
 
                                                 <svg class="megamenu-icon" fill="currentColor" viewBox="0 0 20 20">
                                                     <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
@@ -1109,7 +1109,7 @@
                                     <h4>Our Location</h4>
                                     <ul>
                                         <li>
-                                            <a href="#contact">
+                                            <a href="contact.html">
                                                 <svg class="megamenu-icon" fill="currentColor" viewBox="0 0 20 20">
                                                     <path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"/>
                                                 </svg>
@@ -1120,7 +1120,7 @@
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="#about">
+                                            <a href="index.html#about">
 
                                                 <svg class="megamenu-icon" fill="currentColor" viewBox="0 0 20 20">
                                                     <path d="M3 4a1 1 0 011-1h12a1 1 0 011 1v2a1 1 0 01-1 1H4a1 1 0 01-1-1V4zM3 10a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H4a1 1 0 01-1-1v-6zM14 9a1 1 0 00-1 1v6a1 1 0 001 1h2a1 1 0 001-1v-6a1 1 0 00-1-1h-2z"/>
@@ -1272,10 +1272,12 @@
     <!-- Footer -->
     <footer class="footer">
         <span class="footer-credit">Designed by Emet Solutions</span>
-        <p>&copy; <script>document.write(new Date().getFullYear());</script> Degner Construction. All rights reserved. Building Tomorrow's Infrastructure Today.</p>
+        <p>&copy; <span id="footer-year"></span> Degner Construction. All rights reserved. Building Tomorrow's Infrastructure Today.</p>
     </footer>
 <script>
-        // Team modal — infinite scroll carousel (3× clones)
+        document.getElementById('footer-year').textContent = new Date().getFullYear();
+
+        // Team modal carousel
         const modal = document.getElementById('teamModal');
         const trackWrapper = document.getElementById('modalTrackWrapper');
         const prevBtn = document.getElementById('modalPrev');
@@ -1290,10 +1292,8 @@
         }));
 
         const total = membersData.length;
-        let currentIndex = 0;
         let allCards = [];
-        let isJumping = false;
-        let scrollTimer;
+        let navTarget = -1;
 
         function cardHTML(d) {
             return `
@@ -1309,29 +1309,18 @@
         function buildCards() {
             trackWrapper.innerHTML = '';
             allCards = [];
-            for (let copy = 0; copy < 3; copy++) {
-                membersData.forEach(d => {
-                    const el = document.createElement('div');
-                    el.className = 'team-modal-inner';
-                    el.innerHTML = cardHTML(d);
-                    trackWrapper.appendChild(el);
-                    allCards.push(el);
-                });
-            }
-        }
-
-        // Width of one full set of cards (used for infinite jump)
-        function sectionWidth() {
-            return allCards.length >= total + 1
-                ? allCards[total].offsetLeft - allCards[0].offsetLeft
-                : 0;
+            membersData.forEach(d => {
+                const el = document.createElement('div');
+                el.className = 'team-modal-inner';
+                el.innerHTML = cardHTML(d);
+                trackWrapper.appendChild(el);
+                allCards.push(el);
+            });
         }
 
         function setPadding() {
             if (!allCards[0]) return;
-            const wrapperW = trackWrapper.clientWidth;
-            const cardW = allCards[0].offsetWidth;
-            const pad = Math.max(0, (wrapperW - cardW) / 2);
+            const pad = Math.max(0, (trackWrapper.clientWidth - allCards[0].offsetWidth) / 2);
             trackWrapper.style.paddingInline = pad + 'px';
             trackWrapper.style.scrollPaddingInline = pad + 'px';
         }
@@ -1339,8 +1328,7 @@
         function scrollToIdx(idx, behavior = 'smooth') {
             const card = allCards[idx];
             if (!card) return;
-            const wrapperW = trackWrapper.clientWidth;
-            const target = card.offsetLeft - (wrapperW - card.offsetWidth) / 2;
+            const target = card.offsetLeft - (trackWrapper.clientWidth - card.offsetWidth) / 2;
             trackWrapper.scrollTo({ left: Math.max(0, target), behavior });
         }
 
@@ -1356,20 +1344,6 @@
 
         function updateActive(idx) {
             allCards.forEach((c, i) => c.classList.toggle('active-card', i === idx));
-            currentIndex = idx % total;
-        }
-
-        // After scroll settles: highlight active card and jump from clone to real copy
-        function checkAndJump() {
-            const idx = nearestIdx();
-            updateActive(idx);
-            if (idx < total || idx >= total * 2) {
-                const target = (idx % total) + total;
-                isJumping = true;
-                scrollToIdx(target, 'instant');
-                updateActive(target);
-                requestAnimationFrame(() => { isJumping = false; });
-            }
         }
 
         function openModal(index) {
@@ -1378,13 +1352,15 @@
             document.body.style.overflow = 'hidden';
             requestAnimationFrame(() => {
                 setPadding();
-                scrollToIdx(total + index, 'instant');
-                updateActive(total + index);
+                scrollToIdx(index, 'instant');
+                updateActive(index);
             });
         }
 
         function navigate(dir) {
             const next = Math.max(0, Math.min(allCards.length - 1, nearestIdx() + dir));
+            navTarget = next;
+            updateActive(next);
             scrollToIdx(next);
         }
 
@@ -1394,33 +1370,19 @@
         }
 
         trackWrapper.addEventListener('scroll', () => {
-            if (isJumping) return;
-            updateActive(nearestIdx());
-            clearTimeout(scrollTimer);
-            scrollTimer = setTimeout(checkAndJump, 120);
+            const n = nearestIdx();
+            if (navTarget < 0 || navTarget === n) { navTarget = -1; updateActive(n); }
         });
 
-        // Mouse drag-to-scroll with snap-on-release
         let dragStart = null;
-        trackWrapper.addEventListener('mousedown', e => {
-            dragStart = { x: e.clientX, left: trackWrapper.scrollLeft };
-            e.preventDefault();
-        });
-        trackWrapper.addEventListener('mousemove', e => {
-            if (!dragStart) return;
-            trackWrapper.scrollLeft = dragStart.left - (e.clientX - dragStart.x);
-        });
-        window.addEventListener('mouseup', () => {
-            if (!dragStart) return;
-            dragStart = null;
-            scrollToIdx(nearestIdx()); // snap to nearest card
-        });
+        trackWrapper.addEventListener('mousedown', e => { dragStart = { x: e.clientX, left: trackWrapper.scrollLeft }; e.preventDefault(); });
+        trackWrapper.addEventListener('mousemove', e => { if (!dragStart) return; trackWrapper.scrollLeft = dragStart.left - (e.clientX - dragStart.x); });
+        window.addEventListener('mouseup', () => { if (!dragStart) return; dragStart = null; navTarget = -1; scrollToIdx(nearestIdx()); });
 
         window.addEventListener('resize', () => {
             if (!modal.classList.contains('active')) return;
-            const idx = (currentIndex + total);
             setPadding();
-            scrollToIdx(idx, 'instant');
+            scrollToIdx(nearestIdx(), 'instant');
         });
 
         document.querySelectorAll('.team-member').forEach((m, i) => m.addEventListener('click', () => openModal(i)));
@@ -1428,12 +1390,6 @@
         nextBtn.addEventListener('click', () => navigate(1));
         document.getElementById('teamModalClose').addEventListener('click', closeModal);
         modal.addEventListener('click', e => { if (e.target === modal) closeModal(); });
-        document.addEventListener('keydown', e => {
-            if (!modal.classList.contains('active')) return;
-            if (e.key === 'Escape') closeModal();
-            if (e.key === 'ArrowLeft') navigate(-1);
-            if (e.key === 'ArrowRight') navigate(1);
-        });
 
         // Header Scroll Effect
         window.addEventListener('scroll', function() {
@@ -1618,7 +1574,7 @@
         });
 
         document.addEventListener('click', function(e) {
-            if (!mobileNav.contains(e.target) && !mobileToggle.contains(e.target)) {
+            if (mobileNav.classList.contains('active') && !mobileNav.contains(e.target) && !mobileToggle.contains(e.target)) {
                 mobileToggle.classList.remove('active');
                 mobileNav.classList.remove('active');
                 document.body.style.overflow = '';
@@ -1635,10 +1591,15 @@
 
         document.addEventListener('keydown', function(e) {
             if (e.key === 'Escape') {
+                if (modal.classList.contains('active')) { closeModal(); return; }
                 searchOverlay.classList.remove('active');
                 mobileToggle.classList.remove('active');
                 mobileNav.classList.remove('active');
                 document.body.style.overflow = '';
+            }
+            if (modal.classList.contains('active')) {
+                if (e.key === 'ArrowLeft') navigate(-1);
+                if (e.key === 'ArrowRight') navigate(1);
             }
         });
     </script>

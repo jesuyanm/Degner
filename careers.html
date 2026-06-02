@@ -1595,10 +1595,12 @@
     <!-- Footer -->
     <footer class="footer">
         <span class="footer-credit">Designed by Emet Solutions</span>
-        <p>&copy; <script>document.write(new Date().getFullYear());</script> Degner Construction. All rights reserved. Building Tomorrow's Infrastructure Today.</p>
+        <p>&copy; <span id="footer-year"></span> Degner Construction. All rights reserved. Building Tomorrow's Infrastructure Today.</p>
     </footer>
 
     <script>
+        document.getElementById('footer-year').textContent = new Date().getFullYear();
+
         // Header Scroll Effect
         window.addEventListener('scroll', function() {
             const header = document.getElementById('header');
@@ -1782,7 +1784,7 @@
         });
 
         document.addEventListener('click', function(e) {
-            if (!mobileNav.contains(e.target) && !mobileToggle.contains(e.target)) {
+            if (mobileNav.classList.contains('active') && !mobileNav.contains(e.target) && !mobileToggle.contains(e.target)) {
                 mobileToggle.classList.remove('active');
                 mobileNav.classList.remove('active');
                 document.body.style.overflow = '';

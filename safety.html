@@ -1115,7 +1115,7 @@
                     </a>
                 </div>
                 <ul class="nav-menu">
-                    <li class="nav-item">
+                    <li class="nav-item active">
                         <a href="#" onclick="return false;">Who We Are</a>
                         <div class="megamenu">
                             <div class="megamenu-content">
@@ -1391,10 +1391,12 @@
     <!-- Footer -->
     <footer class="footer">
         <span class="footer-credit">Designed by Emet Solutions</span>
-        <p>&copy; <script>document.write(new Date().getFullYear());</script> Degner Construction. All rights reserved. Building Tomorrow's Infrastructure Today.</p>
+        <p>&copy; <span id="footer-year"></span> Degner Construction. All rights reserved. Building Tomorrow's Infrastructure Today.</p>
     </footer>
 
     <script>
+        document.getElementById('footer-year').textContent = new Date().getFullYear();
+
         // Header Scroll Effect
         window.addEventListener('scroll', function() {
             const header = document.getElementById('header');
@@ -1578,7 +1580,7 @@
         });
 
         document.addEventListener('click', function(e) {
-            if (!mobileNav.contains(e.target) && !mobileToggle.contains(e.target)) {
+            if (mobileNav.classList.contains('active') && !mobileNav.contains(e.target) && !mobileToggle.contains(e.target)) {
                 mobileToggle.classList.remove('active');
                 mobileNav.classList.remove('active');
                 document.body.style.overflow = '';
@@ -1591,15 +1593,6 @@
                 mobileNav.classList.remove('active');
                 document.body.style.overflow = '';
             });
-        });
-
-        document.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape') {
-                searchOverlay.classList.remove('active');
-                mobileToggle.classList.remove('active');
-                mobileNav.classList.remove('active');
-                document.body.style.overflow = '';
-            }
         });
 
         // Lightbox for certificate image
@@ -1623,7 +1616,13 @@
         });
 
         document.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape') closeLightbox();
+            if (e.key === 'Escape') {
+                if (lightbox.classList.contains('active')) { closeLightbox(); return; }
+                searchOverlay.classList.remove('active');
+                mobileToggle.classList.remove('active');
+                mobileNav.classList.remove('active');
+                document.body.style.overflow = '';
+            }
         });
 
         // Smooth scrolling for anchor links

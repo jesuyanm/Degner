@@ -1758,10 +1758,11 @@
     <!-- Footer -->
     <footer class="footer">
         <span class="footer-credit">Designed by Emet Solutions</span>
-        <p>&copy; <script>document.write(new Date().getFullYear());</script> Degner Construction. All rights reserved. Building Tomorrow's Infrastructure Today.</p>
+        <p>&copy; <span id="footer-year"></span> Degner Construction. All rights reserved. Building Tomorrow's Infrastructure Today.</p>
     </footer>
 
     <script>
+        document.getElementById('footer-year').textContent = new Date().getFullYear();
 
         // Header Scroll Effect and Active Navigation
         const sections = document.querySelectorAll('.section, .hero');
@@ -2032,7 +2033,7 @@
         });
 
         document.addEventListener('click', function(e) {
-            if (!mobileNav.contains(e.target) && !mobileToggle.contains(e.target)) {
+            if (mobileNav.classList.contains('active') && !mobileNav.contains(e.target) && !mobileToggle.contains(e.target)) {
                 mobileToggle.classList.remove('active');
                 mobileNav.classList.remove('active');
                 document.body.style.overflow = '';
@@ -2059,7 +2060,7 @@
 
         document.querySelectorAll('.cta-primary, .cta-secondary, .contact-cta').forEach(button => {
             button.addEventListener('click', function(e) {
-                if (this.href && this.href.includes('tel:') || this.href.includes('mailto:')) {
+                if (this.href && (this.href.includes('tel:') || this.href.includes('mailto:'))) {
                     return;
                 }
                 

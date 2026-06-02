@@ -2039,11 +2039,16 @@
                 dotsEl.querySelectorAll('.carousel-dot').forEach((d, j) => d.classList.toggle('active', j === i));
             }
 
-            let st;
-            track.addEventListener('scroll', () => { clearTimeout(st); st = setTimeout(() => updateDots(nearest()), 60); });
+            track.addEventListener('scroll', () => updateDots(nearest()));
 
-            prevBtn.addEventListener('click', () => scrollTo(Math.max(0, nearest() - 1)));
-            nextBtn.addEventListener('click', () => scrollTo(Math.min(cards.length - 1, nearest() + 1)));
+            prevBtn.addEventListener('click', () => {
+                const next = Math.max(0, nearest() - 1);
+                scrollTo(next); updateDots(next);
+            });
+            nextBtn.addEventListener('click', () => {
+                const next = Math.min(cards.length - 1, nearest() + 1);
+                scrollTo(next); updateDots(next);
+            });
 
             let drag = null;
             track.addEventListener('mousedown', e => { drag = { x: e.clientX, left: track.scrollLeft }; e.preventDefault(); });
