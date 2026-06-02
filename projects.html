@@ -703,9 +703,9 @@
 
         /* Project card — carousel style */
         .project-card {
-            scroll-snap-align: center;
+            scroll-snap-align: start;
             flex-shrink: 0;
-            width: min(460px, 78vw);
+            width: min(460px, 82vw);
             background: var(--primary-white);
             border-radius: var(--border-radius);
             box-shadow: var(--shadow-light);
@@ -2017,16 +2017,15 @@
                 dotsEl.appendChild(dot);
             });
 
-            function setPadding() {
-                const pad = Math.max(0, (track.clientWidth - (cards[0]?.offsetWidth || 0)) / 2);
-                track.style.paddingInline = pad + 'px';
-                track.style.scrollPaddingInline = pad + 'px';
+            // Left edge of the viewport in card-offset coordinates
+            function viewportLeft() {
+                return cards[0].offsetLeft + track.scrollLeft;
             }
 
             function nearest() {
-                const center = track.scrollLeft + track.clientWidth / 2;
+                const pos = viewportLeft();
                 return cards.reduce((best, card, i) => {
-                    const dist = Math.abs(card.offsetLeft + card.offsetWidth / 2 - center);
+                    const dist = Math.abs(card.offsetLeft - pos);
                     return dist < best.dist ? { i, dist } : best;
                 }, { i: 0, dist: Infinity }).i;
             }
@@ -2034,7 +2033,7 @@
             function scrollTo(i, behavior = 'smooth') {
                 const card = cards[i];
                 if (!card) return;
-                track.scrollTo({ left: card.offsetLeft - (track.clientWidth - card.offsetWidth) / 2, behavior });
+                track.scrollTo({ left: card.offsetLeft - cards[0].offsetLeft, behavior });
             }
 
             function updateDots(i) {
@@ -2057,8 +2056,7 @@
             track.addEventListener('mousemove', e => { if (drag) track.scrollLeft = drag.left - (e.clientX - drag.x); });
             window.addEventListener('mouseup', () => { if (drag) { drag = null; scrollTo(nearest()); } });
 
-            requestAnimationFrame(() => { setPadding(); scrollTo(0, 'instant'); updateDots(0); });
-            window.addEventListener('resize', () => { setPadding(); scrollTo(nearest(), 'instant'); });
+            updateDots(0);
         });
 
         document.addEventListener('keydown', function(e) {
