@@ -694,11 +694,15 @@
         .project-track {
             display: flex;
             overflow-x: auto;
+            overflow-y: hidden;
             overscroll-behavior-x: contain;
             scroll-snap-type: x mandatory;
             scrollbar-width: none;
             gap: 1.25rem;
-            padding-bottom: 0.5rem;
+            /* Top padding gives the cards room to lift on hover without the
+               overflow-y clip chopping off their top edge (and the hover bar). */
+            padding: 14px 0 0.5rem;
+            border-radius: var(--border-radius);
             cursor: grab;
         }
 
@@ -720,11 +724,33 @@
             transition: var(--transition);
             cursor: pointer;
             overflow: hidden;
+            position: relative;
+        }
+
+        /* Gradient line that scales in from the left on hover — matches the
+           service cards on the home page. z-index keeps it above the card image. */
+        .project-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            /* Bright white bar for high contrast against the dark card-image area. */
+            background: linear-gradient(90deg, #ffffff, rgba(255, 255, 255, 0.6));
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: var(--transition);
+            z-index: 2;
+        }
+
+        .project-card:hover::before {
+            transform: scaleX(1);
         }
 
         .project-card:hover {
-            box-shadow: var(--shadow-medium);
-            transform: translateY(-4px);
+            box-shadow: var(--shadow-heavy);
+            transform: translateY(-6px);
         }
 
         /* Card image area (injected by JS) */
