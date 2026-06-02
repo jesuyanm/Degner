@@ -1032,10 +1032,28 @@
             e.preventDefault();
             const form = this;
             const btn = form.querySelector('.form-submit');
-            const rawName = form.querySelector('[name="name"]').value.trim().split(' ')[0];
-            const firstName = rawName
-                ? rawName.replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))
-                : 'there';
+            const fields = [
+                { el: form.querySelector('[name="name"]'),    msg: 'Please enter your name.'         },
+                { el: form.querySelector('[name="email"]'),   msg: 'Please enter your email address.' },
+                { el: form.querySelector('[name="subject"]'), msg: 'Please enter a subject.'          },
+                { el: form.querySelector('[name="message"]'), msg: 'Please enter a message.'          },
+            ];
+
+            for (const { el, msg } of fields) {
+                if (!el.value.trim()) {
+                    el.setCustomValidity(msg);
+                    el.reportValidity();
+                    el.addEventListener('input', () => el.setCustomValidity(''), { once: true });
+                    return;
+                }
+                el.setCustomValidity('');
+            }
+
+            const nameInput = form.querySelector('[name="name"]');
+            const rawName = nameInput.value.trim();
+
+            const firstName = rawName.split(' ')[0]
+                .replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 
             const reset = (msg) => {
                 btn.textContent = 'Send Inquiry';
