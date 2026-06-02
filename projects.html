@@ -988,9 +988,18 @@
         }
 
         .project-card-top {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+            display: none; /* category shown on image badge; year overlaid on image */
+        }
+
+        .project-img-year {
+            position: absolute;
+            top: 0.75rem;
+            right: 0.9rem;
+            font-size: 0.78rem;
+            font-weight: 600;
+            color: rgba(255,255,255,0.75);
+            letter-spacing: 0.5px;
+            z-index: 1;
         }
 
         .project-badge {
@@ -2021,13 +2030,18 @@
             // Inject image area into each card
             cards.forEach(card => {
                 const label = card.querySelector('.project-badge').textContent;
+                const year = card.querySelector('.project-year').textContent;
                 const img = document.createElement('div');
                 img.className = 'project-card-image';
                 img.dataset.label = label;
                 const badge = document.createElement('span');
                 badge.className = 'project-img-badge';
                 badge.textContent = label;
+                const yr = document.createElement('span');
+                yr.className = 'project-img-year';
+                yr.textContent = year;
                 img.appendChild(badge);
+                img.appendChild(yr);
                 card.insertBefore(img, card.firstChild);
 
                 card.addEventListener('click', () => openProjectModal(card, id));
