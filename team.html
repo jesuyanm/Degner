@@ -775,6 +775,7 @@
             align-items: center;
             overflow-x: auto;
             overflow-y: hidden;
+            overscroll-behavior-x: contain;
             scroll-snap-type: x mandatory;
             scrollbar-width: none;
             touch-action: pan-x;
@@ -1377,9 +1378,30 @@
         });
 
         let dragStart = null;
-        trackWrapper.addEventListener('mousedown', e => { dragStart = { x: e.clientX, left: trackWrapper.scrollLeft }; e.preventDefault(); });
-        trackWrapper.addEventListener('mousemove', e => { if (!dragStart) return; trackWrapper.scrollLeft = dragStart.left - (e.clientX - dragStart.x); });
-        window.addEventListener('mouseup', () => { if (!dragStart) return; dragStart = null; navTarget = -1; scrollToIdx(nearestIdx()); });
+        trackWrapper.addEventListener('mousedown', e => { dragStart = { x: e.clientX, left: trackWrapper.scrollLeft }; trackWrapper.style.transition = 'none'; e.preventDefault(); });
+        trackWrapper.addEventListener('mousemove', e => {
+            if (!dragStart) return;
+            const desired = dragStart.left - (e.clientX - dragStart.x);
+            const max = trackWrapper.scrollWidth - trackWrapper.clientWidth;
+            if (desired < 0) {
+                trackWrapper.scrollLeft = 0;
+                trackWrapper.style.transform = `translateX(${Math.min(-desired * 0.35, 90)}px)`;
+            } else if (desired > max) {
+                trackWrapper.scrollLeft = max;
+                trackWrapper.style.transform = `translateX(${-Math.min((desired - max) * 0.35, 90)}px)`;
+            } else {
+                trackWrapper.scrollLeft = desired;
+                trackWrapper.style.transform = '';
+            }
+        });
+        window.addEventListener('mouseup', () => {
+            if (!dragStart) return;
+            dragStart = null;
+            navTarget = -1;
+            trackWrapper.style.transition = 'transform 0.35s cubic-bezier(0.25, 1, 0.5, 1)';
+            trackWrapper.style.transform = '';
+            scrollToIdx(nearestIdx());
+        });
 
         window.addEventListener('resize', () => {
             if (!modal.classList.contains('active')) return;

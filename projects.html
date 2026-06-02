@@ -691,6 +691,7 @@
         .project-track {
             display: flex;
             overflow-x: auto;
+            overscroll-behavior-x: contain;
             scroll-snap-type: x mandatory;
             scrollbar-width: none;
             gap: 1.25rem;
@@ -829,6 +830,7 @@
             align-items: center;
             overflow-x: auto;
             overflow-y: hidden;
+            overscroll-behavior-x: contain;
             scroll-snap-type: x mandatory;
             scrollbar-width: none;
             touch-action: pan-x;
@@ -1957,11 +1959,32 @@
             }
         });
 
-        // Mouse drag
+        // Mouse drag with rubber-band overscroll
         let modalDrag = null;
-        projectModalTrack.addEventListener('mousedown', e => { modalDrag = { x: e.clientX, left: projectModalTrack.scrollLeft }; e.preventDefault(); });
-        projectModalTrack.addEventListener('mousemove', e => { if (modalDrag) projectModalTrack.scrollLeft = modalDrag.left - (e.clientX - modalDrag.x); });
-        window.addEventListener('mouseup', () => { if (modalDrag) { modalDrag = null; modalNavTarget = -1; modalScrollTo(modalNearest()); } });
+        projectModalTrack.addEventListener('mousedown', e => { modalDrag = { x: e.clientX, left: projectModalTrack.scrollLeft }; projectModalTrack.style.transition = 'none'; e.preventDefault(); });
+        projectModalTrack.addEventListener('mousemove', e => {
+            if (!modalDrag) return;
+            const desired = modalDrag.left - (e.clientX - modalDrag.x);
+            const max = projectModalTrack.scrollWidth - projectModalTrack.clientWidth;
+            if (desired < 0) {
+                projectModalTrack.scrollLeft = 0;
+                projectModalTrack.style.transform = `translateX(${Math.min(-desired * 0.35, 90)}px)`;
+            } else if (desired > max) {
+                projectModalTrack.scrollLeft = max;
+                projectModalTrack.style.transform = `translateX(${-Math.min((desired - max) * 0.35, 90)}px)`;
+            } else {
+                projectModalTrack.scrollLeft = desired;
+                projectModalTrack.style.transform = '';
+            }
+        });
+        window.addEventListener('mouseup', () => {
+            if (!modalDrag) return;
+            modalDrag = null;
+            modalNavTarget = -1;
+            projectModalTrack.style.transition = 'transform 0.35s cubic-bezier(0.25, 1, 0.5, 1)';
+            projectModalTrack.style.transform = '';
+            modalScrollTo(modalNearest());
+        });
 
         projectModalPrev.addEventListener('click', () => {
             if (!modalCards.length) return;
@@ -2052,9 +2075,29 @@
             });
 
             let drag = null;
-            track.addEventListener('mousedown', e => { drag = { x: e.clientX, left: track.scrollLeft }; e.preventDefault(); });
-            track.addEventListener('mousemove', e => { if (drag) track.scrollLeft = drag.left - (e.clientX - drag.x); });
-            window.addEventListener('mouseup', () => { if (drag) { drag = null; scrollTo(nearest()); } });
+            track.addEventListener('mousedown', e => { drag = { x: e.clientX, left: track.scrollLeft }; track.style.transition = 'none'; e.preventDefault(); });
+            track.addEventListener('mousemove', e => {
+                if (!drag) return;
+                const desired = drag.left - (e.clientX - drag.x);
+                const max = track.scrollWidth - track.clientWidth;
+                if (desired < 0) {
+                    track.scrollLeft = 0;
+                    track.style.transform = `translateX(${Math.min(-desired * 0.35, 90)}px)`;
+                } else if (desired > max) {
+                    track.scrollLeft = max;
+                    track.style.transform = `translateX(${-Math.min((desired - max) * 0.35, 90)}px)`;
+                } else {
+                    track.scrollLeft = desired;
+                    track.style.transform = '';
+                }
+            });
+            window.addEventListener('mouseup', () => {
+                if (!drag) return;
+                drag = null;
+                track.style.transition = 'transform 0.35s cubic-bezier(0.25, 1, 0.5, 1)';
+                track.style.transform = '';
+                scrollTo(nearest());
+            });
 
             updateDots(0);
         });
