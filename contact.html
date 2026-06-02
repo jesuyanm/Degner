@@ -584,6 +584,13 @@
 
         .form-submit:hover { background: var(--text-gray); transform: translateY(-2px); box-shadow: var(--shadow-medium); }
 
+        .form-error {
+            font-size: 0.85rem;
+            color: #c0392b;
+            margin-top: 0.25rem;
+            text-align: right;
+        }
+
         /* Footer */
         .footer {
             background: var(--background-dark);
@@ -988,7 +995,6 @@
         <div class="contact-form-block">
             <form class="contact-form" action="https://api.web3forms.com/submit" method="POST">
                 <input type="hidden" name="access_key" value="a387d1f3-a78e-49d0-9a62-3d903738b2be">
-                <input type="hidden" name="subject" value="Website Contact Form Submission">
                 <input type="hidden" name="from_name" value="Degner Website">
                 <input type="checkbox" name="botcheck" style="display:none;">
 
@@ -1017,7 +1023,7 @@
     <!-- Footer -->
     <footer class="footer">
         <span class="footer-credit">Designed by Emet Solutions</span>
-        <p>&copy; <script>document.write(new Date().getFullYear());</script> Degner Construction. All rights reserved. Building Tomorrow's Infrastructure Today.</p>
+        <p>&copy; <span id="footer-year"></span> Degner Construction. All rights reserved. Building Tomorrow's Infrastructure Today.</p>
     </footer>
 
     <script>
@@ -1026,7 +1032,20 @@
             e.preventDefault();
             const form = this;
             const btn = form.querySelector('.form-submit');
-            const name = form.querySelector('[name="name"]').value.trim().split(' ')[0];
+            const rawName = form.querySelector('[name="name"]').value.trim().split(' ')[0];
+            const firstName = rawName
+                ? rawName.replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))
+                : 'there';
+
+            const reset = (msg) => {
+                btn.textContent = 'Send Inquiry';
+                btn.disabled = false;
+                if (msg) {
+                    let err = form.querySelector('.form-error');
+                    if (!err) { err = document.createElement('p'); err.className = 'form-error'; btn.after(err); }
+                    err.textContent = msg;
+                }
+            };
 
             btn.textContent = 'Sending…';
             btn.disabled = true;
@@ -1044,7 +1063,7 @@
                             <div class="success-icon">
                                 <svg width="26" height="26" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
                             </div>
-                            <h3 class="success-heading">Thank you, ${name}!<br>We've received your message.</h3>
+                            <h3 class="success-heading">Thank you, ${firstName}!<br>We've received your message.</h3>
                             <p class="success-body">
                                 Our team reviews all inquiries during business hours and will be in touch
                                 <strong>within 1–2 business days</strong> (Monday – Friday, 8:00 AM – 5:00 PM MST).
@@ -1078,14 +1097,14 @@
                             </div>
                         </div>`;
                 } else {
-                    btn.textContent = 'Send Inquiry';
-                    btn.disabled = false;
+                    reset('Something went wrong. Please try again or call us at 780-960-8723.');
                 }
             } catch {
-                btn.textContent = 'Send Inquiry';
-                btn.disabled = false;
+                reset('Unable to send — please check your connection and try again.');
             }
         });
+
+        document.getElementById('footer-year').textContent = new Date().getFullYear();
 
         // Header Scroll Effect
         window.addEventListener('scroll', function() {
@@ -1218,7 +1237,7 @@
         });
 
         document.addEventListener('click', function(e) {
-            if (!mobileNav.contains(e.target) && !mobileToggle.contains(e.target)) {
+            if (mobileNav.classList.contains('active') && !mobileNav.contains(e.target) && !mobileToggle.contains(e.target)) {
                 mobileToggle.classList.remove('active');
                 mobileNav.classList.remove('active');
                 document.body.style.overflow = '';
