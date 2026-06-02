@@ -1347,6 +1347,8 @@
 
         function updateActive(idx) {
             allCards.forEach((c, i) => c.classList.toggle('active-card', i === idx));
+            prevBtn.style.display = idx <= 0 ? 'none' : 'flex';
+            nextBtn.style.display = idx >= allCards.length - 1 ? 'none' : 'flex';
         }
 
         function openModal(index) {

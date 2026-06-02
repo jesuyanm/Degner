@@ -1909,6 +1909,8 @@
 
         function modalUpdateActive(idx) {
             modalCards.forEach((c, i) => c.classList.toggle('active-card', i === idx));
+            projectModalPrev.style.display = idx <= 0 ? 'none' : 'flex';
+            projectModalNext.style.display = idx >= modalCards.length - 1 ? 'none' : 'flex';
         }
 
         function openProjectModal(clickedCard, categoryId) {
@@ -2061,9 +2063,14 @@
 
             function updateDots(i) {
                 dotsEl.querySelectorAll('.carousel-dot').forEach((d, j) => d.classList.toggle('active', j === i));
+                const noScroll = track.scrollWidth <= track.clientWidth + 1;
+                dotsEl.style.display = noScroll ? 'none' : '';
+                prevBtn.style.visibility = (noScroll || i <= 0) ? 'hidden' : 'visible';
+                nextBtn.style.visibility = (noScroll || i >= cards.length - 1) ? 'hidden' : 'visible';
             }
 
             track.addEventListener('scroll', () => updateDots(nearest()));
+            window.addEventListener('resize', () => updateDots(nearest()));
 
             prevBtn.addEventListener('click', () => {
                 const next = Math.max(0, nearest() - 1);
