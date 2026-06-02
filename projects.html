@@ -575,7 +575,7 @@
             background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.4)), url('pic5.png');
             background-size: cover;
             background-position: center;
-            height: 45vh;
+            height: 60vh;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -652,6 +652,18 @@
             font-size: 1.25rem;
             font-weight: 700;
             color: var(--text-dark);
+            position: relative;
+            padding-bottom: 0.4rem;
+        }
+
+        .project-section-title::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 40px;
+            height: 3px;
+            background: var(--text-dark);
         }
 
         .project-section-count {
