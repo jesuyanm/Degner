@@ -1158,7 +1158,7 @@
         }
 
         .stat-number {
-            font-size: 3rem;
+            font-size: clamp(1.4rem, 4vw, 3rem);
             font-weight: 700;
             color: var(--text-dark);
             margin-bottom: 0.5rem;
@@ -1251,7 +1251,23 @@
             }
 
             .stats-section {
-                margin: 1rem;
+                margin: 0.75rem;
+                padding: 0.85rem 0.75rem;
+            }
+
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 0.5rem;
+            }
+
+            .stats-section .stat-number {
+                font-size: 1.4rem !important;
+                margin-bottom: 0.15rem;
+            }
+
+            .stats-section .stat-label {
+                font-size: 0.65rem !important;
+                letter-spacing: 0.5px;
             }
 
             .footer {
@@ -1262,7 +1278,7 @@
             }
 
             .stats-grid {
-                grid-template-columns: 1fr;
+                grid-template-columns: repeat(2, 1fr);
             }
         }
     </style>
