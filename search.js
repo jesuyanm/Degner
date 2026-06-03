@@ -55,7 +55,7 @@
     { title: 'Matt Dudka — Project Manager', desc: 'CET. Technical project management — on-time, on-budget delivery with client communication focus', category: 'Team', url: 'team.html', keywords: ['matt dudka', 'project manager', 'cet', 'certified engineering technologist', 'budget', 'schedule', 'client'] },
     { title: 'Tom Thornton — Operations Manager', desc: 'Operational expertise in field operations, equipment management, and resource coordination', category: 'Team', url: 'team.html', keywords: ['tom thornton', 'operations manager', 'operations', 'equipment management', 'resources', 'field', 'productivity'] },
     // Careers — Positions
-    { title: 'Foreman', desc: 'Lead field crews in municipal infrastructure — daily operations, safety compliance, project coordination. 5+ years experience required', category: 'Career', url: 'careers.html', keywords: ['foreman', 'crew lead', 'site lead', 'field operations', 'leadership', 'safety compliance', '5 years'] },
+    { title: 'Foreman', desc: 'Lead field crews in municipal infrastructure — daily operations, safety compliance, project coordination. 5+ years experience required', category: 'Career', url: 'careers.html', keywords: ['foreman', 'forman', 'crew lead', 'site lead', 'field operations', 'leadership', 'safety compliance', '5 years'] },
     { title: 'Topman', desc: 'Field operations support — crew coordination, project specifications, municipal infrastructure. 3+ years experience', category: 'Career', url: 'careers.html', keywords: ['topman', 'top man', 'field operations', 'crew coordination', '3 years', 'specifications', 'driver\'s license'] },
     { title: 'Pipelayers', desc: 'Install and maintain water, sanitary, and storm pipeline systems with modern equipment to municipal specs', category: 'Career', url: 'careers.html', keywords: ['pipelayer', 'pipe layer', 'pipeline', 'water sanitary storm', 'pipe installation', 'pipelaying', 'pipe laying'] },
     { title: 'Equipment Operators', desc: 'Operate excavators, dozers, wheel loaders, and packers — mainline, side hoe, dozer, loader, packer positions', category: 'Career', url: 'careers.html', keywords: ['equipment operator', 'excavator', 'dozer', 'wheel loader', 'packer', 'mainline', 'side hoe', 'heavy equipment', 'operate', 'machine operator'] },
@@ -286,8 +286,8 @@
         break;
       case 'Enter': {
         e.preventDefault();
-        const target = activeIndex >= 0 ? items[activeIndex] : items[0];
-        if (target) go(target.dataset.url);
+        // Only navigate when a result is explicitly highlighted (via arrow keys).
+        if (activeIndex >= 0 && items[activeIndex]) go(items[activeIndex].dataset.url);
         break;
       }
       case 'Escape':
