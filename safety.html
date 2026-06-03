@@ -771,7 +771,9 @@
             display: none;
             position: fixed;
             inset: 0;
-            background: rgba(0, 0, 0, 0.92);
+            background: rgba(15, 20, 25, 0.65);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
             z-index: 3000;
             align-items: center;
             justify-content: center;
@@ -875,13 +877,15 @@
 
         /* Safety Coordinator Card — mirrors team-member style, scaled down */
         .coordinator-card {
-            background: var(--background-light);
+            background: var(--primary-white);
+            border: 1px solid rgba(0, 0, 0, 0.08);
             border-radius: var(--border-radius);
-            padding: 1.75rem;
+            padding: 1.5rem 1.25rem 1.25rem;
             text-align: center;
             position: relative;
             overflow: hidden;
             transition: var(--transition);
+            box-shadow: var(--shadow-light);
         }
 
         .coordinator-card::before {
@@ -890,7 +894,7 @@
             top: 0;
             left: 0;
             width: 100%;
-            height: 3px;
+            height: 4px;
             background: linear-gradient(90deg, var(--text-dark), var(--text-gray));
             transform: scaleX(0);
             transition: var(--transition);
@@ -902,56 +906,147 @@
         }
 
         .coordinator-card:hover {
-            transform: translateY(-5px);
-            box-shadow: var(--shadow-medium);
-            background: var(--primary-white);
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-heavy);
+            border-color: transparent;
         }
 
         .coordinator-photo {
-            width: 90px;
-            height: 90px;
+            width: 88px;
+            height: 88px;
             border-radius: 50%;
-            margin: 0 auto 1rem;
-            background: var(--text-dark);
+            margin: 0 auto 0.85rem;
+            background: linear-gradient(135deg, var(--background-medium), var(--text-dark));
             display: flex;
             align-items: center;
             justify-content: center;
             color: var(--primary-white);
-            font-size: 1.3rem;
+            font-size: 1.6rem;
             font-weight: 700;
+            letter-spacing: 1px;
             transition: var(--transition);
+            box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.12);
         }
 
         .coordinator-card:hover .coordinator-photo {
-            transform: scale(1.05);
+            transform: scale(1.06);
+            box-shadow: 0 0 0 8px rgba(0, 0, 0, 0.06);
         }
 
         .coordinator-name {
             font-size: 1.1rem;
             font-weight: 700;
             color: var(--text-dark);
-            margin-bottom: 0.3rem;
+            margin-bottom: 0.4rem;
         }
 
         .coordinator-credentials {
-            font-size: 0.8rem;
+            display: inline-block;
+            font-size: 0.65rem;
             color: var(--text-gray);
-            font-weight: 500;
-            margin-bottom: 0.3rem;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            background: var(--background-light);
+            border-radius: 20px;
+            padding: 0.15rem 0.6rem;
+            margin-bottom: 0.45rem;
         }
 
         .coordinator-title {
-            font-size: 0.9rem;
+            font-size: 0.92rem;
+            color: var(--text-dark);
+            font-weight: 600;
+            margin-bottom: 0;
+        }
+
+        /* Coordinator Modal */
+        .coordinator-modal {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(15, 20, 25, 0.65);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            z-index: 3000;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .coordinator-modal.active {
+            display: flex;
+        }
+
+        .coordinator-modal-close {
+            position: fixed;
+            top: 1.25rem;
+            right: 1.5rem;
+            font-size: 2rem;
+            cursor: pointer;
+            color: rgba(255,255,255,0.85);
+            background: none;
+            border: none;
+            z-index: 10;
+            transition: var(--transition);
+        }
+
+        .coordinator-modal-close:hover { color: #fff; }
+
+        .coordinator-modal-inner {
+            background: rgba(255,255,255,0.95);
+            backdrop-filter: blur(24px);
+            border: 1px solid rgba(255,255,255,0.6);
+            border-radius: var(--border-radius);
+            width: min(480px, 90vw);
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.25);
+        }
+
+        .coordinator-modal-photo {
+            width: 100%;
+            height: 160px;
+            background: linear-gradient(135deg, var(--background-medium), var(--text-dark));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary-white);
+            font-size: 2.5rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+        }
+
+        .coordinator-modal-info {
+            padding: 1.5rem;
+        }
+
+        .coordinator-modal-name {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--text-dark);
+            margin-bottom: 0.2rem;
+        }
+
+        .coordinator-modal-credentials {
+            font-size: 0.75rem;
+            color: var(--text-gray);
+            font-weight: 600;
+            margin-bottom: 0.2rem;
+        }
+
+        .coordinator-modal-title {
+            font-size: 0.88rem;
             color: var(--text-dark);
             font-weight: 600;
             font-style: italic;
-            margin-bottom: 0.75rem;
+            margin-bottom: 0.9rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 1px solid rgba(0,0,0,0.08);
         }
 
-        .coordinator-bio {
-            font-size: 0.85rem;
+        .coordinator-modal-bio {
+            font-size: 0.88rem;
             color: var(--text-gray);
-            line-height: 1.6;
+            line-height: 1.7;
         }
 
         /* Stats Section */
@@ -1086,6 +1181,16 @@
                 height: 65px;
             }
 
+            .page-header {
+                height: 45vh;
+                min-height: 180px;
+            }
+
+            .page-header-content .eyebrow {
+                font-size: clamp(1.3rem, 6vw, 2rem);
+                letter-spacing: 1px;
+            }
+
             .logo img {
                 height: 125px;
             }
@@ -1094,17 +1199,58 @@
                 padding: 1.5rem;
             }
 
+            .main-content {
+                padding: 1.25rem 1rem;
+            }
+
             .safety-overview,
             .memberships-section {
                 grid-template-columns: 1fr;
+                gap: 1rem;
             }
 
             .safety-programs {
                 grid-template-columns: 1fr;
+                gap: 0.75rem;
+                margin: 1rem 0;
+            }
+
+            .safety-program {
+                padding: 1rem;
+                display: flex;
+                align-items: center;
+                gap: 1rem;
+                text-align: left;
+            }
+
+            .safety-icon {
+                flex-shrink: 0;
+                width: 44px;
+                height: 44px;
+            }
+
+            .safety-program h3 {
+                font-size: 0.95rem;
+                margin-bottom: 0.2rem;
+            }
+
+            .safety-program p {
+                font-size: 0.82rem;
+                line-height: 1.4;
             }
 
             .award-banner {
-                padding: 1.25rem;
+                padding: 1rem;
+            }
+
+            .cert-img {
+                max-height: 220px;
+                width: auto;
+                max-width: 100%;
+            }
+
+            .section-header {
+                margin-bottom: 1rem;
             }
 
             .footer {
@@ -1325,14 +1471,14 @@
         <!-- Safety Overview -->
         <div class="safety-overview">
             <div class="safety-text">
-                <p>At Degner Construction, we believe all entities affected by our operations are entitled to a safe and sustainable environment. We conduct every activity protecting the health and safety of our employees, suppliers, customers, community, and the environment — achieved through active participation and conscious effort by everyone, in every task performed. Our people are among the best trained in the industry, routinely participating in external safety committees and continually reviewing procedures to raise standards, not just meet them.</p>
+                <p>At Degner Construction, we believe all entities affected by our operations are entitled to a safe and sustainable environment. We conduct every activity protecting the health and safety of our employees, suppliers, customers, community, and the environment — achieved through active participation and conscious effort by everyone, in every task performed.</p>
             </div>
-            <div class="coordinator-card">
+            <div class="coordinator-card" id="coordinatorCard" style="cursor:pointer;">
                 <div class="coordinator-photo"><span>MG</span></div>
                 <h3 class="coordinator-name">Michelle Gregoire</h3>
-                <div class="coordinator-credentials">NCSO &middot; COR Peer Auditor &middot; H&amp;S Administrator</div>
+                <div class="coordinator-credentials">NCSO · COR Peer Auditor · H&amp;S Administrator</div>
                 <div class="coordinator-title">Safety Coordinator</div>
-                <p class="coordinator-bio">Michelle's expertise in safety management and hazard analysis ensures that every Degner Construction site upholds the highest standards of health and safety. With her NCSO designation, COR Peer Auditor status, and credentials from both the Alberta Construction Safety Association and the University of New Brunswick, she oversees comprehensive safety programs, conducts thorough site inspections, and ensures full compliance with provincial and federal regulations. Michelle's dedication to protecting people makes her an essential part of our team.</p>
+                <span class="team-view-bio" style="display:inline-flex;align-items:center;gap:0.4rem;margin-top:0.85rem;padding-top:0.85rem;border-top:1px solid rgba(0,0,0,0.07);width:100%;justify-content:center;font-size:0.82rem;font-weight:600;color:var(--text-gray);">View profile <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg></span>
             </div>
         </div>
 
@@ -1400,6 +1546,20 @@
         <img src="pic13.png" alt="Partnerships in Injury Reduction Certificate" class="lightbox-img">
     </div>
 
+    <!-- Coordinator Modal -->
+    <div class="coordinator-modal" id="coordinatorModal">
+        <button class="coordinator-modal-close" id="coordinatorModalClose">&times;</button>
+        <div class="coordinator-modal-inner">
+            <div class="coordinator-modal-photo"><span>MG</span></div>
+            <div class="coordinator-modal-info">
+                <div class="coordinator-modal-name">Michelle Gregoire</div>
+                <div class="coordinator-modal-credentials">NCSO · COR Peer Auditor · H&amp;S Administrator</div>
+                <div class="coordinator-modal-title">Safety Coordinator</div>
+                <p class="coordinator-modal-bio">Michelle's expertise in safety management and hazard analysis ensures that every Degner Construction site upholds the highest standards of health and safety. With her NCSO designation, COR Peer Auditor status, and credentials from both the Alberta Construction Safety Association and the University of New Brunswick, she oversees comprehensive safety programs, conducts thorough site inspections, and ensures full compliance with provincial and federal regulations. Michelle's dedication to protecting people makes her an essential part of our team.</p>
+            </div>
+        </div>
+    </div>
+
     <!-- Footer -->
     <footer class="footer">
         <span class="footer-credit">Designed by Emet Solutions</span>
@@ -1408,6 +1568,20 @@
 
     <script>
         document.getElementById('footer-year').textContent = new Date().getFullYear();
+
+        // Coordinator modal
+        const coordModal = document.getElementById('coordinatorModal');
+        document.getElementById('coordinatorCard').addEventListener('click', function () {
+            coordModal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        });
+        document.getElementById('coordinatorModalClose').addEventListener('click', function () {
+            coordModal.classList.remove('active');
+            document.body.style.overflow = '';
+        });
+        coordModal.addEventListener('click', function (e) {
+            if (e.target === coordModal) { coordModal.classList.remove('active'); document.body.style.overflow = ''; }
+        });
 
         // Header Scroll Effect
         window.addEventListener('scroll', function() {
@@ -1480,6 +1654,7 @@
 
         document.addEventListener('keydown', function(e) {
             if (e.key === 'Escape') {
+                if (coordModal.classList.contains('active')) { coordModal.classList.remove('active'); document.body.style.overflow = ''; return; }
                 if (lightbox.classList.contains('active')) { closeLightbox(); return; }
                 mobileToggle.classList.remove('active');
                 mobileNav.classList.remove('active');
