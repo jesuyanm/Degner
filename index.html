@@ -1360,13 +1360,32 @@
                 padding: 1rem;
             }
 
-            .stats-grid {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 0.75rem;
+            .stats .section-title {
+                font-size: 1rem;
+                font-weight: 600;
+                margin-bottom: 0.75rem;
             }
 
-            .stat-item {
-                padding: 1rem 0.5rem;
+            .stats .section-header {
+                margin-bottom: 0.5rem;
+            }
+
+            .stats {
+                padding: 1.25rem 1rem;
+            }
+
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 0.5rem;
+                margin-top: 0.5rem;
+            }
+
+            .stat-number {
+                font-size: 1.6rem;
+            }
+
+            .stat-label {
+                font-size: 0.7rem;
             }
 
             .services-grid {
@@ -1779,8 +1798,7 @@
     <!-- Stats Section -->
     <section class="section stats">
         <div class="section-header">
-            <h2 class="section-title" style="color: var(--primary-white);">Building Alberta's Future</h2>
-            <p class="section-description" style="color: rgba(255,255,255,0.8);">Trusted by communities across Alberta for over two decades</p>
+            <h2 class="section-title" style="color: var(--primary-white);">Trusted by communities across Alberta for over two decades</h2>
         </div>
         <div class="stats-grid">
             <div class="stat-item">
@@ -1871,7 +1889,7 @@
                 <div style="background: rgba(0, 0, 0, 0.05); padding: 0.75rem 1rem; border-radius: var(--border-radius); margin-top: 0.75rem;">
                     <h4 style="color: var(--text-dark); margin-bottom: 0.4rem; font-size: 0.95rem;">Request a Quote</h4>
                     <p style="color: var(--text-gray); margin-bottom: 0.5rem; font-size: 0.875rem;">Email <strong style="color: var(--text-dark);">estimating@degner.ca</strong></p>
-                    <a href="mailto:estimating@degner.ca" class="contact-cta">Request Quote</a>
+                    <a href="contact.html?subject=Quote+Request&message=I+would+like+to+request+a+quote+for+a+project." class="contact-cta">Request Quote</a>
                 </div>
             </div>
         </div>

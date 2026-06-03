@@ -1096,6 +1096,25 @@
     </footer>
 
     <script>
+        // Pre-fill form from URL params (e.g. ?subject=Quote+Request&message=...)
+        (function () {
+            const params = new URLSearchParams(window.location.search);
+            const subject = params.get('subject');
+            const message = params.get('message');
+            if (subject) {
+                const el = document.querySelector('[name="subject"]');
+                if (el) el.value = subject;
+            }
+            if (message) {
+                const el = document.querySelector('[name="message"]');
+                if (el) el.value = message;
+            }
+            if (subject || message) {
+                const form = document.querySelector('.contact-form');
+                if (form) form.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }
+        })();
+
         // Contact form — show thank-you in place of form on success
         document.querySelector('.contact-form').addEventListener('submit', async function(e) {
             e.preventDefault();
