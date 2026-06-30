@@ -1038,6 +1038,31 @@
             color: #c0392b;
         }
 
+        .file-preview-row {
+            align-items: center;
+            gap: 0.5rem;
+            margin-top: 0.4rem;
+        }
+
+        .file-preview-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.35rem;
+            font-size: 0.82rem;
+            color: var(--text-dark);
+            text-decoration: underline;
+            text-underline-offset: 2px;
+        }
+
+        .file-preview-link:hover {
+            color: var(--text-gray);
+        }
+
+        .file-preview-note {
+            font-size: 0.8rem;
+            color: #777;
+        }
+
 
         /* Application Process Section */
         .process-section {
@@ -1990,14 +2015,38 @@
             return true;
         }
 
+        const previewRow = document.querySelector('.file-preview-row');
+        const previewLink = document.querySelector('.file-preview-link');
+        const previewNote = document.querySelector('.file-preview-note');
+        let objectUrl = null;
+
+        function clearPreview() {
+            if (objectUrl) { URL.revokeObjectURL(objectUrl); objectUrl = null; }
+            if (previewRow) previewRow.style.display = 'none';
+        }
+
         if (resumeInput) {
             resumeInput.addEventListener('change', function() {
                 clearFileError();
+                clearPreview();
                 if (this.files && this.files[0]) {
-                    if (validateFile(this.files[0])) {
+                    const file = this.files[0];
+                    if (validateFile(file)) {
                         uploadLabel.classList.add('has-file');
                         uploadLabel.classList.remove('has-error');
-                        uploadText.textContent = this.files[0].name;
+                        uploadText.textContent = file.name;
+
+                        const ext = file.name.split('.').pop().toLowerCase();
+                        previewRow.style.display = 'flex';
+                        if (ext === 'pdf') {
+                            objectUrl = URL.createObjectURL(file);
+                            previewLink.href = objectUrl;
+                            previewLink.style.display = 'inline-flex';
+                            previewNote.style.display = 'none';
+                        } else {
+                            previewLink.style.display = 'none';
+                            previewNote.style.display = 'inline';
+                        }
                     } else {
                         uploadLabel.classList.remove('has-file');
                         uploadText.textContent = 'Upload Resume';
