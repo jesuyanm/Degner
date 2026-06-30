@@ -985,6 +985,59 @@
             cursor: not-allowed;
         }
 
+        .file-upload-field {
+            margin-top: 0.25rem;
+        }
+
+        .file-upload-label {
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            padding: 0.65rem 0.9rem;
+            border: 1.5px dashed #c0c0c0;
+            border-radius: 8px;
+            background: #f5f5f5;
+            cursor: pointer;
+            color: #555;
+            font-size: 0.9rem;
+            transition: border-color 0.2s, background 0.2s;
+        }
+
+        .file-upload-label:hover {
+            border-color: var(--text-dark);
+            background: var(--primary-white);
+        }
+
+        .file-upload-label.has-file {
+            border-style: solid;
+            border-color: var(--text-dark);
+            background: var(--primary-white);
+            color: var(--text-dark);
+        }
+
+        .file-upload-hint {
+            margin-left: auto;
+            font-size: 0.78rem;
+            color: #999;
+        }
+
+        .file-upload-label.has-file .file-upload-hint {
+            display: none;
+        }
+
+        .file-upload-label.has-error {
+            border-color: #c0392b;
+            background: #fff5f5;
+            color: #c0392b;
+        }
+
+        .file-upload-error {
+            display: block;
+            margin-top: 0.35rem;
+            font-size: 0.8rem;
+            color: #c0392b;
+        }
+
 
         /* Application Process Section */
         .process-section {
@@ -1759,6 +1812,22 @@
                                 </div>
                             </div>
 
+                            <div class="form-field file-upload-field">
+                                <label class="file-upload-label" for="resume-upload">
+                                    <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+                                    <span class="file-upload-text">Upload Resume</span>
+                                    <span class="file-upload-hint">PDF, DOC, DOCX — max 5 MB</span>
+                                </label>
+                                <input type="file" id="resume-upload" name="resume" accept=".pdf,.doc,.docx" style="display:none;">
+                                <div class="file-preview-row" style="display:none;">
+                                    <a class="file-preview-link" target="_blank">
+                                        <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+                                        Preview file
+                                    </a>
+                                    <span class="file-preview-note" style="display:none;">DOC/DOCX can't be previewed in the browser — open it on your device to review.</span>
+                                </div>
+                            </div>
+
                             <button type="submit" class="form-submit">Submit Application</button>
                         </form>
                     </div>
@@ -1880,11 +1949,73 @@
             }
         });
 
+        // File upload validation
+        const ALLOWED_TYPES = ['application/pdf', 'application/msword', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'];
+        const ALLOWED_EXTS = ['.pdf', '.doc', '.docx'];
+        const MAX_SIZE_MB = 5;
+        const MAX_SIZE_BYTES = MAX_SIZE_MB * 1024 * 1024;
+
+        const resumeInput = document.getElementById('resume-upload');
+        const uploadLabel = document.querySelector('.file-upload-label');
+        const uploadText = document.querySelector('.file-upload-text');
+        const uploadHint = document.querySelector('.file-upload-hint');
+        let fileError = document.querySelector('.file-upload-error');
+
+        function showFileError(msg) {
+            if (!fileError) {
+                fileError = document.createElement('span');
+                fileError.className = 'file-upload-error';
+                uploadLabel.parentElement.appendChild(fileError);
+            }
+            fileError.textContent = msg;
+            uploadLabel.classList.add('has-error');
+        }
+
+        function clearFileError() {
+            if (fileError) fileError.textContent = '';
+            uploadLabel.classList.remove('has-error');
+        }
+
+        function validateFile(file) {
+            const ext = '.' + file.name.split('.').pop().toLowerCase();
+            const typeOk = ALLOWED_TYPES.includes(file.type) || ALLOWED_EXTS.includes(ext);
+            if (!typeOk) {
+                showFileError('Invalid file type. Please upload a PDF, DOC, or DOCX.');
+                return false;
+            }
+            if (file.size > MAX_SIZE_BYTES) {
+                showFileError(`File is too large (${(file.size / 1024 / 1024).toFixed(1)} MB). Maximum is ${MAX_SIZE_MB} MB.`);
+                return false;
+            }
+            return true;
+        }
+
+        if (resumeInput) {
+            resumeInput.addEventListener('change', function() {
+                clearFileError();
+                if (this.files && this.files[0]) {
+                    if (validateFile(this.files[0])) {
+                        uploadLabel.classList.add('has-file');
+                        uploadLabel.classList.remove('has-error');
+                        uploadText.textContent = this.files[0].name;
+                    } else {
+                        uploadLabel.classList.remove('has-file');
+                        uploadText.textContent = 'Upload Resume';
+                        this.value = '';
+                    }
+                } else {
+                    uploadLabel.classList.remove('has-file');
+                    uploadText.textContent = 'Upload Resume';
+                }
+            });
+        }
+
         // Resume form submission
         const resumeForm = document.querySelector('.resume-form');
         if (resumeForm) {
             resumeForm.addEventListener('submit', async function(e) {
                 e.preventDefault();
+                if (resumeInput && resumeInput.files[0] && !validateFile(resumeInput.files[0])) return;
                 const btn = resumeForm.querySelector('.form-submit');
                 const originalText = btn.textContent;
                 btn.disabled = true;
