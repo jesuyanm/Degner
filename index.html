@@ -1121,24 +1121,21 @@
         }
 
         .memberships-logos {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
             gap: 2rem;
-            flex-wrap: wrap;
         }
 
         .membership-logo {
             background: var(--primary-white);
             border-radius: 8px;
-            padding: 1.5rem 2.5rem;
+            padding: 1.25rem 2rem;
+            height: 160px;
             display: flex;
             align-items: center;
             justify-content: center;
             transition: var(--transition);
             border: 1px solid rgba(0,0,0,0.12);
-            flex: 1;
-            min-width: 180px;
         }
 
         .membership-logo:hover {
@@ -1148,10 +1145,14 @@
         }
 
         .membership-logo img {
-            height: 90px;
-            width: auto;
+            width: 100%;
+            height: 100%;
             object-fit: contain;
             transition: var(--transition);
+        }
+
+        .membership-logo img[alt*="Roadbuilders"] {
+            transform: scale(1.15);
         }
 
         /* Footer */
@@ -1439,12 +1440,8 @@
             }
 
             .membership-logo {
-                padding: 1rem;
-                min-width: 0;
-            }
-
-            .membership-logo img {
-                height: 60px;
+                padding: 0.85rem;
+                height: 110px;
             }
 
             .search-toggle {
