@@ -94,15 +94,15 @@
             position: fixed;
             top: 0;
             width: 100%;
-            background: rgba(255, 255, 255, 0.15);
-            backdrop-filter: blur(20px);
+            background: transparent;
+            border-bottom: 1px solid transparent;
             z-index: 1000;
             transition: var(--transition);
-            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
         }
 
         .header.scrolled {
-            background: rgba(255, 255, 255, 0.95);
+            background: #ffffff;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.08);
             box-shadow: var(--shadow-light);
         }
 
@@ -1196,6 +1196,11 @@
             margin: 0;
         }
 
+        .footer-social { display: flex; gap: 1.2rem; align-items: center; }
+        .footer-social a { color: var(--primary-white); opacity: 0.7; transition: var(--transition); display: flex; }
+        .footer-social a:hover { opacity: 1; transform: translateY(-3px); }
+        .footer-social svg { width: 22px; height: 22px; }
+
         /* Mobile Responsive */
         @media (max-width: 1024px) {
             .nav-menu {
@@ -1307,6 +1312,42 @@
                 grid-template-columns: repeat(2, 1fr);
             }
         }
+
+        /* White nav items when header is translucent */
+        .header:not(.scrolled) .nav-item > a,
+        .header:not(.scrolled) .nav-item.active > a {
+            color: var(--primary-white);
+        }
+
+        .header:not(.scrolled) .nav-item > a:hover {
+            color: rgba(255, 255, 255, 0.75);
+        }
+
+        .header:not(.scrolled) .nav-item > a::after {
+            background: var(--primary-white);
+        }
+
+        .header:not(.scrolled) .search-toggle {
+            color: var(--primary-white);
+        }
+
+        .header:not(.scrolled) .search-toggle:hover {
+            
+            color: var(--primary-white);
+        }
+
+        .header:not(.scrolled) .mobile-menu-toggle span {
+            background: var(--primary-white);
+        }
+
+        .header:not(.scrolled) .logo img {
+            filter: grayscale(100%) contrast(1.2) invert(1);
+        }
+
+        .search-overlay .mobile-nav-header img {
+            transform: scale(1.9);
+            transform-origin: left center;
+        }
     </style>
 </head>
 <body>
@@ -1329,7 +1370,6 @@
                                     <ul>
                                         <li>
                                             <a href="index.html#about">
-
                                                 <svg class="megamenu-icon" fill="currentColor" viewBox="0 0 20 20">
                                                     <path d="M10.394 2.08a1 1 0 00-.788 0l-7 3a1 1 0 000 1.84L5.25 8.051a.999.999 0 01.356-.257l4-1.714a1 1 0 11.788 1.838L7.667 9.088l1.94.831a1 1 0 00.787 0l7-3a1 1 0 000-1.838l-7-3z"/>
                                                 </svg>
@@ -1346,7 +1386,6 @@
                                     <ul>
                                         <li>
                                             <a href="team.html">
-
                                                 <svg class="megamenu-icon" fill="currentColor" viewBox="0 0 20 20">
                                                     <path d="M9 6a3 3 0 11-6 0 3 3 0 016 0zM17 6a3 3 0 11-6 0 3 3 0 016 0zM12.93 17c.046-.327.07-.66.07-1a6.97 6.97 0 00-1.5-4.33A5 5 0 0119 16v1h-6.07zM6 11a5 5 0 015 5v1H1v-1a5 5 0 015-5z"/>
                                                 </svg>
@@ -1377,7 +1416,7 @@
                             </div>
                         </div>
                     </li>
-                    <li class="nav-item"><a href="projects.html">What We Do</a></li>
+                    <li class="nav-item"><a href="index.html#services">What We Do</a></li>
                     <li class="nav-item active"><a href="projects.html">Our Projects</a></li>
                     <li class="nav-item"><a href="safety.html">Safety</a></li>
                     <li class="nav-item"><a href="careers.html">Careers</a></li>
@@ -1419,7 +1458,7 @@
         </div>
         <ul class="mobile-nav-menu">
             <li><a href="team.html">Our Team <span>→</span></a></li>
-            <li><a href="projects.html">What We Do <span>→</span></a></li>
+            <li><a href="index.html#services">What We Do <span>→</span></a></li>
             <li><a href="projects.html">Our Projects <span>→</span></a></li>
             <li><a href="safety.html">Safety <span>→</span></a></li>
             <li><a href="careers.html">Careers <span>→</span></a></li>
