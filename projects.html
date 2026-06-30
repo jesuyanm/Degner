@@ -204,8 +204,8 @@
             background: var(--primary-white);
             border-radius: var(--border-radius);
             box-shadow: var(--shadow-heavy);
-            padding: 3rem;
-            min-width: 1000px;
+            padding: 1.1rem 3rem;
+            min-width: 500px;
             max-height: 80vh;
             overflow-y: auto;
             opacity: 0;
@@ -236,7 +236,7 @@
 
         .megamenu-content {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            grid-template-columns: 1fr;
             gap: 3rem;
         }
 
@@ -244,9 +244,9 @@
             color: var(--text-dark);
             font-size: 1.3rem;
             font-weight: 700;
-            margin-bottom: 1.5rem;
+            margin-bottom: 0.75rem;
             position: relative;
-            padding-bottom: 0.75rem;
+            padding-bottom: 0.5rem;
         }
 
         .megamenu-section h4::after {
@@ -264,7 +264,7 @@
         }
 
         .megamenu-section ul li {
-            margin-bottom: 1rem;
+            margin-bottom: 0.25rem;
         }
 
         .megamenu-section ul li a {
@@ -275,7 +275,7 @@
             display: flex;
             align-items: flex-start;
             gap: 0.75rem;
-            padding: 0.75rem;
+            padding: 0.4rem 0.75rem;
             border-radius: 8px;
             line-height: 1.5;
         }
@@ -394,8 +394,8 @@
 
         .search-input {
             width: 100%;
-            padding: 1rem;
-            font-size: 1.2rem;
+            padding: 0.6rem 0.75rem;
+            font-size: 0.95rem;
             border: 2px solid var(--background-light);
             border-radius: var(--border-radius);
             transition: var(--transition);
@@ -463,10 +463,12 @@
         }
 
         .search-hint,
-        .search-no-results {
+        .search-no-results,
+        .search-count {
             color: var(--text-gray);
             font-size: 0.875rem;
-            padding: 0.5rem 1rem;
+            padding: 0.5rem 0;
+            text-align: left;
         }
 
         .search-close {
@@ -1187,7 +1189,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 3rem;
+            padding: 1.1rem 3rem;
         }
 
         .footer p, .footer-credit {
@@ -1383,11 +1385,6 @@
                                                 </div>
                                             </a>
                                         </li>
-                                    </ul>
-                                </div>
-                                <div class="megamenu-section">
-                                    <h4>Our Leadership</h4>
-                                    <ul>
                                         <li>
                                             <a href="team.html">
                                                 <svg class="megamenu-icon" fill="currentColor" viewBox="0 0 20 20">
@@ -1399,11 +1396,6 @@
                                                 </div>
                                             </a>
                                         </li>
-                                    </ul>
-                                </div>
-                                <div class="megamenu-section">
-                                    <h4>Our Location</h4>
-                                    <ul>
                                         <li>
                                             <a href="index.html#contact">
                                                 <svg class="megamenu-icon" fill="currentColor" viewBox="0 0 20 20">

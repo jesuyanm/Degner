@@ -264,8 +264,8 @@
             background: var(--primary-white);
             border-radius: var(--border-radius);
             box-shadow: var(--shadow-heavy);
-            padding: 1.25rem 3rem;
-            min-width: 1000px;
+            padding: 1.1rem 3rem;
+            min-width: 500px;
             max-height: 80vh;
             overflow-y: auto;
             opacity: 0;
@@ -296,7 +296,7 @@
 
         .megamenu-content {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            grid-template-columns: 1fr;
             gap: 3rem;
         }
 
@@ -454,8 +454,8 @@
 
         .search-input {
             width: 100%;
-            padding: 1rem;
-            font-size: 1.2rem;
+            padding: 0.6rem 0.75rem;
+            font-size: 0.95rem;
             border: 2px solid var(--background-light);
             border-radius: var(--border-radius);
             transition: var(--transition);
@@ -523,10 +523,12 @@
         }
 
         .search-hint,
-        .search-no-results {
+        .search-no-results,
+        .search-count {
             color: var(--text-gray);
             font-size: 0.875rem;
-            padding: 0.5rem 1rem;
+            padding: 0.5rem 0;
+            text-align: left;
         }
 
         .search-close {
@@ -1009,7 +1011,7 @@
 
         /* Stats Section */
         .stats {
-            padding: 1.75rem 3rem;
+            padding: 1.1rem 3rem;
         }
 
         .stats-grid {
@@ -1187,7 +1189,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 3rem;
+            padding: 1.1rem 3rem;
         }
 
         .footer p, .footer-credit {
@@ -1578,11 +1580,6 @@
                                                 </div>
                                             </a>
                                         </li>
-                                    </ul>
-                                </div>
-                                <div class="megamenu-section">
-                                    <h4>Our Leadership</h4>
-                                    <ul>
                                         <li>
                                             <a href="team.html">
                                                 <svg class="megamenu-icon" fill="currentColor" viewBox="0 0 20 20">
@@ -1594,11 +1591,6 @@
                                                 </div>
                                             </a>
                                         </li>
-                                    </ul>
-                                </div>
-                                <div class="megamenu-section">
-                                    <h4>Our Location</h4>
-                                    <ul>
                                         <li>
                                             <a href="#contact">
                                                 <svg class="megamenu-icon" fill="currentColor" viewBox="0 0 20 20">
