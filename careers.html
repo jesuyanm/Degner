@@ -1063,6 +1063,23 @@
             color: #777;
         }
 
+        .file-clear-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.25rem;
+            margin-left: auto;
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 0.8rem;
+            color: #999;
+            padding: 0;
+        }
+
+        .file-clear-btn:hover {
+            color: #c0392b;
+        }
+
 
         /* Application Process Section */
         .process-section {
@@ -1845,12 +1862,30 @@
                                 </label>
                                 <input type="file" id="resume-upload" name="resume" accept=".pdf,.doc,.docx" style="display:none;">
                                 <div class="file-preview-row" style="display:none;">
-                                    <a class="file-preview-link" target="_blank">
-                                        <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
-                                        Preview file
-                                    </a>
                                     <span class="file-preview-note" style="display:none;">DOC/DOCX can't be previewed in the browser — open it on your device to review.</span>
+                                    <button type="button" class="file-clear-btn">
+                                        <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+                                        Remove
+                                    </button>
                                 </div>
+                                <iframe class="file-preview-frame" style="display:none;" title="File preview"></iframe>
+                            </div>
+
+                            <div class="form-field file-upload-field">
+                                <label class="file-upload-label" for="cover-letter-upload">
+                                    <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+                                    <span class="file-upload-text">Upload Cover Letter (Optional)</span>
+                                    <span class="file-upload-hint">PDF, DOC, DOCX — max 5 MB</span>
+                                </label>
+                                <input type="file" id="cover-letter-upload" name="cover_letter" accept=".pdf,.doc,.docx" style="display:none;">
+                                <div class="file-preview-row" style="display:none;">
+                                    <span class="file-preview-note" style="display:none;">DOC/DOCX can't be previewed in the browser — open it on your device to review.</span>
+                                    <button type="button" class="file-clear-btn">
+                                        <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+                                        Remove
+                                    </button>
+                                </div>
+                                <iframe class="file-preview-frame" style="display:none;" title="File preview"></iframe>
                             </div>
 
                             <button type="submit" class="form-submit">Submit Application</button>
@@ -1980,91 +2015,103 @@
         const MAX_SIZE_MB = 5;
         const MAX_SIZE_BYTES = MAX_SIZE_MB * 1024 * 1024;
 
-        const resumeInput = document.getElementById('resume-upload');
-        const uploadLabel = document.querySelector('.file-upload-label');
-        const uploadText = document.querySelector('.file-upload-text');
-        const uploadHint = document.querySelector('.file-upload-hint');
-        let fileError = document.querySelector('.file-upload-error');
+        function setupFileUpload(inputEl, defaultText) {
+            if (!inputEl) return { validate: () => true };
+            const field = inputEl.closest('.file-upload-field');
+            const label = field.querySelector('.file-upload-label');
+            const text = field.querySelector('.file-upload-text');
+            const previewRow = field.querySelector('.file-preview-row');
+            const previewFrame = field.querySelector('.file-preview-frame');
+            const previewNote = field.querySelector('.file-preview-note');
+            let errorEl = null;
+            let objectUrl = null;
 
-        function showFileError(msg) {
-            if (!fileError) {
-                fileError = document.createElement('span');
-                fileError.className = 'file-upload-error';
-                uploadLabel.parentElement.appendChild(fileError);
+            function showError(msg) {
+                if (!errorEl) {
+                    errorEl = document.createElement('span');
+                    errorEl.className = 'file-upload-error';
+                    label.parentElement.appendChild(errorEl);
+                }
+                errorEl.textContent = msg;
+                label.classList.add('has-error');
             }
-            fileError.textContent = msg;
-            uploadLabel.classList.add('has-error');
-        }
 
-        function clearFileError() {
-            if (fileError) fileError.textContent = '';
-            uploadLabel.classList.remove('has-error');
-        }
-
-        function validateFile(file) {
-            const ext = '.' + file.name.split('.').pop().toLowerCase();
-            const typeOk = ALLOWED_TYPES.includes(file.type) || ALLOWED_EXTS.includes(ext);
-            if (!typeOk) {
-                showFileError('Invalid file type. Please upload a PDF, DOC, or DOCX.');
-                return false;
+            function clearError() {
+                if (errorEl) errorEl.textContent = '';
+                label.classList.remove('has-error');
             }
-            if (file.size > MAX_SIZE_BYTES) {
-                showFileError(`File is too large (${(file.size / 1024 / 1024).toFixed(1)} MB). Maximum is ${MAX_SIZE_MB} MB.`);
-                return false;
+
+            function clearPreview() {
+                if (objectUrl) { URL.revokeObjectURL(objectUrl); objectUrl = null; }
+                if (previewRow) previewRow.style.display = 'none';
+                if (previewFrame) { previewFrame.src = ''; previewFrame.style.display = 'none'; }
             }
-            return true;
-        }
 
-        const previewRow = document.querySelector('.file-preview-row');
-        const previewLink = document.querySelector('.file-preview-link');
-        const previewNote = document.querySelector('.file-preview-note');
-        let objectUrl = null;
+            function validate(file) {
+                const ext = '.' + file.name.split('.').pop().toLowerCase();
+                const typeOk = ALLOWED_TYPES.includes(file.type) || ALLOWED_EXTS.includes(ext);
+                if (!typeOk) { showError('Invalid file type. Please upload a PDF, DOC, or DOCX.'); return false; }
+                if (file.size > MAX_SIZE_BYTES) {
+                    showError(`File is too large (${(file.size / 1024 / 1024).toFixed(1)} MB). Maximum is ${MAX_SIZE_MB} MB.`);
+                    return false;
+                }
+                return true;
+            }
 
-        function clearPreview() {
-            if (objectUrl) { URL.revokeObjectURL(objectUrl); objectUrl = null; }
-            if (previewRow) previewRow.style.display = 'none';
-        }
+            const clearBtn = field.querySelector('.file-clear-btn');
 
-        if (resumeInput) {
-            resumeInput.addEventListener('change', function() {
-                clearFileError();
+            function reset() {
+                clearError();
+                clearPreview();
+                label.classList.remove('has-file');
+                text.textContent = defaultText;
+                inputEl.value = '';
+            }
+
+            if (clearBtn) clearBtn.addEventListener('click', reset);
+
+            inputEl.addEventListener('change', function() {
+                clearError();
                 clearPreview();
                 if (this.files && this.files[0]) {
                     const file = this.files[0];
-                    if (validateFile(file)) {
-                        uploadLabel.classList.add('has-file');
-                        uploadLabel.classList.remove('has-error');
-                        uploadText.textContent = file.name;
-
+                    if (validate(file)) {
+                        label.classList.add('has-file');
+                        text.textContent = file.name;
                         const ext = file.name.split('.').pop().toLowerCase();
                         previewRow.style.display = 'flex';
                         if (ext === 'pdf') {
                             objectUrl = URL.createObjectURL(file);
-                            previewLink.href = objectUrl;
-                            previewLink.style.display = 'inline-flex';
+                            previewFrame.src = objectUrl;
+                            previewFrame.style.display = 'block';
                             previewNote.style.display = 'none';
                         } else {
-                            previewLink.style.display = 'none';
+                            previewFrame.style.display = 'none';
                             previewNote.style.display = 'inline';
                         }
                     } else {
-                        uploadLabel.classList.remove('has-file');
-                        uploadText.textContent = 'Upload Resume';
+                        label.classList.remove('has-file');
+                        text.textContent = defaultText;
                         this.value = '';
                     }
                 } else {
-                    uploadLabel.classList.remove('has-file');
-                    uploadText.textContent = 'Upload Resume';
+                    label.classList.remove('has-file');
+                    text.textContent = defaultText;
                 }
             });
+
+            return { validate: () => inputEl.files[0] ? validate(inputEl.files[0]) : true };
         }
+
+        const resumeUpload = setupFileUpload(document.getElementById('resume-upload'), 'Upload Resume');
+        const coverLetterUpload = setupFileUpload(document.getElementById('cover-letter-upload'), 'Upload Cover Letter (Optional)');
 
         // Resume form submission
         const resumeForm = document.querySelector('.resume-form');
         if (resumeForm) {
             resumeForm.addEventListener('submit', async function(e) {
                 e.preventDefault();
-                if (resumeInput && resumeInput.files[0] && !validateFile(resumeInput.files[0])) return;
+                if (!resumeUpload.validate() | !coverLetterUpload.validate()) return;
                 const btn = resumeForm.querySelector('.form-submit');
                 const originalText = btn.textContent;
                 btn.disabled = true;
