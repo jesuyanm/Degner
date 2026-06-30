@@ -147,7 +147,7 @@
         }
 
         .logo img {
-            height: 140px;
+            height: 200px;
             transition: var(--transition);
             filter: grayscale(100%) contrast(1.2);
         }
@@ -365,6 +365,7 @@
             cursor: pointer;
             color: var(--text-dark);
             -webkit-appearance: none;
+            appearance: none;
             transition: var(--transition);
         }
 
@@ -783,7 +784,7 @@
 
         @media (max-width: 968px) {
             .nav-container { padding: 0 2rem; height: 70px; }
-            .logo img { height: 130px; }
+            .logo img { height: 170px; }
             .contact-body { grid-template-columns: 1fr; gap: 3rem; padding: 3rem 2rem; }
             .map-wrapper { height: 300px; margin-top: 70px; }
             .search-toggle { width: 35px; height: 35px; }
@@ -791,7 +792,7 @@
 
         @media (max-width: 600px) {
             .nav-container { padding: 0 1.5rem; height: 65px; }
-            .logo img { height: 125px; }
+            .logo img { height: 145px; }
             .map-wrapper { height: 250px; margin-top: 65px; }
             .contact-body { padding: 1.25rem 1rem; gap: 1.5rem; }
             .contact-info-block h2 { font-size: 1.2rem; }
@@ -831,38 +832,11 @@
                                                 </div>
                                             </a>
                                         </li>
-                                        <li>
-                                            <a href="index.html#about">
-                                                <svg class="megamenu-icon" fill="currentColor" viewBox="0 0 20 20">
-                                                    <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
-                                                </svg>
-                                                <div class="megamenu-item-content">
-                                                    <div class="megamenu-item-title">Our Mission</div>
-                                                    <div class="megamenu-item-desc">Building community value into every project with professional expertise and quality construction</div>
-                                                </div>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="index.html#about">
-                                                <svg class="megamenu-icon" fill="currentColor" viewBox="0 0 20 20">
-                                                    <path d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z"/>
-                                                </svg>
-                                                <div class="megamenu-item-content">
-                                                    <div class="megamenu-item-title">Our Values</div>
-                                                    <div class="megamenu-item-desc">Commitment to safety, innovation, and sustainable infrastructure solutions</div>
-                                                </div>
-                                            </a>
-                                        </li>
                                     </ul>
                                 </div>
                                 <div class="megamenu-section">
                                     <h4>Our Leadership</h4>
-                                    <div class="leadership-profile">
-                                        <h5>Dale Degner</h5>
-                                        <div class="leadership-title">President</div>
-                                        <div class="leadership-bio">Leading Degner Construction with decades of experience in municipal infrastructure development, Dale drives our commitment to building Alberta's essential infrastructure.</div>
-                                    </div>
-                                    <ul style="margin-top: 1.5rem;">
+                                    <ul>
                                         <li>
                                             <a href="team.html">
                                                 <svg class="megamenu-icon" fill="currentColor" viewBox="0 0 20 20">
@@ -890,17 +864,6 @@
                                                 </div>
                                             </a>
                                         </li>
-                                        <li>
-                                            <a href="index.html#about">
-                                                <svg class="megamenu-icon" fill="currentColor" viewBox="0 0 20 20">
-                                                    <path d="M3 4a1 1 0 011-1h12a1 1 0 011 1v2a1 1 0 01-1 1H4a1 1 0 01-1-1V4zM3 10a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H4a1 1 0 01-1-1v-6zM14 9a1 1 0 00-1 1v6a1 1 0 001 1h2a1 1 0 001-1v-6a1 1 0 00-1-1h-2z"/>
-                                                </svg>
-                                                <div class="megamenu-item-content">
-                                                    <div class="megamenu-item-title">Service Areas</div>
-                                                    <div class="megamenu-item-desc">Comprehensive coverage across Alberta's municipalities and communities</div>
-                                                </div>
-                                            </a>
-                                        </li>
                                     </ul>
                                 </div>
                                 <div class="megamenu-section">
@@ -922,7 +885,73 @@
                             </div>
                         </div>
                     </li>
-                    <li class="nav-item"><a href="index.html#services">What We Do</a></li>
+                    <li class="nav-item">
+                        <a href="projects.html">What We Do</a>
+                        <div class="megamenu">
+                            <div class="megamenu-content">
+                                <div class="megamenu-section">
+                                    <h4>Our Services</h4>
+                                    <ul>
+                                        <li>
+                                            <a href="projects.html#general-contracting">
+                                                <svg class="megamenu-icon" fill="currentColor" viewBox="0 0 20 20">
+                                                    <path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"/>
+                                                </svg>
+                                                <div class="megamenu-item-content">
+                                                    <div class="megamenu-item-title">General Contracting</div>
+                                                    <div class="megamenu-item-desc">Site grading, utilities, and roadway construction for commercial and industrial developments</div>
+                                                </div>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="projects.html#water-sanitary-storm">
+                                                <svg class="megamenu-icon" fill="currentColor" viewBox="0 0 20 20">
+                                                    <path fill-rule="evenodd" d="M5.293 9.707a1 1 0 010-1.414l4-4a1 1 0 011.414 0l4 4a1 1 0 01-1.414 1.414L11 7.414V15a1 1 0 11-2 0V7.414L6.707 9.707a1 1 0 01-1.414 0z" clip-rule="evenodd"/>
+                                                </svg>
+                                                <div class="megamenu-item-content">
+                                                    <div class="megamenu-item-title">Water, Sanitary &amp; Storm</div>
+                                                    <div class="megamenu-item-desc">Watermain, sanitary sewer, and storm sewer installation to municipal specifications</div>
+                                                </div>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="projects.html#excavation">
+                                                <svg class="megamenu-icon" fill="currentColor" viewBox="0 0 20 20">
+                                                    <path fill-rule="evenodd" d="M3 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clip-rule="evenodd"/>
+                                                </svg>
+                                                <div class="megamenu-item-content">
+                                                    <div class="megamenu-item-title">Excavation</div>
+                                                    <div class="megamenu-item-desc">Deep trench excavation, shoring, and bulk earthworks for large-scale infrastructure projects</div>
+                                                </div>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="projects.html#infrastructure-renewal">
+                                                <svg class="megamenu-icon" fill="currentColor" viewBox="0 0 20 20">
+                                                    <path fill-rule="evenodd" d="M4 2a1 1 0 011 1v2.101a7.002 7.002 0 0111.601 2.566 1 1 0 11-1.885.666A5.002 5.002 0 005.999 7H9a1 1 0 010 2H4a1 1 0 01-1-1V3a1 1 0 011-1zm.008 9.057a1 1 0 011.276.61A5.002 5.002 0 0014.001 13H11a1 1 0 110-2h5a1 1 0 011 1v5a1 1 0 11-2 0v-2.101a7.002 7.002 0 01-11.601-2.566 1 1 0 01.61-1.276z" clip-rule="evenodd"/>
+                                                </svg>
+                                                <div class="megamenu-item-content">
+                                                    <div class="megamenu-item-title">Infrastructure Renewal</div>
+                                                    <div class="megamenu-item-desc">Replacement and rehabilitation of aging water, sanitary, and storm infrastructure</div>
+                                                </div>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="projects.html#lift-station">
+                                                <svg class="megamenu-icon" fill="currentColor" viewBox="0 0 20 20">
+                                                    <path d="M3 4a1 1 0 011-1h12a1 1 0 011 1v2a1 1 0 01-1 1H4a1 1 0 01-1-1V4zM3 10a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H4a1 1 0 01-1-1v-6zM14 9a1 1 0 00-1 1v6a1 1 0 001 1h2a1 1 0 001-1v-6a1 1 0 00-1-1h-2z"/>
+                                                </svg>
+                                                <div class="megamenu-item-content">
+                                                    <div class="megamenu-item-title">Lift Station Construction</div>
+                                                    <div class="megamenu-item-desc">Design-build lift stations with pump installation, wet wells, and SCADA monitoring</div>
+                                                </div>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
                     <li class="nav-item"><a href="projects.html">Our Projects</a></li>
                     <li class="nav-item"><a href="careers.html">Careers</a></li>
                     <li class="nav-item active"><a href="contact.html">Contact</a></li>
@@ -945,7 +974,7 @@
     <div class="search-overlay" id="searchOverlay">
         <div class="search-container">
             <div class="mobile-nav-header">
-                <img src="logo.png" alt="Degner Construction" style="height: 50px;">
+                <img src="logo.png" alt="Degner Construction" style="height: 90px;">
                 <button class="search-close" id="searchClose">&times;</button>
             </div>
             <input type="text" class="search-input" placeholder="Search projects, services, careers...">
@@ -956,12 +985,12 @@
     <!-- Mobile Navigation -->
     <nav class="mobile-nav" id="mobileNav">
         <div class="mobile-nav-header">
-            <img src="logo.png" alt="Degner Construction" style="height: 50px;">
+            <img src="logo.png" alt="Degner Construction" style="height: 90px;">
             <button class="mobile-nav-close" id="mobileNavClose">&times;</button>
         </div>
         <ul class="mobile-nav-menu">
             <li><a href="team.html">Our Team <span>→</span></a></li>
-            <li><a href="index.html#services">What We Do <span>→</span></a></li>
+            <li><a href="projects.html">What We Do <span>→</span></a></li>
             <li><a href="projects.html">Our Projects <span>→</span></a></li>
             <li><a href="safety.html">Safety <span>→</span></a></li>
             <li><a href="careers.html">Careers <span>→</span></a></li>
