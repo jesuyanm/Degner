@@ -754,30 +754,6 @@
             font-weight: 700;
         }
 
-        /* Lightbox (unused — kept for reference) */
-        .lightbox-img {
-            max-width: 90vw;
-            max-height: 90vh;
-            object-fit: contain;
-            border-radius: var(--border-radius);
-        }
-
-        .lightbox-close {
-            position: absolute;
-            top: 1.5rem;
-            right: 2rem;
-            font-size: 2.5rem;
-            color: var(--primary-white);
-            cursor: pointer;
-            line-height: 1;
-            transition: var(--transition);
-            user-select: none;
-        }
-
-        .lightbox-close:hover {
-            opacity: 0.7;
-        }
-
         /* Safety Programs Grid */
         .safety-programs {
             display: grid;
@@ -1021,46 +997,6 @@
             line-height: 1.7;
         }
 
-        /* Stats Section */
-        .safety-stats {
-            background: var(--background-dark);
-            color: var(--primary-white);
-            padding: 4rem 3rem;
-            border-radius: var(--border-radius);
-            margin: 4rem 0;
-            text-align: center;
-        }
-
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 3rem;
-            margin-top: 3rem;
-        }
-
-        .stat-item {
-            transition: var(--transition);
-        }
-
-        .stat-item:hover {
-            transform: translateY(-5px);
-        }
-
-        .stat-number {
-            font-size: 3rem;
-            font-weight: 700;
-            color: var(--primary-white);
-            margin-bottom: 0.5rem;
-            display: block;
-        }
-
-        .stat-label {
-            font-size: 1rem;
-            color: rgba(255, 255, 255, 0.9);
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
         /* Footer */
         .footer {
             background: var(--background-dark);
@@ -1115,15 +1051,6 @@
                 padding: 4rem 2rem;
             }
 
-            .team-grid {
-                grid-template-columns: 1fr;
-                gap: 2rem;
-            }
-
-            .team-member {
-                padding: 2rem;
-            }
-
             .search-toggle {
                 width: 35px;
                 height: 35px;
@@ -1172,10 +1099,6 @@
             }
 
             .main-content {
-                padding: 1.5rem;
-            }
-
-            .main-content {
                 padding: 1.25rem 1rem;
             }
 
@@ -1220,12 +1143,6 @@
 
             .award-banner {
                 padding: 1rem;
-            }
-
-            .cert-img {
-                max-height: 220px;
-                width: auto;
-                max-width: 100%;
             }
 
             .section-header {
@@ -1343,7 +1260,7 @@
     <!-- Page Header -->
     <section class="page-header">
         <div class="page-header-content">
-            <span class="eyebrow">Safety First</span>
+            <h1 class="eyebrow">Safety First</h1>
         </div>
     </section>
 
@@ -1390,7 +1307,7 @@
         <div class="safety-programs">
             <div class="safety-program">
                 <div class="safety-icon">
-                    <svg fill="white" viewBox="0 0 24 24" width="24" height="24">
+                    <svg fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" width="24" height="24">
                         <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
                     </svg>
                 </div>
@@ -1530,8 +1447,10 @@
         // Smooth scrolling for anchor links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
+                const href = this.getAttribute('href');
+                if (!href || href === '#') return;
                 e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
+                const target = document.querySelector(href);
                 if (target) {
                     target.scrollIntoView({
                         behavior: 'smooth',

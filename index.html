@@ -1472,12 +1472,6 @@
                 font-size: 0.82rem;
             }
 
-            .memberships-logos {
-                display: grid;
-                grid-template-columns: repeat(2, 1fr);
-                gap: 0.75rem;
-            }
-
             .membership-logo {
                 padding: 0.85rem;
                 height: 110px;
@@ -1935,8 +1929,10 @@
         // Smooth scrolling for navigation
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
+                const href = this.getAttribute('href');
+                if (!href || href === '#') return;
                 e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
+                const target = document.querySelector(href);
                 if (target) {
                     target.scrollIntoView({
                         behavior: 'smooth',

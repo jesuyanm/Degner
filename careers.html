@@ -1729,7 +1729,7 @@
     <!-- Page Header -->
     <section class="page-header">
         <div class="page-header-content">
-            <span class="eyebrow">Join Our Team</span>
+            <h1 class="eyebrow">Join Our Team</h1>
         </div>
     </section>
 
@@ -1755,7 +1755,7 @@
 
                 <div class="benefit-card">
                     <div class="benefit-icon">
-                        <svg width="24" height="24" fill="currentColor" viewBox="0 0 20 20">
+                        <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
                             <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
                         </svg>
                     </div>
@@ -2173,7 +2173,9 @@
         if (resumeForm) {
             resumeForm.addEventListener('submit', async function(e) {
                 e.preventDefault();
-                if (!resumeUpload.validate() | !coverLetterUpload.validate()) return;
+                const resumeOk = resumeUpload.validate();
+                const coverOk = coverLetterUpload.validate();
+                if (!resumeOk || !coverOk) return;
                 const btn = resumeForm.querySelector('.form-submit');
                 const originalText = btn.textContent;
                 btn.disabled = true;
