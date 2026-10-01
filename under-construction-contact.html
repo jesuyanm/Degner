@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - Degner Construction</title>
+    <link rel="icon" href="favicon.png?v=2" type="image/png" sizes="32x32">
+    <link rel="shortcut icon" href="favicon.png?v=2">
+    <meta name="robots" content="noindex, nofollow">
+    <meta name="author" content="Degner Construction Incorporated">
+    <style>
+        :root {
+            --white: #FFFFFF;
+            --background-dark: #0F1419;
+            --transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            color: var(--white);
+            background: var(--background-dark);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        .bg {
+            position: fixed;
+            inset: 0;
+            background:
+                radial-gradient(ellipse at 50% 45%, rgba(15,20,25,0.45), rgba(15,20,25,0.94) 85%),
+                linear-gradient(rgba(15,20,25,0.6), rgba(15,20,25,0.6)),
+                url('pic4.png') center / cover no-repeat;
+            filter: grayscale(1) contrast(1.1);
+            animation: drift 30s ease-in-out infinite alternate;
+        }
+
+        @keyframes drift {
+            from { transform: scale(1); }
+            to { transform: scale(1.08); }
+        }
+
+        .page {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            padding: 0 3rem;
+        }
+
+        /* Header */
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 96px;
+            flex-shrink: 0;
+        }
+
+        .logo img { height: 44px; display: block; filter: invert(1); mix-blend-mode: screen; }
+
+        .nav-links { display: flex; align-items: center; gap: 2.25rem; }
+
+        .nav-link {
+            color: var(--white);
+            text-decoration: none;
+            font-size: 0.8rem;
+            font-weight: 500;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            padding: 0.4rem 0;
+            border-bottom: 1px solid transparent;
+            opacity: 0.7;
+            transition: var(--transition);
+        }
+
+        .nav-link:hover, .nav-link.active { opacity: 1; border-bottom-color: var(--white); }
+
+        /* Content */
+        .contact-body {
+            flex: 1;
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0.5rem 0 1rem;
+            display: grid;
+            grid-template-columns: 1fr 1.3fr;
+            gap: 4rem;
+            align-items: center;
+            animation: fadeUp 1s ease-out both;
+        }
+
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(24px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .eyebrow {
+            font-size: 0.8rem;
+            font-weight: 500;
+            letter-spacing: 0.5em;
+            text-transform: uppercase;
+            opacity: 0.75;
+        }
+
+        h1 {
+            margin: 0.5rem 0 clamp(0.75rem, 2.5vh, 1.5rem);
+            font-size: clamp(2rem, min(5vw, 7vh), 3.75rem);
+            font-weight: 300;
+            line-height: 1.05;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+        }
+
+        h1 strong { font-weight: 700; }
+
+        .contact-detail {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            padding: clamp(0.45rem, 1.3vh, 0.8rem) 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.15);
+            font-size: 0.92rem;
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.6;
+        }
+
+        .contact-detail:last-child { border-bottom: 1px solid rgba(255, 255, 255, 0.15); }
+
+        .contact-detail svg { flex-shrink: 0; margin-top: 4px; width: 16px; height: 16px; color: var(--white); }
+
+        .contact-detail strong {
+            display: block;
+            color: var(--white);
+            font-size: 0.72rem;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 0.1rem;
+        }
+
+        .contact-detail a { color: inherit; text-decoration: none; transition: var(--transition); }
+        .contact-detail a:hover { color: var(--white); text-decoration: underline; }
+        .contact-detail .muted { opacity: 0.6; }
+
+        .contact-detail a.apply-btn {
+            display: inline-block;
+            margin-right: 0.5rem;
+            padding: 0.2rem 0.9rem;
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            color: var(--white);
+            font-size: 0.7rem;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .contact-detail a.apply-btn:hover { background: var(--white); color: #0a0a0a; text-decoration: none; }
+
+        /* Form card */
+        .contact-form-block {
+            padding: clamp(1.25rem, 3vh, 2rem);
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            background: rgba(15, 20, 25, 0.45);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+        }
+
+        .contact-form { display: flex; flex-direction: column; gap: 0.9rem; }
+        .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 0.9rem; }
+
+        .contact-form input[type="text"],
+        .contact-form input[type="email"],
+        .contact-form textarea {
+            width: 100%;
+            padding: 0.95rem 1.1rem;
+            font: inherit;
+            font-size: 0.9rem;
+            color: var(--white);
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 0;
+            resize: none;
+            transition: var(--transition);
+        }
+
+        .contact-form textarea { min-height: clamp(110px, 20vh, 170px); }
+
+        .contact-form ::placeholder { color: rgba(255, 255, 255, 0.55); }
+
+        .contact-form input:focus,
+        .contact-form textarea:focus {
+            outline: none;
+            border-color: var(--white);
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .form-submit {
+            align-self: flex-end;
+            padding: 0.95rem 2.4rem;
+            font: inherit;
+            font-size: 0.78rem;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            border: none;
+            background: var(--white);
+            color: #0a0a0a;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .form-submit:hover { background: rgba(255, 255, 255, 0.8); }
+        .form-submit:disabled { opacity: 0.6; cursor: default; }
+
+        .form-error { font-size: 0.85rem; text-align: right; color: #ffb4a8; }
+
+        .form-success { text-align: center; padding: 3rem 0.5rem; }
+        .form-success h3 { font-size: 1.2rem; font-weight: 300; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 0.9rem; }
+        .form-success p { opacity: 0.8; }
+
+        /* Bottom bar */
+        .bottom-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 0;
+            flex-shrink: 0;
+            font-size: 0.8rem;
+            letter-spacing: 0.5px;
+        }
+
+        .bottom-bar span, .bottom-bar p { opacity: 0.65; }
+
+        .social { display: flex; gap: 0.6rem; }
+
+        .social a {
+            width: 38px;
+            height: 38px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid rgba(255, 255, 255, 0.45);
+            border-radius: 50%;
+            color: var(--white);
+            transition: var(--transition);
+        }
+
+        .social a:hover { background: var(--white); color: #0a0a0a; transform: translateY(-3px); }
+        .social svg { width: 16px; height: 16px; }
+
+        @media (max-width: 900px) {
+            .contact-body { grid-template-columns: 1fr; gap: 2.5rem; }
+        }
+
+        @media (max-width: 700px) {
+            .page { padding: 0 1.25rem; }
+            .header { height: 72px; }
+            .logo img { height: 32px; }
+            .nav-links { gap: 1.25rem; }
+            .nav-link { font-size: 0.72rem; letter-spacing: 1.5px; }
+            h1 { letter-spacing: 0.14em; }
+            .eyebrow { letter-spacing: 0.3em; }
+            .contact-form-block { padding: 1.25rem; }
+            .form-row { grid-template-columns: 1fr; }
+            .form-submit { align-self: stretch; }
+            .bottom-bar { flex-direction: column; gap: 0.9rem; text-align: center; }
+        }
+    </style>
+</head>
+<body>
+    <div class="bg"></div>
+
+    <div class="page">
+        <header class="header">
+            <a class="logo" href="under-construction.html"><img src="logo.png" alt="Degner Construction"></a>
+            <nav class="nav-links">
+                <a href="under-construction.html" class="nav-link">Home</a>
+                <a href="under-construction-apply.html" class="nav-link">Apply Now</a>
+                <a href="under-construction-contact.html" class="nav-link active">Contact Us</a>
+            </nav>
+        </header>
+
+        <main class="contact-body">
+            <div class="contact-info-block">
+                <p class="eyebrow">Get in touch</p>
+                <h1><strong>Contact</strong> Us</h1>
+
+                <div class="contact-detail">
+                    <svg fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"/></svg>
+                    <div>
+                        <strong>Degner Construction Incorporated</strong>
+                        27575 Ellis Road, Acheson, AB T7X 6N3
+                    </div>
+                </div>
+
+                <div class="contact-detail">
+                    <svg fill="currentColor" viewBox="0 0 20 20"><path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"/></svg>
+                    <div>
+                        <strong>Phone</strong>
+                        <a href="tel:780-960-8723">780-960-8723</a> <span class="muted">&nbsp;·&nbsp; Fax <a href="tel:780-960-8809">780-960-8809</a></span>
+                    </div>
+                </div>
+
+                <div class="contact-detail">
+                    <svg fill="currentColor" viewBox="0 0 20 20"><path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"/><path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"/></svg>
+                    <div>
+                        <strong>Email</strong>
+                        <a href="mailto:info@degner.ca">info@degner.ca</a>
+                    </div>
+                </div>
+
+                <div class="contact-detail">
+                    <svg fill="currentColor" viewBox="0 0 20 20"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                    <div>
+                        <strong>Quote Requests</strong>
+                        <a href="mailto:estimating@degner.ca">estimating@degner.ca</a>
+                    </div>
+                </div>
+
+                <div class="contact-detail">
+                    <svg fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clip-rule="evenodd"/></svg>
+                    <div>
+                        <strong>Monday – Friday</strong>
+                        8:00 AM – 5:00 PM <span class="muted">&nbsp;·&nbsp; Weekends closed</span>
+                    </div>
+                </div>
+
+                <div class="contact-detail">
+                    <svg fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M6 6V5a3 3 0 013-3h2a3 3 0 013 3v1h2a2 2 0 012 2v3.57A22.952 22.952 0 0110 13a22.95 22.95 0 01-8-1.43V8a2 2 0 012-2h2zm2-1a1 1 0 011-1h2a1 1 0 011 1v1H8V5zm1 5a1 1 0 011-1h.01a1 1 0 110 2H10a1 1 0 01-1-1z" clip-rule="evenodd"/><path d="M2 13.692V16a2 2 0 002 2h12a2 2 0 002-2v-2.308A24.974 24.974 0 0110 15c-2.796 0-5.487-.46-8-1.308z"/></svg>
+                    <div style="font-size: 0.85rem;">
+                        <a href="under-construction-apply.html" class="apply-btn">Apply Now</a>
+                        or email your resume to Tom at <a href="mailto:hr@degner.ca">hr@degner.ca</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="contact-form-block">
+                <form class="contact-form" action="https://api.web3forms.com/submit" method="POST">
+                    <input type="hidden" name="access_key" value="a387d1f3-a78e-49d0-9a62-3d903738b2be">
+                    <input type="hidden" name="from_name" value="Degner Website">
+                    <input type="checkbox" name="botcheck" style="display:none;">
+
+                    <div class="form-row">
+                        <input type="text" name="name" placeholder="Your Name" required>
+                        <input type="email" name="email" placeholder="E-mail address" required>
+                    </div>
+                    <input type="text" name="subject" placeholder="Subject" required>
+                    <textarea name="message" placeholder="Message" required></textarea>
+                    <button type="submit" class="form-submit">Send Inquiry</button>
+                </form>
+            </div>
+        </main>
+
+        <footer class="bottom-bar">
+            <span>Designed by Emet Solutions</span>
+            <div class="social">
+                <a href="https://www.instagram.com/degnerconstructioninc/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+                </a>
+                <a href="https://www.facebook.com/degnerconstruction/" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+                </a>
+                <a href="https://www.linkedin.com/company/degner-construction/?originalSubdomain=ca" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+                </a>
+            </div>
+            <p>&copy; <span id="footer-year"></span> Degner Construction</p>
+        </footer>
+    </div>
+
+    <script>
+        document.getElementById('footer-year').textContent = new Date().getFullYear();
+
+        document.querySelector('.contact-form').addEventListener('submit', async function (e) {
+            e.preventDefault();
+            const form = this;
+            const btn = form.querySelector('.form-submit');
+            const firstName = form.querySelector('[name="name"]').value.trim().split(' ')[0]
+                .replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+            btn.textContent = 'Sending…';
+            btn.disabled = true;
+            try {
+                const res = await fetch('https://api.web3forms.com/submit', { method: 'POST', body: new FormData(form) });
+                const json = await res.json();
+                if (!json.success) throw new Error(json.message);
+                document.querySelector('.contact-form-block').innerHTML = `
+                    <div class="form-success">
+                        <h3>Thank you, ${firstName}</h3>
+                        <p>We've received your message and will be in touch within 1–2 business days.</p>
+                    </div>`;
+            } catch (err) {
+                btn.textContent = 'Send Inquiry';
+                btn.disabled = false;
+                let msg = form.querySelector('.form-error');
+                if (!msg) { msg = document.createElement('p'); msg.className = 'form-error'; btn.after(msg); }
+                msg.textContent = 'Something went wrong. Please try again or call 780-960-8723.';
+            }
+        });
+    </script>
+</body>
+</html>

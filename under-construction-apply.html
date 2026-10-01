@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Apply Now - Degner Construction</title>
+    <link rel="icon" href="favicon.png?v=2" type="image/png" sizes="32x32">
+    <link rel="shortcut icon" href="favicon.png?v=2">
+    <meta name="robots" content="noindex, nofollow">
+    <meta name="author" content="Degner Construction Incorporated">
+    <style>
+        :root {
+            --white: #FFFFFF;
+            --background-dark: #0F1419;
+            --transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            color: var(--white);
+            background: var(--background-dark);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        .bg {
+            position: fixed;
+            inset: 0;
+            background:
+                radial-gradient(ellipse at 50% 45%, rgba(15,20,25,0.45), rgba(15,20,25,0.94) 85%),
+                linear-gradient(rgba(15,20,25,0.6), rgba(15,20,25,0.6)),
+                url('pic4.png') center / cover no-repeat;
+            filter: grayscale(1) contrast(1.1);
+            animation: drift 30s ease-in-out infinite alternate;
+        }
+
+        @keyframes drift {
+            from { transform: scale(1); }
+            to { transform: scale(1.08); }
+        }
+
+        .page {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            padding: 0 3rem;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 96px;
+            flex-shrink: 0;
+        }
+
+        .logo img { height: 44px; display: block; filter: invert(1); mix-blend-mode: screen; }
+
+        .nav-links { display: flex; align-items: center; gap: 2.25rem; }
+
+        .nav-link {
+            color: var(--white);
+            text-decoration: none;
+            font-size: 0.8rem;
+            font-weight: 500;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            padding: 0.4rem 0;
+            border-bottom: 1px solid transparent;
+            opacity: 0.7;
+            transition: var(--transition);
+        }
+
+        .nav-link:hover, .nav-link.active { opacity: 1; border-bottom-color: var(--white); }
+
+        .apply-body {
+            flex: 1;
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0.5rem 0 1rem;
+            display: grid;
+            grid-template-columns: 1fr 1.3fr;
+            gap: 4rem;
+            align-items: center;
+            animation: fadeUp 1s ease-out both;
+        }
+
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(24px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .eyebrow {
+            font-size: 0.8rem;
+            font-weight: 500;
+            letter-spacing: 0.5em;
+            text-transform: uppercase;
+            opacity: 0.75;
+        }
+
+        h1 {
+            margin: 0.5rem 0 clamp(0.75rem, 2.5vh, 1.5rem);
+            font-size: clamp(2rem, min(5vw, 7vh), 3.75rem);
+            font-weight: 300;
+            line-height: 1.05;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+        }
+
+        h1 strong { font-weight: 700; }
+
+        .intro { font-size: 0.95rem; line-height: 1.7; opacity: 0.8; margin-bottom: 1.5rem; }
+        .intro strong { color: var(--white); font-weight: 600; }
+
+        .positions { list-style: none; display: grid; grid-template-columns: 1fr 1fr; column-gap: 2rem; border-bottom: 1px solid rgba(255, 255, 255, 0.15); }
+
+        .positions li {
+            padding: clamp(0.45rem, 1.2vh, 0.7rem) 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.15);
+            font-size: 0.92rem;
+            color: rgba(255, 255, 255, 0.85);
+        }
+
+
+        .apply-card {
+            padding: 2rem;
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            background: rgba(15, 20, 25, 0.45);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+        }
+
+        .forward {
+            margin-bottom: 1.5rem;
+            padding-bottom: 1.25rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+            font-size: 0.9rem;
+            line-height: 1.7;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .forward h2 {
+            font-size: 0.78rem;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--white);
+            margin-bottom: 0.4rem;
+        }
+
+        .forward a { color: var(--white); font-weight: 600; text-decoration: none; }
+        .forward a:hover { text-decoration: underline; }
+
+        .apply-form { display: flex; flex-direction: column; gap: 0.9rem; }
+        .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 0.9rem; }
+
+        .apply-form input[type="text"],
+        .apply-form input[type="email"],
+        .apply-form input[type="tel"] {
+            width: 100%;
+            padding: 0.95rem 1.1rem;
+            font: inherit;
+            font-size: 0.9rem;
+            color: var(--white);
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 0;
+            transition: var(--transition);
+        }
+
+        .apply-form ::placeholder { color: rgba(255, 255, 255, 0.55); }
+
+        .apply-form input:focus {
+            outline: none;
+            border-color: var(--white);
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .file-label {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.95rem 1.1rem;
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.7);
+            border: 1px dashed rgba(255, 255, 255, 0.4);
+            background: rgba(255, 255, 255, 0.04);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .file-label:hover, .file-label.has-file { border-color: var(--white); color: var(--white); }
+
+        .file-label svg { flex-shrink: 0; }
+        .file-label .name { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+        .file-label .hint { font-size: 0.75rem; opacity: 0.6; white-space: nowrap; }
+
+        .file-error { margin-top: 0.35rem; font-size: 0.8rem; color: #ffb4a8; }
+
+        .form-submit {
+            padding: 1rem 2.4rem;
+            font: inherit;
+            font-size: 0.78rem;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            border: none;
+            background: var(--white);
+            color: #0a0a0a;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .form-submit:hover { background: rgba(255, 255, 255, 0.8); }
+        .form-submit:disabled { opacity: 0.6; cursor: default; }
+
+        .form-error { font-size: 0.85rem; text-align: center; color: #ffb4a8; }
+
+        .form-success { text-align: center; padding: 3rem 0.5rem; }
+        .form-success h3 { font-size: 1.2rem; font-weight: 300; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 0.9rem; }
+        .form-success p { opacity: 0.8; line-height: 1.7; }
+
+        .bottom-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 0;
+            flex-shrink: 0;
+            font-size: 0.8rem;
+            letter-spacing: 0.5px;
+        }
+
+        .bottom-bar span, .bottom-bar p { opacity: 0.65; }
+
+        .social { display: flex; gap: 0.6rem; }
+
+        .social a {
+            width: 38px;
+            height: 38px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid rgba(255, 255, 255, 0.45);
+            border-radius: 50%;
+            color: var(--white);
+            transition: var(--transition);
+        }
+
+        .social a:hover { background: var(--white); color: #0a0a0a; transform: translateY(-3px); }
+        .social svg { width: 16px; height: 16px; }
+
+        @media (max-width: 900px) {
+            .apply-body { grid-template-columns: 1fr; gap: 2.5rem; }
+        }
+
+        @media (max-width: 700px) {
+            .page { padding: 0 1.25rem; }
+            .header { height: 72px; }
+            .logo img { height: 32px; }
+            .nav-links { gap: 1.1rem; }
+            .nav-link { font-size: 0.68rem; letter-spacing: 1.2px; }
+            h1 { letter-spacing: 0.14em; }
+            .eyebrow { letter-spacing: 0.3em; }
+            .apply-card { padding: 1.25rem; }
+            .form-row { grid-template-columns: 1fr; }
+            .file-label .hint { display: none; }
+            .bottom-bar { flex-direction: column; gap: 0.9rem; text-align: center; }
+        }
+    </style>
+</head>
+<body>
+    <div class="bg"></div>
+
+    <div class="page">
+        <header class="header">
+            <a class="logo" href="under-construction.html"><img src="logo.png" alt="Degner Construction"></a>
+            <nav class="nav-links">
+                <a href="under-construction.html" class="nav-link">Home</a>
+                <a href="under-construction-apply.html" class="nav-link active">Apply Now</a>
+                <a href="under-construction-contact.html" class="nav-link">Contact Us</a>
+            </nav>
+        </header>
+
+        <main class="apply-body">
+            <div>
+                <p class="eyebrow">Careers</p>
+                <h1><strong>Current</strong> Opportunities</h1>
+                <p class="intro"><strong>Thank you for your interest in Degner Construction.</strong><br>We are currently recruiting for the following positions for the upcoming construction season:</p>
+                <ul class="positions">
+                    <li>Foreman</li>
+                    <li>Topman</li>
+                    <li>Pipelayers</li>
+                    <li>Pipelayer Helpers</li>
+                    <li>General Labourers</li>
+                    <li>Mainline Excavator Operators</li>
+                    <li>Side Hoe Excavator Operators</li>
+                    <li>Dozer Operators</li>
+                    <li>Wheel Loader Operators</li>
+                    <li>Packer Operators</li>
+                </ul>
+            </div>
+
+            <div class="apply-card">
+                <div class="forward">
+                    <h2>Please forward resumes to:</h2>
+                    Tom at <a href="mailto:hr@degner.ca">hr@degner.ca</a> or Fax: <a href="tel:780-960-8809">780-960-8809</a>
+                </div>
+
+                <form class="apply-form" action="https://api.web3forms.com/submit" method="POST" enctype="multipart/form-data">
+                    <input type="hidden" name="access_key" value="cd256a36-e377-419a-a7f4-f1bb84d8a0ae">
+                    <input type="hidden" name="from_name" value="Degner Careers">
+                    <input type="checkbox" name="botcheck" style="display:none;">
+
+                    <div class="form-row">
+                        <input type="text" name="name" placeholder="Full Name" required>
+                        <input type="email" name="email" placeholder="Email" required>
+                    </div>
+                    <div class="form-row">
+                        <input type="tel" name="phone" placeholder="Phone">
+                        <input type="text" name="position" placeholder="Position Interested In">
+                    </div>
+
+                    <div>
+                        <label class="file-label" for="resume-upload">
+                            <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+                            <span class="name" data-default="Upload Resume">Upload Resume</span>
+                            <span class="hint">PDF, DOC, DOCX — max 5 MB</span>
+                        </label>
+                        <input type="file" id="resume-upload" name="resume" accept=".pdf,.doc,.docx" style="display:none;">
+                    </div>
+
+                    <div>
+                        <label class="file-label" for="cover-upload">
+                            <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+                            <span class="name" data-default="Upload Cover Letter (Optional)">Upload Cover Letter (Optional)</span>
+                            <span class="hint">PDF, DOC, DOCX — max 5 MB</span>
+                        </label>
+                        <input type="file" id="cover-upload" name="cover_letter" accept=".pdf,.doc,.docx" style="display:none;">
+                    </div>
+
+                    <button type="submit" class="form-submit">Submit Application</button>
+                </form>
+            </div>
+        </main>
+
+        <footer class="bottom-bar">
+            <span>Designed by Emet Solutions</span>
+            <div class="social">
+                <a href="https://www.instagram.com/degnerconstructioninc/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+                </a>
+                <a href="https://www.facebook.com/degnerconstruction/" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+                </a>
+                <a href="https://www.linkedin.com/company/degner-construction/?originalSubdomain=ca" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+                </a>
+            </div>
+            <p>&copy; <span id="footer-year"></span> Degner Construction</p>
+        </footer>
+    </div>
+
+    <script>
+        document.getElementById('footer-year').textContent = new Date().getFullYear();
+
+        const MAX_BYTES = 5 * 1024 * 1024;
+        const ALLOWED = ['pdf', 'doc', 'docx'];
+
+        // Returns a function that validates the input and returns true if OK
+        function setupFile(input) {
+            const label = input.parentElement.querySelector('.file-label');
+            const name = label.querySelector('.name');
+            const wrap = input.parentElement;
+
+            function showError(msg) {
+                let err = wrap.querySelector('.file-error');
+                if (!msg) { if (err) err.remove(); return; }
+                if (!err) { err = document.createElement('p'); err.className = 'file-error'; wrap.appendChild(err); }
+                err.textContent = msg;
+            }
+
+            function check(file) {
+                const ext = file.name.split('.').pop().toLowerCase();
+                if (!ALLOWED.includes(ext)) return 'Please upload a PDF, DOC or DOCX file.';
+                if (file.size > MAX_BYTES) return 'File is too large. Maximum size is 5 MB.';
+                return '';
+            }
+
+            input.addEventListener('change', () => {
+                showError('');
+                const file = input.files[0];
+                if (!file) { label.classList.remove('has-file'); name.textContent = name.dataset.default; return; }
+                const msg = check(file);
+                if (msg) {
+                    showError(msg);
+                    input.value = '';
+                    label.classList.remove('has-file');
+                    name.textContent = name.dataset.default;
+                } else {
+                    label.classList.add('has-file');
+                    name.textContent = file.name;
+                }
+            });
+        }
+
+        setupFile(document.getElementById('resume-upload'));
+        setupFile(document.getElementById('cover-upload'));
+
+        document.querySelector('.apply-form').addEventListener('submit', async function (e) {
+            e.preventDefault();
+            const form = this;
+            const btn = form.querySelector('.form-submit');
+            const firstName = form.querySelector('[name="name"]').value.trim().split(' ')[0]
+                .replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+            btn.textContent = 'Submitting…';
+            btn.disabled = true;
+            try {
+                const res = await fetch('https://api.web3forms.com/submit', { method: 'POST', body: new FormData(form) });
+                if (!res.ok) throw new Error('failed');
+                form.parentElement.innerHTML = `
+                    <div class="form-success">
+                        <h3>Thank you, ${firstName}</h3>
+                        <p>We've received your application. Only selected candidates will be contacted. Please allow 2–4 business days for us to review your submission.</p>
+                    </div>`;
+            } catch (err) {
+                btn.textContent = 'Submit Application';
+                btn.disabled = false;
+                let msg = form.querySelector('.form-error');
+                if (!msg) { msg = document.createElement('p'); msg.className = 'form-error'; btn.after(msg); }
+                msg.textContent = 'Something went wrong. Please try again or email hr@degner.ca.';
+            }
+        });
+    </script>
+</body>
+</html>

@@ -801,7 +801,7 @@
 
         .project-card-image[data-label="General Contracting"]   { background: linear-gradient(135deg, #0f1a2e, #1c3050); }
         .project-card-image[data-label="Water & Storm"]         { background: linear-gradient(135deg, #0a1e2e, #0f3050); }
-        .project-card-image[data-label="Excavation"]            { background: linear-gradient(135deg, #1e1508, #302212); }
+        .project-card-image[data-label="Earthworks"]            { background: linear-gradient(135deg, #1e1508, #302212); }
         .project-card-image[data-label="Infrastructure Renewal"]{ background: linear-gradient(135deg, #0d1f17, #183328); }
         .project-card-image[data-label="Lift Station"]          { background: linear-gradient(135deg, #1a0f2e, #2a1850); }
 
@@ -941,7 +941,7 @@
 
         .project-modal-image[data-label="General Contracting"]   { background: linear-gradient(135deg, #0f1a2e, #1c3050); }
         .project-modal-image[data-label="Water & Storm"]         { background: linear-gradient(135deg, #0a1e2e, #0f3050); }
-        .project-modal-image[data-label="Excavation"]            { background: linear-gradient(135deg, #1e1508, #302212); }
+        .project-modal-image[data-label="Earthworks"]            { background: linear-gradient(135deg, #1e1508, #302212); }
         .project-modal-image[data-label="Infrastructure Renewal"]{ background: linear-gradient(135deg, #0d1f17, #183328); }
         .project-modal-image[data-label="Lift Station"]          { background: linear-gradient(135deg, #1a0f2e, #2a1850); }
 
@@ -1559,21 +1559,21 @@
             <div class="carousel-dots" id="dots-water-sanitary-storm"></div>
         </section>
 
-        <!-- Excavation -->
-        <section class="project-section" id="excavation">
+        <!-- Earthworks -->
+        <section class="project-section" id="earthworks">
             <div class="project-section-header">
                 <div class="project-section-left">
-                    <h2 class="project-section-title">Excavation</h2>
+                    <h2 class="project-section-title">Earthworks</h2>
                 </div>
                 <div class="project-section-nav">
-                    <button class="carousel-btn" id="prev-excavation">&#8249;</button>
-                    <button class="carousel-btn" id="next-excavation">&#8250;</button>
+                    <button class="carousel-btn" id="prev-earthworks">&#8249;</button>
+                    <button class="carousel-btn" id="next-earthworks">&#8250;</button>
                 </div>
             </div>
-            <div class="project-track" id="track-excavation">
+            <div class="project-track" id="track-earthworks">
                 <div class="project-card">
                     <div class="project-card-top">
-                        <span class="project-badge">Excavation</span>
+                        <span class="project-badge">Earthworks</span>
                         <span class="project-year">2022</span>
                     </div>
                     <h3 class="project-title">Anthony Henday Utility Crossing</h3>
@@ -1586,7 +1586,7 @@
                 </div>
                 <div class="project-card">
                     <div class="project-card-top">
-                        <span class="project-badge">Excavation</span>
+                        <span class="project-badge">Earthworks</span>
                         <span class="project-year">2021</span>
                     </div>
                     <h3 class="project-title">Manning Freeway Deep Cut</h3>
@@ -1599,7 +1599,7 @@
                 </div>
                 <div class="project-card">
                     <div class="project-card-top">
-                        <span class="project-badge">Excavation</span>
+                        <span class="project-badge">Earthworks</span>
                         <span class="project-year">2023</span>
                     </div>
                     <h3 class="project-title">Strathcona Industrial Earthworks</h3>
@@ -1611,7 +1611,7 @@
                     </div>
                 </div>
             </div>
-            <div class="carousel-dots" id="dots-excavation"></div>
+            <div class="carousel-dots" id="dots-earthworks"></div>
         </section>
 
         <!-- Infrastructure Renewal -->
@@ -1965,7 +1965,7 @@
         projectModal.addEventListener('click', e => { if (e.target === projectModal) closeProjectModal(); });
 
         // Project carousels
-        ['general-contracting', 'water-sanitary-storm', 'excavation', 'infrastructure-renewal', 'lift-station'].forEach(id => {
+        ['general-contracting', 'water-sanitary-storm', 'earthworks', 'infrastructure-renewal', 'lift-station'].forEach(id => {
             const track   = document.getElementById(`track-${id}`);
             const prevBtn = document.getElementById(`prev-${id}`);
             const nextBtn = document.getElementById(`next-${id}`);
