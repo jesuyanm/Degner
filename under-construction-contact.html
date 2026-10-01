@@ -255,17 +255,20 @@
         }
 
         @media (max-width: 700px) {
-            .page { padding: 0 1.25rem; }
-            .header { height: 72px; }
-            .logo img { height: 32px; }
-            .nav-links { gap: 1.25rem; }
-            .nav-link { font-size: 0.72rem; letter-spacing: 1.5px; }
-            h1 { letter-spacing: 0.14em; }
-            .eyebrow { letter-spacing: 0.3em; }
+            .page { padding: 0 1rem; }
+            .header { height: 64px; gap: 0.75rem; }
+            .logo img { height: 26px; }
+            .nav-links { gap: 0.8rem; }
+            .nav-link { font-size: 0.62rem; letter-spacing: 0.6px; white-space: nowrap; }
+            .contact-body { padding: 1.5rem 0 1rem; gap: 2rem; }
+            .eyebrow { font-size: 0.72rem; letter-spacing: 0.3em; }
+            h1 { margin: 0.5rem 0 1.25rem; font-size: clamp(1.9rem, 9vw, 2.6rem); letter-spacing: 0.12em; }
+            .contact-detail { padding: 0.75rem 0; }
             .contact-form-block { padding: 1.25rem; }
             .form-row { grid-template-columns: 1fr; }
             .form-submit { align-self: stretch; }
-            .bottom-bar { flex-direction: column; gap: 0.9rem; text-align: center; }
+            .bottom-bar { flex-direction: column; gap: 0.75rem; text-align: center; padding: 2rem 0 1.5rem; }
+            .social { order: -1; }
         }
     </style>
 </head>

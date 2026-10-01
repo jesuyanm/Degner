@@ -183,14 +183,21 @@
         .social svg { width: 16px; height: 16px; }
 
         @media (max-width: 700px) {
-            .page { padding: 0 1.25rem; }
-            .header { height: 72px; }
-            .logo img { height: 32px; }
-            .nav-links { gap: 1.25rem; }
-            .nav-link { font-size: 0.72rem; letter-spacing: 1.5px; }
-            h1 { letter-spacing: 0.18em; padding-left: 0.18em; }
-            .eyebrow { letter-spacing: 0.3em; }
-            .bottom-bar { flex-direction: column; gap: 0.9rem; text-align: center; }
+            html, body { height: auto; }
+            body { overflow-x: hidden; overflow-y: auto; }
+            .page { height: auto; min-height: 100vh; min-height: 100dvh; padding: 0 1rem; }
+            .header { height: 64px; gap: 0.75rem; }
+            .logo img { height: 26px; }
+            .nav-links { gap: 0.8rem; }
+            .nav-link { font-size: 0.62rem; letter-spacing: 0.6px; white-space: nowrap; }
+            .center { padding: 2rem 0; }
+            .line { height: 40px; }
+            .eyebrow { margin-top: 1.25rem; font-size: 0.72rem; letter-spacing: 0.3em; padding-left: 0.3em; }
+            h1 { margin: 0.75rem 0 1.75rem; font-size: clamp(2.2rem, 11vw, 3.2rem); letter-spacing: 0.18em; padding-left: 0.18em; }
+            h1 strong { display: block; }
+            .need-now { line-height: 2.2; }
+            .bottom-bar { flex-direction: column; gap: 0.75rem; text-align: center; padding: 2rem 0 1.5rem; }
+            .social { order: -1; }
         }
 
         @media (max-height: 600px) {
