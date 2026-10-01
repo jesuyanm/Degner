@@ -1,6 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!-- Hidden while the site is under construction: visitors are sent to the coming-soon page.
+         Open any page with ?preview to view the full site (remembered in this browser); ?preview=off to hide again.
+         Remove this script at launch. -->
+    <script>
+        (function () {
+            try {
+                var q = location.search;
+                if (q.indexOf("preview=off") > -1) localStorage.removeItem("degnerPreview");
+                else if (q.indexOf("preview") > -1) localStorage.setItem("degnerPreview", "1");
+                if (!localStorage.getItem("degnerPreview")) location.replace("index.html");
+            } catch (e) { location.replace("index.html"); }
+        })();
+    </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Careers at Degner Construction | Edmonton, Alberta & Surrounding Areas</title>
@@ -1637,7 +1650,7 @@
         <nav class="nav-container">
             <div class="nav-left">
                 <div class="logo">
-                    <a href="index.html">
+                    <a href="home.html">
                         <img src="logo.png" alt="Degner Construction Logo">
                     </a>
                 </div>
@@ -1650,7 +1663,7 @@
                                     <h4>About Us</h4>
                                     <ul>
                                         <li>
-                                            <a href="index.html#about">
+                                            <a href="home.html#about">
                                                 <svg class="megamenu-icon" fill="currentColor" viewBox="0 0 20 20">
                                                     <path d="M10.394 2.08a1 1 0 00-.788 0l-7 3a1 1 0 000 1.84L5.25 8.051a.999.999 0 01.356-.257l4-1.714a1 1 0 11.788 1.838L7.667 9.088l1.94.831a1 1 0 00.787 0l7-3a1 1 0 000-1.838l-7-3z"/>
                                                 </svg>
@@ -1676,7 +1689,7 @@
                             </div>
                         </div>
                     </li>
-                    <li class="nav-item"><a href="index.html#services">What We Do</a></li>
+                    <li class="nav-item"><a href="home.html#services">What We Do</a></li>
                     <li class="nav-item"><a href="projects.html">Our Projects</a></li>
                     <li class="nav-item"><a href="safety.html">Safety</a></li>
                     <li class="nav-item active"><a href="careers.html">Careers</a></li>
@@ -1718,7 +1731,7 @@
         </div>
         <ul class="mobile-nav-menu">
             <li><a href="team.html">Our Team <span>→</span></a></li>
-            <li><a href="index.html#services">What We Do <span>→</span></a></li>
+            <li><a href="home.html#services">What We Do <span>→</span></a></li>
             <li><a href="projects.html">Our Projects <span>→</span></a></li>
             <li><a href="safety.html">Safety <span>→</span></a></li>
             <li><a href="careers.html">Careers <span>→</span></a></li>
@@ -2000,7 +2013,7 @@
 
         // Logo — always go to top of homepage
         document.querySelector('.logo a').addEventListener('click', function(e) {
-            const onHome = window.location.pathname.endsWith('index.html') || window.location.pathname === '/' || window.location.pathname.endsWith('/');
+            const onHome = window.location.pathname.endsWith('home.html') || window.location.pathname === '/' || window.location.pathname.endsWith('/');
             if (onHome) { e.preventDefault(); window.scrollTo({ top: 0, behavior: 'smooth' }); }
         });
 
@@ -2219,7 +2232,7 @@
                                             <svg width="15" height="15" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2L3 7v3c0 5.55 3.84 9.74 9 11 5.16-1.26 9-5.45 9-11V7l-10-5z"/></svg>
                                             Safety Culture
                                         </a>
-                                        <a href="index.html#services" class="success-link">
+                                        <a href="home.html#services" class="success-link">
                                             <svg width="15" height="15" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M11.49 3.17c-.38-1.56-2.6-1.56-2.98 0a1.532 1.532 0 01-2.286.948c-1.372-.836-2.942.734-2.106 2.106.54.886.061 2.042-.947 2.287-1.561.379-1.561 2.6 0 2.978a1.532 1.532 0 01.947 2.287c-.836 1.372.734 2.942 2.106 2.106a1.532 1.532 0 012.287.947c.379 1.561 2.6 1.561 2.978 0a1.533 1.533 0 012.287-.947c1.372.836 2.942-.734 2.106-2.106a1.533 1.533 0 01.947-2.287c1.561-.379 1.561-2.6 0-2.978a1.532 1.532 0 01-.947-2.287c.836-1.372-.734-2.942-2.106-2.106a1.532 1.532 0 01-2.287-.947zM10 13a3 3 0 100-6 3 3 0 000 6z" clip-rule="evenodd"/></svg>
                                             What We Do
                                         </a>
