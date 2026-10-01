@@ -131,24 +131,24 @@
 
         h1 strong { font-weight: 700; }
 
-        .need-now { font-size: 0.85rem; opacity: 0.75; line-height: 1.8; }
-        .need-now a { color: var(--white); text-underline-offset: 3px; }
-        .need-now a:hover { opacity: 0.7; }
+        .ctas { display: flex; flex-direction: column; align-items: stretch; gap: 0.6rem; }
 
-        .need-now a.btn {
-            display: inline-block;
-            margin-left: 0.4rem;
+        .ctas .btn {
             padding: 0.2rem 0.9rem;
             border: 1px solid rgba(255, 255, 255, 0.5);
+            color: var(--white);
             font-size: 0.7rem;
             font-weight: 600;
             letter-spacing: 2px;
+            text-align: center;
             text-transform: uppercase;
             text-decoration: none;
+            line-height: 1.8;
+            opacity: 0.75;
             transition: var(--transition);
         }
 
-        .need-now a.btn:hover { opacity: 1; background: var(--white); color: #0a0a0a; }
+        .ctas .btn:hover { opacity: 1; background: var(--white); color: #0a0a0a; border-color: var(--white); }
 
         .line.bottom { margin-top: 0.75rem; }
 
@@ -190,12 +190,14 @@
             .nav-links { display: none; }
             .bg { inset: -10vh 0; }
             .logo img { height: 34px; }
-            .center { padding: 2rem 0; }
+            /* Footer is taller than the header on phones, so pad the top more to keep this block centred on screen */
+            .center { padding: 4.5rem 0 1rem; }
             .line { height: 40px; }
-            .eyebrow { margin-top: 1.25rem; font-size: 0.72rem; letter-spacing: 0.3em; padding-left: 0.3em; }
-            h1 { margin: 0.75rem 0 1.75rem; font-size: clamp(2.2rem, 11vw, 3.2rem); letter-spacing: 0.18em; padding-left: 0.18em; }
+            .eyebrow { margin-top: 1.5rem; font-size: 0.72rem; letter-spacing: 0.3em; padding-left: 0.3em; }
+            h1 { margin: 0.75rem 0 2rem; font-size: clamp(2.2rem, 11vw, 3.2rem); letter-spacing: 0.18em; padding-left: 0.18em; }
             h1 strong { display: block; }
-            .need-now { line-height: 2.2; }
+            .ctas .btn { line-height: 2.2; }
+            .line.bottom { margin-top: 1.5rem; }
             .bottom-bar { flex-direction: column; gap: 0.75rem; text-align: center; padding: 2rem 0 1.5rem; }
             .social { order: -1; }
         }
@@ -223,8 +225,10 @@
             <div class="line"></div>
             <p class="eyebrow">Our new website is</p>
             <h1><strong>Coming</strong> Soon</h1>
-            <p class="need-now">Need something now? <a href="under-construction-contact.html">Contact us</a></p>
-            <p class="need-now">Looking for work? <a href="under-construction-apply.html" class="btn">Apply Now</a></p>
+            <div class="ctas">
+                <a href="under-construction-contact.html" class="btn">Contact Us</a>
+                <a href="under-construction-apply.html" class="btn">Apply Now</a>
+            </div>
             <div class="line bottom"></div>
         </main>
 
