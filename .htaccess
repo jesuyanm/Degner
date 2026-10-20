@@ -1,0 +1,84 @@
+# Paste this block at the TOP of public_html/.htaccess on the server
+# (replacing the earlier "BEGIN New site" block). It is not uploaded as a file.
+#  - serves the /new folder as degner.ca
+#  - hides ".html": degner.ca/careers.html shows as degner.ca/careers
+#  - sends old WordPress addresses to the new pages; WordPress admin keeps working
+#  - compresses text files and lets browsers cache images (faster pages rank better)
+# The pages still link to *.html so they keep working in Live Server locally.
+
+# BEGIN New site
+<IfModule mod_rewrite.c>
+RewriteEngine On
+
+# One address for Google: http:// and www. -> https://degner.ca
+RewriteCond %{HTTPS} off [OR]
+RewriteCond %{HTTP_HOST} ^www\. [NC]
+RewriteCond %{REQUEST_URI} !^/\.well-known/
+RewriteRule ^(.*)$ https://degner.ca/$1 [R=301,L]
+
+# Old WordPress addresses (still in Google) -> the matching new pages, so they keep their ranking
+RewriteRule ^about-us/?$ / [R=301,L,NC]
+RewriteRule ^our-services/?$ /#services [R=301,L,NC,NE]
+RewriteRule ^equipment-fleet/?$ / [R=301,L,NC]
+RewriteRule ^our-team/?$ /team [R=301,L,NC]
+RewriteRule ^our-projects/?$ / [R=301,L,NC]
+
+# Coming-soon pages are retired now the full site is live -> their full-site versions
+RewriteRule ^contact-us(\.html)?/?$ /contact [R=301,L,NC]
+RewriteRule ^apply-now(\.html)?/?$ /careers [R=301,L,NC]
+RewriteRule ^coming-soon(\.html)?/?$ / [R=301,L,NC]
+
+# /index.html -> /
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{THE_REQUEST} \s/+(?:new/)?index\.html[\s?] [NC]
+RewriteRule ^ / [R=301,L]
+
+# /careers.html -> /careers (keeps ?preview etc.); real files in public_html are left alone
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{THE_REQUEST} \s/+(?:new/)?([^\s?/]+)\.html[\s?] [NC]
+RewriteRule ^ /%1 [R=301,L]
+
+# /careers/ -> /careers (a trailing slash breaks the page's images)
+RewriteCond %{DOCUMENT_ROOT}/new/$1.html -f
+RewriteRule ^([^/]+)/$ /$1 [R=301,L]
+
+# /careers -> /new/careers.html
+RewriteCond %{DOCUMENT_ROOT}/new/$1.html -f
+RewriteRule ^([^/]+)$ /new/$1.html [L]
+
+# Anything the new site doesn't have -> home page (otherwise old WordPress pages show through)
+RewriteCond %{REQUEST_URI} ^/new/
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^ / [R=302,L]
+
+# Everything else (home page, images, scripts) comes from /new; WordPress admin keeps working
+RewriteCond %{REQUEST_URI} !^/new/
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_URI} !^/(wp-admin|wp-includes|wp-content|wp-json|\.well-known)(/|$) [NC]
+RewriteRule ^(.*)$ /new/$1 [L]
+</IfModule>
+# END New site
+
+# BEGIN Speed
+# Compress text files before sending them
+<IfModule mod_deflate.c>
+AddOutputFilterByType DEFLATE text/html text/css text/plain text/xml application/javascript application/json application/xml image/svg+xml
+</IfModule>
+
+# Let browsers keep images and video for a month; pages are always checked for updates.
+# A changed image keeps its old look for returning visitors until this runs out, so give a replaced image a new file name.
+<IfModule mod_expires.c>
+ExpiresActive On
+ExpiresDefault "access plus 1 hour"
+ExpiresByType text/html "access plus 0 seconds"
+ExpiresByType image/jpeg "access plus 1 month"
+ExpiresByType image/png "access plus 1 month"
+ExpiresByType image/webp "access plus 1 month"
+ExpiresByType image/svg+xml "access plus 1 month"
+ExpiresByType image/x-icon "access plus 1 month"
+ExpiresByType video/mp4 "access plus 1 month"
+ExpiresByType application/javascript "access plus 1 week"
+ExpiresByType text/css "access plus 1 week"
+</IfModule>
+# END Speed

@@ -1,0 +1,11 @@
+# Test emails saved by dev/test-forms.ps1
+dev/test-emails/
+
+# Created by forms/send.php on the server (submission counts for the spam limit)
+forms/sent-log.php
+
+# Upload packages, rebuilt when needed
+*.zip
+
+# Test copy of send.php that emails the Yahoo address
+dev/upload-test/

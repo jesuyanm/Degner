@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Disallow: /forms/
+Disallow: /dev/
+
+Sitemap: https://degner.ca/sitemap.xml

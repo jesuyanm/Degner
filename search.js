@@ -2,88 +2,85 @@
    Degner Construction — shared site search
    Single source of truth for the search index + behaviour.
    Included on every page via <script src="search.js" defer></script>
+   Keep entries in step with what the pages actually say.
    ============================================================ */
 (function () {
   'use strict';
 
   const searchItems = [
     // Pages
-    { title: 'Home', desc: 'Degner Construction — Alberta municipal infrastructure contractor', category: 'Page', url: 'home.html', keywords: ['home', 'homepage', 'degner', 'start', 'main'] },
-    { title: 'Our Projects', desc: 'Portfolio of completed infrastructure projects across Alberta', category: 'Page', url: 'projects.html', keywords: ['projects', 'portfolio', 'work', 'completed', 'gallery', 'schonsee', 'melcor', 'qualico', 'brookfield'] },
-    { title: 'Our Team', desc: 'Meet Dale Degner, Shaun Andreas, Matt Dudka, and Tom Thornton', category: 'Page', url: 'team.html', keywords: ['team', 'staff', 'people', 'leadership', 'crew', 'employees', 'dale', 'shaun', 'matt', 'tom'] },
-    { title: 'Careers', desc: 'Job opportunities at Degner Construction — foremen, operators, labourers', category: 'Page', url: 'careers.html', keywords: ['careers', 'jobs', 'hiring', 'work', 'employment', 'apply', 'openings', 'positions', 'join our team'] },
-    { title: 'Safety', desc: 'Our health and safety commitment — zero incidents, COR certified', category: 'Page', url: 'safety.html', keywords: ['safety', 'health', 'cor', 'certification', 'training', 'programs', 'zero incidents', 'michelle', 'gregoire', 'ncso'] },
-    { title: 'Contact', desc: 'Get in touch — phone, email, address, and office hours in Acheson, Alberta', category: 'Page', url: 'contact.html', keywords: ['contact', 'get in touch', 'reach us', 'phone', 'email', 'address', 'map', 'directions', 'location'] },
-    // Company
-    { title: 'About Degner Construction', desc: 'Full-service municipal infrastructure contractor specializing in water, sanitary, and storm systems', category: 'About', url: 'home.html#about', keywords: ['about', 'company', 'who we are', 'history', 'story', 'alberta', 'acheson', 'edmonton', 'municipal infrastructure'] },
-    { title: 'Our Mission', desc: 'Building community value into every project with professional expertise and quality construction', category: 'About', url: 'home.html#about', keywords: ['mission', 'values', 'community', 'quality', 'purpose', 'vision'] },
-    { title: 'Location — Acheson, Alberta', desc: '27575 Ellis Road, Acheson, Alberta T7X 6N3 — strategically located to serve municipalities across Alberta', category: 'Contact', url: 'contact.html', keywords: ['acheson', 'alberta', 'ellis road', 'location', 'address', 'where', 't7x 6n3'] },
-    { title: '25 Years of Experience', desc: 'Over 25 years building Alberta\'s essential municipal infrastructure', category: 'About', url: 'home.html#about', keywords: ['25 years', 'experience', 'decades', 'established', 'founded'] },
-    { title: '500+ Projects Completed', desc: '500+ projects completed across 50+ Alberta communities', category: 'About', url: 'home.html#about', keywords: ['500 projects', '50 communities', 'stats', 'numbers', 'track record'] },
-    // Contact
-    { title: 'Contact Us', desc: 'Phone: 780-960-8723 | Email: info@degner.ca | Fax: 780-960-8809', category: 'Contact', url: 'contact.html', keywords: ['contact', 'phone', 'call', '780-960-8723', 'reach', 'get in touch', 'hours', 'monday friday'] },
-    { title: 'Request a Quote', desc: 'Send project details to estimating@degner.ca or call 780-960-8723', category: 'Contact', url: 'contact.html', keywords: ['quote', 'estimate', 'bid', 'estimating@degner.ca', 'request', 'pricing', 'tender'] },
-    { title: 'HR & Employment Inquiries', desc: 'Send your resume to hr@degner.ca to apply for a position', category: 'Contact', url: 'careers.html', keywords: ['hr', 'human resources', 'hr@degner.ca', 'resume', 'apply', 'employment contact'] },
-    { title: 'Office Hours', desc: 'Monday – Friday 8:00 AM – 5:00 PM, closed weekends', category: 'Contact', url: 'contact.html', keywords: ['hours', 'open', 'office hours', 'monday', 'friday', '8am', '5pm', 'closed', 'weekend'] },
+    { title: 'Home', desc: 'Degner Construction — municipal infrastructure contractor in Acheson, Alberta', category: 'Page', url: 'index.html', keywords: ['home', 'homepage', 'degner', 'start', 'main', 'about', 'company', 'who we are'] },
+    { title: 'What We Do', desc: 'General contracting, water, sanitary & storm, earthworks, renewal, lift stations and project management', category: 'Page', url: 'index.html#services', keywords: ['services', 'what we do', 'capabilities', 'offerings', 'municipal infrastructure', 'civil', 'utilities', 'underground'] },
+    // Projects page hidden: { title: 'Our Projects', desc: 'Portfolio of completed infrastructure projects across Alberta', category: 'Page', url: 'projects.html', keywords: ['projects', 'portfolio', 'work', 'completed', 'gallery', 'schonsee', 'melcor', 'qualico', 'brookfield'] },
+    { title: 'Safety', desc: 'Our health and safety commitment, protocols, memberships and safety coordinator', category: 'Page', url: 'safety.html', keywords: ['safety', 'health', 'health and safety', 'ohs', 'cor', 'training', 'programs', 'hse', 'workplace safety'] },
+    { title: 'Our Team', desc: 'Meet Dale Degner, Shaun Andreas, Tom Thornton, Matt Dudka and Evan Dirk', category: 'Page', url: 'team.html', keywords: ['team', 'staff', 'people', 'leadership', 'management', 'employees', 'dale', 'shaun', 'tom', 'matt', 'evan'] },
+    { title: 'Careers', desc: 'Now hiring for the upcoming construction season — apply online or send your resume', category: 'Page', url: 'careers.html', keywords: ['careers', 'jobs', 'hiring', 'employment', 'apply', 'openings', 'positions', 'join our team', 'work for us', 'resume', 'acheson', 'edmonton', 'alberta'] },
+    { title: 'Contact', desc: 'Phone, email, address, office hours and map for our Acheson, Alberta office', category: 'Page', url: 'contact.html', keywords: ['contact', 'get in touch', 'reach us', 'phone', 'email', 'address', 'map', 'directions', 'location', 'office'] },
     // Services
-    { title: 'General Contracting', desc: 'Full-service general contracting for all aspects of municipal infrastructure projects — project management, execution, complex developments', category: 'Service', url: 'home.html#services', keywords: ['general contracting', 'gc', 'contractor', 'municipal', 'project execution', 'construction management'] },
-    { title: 'Water, Sanitary & Storm Services', desc: 'Installation of water, sanitary and storm services — reliable, efficient systems meeting all municipal standards', category: 'Service', url: 'home.html#services', keywords: ['water', 'sanitary', 'storm', 'services', 'watermain', 'sewer', 'storm sewer', 'municipal standards', 'installation'] },
-    { title: 'Infrastructure Rehabilitation', desc: 'Infrastructure rehabilitation and renewal — extending service life and improving performance of aging systems', category: 'Service', url: 'home.html#services', keywords: ['rehabilitation', 'renewal', 'aging infrastructure', 'repair', 'upgrade', 'replacement', 'renewal', 'revitalize'] },
-    { title: 'Lift Station Construction', desc: 'Storm and sanitary lift station construction for proper waste management and flood prevention', category: 'Service', url: 'home.html#services', keywords: ['lift station', 'pump station', 'storm lift', 'sanitary lift', 'flood prevention', 'waste management', 'pumping'] },
-    { title: 'Project Management & Design Build', desc: 'Comprehensive project management and design build from concept to completion', category: 'Service', url: 'home.html#services', keywords: ['project management', 'design build', 'design-build', 'concept to completion', 'pm', 'turnkey', 'epc'] },
-    { title: 'Earthworks', desc: 'Mass excavation for storm water management facilities — large-scale earthworks and water management solutions', category: 'Service', url: 'home.html#services', keywords: ['excavation', 'mass excavation', 'earthworks', 'grading', 'stormwater management', 'dig', 'earth moving', 'pond', 'retention'] },
-    { title: 'Directional Drilling', desc: 'Horizontal directional drilling — trenchless technology for underground pipe installation with minimal surface disruption', category: 'Service', url: 'home.html#services', keywords: ['directional drilling', 'hdd', 'horizontal drilling', 'trenchless', 'boring', 'no-dig', 'pipe bursting'] },
-    { title: 'Road Restoration', desc: 'Asphalt and concrete road restoration after underground utility work', category: 'Service', url: 'home.html#services', keywords: ['road', 'road restoration', 'asphalt', 'concrete', 'pavement', 'paving', 'reinstatement', 'roadway'] },
-    // Projects — Infrastructure
-    { title: 'Schonsee Stage 14 Offsite', desc: 'Deep sanitary main — 0.5km with directional drilling. Client: Brookfield Residential. City of Edmonton, 2013', category: 'Project', url: 'projects.html', keywords: ['schonsee', 'brookfield', 'directional drilling', 'sanitary mains', 'edmonton', 'sheffer andrew', 'deep utility', '0.5 kilometers'] },
-    { title: 'Melcor Collector Roadway', desc: 'Collector roadway with utility infrastructure for Edmonton communities. Client: Melcor Developments, 2013', category: 'Project', url: 'projects.html', keywords: ['melcor', 'collector roadway', 'roadway', 'transportation infrastructure', 'edmonton', 'ibi group', 'residential development'] },
-    { title: 'MLC Arterial Roadway', desc: 'Major arterial roadway for Edmonton\'s municipal infrastructure. Client: MLC Developments, 2013', category: 'Project', url: 'projects.html', keywords: ['mlc', 'arterial roadway', 'arterial', 'transportation corridor', 'edmonton', 'stantec', 'heavy traffic'] },
-    // Projects — Renewal
-    { title: 'St. Albert Sedimentation Control', desc: 'Environmental renewal with sedimentation/erosion control and 1350mm outfall. Client: St. Albert County, 2013', category: 'Project', url: 'projects.html', keywords: ['st albert', 'saint albert', 'sedimentation', 'erosion control', 'outfall', 'stormwater', 'environmental', 'stantec', '1350mm'] },
-    { title: 'Edmonton Watermain Renewal', desc: 'Critical watermain renewal to upgrade aging infrastructure and improve water distribution reliability. City of Edmonton, 2013', category: 'Project', url: 'projects.html', keywords: ['edmonton', 'watermain renewal', 'water main', 'aging infrastructure', 'water distribution', 'reliability', 'stantec'] },
-    { title: 'Canada Lands Infrastructure Renewal', desc: 'Removal of 2.8km of aging AC water and sanitary systems with modern replacement infrastructure. City of Edmonton, 2012', category: 'Project', url: 'projects.html', keywords: ['canada lands', 'infrastructure renewal', '2.8 kilometers', 'ac water', 'sanitary', 'replacement', 'edmonton', 'select engineering'] },
-    // Projects — Urban Land
-    { title: 'Rohit Lands Residential', desc: '179 fully-serviced residential lots with infrastructure and roadway. City of Edmonton, 2013', category: 'Project', url: 'projects.html', keywords: ['rohit', 'residential development', '179 lots', 'serviced lots', 'mmm group', 'edmonton', 'urban land'] },
-    { title: 'Qualico Communities Development', desc: '125 residential lots with full municipal infrastructure. City of Edmonton, 2012', category: 'Project', url: 'projects.html', keywords: ['qualico', '125 lots', 'residential community', 'stantec', 'edmonton', 'multi-phase', 'municipal infrastructure'] },
-    { title: 'Brookfield Residential Community', desc: '102 fully-serviced lots with advanced infrastructure planning. City of Edmonton, 2012', category: 'Project', url: 'projects.html', keywords: ['brookfield', '102 lots', 'premium residential', 'sheffer andrew', 'edmonton', 'serviced lots', 'sustainable design'] },
-    { title: 'Melcor Mixed Development', desc: '188 residential lots with collector roadway. City of Edmonton, 2012', category: 'Project', url: 'projects.html', keywords: ['melcor mixed', '188 lots', 'mixed development', 'collector roadway', 'ibi group', 'edmonton', 'multi-component'] },
-    { title: 'Qualico Fort Saskatchewan', desc: '96 residential lots in Fort Saskatchewan. Client: Qualico Communities, 2013', category: 'Project', url: 'projects.html', keywords: ['qualico', 'fort saskatchewan', '96 lots', 'al-terra', 'suburban', 'residential', 'housing'] },
-    { title: 'Qualico Spruce Grove', desc: '109 residential lots in Spruce Grove. Client: Qualico Communities, 2013', category: 'Project', url: 'projects.html', keywords: ['qualico', 'spruce grove', '109 lots', 'select engineering', 'suburban', 'residential', 'municipal standards'] },
+    { title: 'General Contracting', desc: 'General contracting for municipal infrastructure projects, managed from start to finish and delivered on schedule', category: 'Service', url: 'general-contracting.html', keywords: ['general contracting', 'general contractor', 'gc', 'contractor', 'municipal', 'civil construction', 'construction management', 'prime contractor'] },
+    { title: 'Water, Sanitary & Storm', desc: 'Water, sanitary and storm systems for new developments and existing communities, built to municipal standards', category: 'Service', url: 'water-sanitary-storm.html', keywords: ['water', 'sanitary', 'storm', 'watermain', 'water main', 'sewer', 'sanitary sewer', 'storm sewer', 'pipe', 'pipeline', 'utilities', 'underground', 'deep utilities', 'servicing', 'subdivision'] },
+    { title: 'Earthworks', desc: 'Excavation and earthworks for infrastructure and development projects, including mass excavation for stormwater facilities', category: 'Service', url: 'earthworks.html', keywords: ['earthworks', 'excavation', 'mass excavation', 'grading', 'earth moving', 'dirt', 'stormwater management', 'stormwater pond', 'pond', 'site prep'] },
+    { title: 'Infrastructure Renewal', desc: 'Rehabilitation and replacement work that extends the life of existing infrastructure', category: 'Service', url: 'infrastructure-renewal.html', keywords: ['renewal', 'rehabilitation', 'rehab', 'replacement', 'aging infrastructure', 'repair', 'upgrade', 'watermain replacement', 'sewer replacement'] },
+    { title: 'Lift Station Construction', desc: 'Storm and sanitary lift stations for reliable wastewater management and flood prevention', category: 'Service', url: 'lift-station-construction.html', keywords: ['lift station', 'pump station', 'pumping station', 'storm lift station', 'sanitary lift station', 'wastewater', 'flood prevention', 'pumps'] },
+    { title: 'Project Management & Design-Build', desc: 'Project management and design-build services, from early planning through to completion', category: 'Service', url: 'project-management.html', keywords: ['project management', 'design build', 'design-build', 'planning', 'concept to completion', 'pm', 'turnkey', 'scheduling'] },
+    // Contact
+    { title: 'Request a Quote', desc: 'Send project details to estimating@degner.ca or call 780-960-8723', category: 'Contact', url: 'contact.html', keywords: ['quote', 'estimate', 'estimating', 'bid', 'tender', 'pricing', 'price', 'cost', 'estimating@degner.ca'] },
+    { title: 'Phone & Email', desc: 'Phone 780-960-8723 · Fax 780-960-8809 · info@degner.ca', category: 'Contact', url: 'contact.html', keywords: ['phone', 'call', 'telephone', 'number', '780-960-8723', 'fax', '780-960-8809', 'email', 'info@degner.ca'] },
+    { title: 'Office Location', desc: '27575 Ellis Road, Acheson, Alberta T7X 5A4', category: 'Contact', url: 'contact.html', keywords: ['address', 'location', 'where', 'directions', 'map', 'acheson', 'ellis road', 'parkland county', 'edmonton', 'spruce grove', 't7x 5a4'] },
+    { title: 'Office Hours', desc: 'Monday – Friday 8:00 AM – 5:00 PM, closed weekends', category: 'Contact', url: 'contact.html', keywords: ['hours', 'open', 'opening hours', 'office hours', 'monday', 'friday', '8am', '5pm', 'closed', 'weekend'] },
     // Team
-    { title: 'Dale Degner — President', desc: 'BCom., MBA. Over two decades of leadership — strategic vision, operational excellence, and community value', category: 'Team', url: 'team.html', keywords: ['dale degner', 'president', 'bcom', 'mba', 'owner', 'founder', 'leadership', 'ceo', 'degner'] },
-    { title: 'Shaun Andreas — General Manager', desc: 'CET, MBA. Certified Engineering Technologist overseeing project quality, safety, and field operations', category: 'Team', url: 'team.html', keywords: ['shaun andreas', 'general manager', 'cet', 'mba', 'certified engineering technologist', 'project management', 'field operations'] },
-    { title: 'Matt Dudka — Project Manager', desc: 'CET. Technical project management — on-time, on-budget delivery with client communication focus', category: 'Team', url: 'team.html', keywords: ['matt dudka', 'project manager', 'cet', 'certified engineering technologist', 'budget', 'schedule', 'client'] },
-    { title: 'Tom Thornton — Operations Manager', desc: 'Operational expertise in field operations, equipment management, and resource coordination', category: 'Team', url: 'team.html', keywords: ['tom thornton', 'operations manager', 'operations', 'equipment management', 'resources', 'field', 'productivity'] },
-    // Careers — Positions
-    { title: 'Foreman', desc: 'Lead field crews in municipal infrastructure — daily operations, safety compliance, project coordination. 5+ years experience required', category: 'Career', url: 'careers.html', keywords: ['foreman', 'forman', 'crew lead', 'site lead', 'field operations', 'leadership', 'safety compliance', '5 years'] },
-    { title: 'Topman', desc: 'Field operations support — crew coordination, project specifications, municipal infrastructure. 3+ years experience', category: 'Career', url: 'careers.html', keywords: ['topman', 'top man', 'field operations', 'crew coordination', '3 years', 'specifications', 'driver\'s license'] },
-    { title: 'Pipelayers', desc: 'Install and maintain water, sanitary, and storm pipeline systems with modern equipment to municipal specs', category: 'Career', url: 'careers.html', keywords: ['pipelayer', 'pipe layer', 'pipeline', 'water sanitary storm', 'pipe installation', 'pipelaying', 'pipe laying'] },
-    { title: 'Equipment Operators', desc: 'Operate excavators, dozers, wheel loaders, and packers — mainline, side hoe, dozer, loader, packer positions', category: 'Career', url: 'careers.html', keywords: ['equipment operator', 'excavator', 'dozer', 'wheel loader', 'packer', 'mainline', 'side hoe', 'heavy equipment', 'operate', 'machine operator'] },
-    { title: 'General Labourers', desc: 'Support all aspects of construction — excellent entry point for career growth. Strong work ethic and fitness required', category: 'Career', url: 'careers.html', keywords: ['labourer', 'laborer', 'general labour', 'entry level', 'construction', 'work ethic', 'labour', 'helper'] },
-    { title: 'Pipelayer Helpers', desc: 'Assist experienced pipelayers in water, sanitary, storm installation — great entry point to skilled trades', category: 'Career', url: 'careers.html', keywords: ['pipelayer helper', 'helper', 'entry level', 'pipeline', 'skilled trades', 'water sanitary', 'assistant'] },
-    // Benefits
-    { title: 'Competitive Wages & Compensation', desc: 'Competitive wages reflecting skills and experience, with regular performance-based increases', category: 'Benefit', url: 'careers.html', keywords: ['wages', 'pay', 'salary', 'compensation', 'competitive', 'performance', 'increase', 'raise'] },
-    { title: 'Health & Dental Benefits', desc: 'Comprehensive health and dental benefits after 3 months, plus additional perks for well-being', category: 'Benefit', url: 'careers.html', keywords: ['health benefits', 'dental', 'benefits', '3 months', 'well-being', 'extended health', 'insurance', 'rrsp'] },
-    { title: 'Professional Growth & Advancement', desc: 'Clear career advancement with mentorship from experienced professionals and ongoing skills development', category: 'Benefit', url: 'careers.html', keywords: ['professional growth', 'advancement', 'career', 'mentorship', 'development', 'skills', 'promotion', 'training'] },
-    { title: 'Safety Training Programs', desc: 'Comprehensive safety training ensuring every team member goes home safely every day', category: 'Benefit', url: 'careers.html', keywords: ['safety training', 'training', 'safe', 'certification', 'first aid', 'whmis', 'safety courses'] },
+    { title: 'Dale Degner — President', desc: 'BCom., MBA', category: 'Team', url: 'team.html', keywords: ['dale degner', 'president', 'owner', 'ceo', 'bcom', 'mba'] },
+    { title: 'Shaun Andreas — General Manager', desc: 'CET, MBA', category: 'Team', url: 'team.html', keywords: ['shaun andreas', 'general manager', 'gm', 'cet', 'mba'] },
+    { title: 'Tom Thornton — Operations Manager', desc: 'GSC · Send resumes to Tom at hr@degner.ca', category: 'Team', url: 'team.html', keywords: ['tom thornton', 'operations manager', 'operations', 'gsc', 'hr', 'hiring manager'] },
+    { title: 'Matt Dudka — Project Manager', desc: 'CET', category: 'Team', url: 'team.html', keywords: ['matt dudka', 'project manager', 'pm', 'cet'] },
+    { title: 'Evan Dirk — Project Manager', desc: 'CET', category: 'Team', url: 'team.html', keywords: ['evan dirk', 'project manager', 'pm', 'cet'] },
+    { title: 'Michelle Gregoire — Safety Coordinator', desc: 'NCSO · COR Peer Auditor · H&S Administrator', category: 'Team', url: 'safety.html', keywords: ['michelle gregoire', 'safety coordinator', 'ncso', 'national construction safety officer', 'cor peer auditor', 'safety officer', 'hse'] },
+    // Careers
+    { title: 'Open Positions', desc: 'Foreman, topman, pipelayers, pipelayer helpers, general labourers and equipment operators', category: 'Career', url: 'careers.html#positions', keywords: ['positions', 'openings', 'vacancies', 'jobs', 'hiring', 'seasonal', 'construction season', 'summer jobs', 'acheson', 'edmonton', 'alberta'] },
+    { title: 'Foreman', desc: 'Now hiring for the upcoming construction season', category: 'Career', url: 'careers.html#positions', keywords: ['foreman', 'forman', 'foremen', 'crew lead', 'supervisor', 'site lead'] },
+    { title: 'Topman', desc: 'Now hiring for the upcoming construction season', category: 'Career', url: 'careers.html#positions', keywords: ['topman', 'top man', 'grade checker'] },
+    { title: 'Pipelayers & Pipelayer Helpers', desc: 'Now hiring for the upcoming construction season', category: 'Career', url: 'careers.html#positions', keywords: ['pipelayer', 'pipe layer', 'pipelaying', 'pipe laying', 'pipelayer helper', 'helper', 'pipe'] },
+    { title: 'General Labourers', desc: 'Now hiring for the upcoming construction season', category: 'Career', url: 'careers.html#positions', keywords: ['labourer', 'laborer', 'general labour', 'labor', 'entry level', 'no experience', 'helper', 'student'] },
+    { title: 'Equipment Operators', desc: 'Mainline and side hoe excavator, dozer, wheel loader and packer operators', category: 'Career', url: 'careers.html#positions', keywords: ['equipment operator', 'heavy equipment operator', 'operator', 'excavator', 'mainline', 'side hoe', 'hoe', 'backhoe', 'dozer', 'bulldozer', 'wheel loader', 'loader', 'packer', 'compactor', 'machine operator'] },
+    { title: 'How to Apply', desc: 'Upload your resume online, or send it to Tom at hr@degner.ca or fax 780-960-8809', category: 'Career', url: 'careers.html#positions', keywords: ['apply', 'application', 'resume', 'cv', 'cover letter', 'hr@degner.ca', 'hr', 'human resources', 'fax'] },
+    { title: 'Benefits of Working Here', desc: 'Competitive wages, health and dental after 3 months, safety training and room to grow', category: 'Career', url: 'careers.html#benefits', keywords: ['benefits', 'wages', 'pay', 'salary', 'compensation', 'health', 'dental', 'insurance', 'training', 'mentorship', 'advancement', 'growth'] },
+    { title: 'Life at Degner', desc: 'Team collaboration, modern equipment and ongoing training', category: 'Career', url: 'careers.html#benefits', keywords: ['culture', 'life at degner', 'team environment', 'equipment', 'photos', 'workplace'] },
     // Safety
-    { title: 'Safety Culture', desc: 'We promote a culture where people truly care about one another and everyone shares the goal of zero incidents', category: 'Safety', url: 'safety.html', keywords: ['safety culture', 'zero incidents', 'culture', 'care', 'everyone', 'commitment', 'workplace safety'] },
-    { title: 'Health & Safety Commitment', desc: 'Protecting employees, suppliers, customers, community and the environment through OHS compliance', category: 'Safety', url: 'safety.html', keywords: ['health and safety', 'ohs', 'occupational health', 'compliance', 'regulations', 'protect', 'environment', 'sustainable'] },
-    { title: 'Safety Mandate', desc: '"To promote and sustain a safe work environment for everyone and continually improve our process"', category: 'Safety', url: 'safety.html', keywords: ['safety mandate', 'mandate', 'promote', 'sustain', 'safe environment', 'continually improve'] },
-    { title: 'Michelle Gregoire — Safety Coordinator', desc: 'NCSO (National Construction Safety Officer) — site inspections, safety program oversight, regulatory compliance', category: 'Safety', url: 'safety.html', keywords: ['michelle gregoire', 'safety coordinator', 'ncso', 'national construction safety officer', 'site inspection', 'compliance', 'regulations'] },
-    { title: 'Daily Safety Briefings', desc: 'Tailgate safety meetings every workday covering hazards, weather conditions, and emergency procedures', category: 'Safety', url: 'safety.html', keywords: ['daily briefing', 'tailgate meeting', 'safety meeting', 'hazards', 'weather', 'emergency procedures', 'toolbox'] },
-    { title: 'Incident Reporting & Investigation', desc: 'Comprehensive reporting system — all near-misses and incidents analyzed to prevent recurrence', category: 'Safety', url: 'safety.html', keywords: ['incident reporting', 'investigation', 'near miss', 'near-miss', 'accident', 'prevent', 'recurrence', 'reporting system'] },
-    { title: 'Contractor Safety Requirements', desc: 'All subcontractors must meet our stringent safety standards — training, insurance, and SMS compliance required', category: 'Safety', url: 'safety.html', keywords: ['contractor', 'subcontractor', 'safety requirements', 'sms', 'safety management system', 'insurance', 'standards'] },
+    { title: 'Our Safety Commitment', desc: 'Protecting the health and safety of employees, suppliers, customers, community and the environment', category: 'Safety', url: 'safety.html', keywords: ['commitment', 'safety policy', 'policy', 'safe', 'sustainable', 'environment', 'community'] },
+    { title: 'Daily Safety Briefings', desc: 'Every workday begins with a tailgate meeting covering hazards, weather and emergency procedures', category: 'Safety', url: 'safety.html#protocols', keywords: ['tailgate meeting', 'toolbox talk', 'safety meeting', 'briefing', 'hazards', 'weather', 'emergency procedures'] },
+    { title: 'Incident Reporting & Investigation', desc: 'All near-misses and incidents are investigated and analyzed to prevent recurrence', category: 'Safety', url: 'safety.html#protocols', keywords: ['incident', 'near miss', 'near-miss', 'accident', 'investigation', 'reporting'] },
+    { title: 'Subcontractor Safety Requirements', desc: 'Subcontractors must meet our training, insurance and SMS standards before working on site', category: 'Safety', url: 'safety.html#protocols', keywords: ['subcontractor', 'contractor', 'requirements', 'insurance', 'sms', 'safety management system', 'prequalification'] },
+    { title: 'Trailblazer Award', desc: 'Presented by the Alberta Construction Safety Association in 2011 for dedication to workplace health and safety', category: 'Safety', url: 'safety.html', keywords: ['trailblazer', 'award', 'acsa', 'recognition', '2011'] },
+    { title: 'Industry Memberships', desc: 'WCB, ACSA, UDI Edmonton Region, ARHCA, ECA, Regional Safety Committee, CSSE and Skills Canada', category: 'Safety', url: 'safety.html#memberships', keywords: ['memberships', 'member', 'associations', 'wcb', 'workers compensation', 'acsa', 'alberta construction safety association', 'udi', 'bild', 'urban development institute', 'arhca', 'roadbuilders', 'eca', 'edmonton construction association', 'rscm', 'csse', 'skills canada', 'good standing'] },
+    // Projects (hidden) — Infrastructure
+    // Projects page hidden: { title: 'Schonsee Stage 14 Offsite', desc: 'Deep sanitary main — 0.5km with directional drilling. Client: Brookfield Residential. City of Edmonton, 2013', category: 'Project', url: 'projects.html', keywords: ['schonsee', 'brookfield', 'directional drilling', 'sanitary mains', 'edmonton', 'sheffer andrew', 'deep utility', '0.5 kilometers'] },
+    // Projects page hidden: { title: 'Melcor Collector Roadway', desc: 'Collector roadway with utility infrastructure for Edmonton communities. Client: Melcor Developments, 2013', category: 'Project', url: 'projects.html', keywords: ['melcor', 'collector roadway', 'roadway', 'transportation infrastructure', 'edmonton', 'ibi group', 'residential development'] },
+    // Projects page hidden: { title: 'MLC Arterial Roadway', desc: 'Major arterial roadway for Edmonton\'s municipal infrastructure. Client: MLC Developments, 2013', category: 'Project', url: 'projects.html', keywords: ['mlc', 'arterial roadway', 'arterial', 'transportation corridor', 'edmonton', 'stantec', 'heavy traffic'] },
+    // Projects (hidden) — Renewal
+    // Projects page hidden: { title: 'St. Albert Sedimentation Control', desc: 'Environmental renewal with sedimentation/erosion control and 1350mm outfall. Client: St. Albert County, 2013', category: 'Project', url: 'projects.html', keywords: ['st albert', 'saint albert', 'sedimentation', 'erosion control', 'outfall', 'stormwater', 'environmental', 'stantec', '1350mm'] },
+    // Projects page hidden: { title: 'Edmonton Watermain Renewal', desc: 'Critical watermain renewal to upgrade aging infrastructure and improve water distribution reliability. City of Edmonton, 2013', category: 'Project', url: 'projects.html', keywords: ['edmonton', 'watermain renewal', 'water main', 'aging infrastructure', 'water distribution', 'reliability', 'stantec'] },
+    // Projects page hidden: { title: 'Canada Lands Infrastructure Renewal', desc: 'Removal of 2.8km of aging AC water and sanitary systems with modern replacement infrastructure. City of Edmonton, 2012', category: 'Project', url: 'projects.html', keywords: ['canada lands', 'infrastructure renewal', '2.8 kilometers', 'ac water', 'sanitary', 'replacement', 'edmonton', 'select engineering'] },
+    // Projects (hidden) — Urban Land
+    // Projects page hidden: { title: 'Rohit Lands Residential', desc: '179 fully-serviced residential lots with infrastructure and roadway. City of Edmonton, 2013', category: 'Project', url: 'projects.html', keywords: ['rohit', 'residential development', '179 lots', 'serviced lots', 'mmm group', 'edmonton', 'urban land'] },
+    // Projects page hidden: { title: 'Qualico Communities Development', desc: '125 residential lots with full municipal infrastructure. City of Edmonton, 2012', category: 'Project', url: 'projects.html', keywords: ['qualico', '125 lots', 'residential community', 'stantec', 'edmonton', 'multi-phase', 'municipal infrastructure'] },
+    // Projects page hidden: { title: 'Brookfield Residential Community', desc: '102 fully-serviced lots with advanced infrastructure planning. City of Edmonton, 2012', category: 'Project', url: 'projects.html', keywords: ['brookfield', '102 lots', 'premium residential', 'sheffer andrew', 'edmonton', 'serviced lots', 'sustainable design'] },
+    // Projects page hidden: { title: 'Melcor Mixed Development', desc: '188 residential lots with collector roadway. City of Edmonton, 2012', category: 'Project', url: 'projects.html', keywords: ['melcor mixed', '188 lots', 'mixed development', 'collector roadway', 'ibi group', 'edmonton', 'multi-component'] },
+    // Projects page hidden: { title: 'Qualico Fort Saskatchewan', desc: '96 residential lots in Fort Saskatchewan. Client: Qualico Communities, 2013', category: 'Project', url: 'projects.html', keywords: ['qualico', 'fort saskatchewan', '96 lots', 'al-terra', 'suburban', 'residential', 'housing'] },
+    // Projects page hidden: { title: 'Qualico Spruce Grove', desc: '109 residential lots in Spruce Grove. Client: Qualico Communities, 2013', category: 'Project', url: 'projects.html', keywords: ['qualico', 'spruce grove', '109 lots', 'select engineering', 'suburban', 'residential', 'municipal standards'] },
   ];
 
+  // Shown before anything is typed
+  const QUICK_LINKS = ['What We Do', 'Request a Quote', 'Open Positions', 'Safety', 'Contact'];
   const MAX_RESULTS = 8;
+  // Small words people type that shouldn't have to match ("water and sewer", "jobs in acheson")
+  const STOP_WORDS = new Set(['a', 'an', 'and', 'the', 'of', 'in', 'for', 'to', 'at', 'on', 'with', 'do', 'you', 'your', 'i', 'me', 'my', 'is', 'are']);
 
-  // ---- inject the few extra styles this enhanced search needs ----
+  // ---- inject the few extra styles this enhanced search needs (dark theme) ----
   const style = document.createElement('style');
   style.textContent = `
-    .suggestion-item.active { background: var(--background-light, #f8f9fa); outline: none; }
-    .suggestion-item mark { background: rgba(0,0,0,0.12); color: inherit; border-radius: 3px; padding: 0 1px; }
-    .search-count { font-size: 0.75rem; color: var(--text-light, #888); padding: 0.25rem 1rem 0.5rem; }
+    .suggestion-item.active { background: rgba(255,255,255,0.08); outline: none; }
+    .suggestion-item mark { background: rgba(255,255,255,0.22); color: inherit; border-radius: 2px; padding: 0 1px; }
+    .search-count { font-size: 0.75rem; color: var(--text-light, rgba(255,255,255,0.45)); padding: 0.25rem 1rem 0.5rem; }
   `;
   document.head.appendChild(style);
 
@@ -106,11 +103,38 @@
     ));
   }
 
-  // Wrap each matched token in the text with <mark>.
+  // Lower-case, drop accents and hyphens ("design-build" = "design build", "780-960-8723" = "7809608723"),
+  // turn other punctuation into spaces but keep @ and . so email addresses still match.
+  function normalize(s) {
+    return s.toLowerCase()
+      .normalize('NFD').replace(/[̀-ͯ]/g, '')
+      .replace(/&/g, ' and ')
+      .replace(/-/g, '')
+      .replace(/[^a-z0-9@.\s]/g, ' ')
+      .replace(/\s+/g, ' ')
+      .trim();
+  }
+
+  function tokenize(query) {
+    const all = normalize(query).split(' ').filter(t => t && t !== '.');
+    const meaningful = all.filter(t => !STOP_WORDS.has(t));
+    return meaningful.length ? meaningful : all;
+  }
+
+  // Pre-normalise every entry once
+  const index = searchItems.map(item => ({
+    item,
+    title: normalize(item.title),
+    titleWords: normalize(item.title).split(' '),
+    desc: normalize(item.desc),
+    kws: item.keywords.map(normalize),
+  }));
+
+  // Wrap each matched word of the visible text in <mark>.
   function highlight(text, tokens) {
     let safe = escapeHtml(text);
     tokens.forEach(tok => {
-      if (!tok) return;
+      if (tok.length < 2) return;
       const re = new RegExp('(' + tok.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + ')', 'ig');
       safe = safe.replace(re, '<mark>$1</mark>');
     });
@@ -132,61 +156,86 @@
     return dp[a.length][b.length] <= max;
   }
 
-  // Score one item against the token list. Returns 0 = no match.
-  // Every token must hit somewhere (AND); the strength of each hit adds up.
-  function scoreItem(item, tokens) {
-    const title = item.title.toLowerCase();
-    const desc = item.desc.toLowerCase();
-    const kws = item.keywords.map(k => k.toLowerCase());
-    let total = 0;
+  // How strongly one word matches an entry (0 = not at all)
+  function scoreToken(e, tok) {
+    let best = 0;
+    if (e.title.startsWith(tok)) best = 60;
+    else if (e.titleWords.some(w => w.startsWith(tok))) best = 50;
+    else if (e.title.includes(tok)) best = 40;
+    if (e.kws.some(k => k === tok)) best = Math.max(best, 45);
+    else if (e.kws.some(k => k.startsWith(tok) || k.split(' ').some(w => w.startsWith(tok)))) best = Math.max(best, 30);
+    else if (e.kws.some(k => k.includes(tok))) best = Math.max(best, 20);
+    if (best === 0 && e.desc.includes(tok)) best = 10;
+    // typo tolerance against title words / keyword words
+    if (best === 0 && tok.length >= 4) {
+      const max = tok.length > 6 ? 2 : 1;
+      const words = e.titleWords.concat(...e.kws.map(k => k.split(' ')));
+      if (words.some(w => w.length >= 3 && within(w, tok, max))) best = 8;
+    }
+    return best;
+  }
 
+  // Every word must hit somewhere (AND); the strength of each hit adds up.
+  function scoreEntry(e, tokens) {
+    let total = 0;
     for (const tok of tokens) {
-      let best = 0;
-      if (title.startsWith(tok)) best = Math.max(best, 60);
-      else if (title.includes(tok)) best = Math.max(best, 40);
-      if (kws.some(k => k === tok)) best = Math.max(best, 45);
-      else if (kws.some(k => k.startsWith(tok))) best = Math.max(best, 30);
-      else if (kws.some(k => k.includes(tok))) best = Math.max(best, 20);
-      if (desc.includes(tok)) best = Math.max(best, 10);
-      // fuzzy fallback: tolerate small typos against title words / keywords
-      if (best === 0 && tok.length >= 4) {
-        const fuzzy = title.split(/\s+/).some(w => within(w, tok, tok.length > 6 ? 2 : 1)) ||
-                      kws.some(k => within(k, tok, tok.length > 6 ? 2 : 1));
-        if (fuzzy) best = 8;
-      }
-      if (best === 0) return 0; // this token matched nothing → drop item
+      let best = scoreToken(e, tok);
+      // plurals: "operators", "jobs", "benefits"
+      if (best === 0 && tok.length > 3 && tok.endsWith('s')) best = scoreToken(e, tok.slice(0, -1));
+      if (best === 0) return 0;
       total += best;
     }
-    if (item.category === 'Page') total += 5; // gentle nudge for top-level pages
+    if (e.item.category === 'Page') total += 5; // gentle nudge for top-level pages
     return total;
   }
 
   function search(query) {
-    const tokens = query.toLowerCase().split(/\s+/).filter(Boolean);
+    const tokens = tokenize(query);
     if (!tokens.length) return [];
-    return searchItems
-      .map(item => ({ item, score: scoreItem(item, tokens) }))
+    return index
+      .map(e => ({ item: e.item, score: scoreEntry(e, tokens) }))
       .filter(r => r.score > 0)
       .sort((a, b) => b.score - a.score)
       .map(r => r.item);
   }
 
+  function rowsHtml(items, tokens) {
+    return items.map((item, i) => `
+        <button type="button" class="suggestion-item" role="option" id="search-opt-${i}" aria-selected="false" data-url="${escapeHtml(item.url)}">
+            <div class="suggestion-header">
+                <span class="suggestion-title">${highlight(item.title, tokens)}</span>
+                <span class="suggestion-category">${item.category}</span>
+            </div>
+            <span class="suggestion-desc">${highlight(item.desc, tokens)}</span>
+        </button>
+      `).join('');
+  }
+
+  function wireRows() {
+    container.querySelectorAll('.suggestion-item').forEach((btn, i) => {
+      btn.addEventListener('click', () => go(btn.dataset.url));
+      btn.addEventListener('mousemove', () => setActive(i));
+    });
+  }
+
   function render(query) {
-    const tokens = query.toLowerCase().split(/\s+/).filter(Boolean);
+    activeIndex = -1;
+    input.removeAttribute('aria-activedescendant');
 
     if (query.length < 2) {
-      results = [];
-      activeIndex = -1;
-      container.innerHTML = '<p class="search-hint">Try: "water main", "foreman", "safety programs"</p>';
+      results = QUICK_LINKS.map(t => searchItems.find(i => i.title === t)).filter(Boolean);
+      container.innerHTML = '<p class="search-hint">Try "water main", "foreman" or "quote" — or jump to:</p>' + rowsHtml(results, []);
+      wireRows();
       return;
     }
 
+    const tokens = tokenize(query);
     const all = search(query);
     results = all.slice(0, MAX_RESULTS);
-    activeIndex = -1;
 
     if (!results.length) {
-      container.innerHTML = '<p class="search-no-results" role="status">No results for "' + escapeHtml(query) + '"</p>';
+      container.innerHTML = '<p class="search-no-results" role="status">No results for "' + escapeHtml(query) +
+        '". Try another word, or call us at <a href="tel:780-960-8723">780-960-8723</a>.</p>';
       return;
     }
 
@@ -195,21 +244,8 @@
       : `${all.length} match${all.length === 1 ? '' : 'es'}`;
 
     container.innerHTML =
-      `<p class="search-count" role="status" aria-live="polite">${countLabel}</p>` +
-      results.map((item, i) => `
-        <button class="suggestion-item" role="option" id="search-opt-${i}" aria-selected="false" data-url="${item.url}">
-            <div class="suggestion-header">
-                <span class="suggestion-title">${highlight(item.title, tokens)}</span>
-                <span class="suggestion-category">${item.category}</span>
-            </div>
-            <span class="suggestion-desc">${highlight(item.desc, tokens)}</span>
-        </button>
-      `).join('');
-
-    container.querySelectorAll('.suggestion-item').forEach((btn, i) => {
-      btn.addEventListener('click', () => go(btn.dataset.url));
-      btn.addEventListener('mousemove', () => setActive(i));
-    });
+      `<p class="search-count" role="status" aria-live="polite">${countLabel}</p>` + rowsHtml(results, tokens);
+    wireRows();
   }
 
   function setActive(i) {
@@ -260,6 +296,8 @@
   input.setAttribute('aria-expanded', 'true');
   input.setAttribute('aria-autocomplete', 'list');
   input.setAttribute('aria-controls', 'search-suggestions-list');
+  input.setAttribute('autocomplete', 'off');
+  input.setAttribute('spellcheck', 'false');
   container.id = 'search-suggestions-list';
   container.setAttribute('role', 'listbox');
 
@@ -286,8 +324,12 @@
         break;
       case 'Enter': {
         e.preventDefault();
-        // Only navigate when a result is explicitly highlighted (via arrow keys).
+        // Highlighted row, otherwise the best match for what's typed
         if (activeIndex >= 0 && items[activeIndex]) go(items[activeIndex].dataset.url);
+        else if (this.value.trim().length >= 2) {
+          const best = search(this.value.trim())[0];
+          if (best) go(best.url);
+        }
         break;
       }
       case 'Escape':
