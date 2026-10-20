@@ -1531,7 +1531,7 @@
     <div class="search-overlay" id="searchOverlay">
         <div class="search-container">
             <div class="mobile-nav-header">
-                <img src="logo.png" alt="Degner Construction" style="height: 52px;">
+                <img src="logo.png" alt="Degner Construction" style="height: 36px;">
                 <button class="search-close" id="searchClose">&times;</button>
             </div>
             <input type="text" class="search-input" placeholder="Search careers, benefits, opportunities...">
@@ -1586,8 +1586,9 @@
                     </div>
 
                     <div class="resume-form-block">
-                        <form class="resume-form" action="/forms/send.php" method="POST" enctype="multipart/form-data">
-                            <input type="hidden" name="form" value="apply">
+                        <form class="resume-form" action="https://api.web3forms.com/submit" method="POST" enctype="multipart/form-data">
+                            <input type="hidden" name="access_key" value="355c0fee-b620-40db-9e21-7b7888cfde86">
+                            <input type="hidden" name="from_name" value="Degner Careers">
                             <input type="checkbox" name="botcheck" style="display:none;">
 
                             <div class="form-row">
@@ -1926,7 +1927,6 @@
 
         // Resume form submission
         const resumeForm = document.querySelector('.resume-form');
-        const pageOpened = Date.now();
         if (resumeForm) {
             resumeForm.addEventListener('submit', async function(e) {
                 e.preventDefault();
@@ -1941,7 +1941,9 @@
                 let serverMsg = '';
                 try {
                     const data = new FormData(this);
-                    data.append('elapsed', Date.now() - pageOpened);
+                    data.set('subject', 'Job application: ' + data.get('name') + (data.get('position') ? ' (' + data.get('position') + ')' : ''));
+                    // leave out file fields with nothing chosen
+                    for (const [k, v] of [...data]) if (v instanceof File && !v.size) data.delete(k);
                     const response = await fetch(this.action, {
                         method: 'POST',
                         body: data,

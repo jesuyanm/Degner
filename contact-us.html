@@ -356,8 +356,9 @@
             </div>
 
             <div class="contact-form-block">
-                <form class="contact-form" action="/forms/send.php" method="POST">
-                    <input type="hidden" name="form" value="contact">
+                <form class="contact-form" action="https://api.web3forms.com/submit" method="POST">
+                    <input type="hidden" name="access_key" value="355c0fee-b620-40db-9e21-7b7888cfde86">
+                    <input type="hidden" name="from_name" value="Degner Website">
                     <input type="checkbox" name="botcheck" style="display:none;">
 
                     <div class="form-row">
@@ -390,7 +391,6 @@
 
     <script>
         document.getElementById('footer-year').textContent = new Date().getFullYear();
-        const pageOpened = Date.now();
 
         document.querySelector('.contact-form').addEventListener('submit', async function (e) {
             e.preventDefault();
@@ -403,7 +403,7 @@
             let serverMsg = '';
             try {
                 const data = new FormData(form);
-                data.append('elapsed', Date.now() - pageOpened);
+                data.set('subject', 'Website inquiry: ' + data.get('subject'));
                 const res = await fetch(form.action, { method: 'POST', body: data, headers: { 'Accept': 'application/json' } });
                 const json = await res.json();
                 if (!json.success) { serverMsg = json.message || ''; throw new Error('failed'); }

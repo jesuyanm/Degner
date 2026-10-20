@@ -331,8 +331,9 @@
                     Tom at <a href="mailto:hr@degner.ca">hr@degner.ca</a> or Fax: <a href="tel:780-960-8809">780-960-8809</a>
                 </div>
 
-                <form class="apply-form" action="/forms/send.php" method="POST" enctype="multipart/form-data">
-                    <input type="hidden" name="form" value="apply">
+                <form class="apply-form" action="https://api.web3forms.com/submit" method="POST" enctype="multipart/form-data">
+                    <input type="hidden" name="access_key" value="355c0fee-b620-40db-9e21-7b7888cfde86">
+                    <input type="hidden" name="from_name" value="Degner Careers">
                     <input type="checkbox" name="botcheck" style="display:none;">
 
                     <div class="form-row">
@@ -386,7 +387,6 @@
 
     <script>
         document.getElementById('footer-year').textContent = new Date().getFullYear();
-        const pageOpened = Date.now();
 
         const MAX_BYTES = 5 * 1024 * 1024;
         const ALLOWED = ['pdf', 'doc', 'docx'];
@@ -442,7 +442,9 @@
             let serverMsg = '';
             try {
                 const data = new FormData(form);
-                data.append('elapsed', Date.now() - pageOpened);
+                data.set('subject', 'Job application: ' + data.get('name') + (data.get('position') ? ' (' + data.get('position') + ')' : ''));
+                // leave out file fields with nothing chosen
+                for (const [k, v] of [...data]) if (v instanceof File && !v.size) data.delete(k);
                 const res = await fetch(form.action, { method: 'POST', body: data, headers: { 'Accept': 'application/json' } });
                 const json = await res.json();
                 if (!json.success) { serverMsg = json.message || ''; throw new Error('failed'); }
