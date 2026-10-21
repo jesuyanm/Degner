@@ -756,6 +756,10 @@
 
         .culture-overlay p { font-size: 0.85rem; line-height: 1.4; opacity: 0.9; }
 
+        @media (max-width: 1100px) {
+            .culture-item { aspect-ratio: 4 / 3; }
+        }
+
         @media (max-width: 900px) {
             .benefits-list { grid-template-columns: 1fr 1fr; }
         }
@@ -765,7 +769,7 @@
             .section-heading { font-size: clamp(1.4rem, 6.5vw, 2rem); letter-spacing: 0.08em; }
             .benefits-list { grid-template-columns: 1fr; }
             .culture-gallery { grid-template-columns: 1fr; gap: 0.75rem; }
-            .culture-item { aspect-ratio: 16 / 9; }
+            .culture-item { aspect-ratio: 3 / 2; }
         }
 
         .resume-form-block {
