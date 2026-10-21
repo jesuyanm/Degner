@@ -11,7 +11,7 @@
     <link rel="shortcut icon" href="favicon.ico?v=4">
 
     <!-- SEO -->
-    <meta name="description" content="Browse Degner Construction's portfolio of 500+ completed projects across Alberta — residential servicing, watermain renewal, arterial roadways, directional drilling, and storm lift stations.">
+    <meta name="description" content="Selected municipal infrastructure projects by Degner Construction across Alberta, including water, sanitary and storm, earthworks, infrastructure renewal and lift stations.">
     <meta name="keywords" content="Alberta municipal infrastructure projects, watermain renewal Edmonton, residential lot servicing Alberta, directional drilling projects, sanitary sewer construction Alberta, Degner Construction portfolio">
     <meta name="robots" content="noindex, nofollow">
     <meta name="author" content="Degner Construction Incorporated">
@@ -20,16 +20,16 @@
     <!-- Open Graph -->
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="Degner Construction">
-    <meta property="og:title" content="Our Projects — Degner Construction Alberta Infrastructure Portfolio">
-    <meta property="og:description" content="500+ completed municipal infrastructure projects across Alberta — from residential lot servicing and watermain renewal to arterial roadways and directional drilling.">
+    <meta property="og:title" content="Our Projects | Degner Construction">
+    <meta property="og:description" content="Selected municipal infrastructure projects by Degner Construction across Alberta, including water, sanitary and storm, earthworks, infrastructure renewal and lift stations.">
     <meta property="og:url" content="https://degner.ca/projects">
     <meta property="og:image" content="https://degner.ca/logo.png">
     <meta property="og:locale" content="en_CA">
 
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Our Projects — Degner Construction Alberta Infrastructure Portfolio">
-    <meta name="twitter:description" content="500+ completed municipal infrastructure projects across Alberta including residential servicing, watermain renewal, and arterial roadways.">
+    <meta name="twitter:title" content="Our Projects | Degner Construction">
+    <meta name="twitter:description" content="Selected municipal infrastructure projects by Degner Construction across Alberta, including water, sanitary and storm, earthworks, infrastructure renewal and lift stations.">
     <meta name="twitter:image" content="https://degner.ca/logo.png">
 
     <!-- Structured Data -->
@@ -491,459 +491,182 @@
             padding: 2rem 3rem;
         }
 
-        /* Project Sections */
-        .project-section {
-            margin-bottom: 1.75rem;
-            scroll-margin-top: 100px;
+        /* Projects: filter buttons over a grid of project cards (photo, service, details) */
+        .projects-intro {
+            max-width: 62ch;
+            margin: 0 0 1.75rem;
+            font-size: 0.95rem;
+            line-height: 1.7;
+            color: rgba(255, 255, 255, 0.75);
         }
 
-        .project-section-header {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            margin-bottom: 0.75rem;
-        }
-
-        .project-section-left {
-            display: flex;
-            align-items: baseline;
-            gap: 0.75rem;
-        }
-
-        .project-section-title {
-            font-size: 1rem;
+        /* shown only while the cards are examples; remove with the example cards */
+        .projects-notice {
+            display: inline-block;
+            margin: 0 0 1.75rem;
+            padding: 0.45rem 0.9rem;
+            border: 1px dashed rgba(255, 255, 255, 0.4);
+            font-size: 0.72rem;
             font-weight: 600;
-            color: var(--text-dark);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: rgba(255, 255, 255, 0.75);
+        }
+
+        .project-filters {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1.75rem;
+        }
+
+        .project-filter {
+            padding: 0.45rem 1rem;
+            background: transparent;
+            border: 1px solid rgba(255, 255, 255, 0.35);
+            color: var(--primary-white);
+            font: inherit;
+            font-size: 0.7rem;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            cursor: pointer;
+            opacity: 0.8;
+            transition: var(--transition);
+        }
+
+        .project-filter:hover { opacity: 1; border-color: rgba(255, 255, 255, 0.7); }
+        .project-filter.active { opacity: 1; background: var(--primary-white); color: #0a0a0a; border-color: var(--primary-white); }
+        .project-filter:focus-visible { outline: 2px solid var(--primary-white); outline-offset: 2px; }
+
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 1.5rem;
+        }
+
+        .project-card {
+            display: flex;
+            flex-direction: column;
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            background: rgba(15, 20, 25, 0.45);
+            transition: var(--transition);
+        }
+
+        .project-card:hover { border-color: rgba(255, 255, 255, 0.45); }
+
+        /* photo: black and white with a thin inner frame, colour on hover (same as the service pages) */
+        .project-photo {
             position: relative;
-            padding-bottom: 0.4rem;
-            letter-spacing: 3px;
+            margin: 0;
+            aspect-ratio: 4 / 3;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.18);
+            color: rgba(255, 255, 255, 0.45);
+            font-size: 0.65rem;
+            font-weight: 600;
+            letter-spacing: 2px;
             text-transform: uppercase;
         }
 
-        .project-section-title::after {
+        .project-photo::after {
             content: '';
             position: absolute;
-            left: 0;
-            bottom: 0;
-            width: 40px;
-            height: 1px;
-            background: var(--primary-white);
-        }
-
-        .project-section-nav {
-            display: flex;
-            gap: 0.5rem;
-        }
-
-        .carousel-btn {
-            background: transparent;
-            color: var(--primary-white);
-            border: 1px solid rgba(255, 255, 255, 0.45);
-            border-radius: 50%;
-            width: 34px;
-            height: 34px;
-            font-size: 1.2rem;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: var(--transition);
-            line-height: 1;
-            flex-shrink: 0;
-            visibility: hidden;
-        }
-
-        .carousel-btn:hover {
-            background: var(--primary-white);
-            transform: scale(1.1);
-            color: #0a0a0a;
-        }
-
-        /* Carousel track */
-        .project-track {
-            display: flex;
-            overflow-x: auto;
-            overflow-y: hidden;
-            overscroll-behavior-x: contain;
-            scroll-snap-type: x mandatory;
-            scrollbar-width: none;
-            gap: 1.25rem;
-            /* Top padding gives the cards room to lift on hover without the
-               overflow-y clip chopping off their top edge (and the hover bar). */
-            padding: 14px 0 0.5rem;
-            border-radius: var(--border-radius);
-            cursor: grab;
-        }
-
-        .project-track::-webkit-scrollbar { display: none; }
-        .project-track:active { cursor: grabbing; }
-
-        /* Project card — carousel style */
-        .project-card {
-            scroll-snap-align: start;
-            flex-shrink: 0;
-            width: min(460px, 82vw);
-            background: transparent;
-            border-radius: 0;
-            box-shadow: none;
-            padding: 1.5rem;
-            display: flex;
-            flex-direction: column;
-            gap: 0.6rem;
-            transition: var(--transition);
-            cursor: pointer;
-            overflow: hidden;
-            position: relative;
-            border: 1px solid rgba(255, 255, 255, 0.14);
-        }
-
-        /* Gradient line that scales in from the left on hover — matches the
-           service cards on the home page. z-index keeps it above the card image. */
-        .project-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 1px;
-            background: var(--primary-white);
-            transform: scaleX(0);
-            transform-origin: left;
-            transition: var(--transition);
-            z-index: 2;
-        }
-
-        .project-card:hover::before {
-            transform: scaleX(1);
-        }
-
-        .project-card:hover {
-            box-shadow: none;
-            transform: translateY(-6px);
-            border-color: rgba(255, 255, 255, 0.5);
-            background: rgba(255, 255, 255, 0.03);
-        }
-
-        /* Project detail modal — carousel */
-        .project-modal {
-            display: none;
-            position: fixed;
-            inset: 0;
-            background: rgba(15, 20, 25, 0.8);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            z-index: 3000;
-            align-items: center;
-        }
-
-        .project-modal.active { display: flex; }
-
-        .project-modal-close {
-            position: fixed;
-            top: 1.25rem;
-            right: 1.5rem;
-            font-size: 2rem;
-            cursor: pointer;
-            color: rgba(255,255,255,0.85);
-            background: none;
-            border: none;
-            z-index: 10;
-            line-height: 1;
-            transition: var(--transition);
-        }
-
-        .project-modal-close:hover { color: var(--primary-white); }
-
-        .project-modal-nav {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            background: rgba(255,255,255,0.15);
-            backdrop-filter: blur(8px);
-            -webkit-backdrop-filter: blur(8px);
-            border: 1px solid rgba(255,255,255,0.3);
-            color: var(--primary-white);
-            border-radius: 50%;
-            width: 48px;
-            height: 48px;
-            font-size: 1.75rem;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 10;
-            transition: background var(--transition);
-            line-height: 1;
-        }
-
-        .project-modal-nav:hover { background: rgba(255,255,255,0.3); }
-        #projectModalPrev { left: 1.5rem; }
-        #projectModalNext { right: 1.5rem; }
-
-        .project-modal-track {
-            width: 100%;
-            display: flex;
-            align-items: center;
-            overflow-x: auto;
-            overflow-y: hidden;
-            overscroll-behavior-x: contain;
-            scroll-snap-type: x mandatory;
-            scrollbar-width: none;
-            touch-action: pan-x;
-            gap: 1.5rem;
-            padding: 2rem 0;
-            cursor: grab;
-        }
-
-        .project-modal-track::-webkit-scrollbar { display: none; }
-        .project-modal-track:active { cursor: grabbing; }
-
-        .project-modal-card {
-            scroll-snap-align: center;
-            flex-shrink: 0;
-            width: min(500px, 78vw);
-            background: #0d0d0d;
-            border-radius: 0;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
-            overflow: hidden;
-            opacity: 0.45;
-            transform: scale(0.75);
-            transition: opacity 0.2s ease, transform 0.2s ease;
-            display: flex;
-            flex-direction: column;
-            max-height: 82vh;
-            overflow-y: auto;
-            border: 1px solid rgba(255, 255, 255, 0.14);
-        }
-
-        .project-modal-card.active-card {
-            opacity: 1;
-            transform: scale(1);
-        }
-
-        .project-modal-image {
-            height: 200px;
-            display: flex;
-            align-items: flex-end;
-            padding: 1.5rem;
-            position: relative;
-            overflow: hidden;
-            background: linear-gradient(135deg, var(--background-dark), #1e2d3d);
-            flex-shrink: 0;
-            filter: grayscale(1);
-        }
-
-        .project-modal-image[data-label="General Contracting"]   { background: linear-gradient(135deg, #0f1a2e, #1c3050); }
-        .project-modal-image[data-label="Water & Storm"]         { background: linear-gradient(135deg, #0a1e2e, #0f3050); }
-        .project-modal-image[data-label="Earthworks"]            { background: linear-gradient(135deg, #1e1508, #302212); }
-        .project-modal-image[data-label="Infrastructure Renewal"]{ background: linear-gradient(135deg, #0d1f17, #183328); }
-        .project-modal-image[data-label="Lift Station"]          { background: linear-gradient(135deg, #1a0f2e, #2a1850); }
-
-        .project-modal-image::after {
-            content: none;
-            position: absolute;
-            right: 1rem;
-            top: 50%;
-            transform: translateY(-50%);
-            font-size: 7rem;
-            font-weight: 900;
-            color: rgba(255,255,255,0.05);
-            white-space: nowrap;
-            line-height: 1;
-            letter-spacing: -2px;
+            inset: 12px;
+            border: 1px dashed rgba(255, 255, 255, 0.22);
             pointer-events: none;
         }
 
-        .project-modal-cat {
-            background: rgba(255,255,255,0.12);
-            color: rgba(255,255,255,0.9);
-            padding: 0.3rem 0.8rem;
-            border-radius: 0;
-            font-size: 0.75rem;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
-            border: 1px solid rgba(255,255,255,0.2);
+        .project-photo:has(img)::after { border: 1px solid rgba(255, 255, 255, 0.35); }
+        .project-photo svg { width: 24px; height: 24px; }
+
+        .project-photo img {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: grayscale(1) contrast(1.05) brightness(0.85);
+            transition: filter 0.8s ease;
         }
 
-        .project-modal-body {
-            padding: 1.5rem;
+        .project-card:hover .project-photo img { filter: grayscale(0) contrast(1) brightness(1); }
+
+        .project-body {
             display: flex;
             flex-direction: column;
-            gap: 0.5rem;
+            gap: 0.45rem;
+            padding: 1.1rem 1.2rem 1.25rem;
             flex: 1;
         }
 
-        .project-modal-title {
-            font-size: 1.4rem;
-            font-weight: 700;
-            color: var(--text-dark);
-            line-height: 1.3;
-            margin-bottom: 0.3rem;
-        }
-
-        .project-modal-client {
-            font-size: 0.92rem;
-            color: var(--text-gray);
-            font-weight: 500;
-            margin-bottom: 1rem;
-        }
-
-        .project-modal-desc {
-            font-size: 0.92rem;
-            color: var(--text-gray);
-            line-height: 1.72;
-            margin-bottom: 1.5rem;
-        }
-
-        .project-modal-details {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 1rem;
-            padding: 1.125rem;
-            background: var(--background-light);
-            border-radius: 0;
-            margin-bottom: 1.5rem;
-        }
-
-        .project-modal-detail strong {
-            display: block;
-            font-size: 0.7rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            color: var(--text-light);
-            margin-bottom: 0.3rem;
-        }
-
-        .project-modal-detail span {
-            font-size: 0.88rem;
+        .project-service {
+            font-size: 0.65rem;
             font-weight: 600;
-            color: var(--text-dark);
-        }
-
-        .project-modal-cta {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            background: transparent;
-            color: var(--primary-white);
-            padding: 0.6rem 1.4rem;
-            border-radius: 0;
-            text-decoration: none;
-            font-size: 0.72rem;
-            font-weight: 600;
-            transition: var(--transition);
-            border: 1px solid rgba(255, 255, 255, 0.5);
-            box-shadow: none;
             letter-spacing: 2px;
             text-transform: uppercase;
-            opacity: 0.85;
-        }
-
-        .project-modal-cta:hover {
-            background: var(--primary-white);
-            transform: none;
-            color: #0a0a0a;
-            border-color: var(--primary-white);
-            box-shadow: none;
-            opacity: 1;
-        }
-
-        @media (max-width: 600px) {
-            .project-modal-details { grid-template-columns: 1fr 1fr; }
-            .project-modal-nav { width: 36px; height: 36px; font-size: 1.25rem; }
-            #projectModalPrev { left: 0.5rem; }
-            #projectModalNext { right: 0.5rem; }
-        }
-
-        /* Category and year as a quiet text line at the top of the card */
-        .project-card-top {
-            display: flex;
-            justify-content: space-between;
-            align-items: baseline;
-            gap: 1rem;
-            margin-bottom: 0.75rem;
-        }
-
-        .project-badge {
-            color: var(--primary-white);
-            font-size: 0.7rem;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            opacity: 0.65;
-        }
-
-        .project-year {
-            font-size: 0.78rem;
-            color: var(--primary-white);
-            font-weight: 500;
-            opacity: 0.65;
+            opacity: 0.6;
         }
 
         .project-title {
-            font-size: 1.15rem;
+            font-size: 1rem;
             font-weight: 700;
-            color: var(--text-dark);
             line-height: 1.3;
+            text-wrap: balance;
         }
 
-        .project-client {
+        .project-meta {
+            font-size: 0.82rem;
+            color: rgba(255, 255, 255, 0.65);
+        }
+
+        .project-scope {
             font-size: 0.88rem;
-            color: var(--text-gray);
-            font-weight: 500;
+            line-height: 1.6;
+            color: rgba(255, 255, 255, 0.8);
         }
 
-        .project-description {
-            display: none; /* shown in modal only */
-            font-size: 0.88rem;
-            color: var(--text-gray);
-            line-height: 1.65;
-            flex: 1;
-        }
+        .project-card[hidden] { display: none; }
 
-        .project-card-footer {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding-top: 0.75rem;
+        .projects-cta {
+            margin-top: 2.5rem;
+            padding-top: 1.75rem;
             border-top: 1px solid rgba(255, 255, 255, 0.14);
-            margin-top: auto;
-            gap: 0.5rem;
-        }
-
-        .project-card-footer span {
-            font-size: 0.78rem;
-            color: var(--text-light);
-        }
-
-        .project-card-footer .proj-location {
-            font-weight: 600;
-            color: var(--text-gray);
-        }
-
-        /* Dots */
-        .carousel-dots {
             display: flex;
-            justify-content: center;
-            gap: 0.4rem;
-            margin-top: 0.75rem;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
         }
 
-        .carousel-dot {
-            width: 6px;
-            height: 6px;
-            border-radius: 3px;
-            background: rgba(255, 255, 255, 0.25);
-            border: none;
-            cursor: pointer;
-            padding: 0;
+        .projects-cta p { font-size: 0.95rem; color: rgba(255, 255, 255, 0.8); }
+
+        .projects-cta a {
+            padding: 0.55rem 1.4rem;
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            color: var(--primary-white);
+            font-size: 0.72rem;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            text-decoration: none;
             transition: var(--transition);
         }
 
-        .carousel-dot.active {
-            background: var(--primary-white);
-            width: 18px;
+        .projects-cta a:hover { background: var(--primary-white); color: #0a0a0a; border-color: var(--primary-white); }
+
+        @media (max-width: 968px) {
+            .project-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; }
+        }
+
+        @media (max-width: 600px) {
+            .project-grid { grid-template-columns: 1fr; }
+            .project-filter { font-size: 0.65rem; padding: 0.4rem 0.8rem; letter-spacing: 1.5px; }
         }
 
         /* Stats Section */
@@ -1288,291 +1011,87 @@
     </div>
 
     <main class="main-content">
+        <p class="projects-intro">A selection of municipal infrastructure projects Degner has delivered across Alberta for municipalities, developers and engineering firms.</p>
 
-        <!-- General Contracting -->
-        <section class="project-section" id="general-contracting">
-            <div class="project-section-header">
-                <div class="project-section-left">
-                    <h2 class="project-section-title">General Contracting</h2>
-                </div>
-                <div class="project-section-nav">
-                    <button class="carousel-btn" id="prev-general-contracting">&#8249;</button>
-                    <button class="carousel-btn" id="next-general-contracting">&#8250;</button>
-                </div>
-            </div>
-            <div class="project-track" id="track-general-contracting">
-                <div class="project-card">
-                    <div class="project-card-top">
-                        <span class="project-badge">General Contracting</span>
-                        <span class="project-year">2022</span>
-                    </div>
-                    <h3 class="project-title">Henday Business Park Site Work</h3>
-                    <div class="project-client">Beaverton Developments</div>
-                    <p class="project-description">Full site grading, utilities, and roadway construction for a 45-acre business park development on Edmonton's northwest boundary.</p>
-                    <div class="project-card-footer">
-                        <span class="proj-location">City of Edmonton</span>
-                        <span>Stantec</span>
-                    </div>
-                </div>
-                <div class="project-card">
-                    <div class="project-card-top">
-                        <span class="project-badge">General Contracting</span>
-                        <span class="project-year">2021</span>
-                    </div>
-                    <h3 class="project-title">Acheson Industrial Expansion</h3>
-                    <div class="project-client">Imperial Industrial</div>
-                    <p class="project-description">Site preparation and utility installation for a new 120,000 sq ft industrial facility including storm management ponds and access roads.</p>
-                    <div class="project-card-footer">
-                        <span class="proj-location">Acheson</span>
-                        <span>McElhanney</span>
-                    </div>
-                </div>
-                <div class="project-card">
-                    <div class="project-card-top">
-                        <span class="project-badge">General Contracting</span>
-                        <span class="project-year">2023</span>
-                    </div>
-                    <h3 class="project-title">Spruce Grove Retail Centre</h3>
-                    <div class="project-client">Platform Properties</div>
-                    <p class="project-description">Complete civil site works for a 12-acre retail development including grading, storm, sanitary, and water service connections.</p>
-                    <div class="project-card-footer">
-                        <span class="proj-location">Spruce Grove</span>
-                        <span>ISL Engineering</span>
-                    </div>
-                </div>
-            </div>
-            <div class="carousel-dots" id="dots-general-contracting"></div>
-        </section>
+        <!-- EXAMPLE CARDS: replace each with a confirmed project, then delete this notice.
+             To add a project: copy one <article>, set data-service to the matching filter
+             (general-contracting, water-sanitary-storm, earthworks, infrastructure-renewal,
+             lift-station-construction or project-management), and replace the photo placeholder
+             (the svg and span inside <figure>) with <img src="..." alt="...">. -->
+        <p class="projects-notice">Example layout &middot; real projects to be added</p>
 
-        <!-- Water, Sanitary & Storm -->
-        <section class="project-section" id="water-sanitary-storm">
-            <div class="project-section-header">
-                <div class="project-section-left">
-                    <h2 class="project-section-title">Water, Sanitary &amp; Storm</h2>
-                </div>
-                <div class="project-section-nav">
-                    <button class="carousel-btn" id="prev-water-sanitary-storm">&#8249;</button>
-                    <button class="carousel-btn" id="next-water-sanitary-storm">&#8250;</button>
-                </div>
-            </div>
-            <div class="project-track" id="track-water-sanitary-storm">
-                <div class="project-card">
-                    <div class="project-card-top">
-                        <span class="project-badge">Water &amp; Storm</span>
-                        <span class="project-year">2022</span>
-                    </div>
-                    <h3 class="project-title">Windermere Storm Outfall</h3>
-                    <div class="project-client">City of Edmonton</div>
-                    <p class="project-description">1.8km of 1200mm RCCP storm sewer and outfall structure discharging into the North Saskatchewan River watershed.</p>
-                    <div class="project-card-footer">
-                        <span class="proj-location">City of Edmonton</span>
-                        <span>Stantec</span>
-                    </div>
-                </div>
-                <div class="project-card">
-                    <div class="project-card-top">
-                        <span class="project-badge">Water &amp; Storm</span>
-                        <span class="project-year">2023</span>
-                    </div>
-                    <h3 class="project-title">Fort Saskatchewan Watermain Loop</h3>
-                    <div class="project-client">City of Fort Saskatchewan</div>
-                    <p class="project-description">3.2km of 300mm PVC watermain loop connecting two pressure zones and eliminating a critical service dead-end.</p>
-                    <div class="project-card-footer">
-                        <span class="proj-location">Fort Saskatchewan</span>
-                        <span>Al-Terra</span>
-                    </div>
-                </div>
-                <div class="project-card">
-                    <div class="project-card-top">
-                        <span class="project-badge">Water &amp; Storm</span>
-                        <span class="project-year">2021</span>
-                    </div>
-                    <h3 class="project-title">Leduc Sanitary Collector</h3>
-                    <div class="project-client">City of Leduc</div>
-                    <p class="project-description">2.4km of 525mm and 675mm gravity sanitary sewer extending the collection network to support new residential growth areas.</p>
-                    <div class="project-card-footer">
-                        <span class="proj-location">Leduc</span>
-                        <span>ISL Engineering</span>
-                    </div>
-                </div>
-            </div>
-            <div class="carousel-dots" id="dots-water-sanitary-storm"></div>
-        </section>
+        <div class="project-filters" role="group" aria-label="Filter projects by service">
+            <button class="project-filter active" type="button" data-filter="all" aria-pressed="true">All</button>
+            <button class="project-filter" type="button" data-filter="general-contracting" aria-pressed="false">General Contracting</button>
+            <button class="project-filter" type="button" data-filter="water-sanitary-storm" aria-pressed="false">Water, Sanitary &amp; Storm</button>
+            <button class="project-filter" type="button" data-filter="earthworks" aria-pressed="false">Earthworks</button>
+            <button class="project-filter" type="button" data-filter="infrastructure-renewal" aria-pressed="false">Infrastructure Renewal</button>
+            <button class="project-filter" type="button" data-filter="lift-station-construction" aria-pressed="false">Lift Station Construction</button>
+            <button class="project-filter" type="button" data-filter="project-management" aria-pressed="false">Project Management</button>
+        </div>
 
-        <!-- Earthworks -->
-        <section class="project-section" id="earthworks">
-            <div class="project-section-header">
-                <div class="project-section-left">
-                    <h2 class="project-section-title">Earthworks</h2>
+        <div class="project-grid" id="projectGrid">
+            <article class="project-card" data-service="general-contracting">
+                <figure class="project-photo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8a2 2 0 0 1 2-2h2l1.5-2h7L17 6h2a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><circle cx="12" cy="13" r="3.5"/></svg><span>Project photo</span></figure>
+                <div class="project-body">
+                    <span class="project-service">General Contracting</span>
+                    <h3 class="project-title">Example project name</h3>
+                    <p class="project-meta">Client &middot; Municipality &middot; Year</p>
+                    <p class="project-scope">One sentence on the scope of work, e.g. full civil site works for a commercial or industrial development.</p>
                 </div>
-                <div class="project-section-nav">
-                    <button class="carousel-btn" id="prev-earthworks">&#8249;</button>
-                    <button class="carousel-btn" id="next-earthworks">&#8250;</button>
+            </article>
+            <article class="project-card" data-service="water-sanitary-storm">
+                <figure class="project-photo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8a2 2 0 0 1 2-2h2l1.5-2h7L17 6h2a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><circle cx="12" cy="13" r="3.5"/></svg><span>Project photo</span></figure>
+                <div class="project-body">
+                    <span class="project-service">Water, Sanitary &amp; Storm</span>
+                    <h3 class="project-title">Example project name</h3>
+                    <p class="project-meta">Client &middot; Municipality &middot; Year</p>
+                    <p class="project-scope">One sentence on the scope of work, e.g. 1.2 km of 300 mm watermain and sanitary sewer for a new subdivision.</p>
                 </div>
-            </div>
-            <div class="project-track" id="track-earthworks">
-                <div class="project-card">
-                    <div class="project-card-top">
-                        <span class="project-badge">Earthworks</span>
-                        <span class="project-year">2022</span>
-                    </div>
-                    <h3 class="project-title">Anthony Henday Utility Crossing</h3>
-                    <div class="project-client">City of Edmonton</div>
-                    <p class="project-description">Trench excavation and utility installation for a 95m road crossing beneath the Anthony Henday Drive interchange with zero service disruption.</p>
-                    <div class="project-card-footer">
-                        <span class="proj-location">City of Edmonton</span>
-                        <span>WSP</span>
-                    </div>
+            </article>
+            <article class="project-card" data-service="earthworks">
+                <figure class="project-photo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8a2 2 0 0 1 2-2h2l1.5-2h7L17 6h2a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><circle cx="12" cy="13" r="3.5"/></svg><span>Project photo</span></figure>
+                <div class="project-body">
+                    <span class="project-service">Earthworks</span>
+                    <h3 class="project-title">Example project name</h3>
+                    <p class="project-meta">Client &middot; Municipality &middot; Year</p>
+                    <p class="project-scope">One sentence on the scope of work, e.g. mass excavation of a stormwater management facility.</p>
                 </div>
-                <div class="project-card">
-                    <div class="project-card-top">
-                        <span class="project-badge">Earthworks</span>
-                        <span class="project-year">2021</span>
-                    </div>
-                    <h3 class="project-title">Manning Freeway Deep Cut</h3>
-                    <div class="project-client">Province of Alberta</div>
-                    <p class="project-description">8m deep excavation and shoring for a utility corridor installation beneath existing roadway with strict traffic management protocols.</p>
-                    <div class="project-card-footer">
-                        <span class="proj-location">City of Edmonton</span>
-                        <span>Stantec</span>
-                    </div>
+            </article>
+            <article class="project-card" data-service="infrastructure-renewal">
+                <figure class="project-photo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8a2 2 0 0 1 2-2h2l1.5-2h7L17 6h2a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><circle cx="12" cy="13" r="3.5"/></svg><span>Project photo</span></figure>
+                <div class="project-body">
+                    <span class="project-service">Infrastructure Renewal</span>
+                    <h3 class="project-title">Example project name</h3>
+                    <p class="project-meta">Client &middot; Municipality &middot; Year</p>
+                    <p class="project-scope">One sentence on the scope of work, e.g. replacement of aging AC water and sanitary mains along an existing road.</p>
                 </div>
-                <div class="project-card">
-                    <div class="project-card-top">
-                        <span class="project-badge">Earthworks</span>
-                        <span class="project-year">2023</span>
-                    </div>
-                    <h3 class="project-title">Strathcona Industrial Earthworks</h3>
-                    <div class="project-client">Strathcona County</div>
-                    <p class="project-description">Bulk earthworks involving 180,000 m³ of cut and fill to prepare two industrial sites for utility and roadway construction.</p>
-                    <div class="project-card-footer">
-                        <span class="proj-location">Sherwood Park</span>
-                        <span>McElhanney</span>
-                    </div>
+            </article>
+            <article class="project-card" data-service="lift-station-construction">
+                <figure class="project-photo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8a2 2 0 0 1 2-2h2l1.5-2h7L17 6h2a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><circle cx="12" cy="13" r="3.5"/></svg><span>Project photo</span></figure>
+                <div class="project-body">
+                    <span class="project-service">Lift Station Construction</span>
+                    <h3 class="project-title">Example project name</h3>
+                    <p class="project-meta">Client &middot; Municipality &middot; Year</p>
+                    <p class="project-scope">One sentence on the scope of work, e.g. construction of a new sanitary lift station.</p>
                 </div>
-            </div>
-            <div class="carousel-dots" id="dots-earthworks"></div>
-        </section>
+            </article>
+            <article class="project-card" data-service="project-management">
+                <figure class="project-photo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8a2 2 0 0 1 2-2h2l1.5-2h7L17 6h2a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><circle cx="12" cy="13" r="3.5"/></svg><span>Project photo</span></figure>
+                <div class="project-body">
+                    <span class="project-service">Project Management</span>
+                    <h3 class="project-title">Example project name</h3>
+                    <p class="project-meta">Client &middot; Municipality &middot; Year</p>
+                    <p class="project-scope">One sentence on the scope of work, e.g. design-build delivery of a municipal servicing project.</p>
+                </div>
+            </article>
+        </div>
 
-        <!-- Infrastructure Renewal -->
-        <section class="project-section" id="infrastructure-renewal">
-            <div class="project-section-header">
-                <div class="project-section-left">
-                    <h2 class="project-section-title">Infrastructure Renewal</h2>
-                </div>
-                <div class="project-section-nav">
-                    <button class="carousel-btn" id="prev-infrastructure-renewal">&#8249;</button>
-                    <button class="carousel-btn" id="next-infrastructure-renewal">&#8250;</button>
-                </div>
-            </div>
-            <div class="project-track" id="track-infrastructure-renewal">
-                <div class="project-card">
-                    <div class="project-card-top">
-                        <span class="project-badge">Infrastructure Renewal</span>
-                        <span class="project-year">2023</span>
-                    </div>
-                    <h3 class="project-title">107 Avenue Watermain Replacement</h3>
-                    <div class="project-client">City of Edmonton</div>
-                    <p class="project-description">Replacement of 2.1km of deteriorating 150mm cast iron watermain with new 200mm PVC pipe, minimizing service disruptions throughout.</p>
-                    <div class="project-card-footer">
-                        <span class="proj-location">City of Edmonton</span>
-                        <span>Stantec</span>
-                    </div>
-                </div>
-                <div class="project-card">
-                    <div class="project-card-top">
-                        <span class="project-badge">Infrastructure Renewal</span>
-                        <span class="project-year">2022</span>
-                    </div>
-                    <h3 class="project-title">St. Albert Trail Sewer Rehab</h3>
-                    <div class="project-client">City of St. Albert</div>
-                    <p class="project-description">Sanitary sewer rehabilitation using CIPP lining across 1.6km of aging 375mm vitrified clay pipe infrastructure.</p>
-                    <div class="project-card-footer">
-                        <span class="proj-location">St. Albert</span>
-                        <span>ISL Engineering</span>
-                    </div>
-                </div>
-                <div class="project-card">
-                    <div class="project-card-top">
-                        <span class="project-badge">Infrastructure Renewal</span>
-                        <span class="project-year">2021</span>
-                    </div>
-                    <h3 class="project-title">Sherwood Park Utility Renewal</h3>
-                    <div class="project-client">Strathcona County</div>
-                    <p class="project-description">Removal of 3.4km of legacy asbestos cement water mains and replacement with modern high-density polyethylene pipe.</p>
-                    <div class="project-card-footer">
-                        <span class="proj-location">Sherwood Park</span>
-                        <span>McElhanney</span>
-                    </div>
-                </div>
-            </div>
-            <div class="carousel-dots" id="dots-infrastructure-renewal"></div>
-        </section>
-
-        <!-- Lift Station Construction -->
-        <section class="project-section" id="lift-station">
-            <div class="project-section-header">
-                <div class="project-section-left">
-                    <h2 class="project-section-title">Lift Station Construction</h2>
-                </div>
-                <div class="project-section-nav">
-                    <button class="carousel-btn" id="prev-lift-station">&#8249;</button>
-                    <button class="carousel-btn" id="next-lift-station">&#8250;</button>
-                </div>
-            </div>
-            <div class="project-track" id="track-lift-station">
-                <div class="project-card">
-                    <div class="project-card-top">
-                        <span class="project-badge">Lift Station</span>
-                        <span class="project-year">2022</span>
-                    </div>
-                    <h3 class="project-title">Windermere Sanitary Lift Station</h3>
-                    <div class="project-client">City of Edmonton</div>
-                    <p class="project-description">New 450 L/s wet well lift station with dual submersible pumps and emergency generator to service the Windermere catchment area.</p>
-                    <div class="project-card-footer">
-                        <span class="proj-location">City of Edmonton</span>
-                        <span>Stantec</span>
-                    </div>
-                </div>
-                <div class="project-card">
-                    <div class="project-card-top">
-                        <span class="project-badge">Lift Station</span>
-                        <span class="project-year">2023</span>
-                    </div>
-                    <h3 class="project-title">Leduc Pump Station No. 6</h3>
-                    <div class="project-client">City of Leduc</div>
-                    <p class="project-description">Replacement of an aging forcemain pump station with a modern 280 L/s capacity station including SCADA monitoring and telemetry.</p>
-                    <div class="project-card-footer">
-                        <span class="proj-location">Leduc</span>
-                        <span>ISL Engineering</span>
-                    </div>
-                </div>
-                <div class="project-card">
-                    <div class="project-card-top">
-                        <span class="project-badge">Lift Station</span>
-                        <span class="project-year">2021</span>
-                    </div>
-                    <h3 class="project-title">St. Albert Lift Station 12 Upgrade</h3>
-                    <div class="project-client">City of St. Albert</div>
-                    <p class="project-description">Expansion of existing lift station wet well capacity and pump replacement to accommodate 20-year growth projections.</p>
-                    <div class="project-card-footer">
-                        <span class="proj-location">St. Albert</span>
-                        <span>OPUS Engineering</span>
-                    </div>
-                </div>
-            </div>
-            <div class="carousel-dots" id="dots-lift-station"></div>
-        </section>
-
+        <div class="projects-cta">
+            <p>Planning a similar project? Our estimating team can help.</p>
+            <a href="contact.html?subject=Quote+Request&amp;message=I+would+like+to+request+a+quote+for+a+project.">Request a Quote</a>
+        </div>
     </main>
-
-    <!-- Project Detail Modal -->
-    <div class="project-modal" id="projectModal">
-        <button class="project-modal-close" id="projectModalClose">&times;</button>
-        <button class="project-modal-nav" id="projectModalPrev">&#8249;</button>
-        <div class="project-modal-track" id="projectModalTrack"></div>
-        <button class="project-modal-nav" id="projectModalNext">&#8250;</button>
-    </div>
 
     <!-- Footer -->
     <footer class="footer">
@@ -1643,277 +1162,23 @@
             });
         });
 
-        // Project detail modal — infinite carousel
-        const projectModal    = document.getElementById('projectModal');
-        const projectModalTrack = document.getElementById('projectModalTrack');
-        const projectModalPrev  = document.getElementById('projectModalPrev');
-        const projectModalNext  = document.getElementById('projectModalNext');
-
-        let modalCards = [], modalTotal = 0, modalNavTarget = -1;
-
-        function buildModalCardEl(d) {
-            const el = document.createElement('div');
-            el.className = 'project-modal-card';
-            el.innerHTML = `
-                <div class="project-modal-image" data-label="${d.category}">
-                    <span class="project-modal-cat">${d.category}</span>
-                </div>
-                <div class="project-modal-body">
-                    <h2 class="project-modal-title">${d.title}</h2>
-                    <div class="project-modal-client">${d.client}</div>
-                    <p class="project-modal-desc">${d.desc}</p>
-                    <div class="project-modal-details">
-                        <div class="project-modal-detail"><strong>Location</strong><span>${d.location}</span></div>
-                        <div class="project-modal-detail"><strong>Completed</strong><span>${d.year}</span></div>
-                        <div class="project-modal-detail"><strong>Engineering</strong><span>${d.engineer}</span></div>
-                    </div>
-                    <a href="contact.html" class="project-modal-cta">
-                        Discuss a Similar Project
-                        <svg width="15" height="15" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"/></svg>
-                    </a>
-                </div>`;
-            return el;
-        }
-
-        function modalSetPadding() {
-            if (!modalCards[0]) return;
-            const pad = Math.max(0, (projectModalTrack.clientWidth - modalCards[0].offsetWidth) / 2);
-            projectModalTrack.style.paddingInline = pad + 'px';
-            projectModalTrack.style.scrollPaddingInline = pad + 'px';
-        }
-
-        function modalScrollTo(idx, behavior = 'smooth') {
-            const card = modalCards[idx];
-            if (!card) return;
-            const target = card.offsetLeft - (projectModalTrack.clientWidth - card.offsetWidth) / 2;
-            projectModalTrack.scrollTo({ left: Math.max(0, target), behavior });
-        }
-
-        function modalNearest() {
-            const center = projectModalTrack.scrollLeft + projectModalTrack.clientWidth / 2;
-            let closest = 0, minDist = Infinity;
-            modalCards.forEach((c, i) => {
-                const dist = Math.abs(c.offsetLeft + c.offsetWidth / 2 - center);
-                if (dist < minDist) { minDist = dist; closest = i; }
+        // Project filter: show only the cards for the chosen service
+        const projectFilters = document.querySelectorAll('.project-filter');
+        const projectCards = document.querySelectorAll('.project-card');
+        projectFilters.forEach(btn => btn.addEventListener('click', () => {
+            const f = btn.dataset.filter;
+            projectFilters.forEach(b => {
+                b.classList.toggle('active', b === btn);
+                b.setAttribute('aria-pressed', b === btn ? 'true' : 'false');
             });
-            return closest;
-        }
-
-        function modalUpdateActive(idx) {
-            modalCards.forEach((c, i) => c.classList.toggle('active-card', i === idx));
-            projectModalPrev.style.display = idx <= 0 ? 'none' : 'flex';
-            projectModalNext.style.display = idx >= modalCards.length - 1 ? 'none' : 'flex';
-        }
-
-        function openProjectModal(clickedCard, categoryId) {
-            const catTrack = document.getElementById(`track-${categoryId}`);
-            const catCards = Array.from(catTrack.querySelectorAll('.project-card'));
-            const startIdx = catCards.indexOf(clickedCard);
-            const dataList = catCards.map(card => ({
-                title:    card.querySelector('.project-title').textContent,
-                client:   card.querySelector('.project-client').textContent,
-                category: card.querySelector('.project-badge').textContent,
-                year:     card.querySelector('.project-year').textContent,
-                location: card.querySelector('.proj-location').textContent,
-                engineer: card.querySelector('.project-card-footer span:last-child').textContent,
-                desc:     card.querySelector('.project-description').textContent,
-            }));
-
-            modalTotal = dataList.length;
-            projectModalTrack.innerHTML = '';
-            modalCards = [];
-            dataList.forEach(d => {
-                const el = buildModalCardEl(d);
-                projectModalTrack.appendChild(el);
-                modalCards.push(el);
-            });
-
-            projectModal.classList.add('active');
-            document.body.style.overflow = 'hidden';
-            requestAnimationFrame(() => {
-                modalSetPadding();
-                modalScrollTo(startIdx, 'instant');
-                modalUpdateActive(startIdx);
-            });
-        }
-
-        function closeProjectModal() {
-            projectModal.classList.remove('active');
-            document.body.style.overflow = '';
-            projectModalTrack.innerHTML = '';
-            modalCards = [];
-        }
-
-        // Update active immediately on scroll; ignore scroll events mid-nav-animation
-        projectModalTrack.addEventListener('scroll', () => {
-            const n = modalNearest();
-            if (modalNavTarget < 0 || modalNavTarget === n) {
-                modalNavTarget = -1;
-                modalUpdateActive(n);
-            }
-        });
-
-        // Mouse drag with rubber-band overscroll
-        let modalDrag = null;
-        projectModalTrack.addEventListener('mousedown', e => { modalDrag = { x: e.clientX, left: projectModalTrack.scrollLeft }; projectModalTrack.style.transition = 'none'; e.preventDefault(); });
-        projectModalTrack.addEventListener('mousemove', e => {
-            if (!modalDrag) return;
-            const desired = modalDrag.left - (e.clientX - modalDrag.x);
-            const max = projectModalTrack.scrollWidth - projectModalTrack.clientWidth;
-            if (desired < 0) {
-                projectModalTrack.scrollLeft = 0;
-                projectModalTrack.style.transform = `translateX(${Math.min(-desired * 0.35, 90)}px)`;
-            } else if (desired > max) {
-                projectModalTrack.scrollLeft = max;
-                projectModalTrack.style.transform = `translateX(${-Math.min((desired - max) * 0.35, 90)}px)`;
-            } else {
-                projectModalTrack.scrollLeft = desired;
-                projectModalTrack.style.transform = '';
-            }
-        });
-        window.addEventListener('mouseup', () => {
-            if (!modalDrag) return;
-            modalDrag = null;
-            modalNavTarget = -1;
-            projectModalTrack.style.transition = 'transform 0.35s cubic-bezier(0.25, 1, 0.5, 1)';
-            projectModalTrack.style.transform = '';
-            modalScrollTo(modalNearest());
-        });
-
-        projectModalPrev.addEventListener('click', () => {
-            if (!modalCards.length) return;
-            const next = Math.max(0, modalNearest() - 1);
-            modalNavTarget = next;
-            modalUpdateActive(next);
-            modalScrollTo(next);
-        });
-        projectModalNext.addEventListener('click', () => {
-            if (!modalCards.length) return;
-            const next = Math.min(modalCards.length - 1, modalNearest() + 1);
-            modalNavTarget = next;
-            modalUpdateActive(next);
-            modalScrollTo(next);
-        });
-
-        window.addEventListener('resize', () => {
-            if (projectModal.classList.contains('active')) { modalSetPadding(); modalScrollTo(modalNearest(), 'instant'); }
-        });
-
-        document.getElementById('projectModalClose').addEventListener('click', closeProjectModal);
-        projectModal.addEventListener('click', e => { if (e.target === projectModal) closeProjectModal(); });
-
-        // Project carousels
-        ['general-contracting', 'water-sanitary-storm', 'earthworks', 'infrastructure-renewal', 'lift-station'].forEach(id => {
-            const track   = document.getElementById(`track-${id}`);
-            const prevBtn = document.getElementById(`prev-${id}`);
-            const nextBtn = document.getElementById(`next-${id}`);
-            const dotsEl  = document.getElementById(`dots-${id}`);
-            const cards   = Array.from(track.querySelectorAll('.project-card'));
-
-            // Tracks whether the last pointer interaction was a drag (so we don't
-            // treat the release of a swipe as a click that opens a project modal).
-            let drag = null, dragMoved = false;
-
-            cards.forEach(card => {
-                card.addEventListener('click', () => { if (!dragMoved) openProjectModal(card, id); });
-            });
-
-            // Build dots
-            cards.forEach((_, i) => {
-                const dot = document.createElement('button');
-                dot.className = 'carousel-dot' + (i === 0 ? ' active' : '');
-                dot.setAttribute('aria-label', `Project ${i + 1}`);
-                dot.addEventListener('click', () => scrollTo(i));
-                dotsEl.appendChild(dot);
-            });
-
-            // Left edge of the viewport in card-offset coordinates
-            function viewportLeft() {
-                return cards[0].offsetLeft + track.scrollLeft;
-            }
-
-            function nearest() {
-                const pos = viewportLeft();
-                return cards.reduce((best, card, i) => {
-                    const dist = Math.abs(card.offsetLeft - pos);
-                    return dist < best.dist ? { i, dist } : best;
-                }, { i: 0, dist: Infinity }).i;
-            }
-
-            function scrollTo(i, behavior = 'smooth') {
-                const card = cards[i];
-                if (!card) return;
-                track.scrollTo({ left: card.offsetLeft - cards[0].offsetLeft, behavior });
-            }
-
-            function updateDots(i) {
-                dotsEl.querySelectorAll('.carousel-dot').forEach((d, j) => d.classList.toggle('active', j === i));
-                // Base arrow visibility on actual scroll position, not the nearest-card
-                // index — the last card never reaches the left edge under scroll-snap,
-                // so an index-based check would leave the next arrow stuck on at the end.
-                const maxScroll = track.scrollWidth - track.clientWidth;
-                const noScroll = maxScroll <= 1;
-                dotsEl.style.display = noScroll ? 'none' : '';
-                prevBtn.style.visibility = (noScroll || track.scrollLeft <= 1) ? 'hidden' : 'visible';
-                nextBtn.style.visibility = (noScroll || track.scrollLeft >= maxScroll - 1) ? 'hidden' : 'visible';
-            }
-
-            track.addEventListener('scroll', () => updateDots(nearest()));
-            window.addEventListener('resize', () => updateDots(nearest()));
-
-            prevBtn.addEventListener('click', () => {
-                const next = Math.max(0, nearest() - 1);
-                scrollTo(next); updateDots(next);
-            });
-            nextBtn.addEventListener('click', () => {
-                const next = Math.min(cards.length - 1, nearest() + 1);
-                scrollTo(next); updateDots(next);
-            });
-
-            track.addEventListener('mousedown', e => { drag = { x: e.clientX, left: track.scrollLeft }; dragMoved = false; track.style.transition = 'none'; e.preventDefault(); });
-            track.addEventListener('mousemove', e => {
-                if (!drag) return;
-                if (Math.abs(e.clientX - drag.x) > 5) dragMoved = true;
-                const desired = drag.left - (e.clientX - drag.x);
-                const max = track.scrollWidth - track.clientWidth;
-                if (desired < 0) {
-                    track.scrollLeft = 0;
-                    track.style.transform = `translateX(${Math.min(-desired * 0.35, 90)}px)`;
-                } else if (desired > max) {
-                    track.scrollLeft = max;
-                    track.style.transform = `translateX(${-Math.min((desired - max) * 0.35, 90)}px)`;
-                } else {
-                    track.scrollLeft = desired;
-                    track.style.transform = '';
-                }
-            });
-            window.addEventListener('mouseup', () => {
-                if (!drag) return;
-                drag = null;
-                track.style.transition = 'transform 0.35s cubic-bezier(0.25, 1, 0.5, 1)';
-                track.style.transform = '';
-                scrollTo(nearest());
-            });
-
-            // Set arrow/dot state immediately so scrollable carousels show their arrows
-            // without a frame of delay; re-run once more after layout settles as a safety net.
-            updateDots(nearest());
-            requestAnimationFrame(() => updateDots(nearest()));
-        });
+            projectCards.forEach(card => { card.hidden = f !== 'all' && card.dataset.service !== f; });
+        }));
 
         document.addEventListener('keydown', function(e) {
             if (e.key === 'Escape') {
-                if (projectModal.classList.contains('active')) { closeProjectModal(); return; }
                 mobileToggle.classList.remove('active');
                 mobileNav.classList.remove('active');
                 document.body.style.overflow = '';
-            }
-            if (projectModal.classList.contains('active')) {
-                if (e.key === 'ArrowLeft' || e.key === 'ArrowRight' || e.key === 'ArrowUp' || e.key === 'ArrowDown') {
-                    e.preventDefault();
-                    if (e.key === 'ArrowLeft') projectModalPrev.click();
-                    if (e.key === 'ArrowRight') projectModalNext.click();
-                }
             }
         });
     </script>
