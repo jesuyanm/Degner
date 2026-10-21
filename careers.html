@@ -723,9 +723,10 @@
             gap: 1.25rem;
         }
 
+        /* fixed 3:2 rectangle at every width, instead of a fixed height that turned square on narrow screens */
         .culture-item {
             position: relative;
-            height: 220px;
+            aspect-ratio: 3 / 2;
             overflow: hidden;
             background-size: cover;
             background-position: center;
@@ -764,7 +765,7 @@
             .section-heading { font-size: clamp(1.4rem, 6.5vw, 2rem); letter-spacing: 0.08em; }
             .benefits-list { grid-template-columns: 1fr; }
             .culture-gallery { grid-template-columns: 1fr; gap: 0.75rem; }
-            .culture-item { height: 180px; }
+            .culture-item { aspect-ratio: 16 / 9; }
         }
 
         .resume-form-block {
