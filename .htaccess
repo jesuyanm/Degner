@@ -27,6 +27,7 @@ RewriteRule ^our-projects/?$ / [R=301,L,NC]
 RewriteRule ^contact-us(\.html)?/?$ /contact [R=301,L,NC]
 RewriteRule ^apply-now(\.html)?/?$ /careers [R=301,L,NC]
 RewriteRule ^coming-soon(\.html)?/?$ / [R=301,L,NC]
+RewriteRule ^coming-soon-privacy(\.html)?/?$ /privacy [R=301,L,NC]
 
 # /index.html -> /
 RewriteCond %{REQUEST_FILENAME} !-f

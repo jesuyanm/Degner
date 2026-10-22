@@ -1,0 +1,1531 @@
+<!DOCTYPE html>
+<html lang="en-CA">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#0F1419">
+    <title>Privacy Policy | Degner Construction</title>
+    <link rel="icon" href="favicon-32.png?v=3" type="image/png" sizes="32x32">
+    <link rel="icon" href="favicon-48.png?v=4" type="image/png" sizes="48x48">
+    <link rel="icon" href="favicon-192.png?v=4" type="image/png" sizes="192x192">
+    <link rel="apple-touch-icon" href="apple-touch-icon.png?v=3" sizes="180x180">
+    <link rel="shortcut icon" href="favicon.ico?v=4">
+
+    <!-- SEO -->
+    <meta name="description" content="How Degner Construction collects, uses and protects the personal information you send through our website, in line with Alberta’s Personal Information Protection Act.">
+    <meta name="robots" content="noindex, nofollow">
+    <meta name="author" content="Degner Construction Incorporated">
+    <link rel="canonical" href="https://degner.ca/privacy">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Degner Construction">
+    <meta property="og:title" content="Privacy Policy | Degner Construction">
+    <meta property="og:description" content="How Degner Construction collects, uses and protects the personal information you send through our website, in line with Alberta’s Personal Information Protection Act.">
+    <meta property="og:url" content="https://degner.ca/privacy">
+    <meta property="og:image" content="https://degner.ca/og-image.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Degner Construction excavators working on a municipal infrastructure site in Alberta">
+    <meta property="og:locale" content="en_CA">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Privacy Policy | Degner Construction">
+    <meta name="twitter:description" content="How Degner Construction collects, uses and protects the personal information you send through our website, in line with Alberta’s Personal Information Protection Act.">
+    <meta name="twitter:image" content="https://degner.ca/og-image.jpg">
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "WebPage",
+          "@id": "https://degner.ca/privacy#webpage",
+          "url": "https://degner.ca/privacy",
+          "name": "Privacy Policy",
+          "isPartOf": {
+            "@id": "https://degner.ca/#website"
+          },
+          "about": {
+            "@id": "https://degner.ca/#organization"
+          },
+          "description": "How Degner Construction collects, uses and protects the personal information you send through our website, in line with Alberta’s Personal Information Protection Act."
+        },
+        {
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            {
+              "@type": "ListItem",
+              "position": 1,
+              "name": "Home",
+              "item": "https://degner.ca/"
+            },
+            {
+              "@type": "ListItem",
+              "position": 2,
+              "name": "Privacy Policy",
+              "item": "https://degner.ca/privacy"
+            }
+          ]
+        }
+      ]
+    }
+    </script>
+    <script>
+        // Background zoom follows the clock, so every page shows the same zoom and it carries on between pages
+        document.documentElement.style.setProperty('--drift-delay', -(Date.now() % 60000) / 1000 + 's');
+    </script>
+    <style>
+        :root {
+            --primary-accent: #FFFFFF;
+            --primary-white: #FFFFFF;
+            --text-dark: #FFFFFF;
+            --text-gray: rgba(255, 255, 255, 0.7);
+            --text-light: rgba(255, 255, 255, 0.45);
+            --background-light: rgba(255, 255, 255, 0.04);
+            --background-dark: #0a0a0a;
+            --background-medium: #1a1a1a;
+            --shadow-light: none;
+            --shadow-medium: none;
+            --shadow-heavy: 0 20px 60px rgba(0, 0, 0, 0.6);
+            --border-radius: 0;
+            --transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.7;
+            color: var(--primary-white);
+            background: #0F1419;
+            overflow-x: hidden;
+        }
+
+        /* Moody full-page backdrop, same treatment as the coming-soon page */
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            z-index: -1;
+            pointer-events: none;
+            background:
+                radial-gradient(ellipse at 50% 45%, rgba(15, 20, 25, 0.45), rgba(15, 20, 25, 0.94) 85%),
+                linear-gradient(rgba(15, 20, 25, 0.6), rgba(15, 20, 25, 0.6)),
+                url('pic4.jpg') center / cover no-repeat;
+            filter: grayscale(1) contrast(1.1);
+            animation: drift 30s ease-in-out infinite alternate;
+            animation-delay: var(--drift-delay, 0s);
+        }
+
+        @keyframes drift {
+            from { transform: scale(1); }
+            to { transform: scale(1.08); }
+        }
+
+        /* Always keep room for the thin scrollbar, so every page (long or short) lines up the same */
+        html { scrollbar-gutter: stable; }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #0F1419;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 3px;
+        }
+
+        /* Header */
+        .header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: transparent;
+            border-bottom: 1px solid transparent;
+            box-shadow: none;
+            z-index: 1000;
+            transition: var(--transition);
+        }
+
+        .header.scrolled {
+            background: rgba(15, 20, 25, 0.85);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.14);
+            box-shadow: none;
+            -webkit-backdrop-filter: blur(10px);
+            backdrop-filter: blur(10px);
+        }
+
+        .nav-container {
+            max-width: 1600px;
+            margin: 0 auto;
+            padding: 0 3rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 80px;
+        }
+
+        .nav-left {
+            display: flex;
+            align-items: center;
+            gap: 5rem;
+            flex: 1;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            transition: var(--transition);
+        }
+
+        .logo img {
+            height: 44px;
+            margin-top: 0;
+            transition: var(--transition);
+            filter: invert(1);
+            mix-blend-mode: screen;
+        }
+
+        .logo:hover {
+            transform: translateY(-2px);
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 0;
+            align-items: center;
+            flex: 1;
+            justify-content: center;
+        }
+
+        .nav-item {
+            position: relative;
+        }
+
+        .nav-item > a {
+            text-decoration: none;
+            color: var(--primary-white);
+            font-weight: 500;
+            font-size: 0.8rem;
+            transition: var(--transition);
+            padding: 2rem 1.5rem;
+            display: flex;
+            align-items: center;
+            height: 80px;
+            white-space: nowrap;
+            position: relative;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            opacity: 0.7;
+        }
+
+        .nav-item > a:hover {
+            color: var(--primary-white);
+            opacity: 1;
+        }
+
+        .nav-item > a::after {
+            content: '';
+            position: absolute;
+            bottom: 26px;
+            left: 50%;
+            width: 0;
+            height: 1px;
+            background: var(--primary-white);
+            transition: var(--transition);
+            transform: translateX(-50%);
+        }
+
+        .nav-item > a:hover::after {
+            width: calc(100% - 3rem);
+        }
+
+        .nav-item.active > a {
+            color: var(--primary-white);
+            font-weight: 500;
+            opacity: 1;
+        }
+
+        .nav-item.active > a::after {
+            width: calc(100% - 3rem);
+        }
+
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .search-toggle {
+            background: transparent;
+            border: none;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            color: var(--primary-white);
+            -webkit-appearance: none;
+            appearance: none;
+            transition: var(--transition);
+        }
+
+        .search-toggle:hover {
+            background: var(--primary-white);
+            color: #0a0a0a;
+            transform: scale(1.1);
+        }
+
+        .header.scrolled .search-toggle {
+            background: transparent;
+        }
+
+        .search-overlay {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 100%;
+            max-width: 400px;
+            height: 100vh;
+            background: #0d0d0d;
+            box-shadow: var(--shadow-heavy);
+            z-index: 2000;
+            transition: var(--transition);
+            overflow-y: auto;
+            border-left: 1px solid rgba(255, 255, 255, 0.14);
+        }
+
+        .search-overlay.active {
+            right: 0;
+        }
+
+        .search-container {
+            padding: 2rem;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 0.6rem 0.75rem;
+            font-size: 0.95rem;
+            border: 1px solid rgba(255, 255, 255, 0.22);
+            border-radius: 0;
+            transition: var(--transition);
+            margin-bottom: 1rem;
+            background: rgba(255, 255, 255, 0.03);
+            color: var(--primary-white);
+        }
+
+        .search-input:focus {
+            outline: none;
+            border-color: rgba(255, 255, 255, 0.7);
+            box-shadow: none;
+            background: rgba(255, 255, 255, 0.06);
+        }
+
+        .search-suggestions {
+            margin-top: 0.5rem;
+        }
+
+        .suggestion-item {
+            display: flex;
+            flex-direction: column;
+            padding: 0.75rem 1rem;
+            border-radius: 0;
+            cursor: pointer;
+            transition: background 0.15s;
+            border: none;
+            background: none;
+            width: 100%;
+            text-align: left;
+            margin-bottom: 0.25rem;
+            font-family: inherit;
+        }
+
+        .suggestion-item:hover,
+        .suggestion-item:focus {
+            background: var(--background-light);
+            outline: none;
+        }
+
+        .suggestion-header {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        .suggestion-title {
+            font-weight: 600;
+            color: var(--text-dark);
+            font-size: 0.95rem;
+        }
+
+        .suggestion-category {
+            font-size: 0.7rem;
+            background: rgba(255, 255, 255, 0.08);
+            color: var(--text-gray);
+            padding: 0.15rem 0.5rem;
+            border-radius: 0;
+            white-space: nowrap;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .suggestion-desc {
+            color: var(--text-gray);
+            font-size: 0.82rem;
+            margin-top: 0.25rem;
+            line-height: 1.4;
+        }
+
+        .search-hint,
+        .search-no-results,
+        .search-count {
+            color: var(--text-gray);
+            font-size: 0.875rem;
+            padding: 0.5rem 0;
+            text-align: left;
+        }
+
+        .search-close {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--text-gray);
+            transition: var(--transition);
+        }
+
+        .search-close:hover {
+            color: var(--text-dark);
+            transform: scale(1.2);
+        }
+
+        .mobile-menu-toggle {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            padding: 0.75rem;
+        }
+
+        .mobile-menu-toggle span {
+            width: 25px;
+            height: 2px;
+            background: var(--text-dark);
+            margin: 3px 0;
+            transition: var(--transition);
+            border-radius: 2px;
+        }
+
+        .mobile-menu-toggle.active span:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+
+        .mobile-menu-toggle.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .mobile-menu-toggle.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(7px, -6px);
+        }
+
+        .mobile-nav {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 100%;
+            max-width: 400px;
+            height: 100vh;
+            background: #0d0d0d;
+            box-shadow: var(--shadow-heavy);
+            padding: 2rem;
+            transition: var(--transition);
+            z-index: 1500;
+            overflow-y: auto;
+            border-left: 1px solid rgba(255, 255, 255, 0.14);
+        }
+
+        .mobile-nav.active {
+            right: 0;
+        }
+
+        .mobile-nav-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.14);
+        }
+
+        .mobile-nav-close {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--text-gray);
+        }
+
+        .mobile-nav-menu {
+            list-style: none;
+        }
+
+        .mobile-nav-menu > li {
+            margin-bottom: 1rem;
+        }
+
+        .mobile-nav-menu > li > a {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem;
+            background: transparent;
+            border-radius: 0;
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 500;
+            transition: var(--transition);
+            border: 1px solid rgba(255, 255, 255, 0.14);
+            font-size: 0.8rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .mobile-nav-menu > li > a:hover {
+            background: var(--primary-white);
+            color: #0a0a0a;
+        }
+
+        /* Main Content */
+        .main-content {
+            padding: 2rem 3rem 1rem;
+        }
+
+        /* Safety Content */
+        .safety-overview {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            margin-bottom: 2rem;
+            align-items: center;
+        }
+
+        .safety-text {
+            font-size: 1rem;
+            line-height: 1.8;
+            color: var(--text-dark);
+        }
+
+        .safety-text p {
+            margin-bottom: 1.5rem;
+        }
+
+        .safety-text p:last-child { margin-bottom: 0; }
+
+
+        /* Industry Memberships */
+        .memberships-section {
+            margin-bottom: 2rem;
+        }
+
+        .memberships-list {
+            list-style: none;
+            padding: 0;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+        }
+
+        .memberships-list li {
+            color: var(--text-dark);
+            font-size: 0.95rem;
+            line-height: 1.5;
+            padding: 0.5rem 0 0.5rem 1.5rem;
+            border-bottom: 1px solid var(--background-light);
+            position: relative;
+        }
+
+        .memberships-list li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--text-dark);
+            font-weight: 700;
+        }
+
+        /* Safety Coordinator Card — mirrors team-member style, scaled down */
+        .coordinator-card {
+            background: transparent;
+            border: 1px solid rgba(255, 255, 255, 0.14);
+            border-radius: 0;
+            padding: 1.5rem 1.25rem 1.25rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            transition: var(--transition);
+            box-shadow: none;
+        }
+
+        .coordinator-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 1px;
+            background: var(--primary-white);
+            transform: scaleX(0);
+            transition: var(--transition);
+            transform-origin: left;
+        }
+
+        .coordinator-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .coordinator-card:hover {
+            transform: translateY(-8px);
+            box-shadow: none;
+            border-color: rgba(255, 255, 255, 0.5);
+            background: rgba(255, 255, 255, 0.03);
+        }
+
+        .coordinator-photo {
+            width: 88px;
+            height: 88px;
+            border-radius: 50%;
+            margin: 0 auto 0.85rem;
+            background: transparent;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary-white);
+            font-size: 1.6rem;
+            font-weight: 300;
+            letter-spacing: 1px;
+            transition: var(--transition);
+            box-shadow: none;
+            border: 1px solid rgba(255, 255, 255, 0.45);
+        }
+
+        .coordinator-card:hover .coordinator-photo {
+            transform: scale(1.06);
+            box-shadow: 0 0 0 8px rgba(255, 255, 255, 0.06);
+        }
+
+        .coordinator-name {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--text-dark);
+            margin-bottom: 0.4rem;
+        }
+
+        .coordinator-credentials {
+            display: inline-block;
+            font-size: 0.65rem;
+            color: var(--text-dark);
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            background: var(--background-light);
+            border-radius: 0;
+            padding: 0.15rem 0.6rem;
+            margin-bottom: 0.45rem;
+        }
+
+        .coordinator-title {
+            font-size: 0.92rem;
+            color: var(--text-dark);
+            font-weight: 600;
+            margin-bottom: 0;
+        }
+
+        /* Coordinator Modal */
+        .coordinator-modal {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(15, 20, 25, 0.8);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            z-index: 3000;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .coordinator-modal.active {
+            display: flex;
+        }
+
+        .coordinator-modal-close {
+            position: fixed;
+            top: 1.25rem;
+            right: 1.5rem;
+            font-size: 2rem;
+            cursor: pointer;
+            color: rgba(255,255,255,0.85);
+            background: none;
+            border: none;
+            z-index: 10;
+            transition: var(--transition);
+        }
+
+        .coordinator-modal-close:hover { color: #fff; }
+
+        .coordinator-modal-inner {
+            background: #0d0d0d;
+            backdrop-filter: blur(24px);
+            border: 1px solid rgba(255, 255, 255, 0.14);
+            border-radius: 0;
+            width: min(480px, 90vw);
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
+        }
+
+        .coordinator-modal-photo {
+            width: 100%;
+            height: 160px;
+            background: transparent;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary-white);
+            font-size: 2.5rem;
+            font-weight: 300;
+            letter-spacing: 2px;
+            border: 1px solid rgba(255, 255, 255, 0.45);
+            box-shadow: none;
+        }
+
+        .coordinator-modal-info {
+            padding: 1.5rem;
+        }
+
+        .coordinator-modal-name {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--text-dark);
+            margin-bottom: 0.2rem;
+        }
+
+        .coordinator-modal-credentials {
+            font-size: 0.75rem;
+            color: var(--text-dark);
+            font-weight: 600;
+            margin-bottom: 0.2rem;
+        }
+
+        .coordinator-modal-title {
+            font-size: 0.88rem;
+            color: var(--text-dark);
+            font-weight: 600;
+            font-style: italic;
+            margin-bottom: 0.9rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.14);
+        }
+
+        .coordinator-modal-bio {
+            font-size: 0.88rem;
+            color: var(--text-dark);
+            line-height: 1.7;
+        }
+
+        .coordinator-modal-bio + .coordinator-modal-bio { margin-top: 0.75rem; }
+
+        /* Never taller than the screen: the text column scrolls if the bio runs long */
+        .coordinator-modal-inner { max-height: calc(100vh - 4rem); max-height: calc(100dvh - 4rem); }
+        .coordinator-modal-info { max-height: calc(100vh - 4rem); max-height: calc(100dvh - 4rem); overflow-y: auto; }
+
+        /* Footer */
+        .footer {
+            background: transparent;
+            color: var(--primary-white);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 3rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.14);
+            font-size: 0.8rem;
+            letter-spacing: 0.5px;
+        }
+
+        .footer p, .footer-credit {
+            font-size: 0.8rem;
+            opacity: 0.65;
+            margin: 0;
+        }
+
+        .footer-social { display: flex; gap: 0.6rem; align-items: center; }
+        .footer-social a { color: var(--primary-white); opacity: 1; transition: var(--transition); display: flex; width: 38px; height: 38px; align-items: center; justify-content: center; border: 1px solid rgba(255, 255, 255, 0.45); border-radius: 50%; }
+        .footer-social a:hover { opacity: 1; transform: translateY(-3px); background: var(--primary-white); color: #0a0a0a; }
+        .footer-social svg { width: 16px; height: 16px; }
+
+        /* Mobile Responsive */
+        @media (max-width: 1024px) {
+            .nav-menu {
+                display: none;
+            }
+
+            .nav-left {
+                gap: 2rem;
+            }
+
+            .nav-right {
+                gap: 1rem;
+            }
+
+            .mobile-menu-toggle {
+                display: flex;
+            }
+        }
+
+        @media (max-width: 968px) {
+            .nav-container {
+                padding: 0 2rem;
+                height: 70px;
+            }
+
+            .logo img {
+                height: 48px;
+            }
+
+            .main-content {
+                padding: 2rem 2rem 1rem;
+            }
+
+            .search-toggle {
+                width: 35px;
+                height: 35px;
+            }
+
+            .safety-overview {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .memberships-list {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .nav-container {
+                padding: 0 1.5rem;
+                height: 48px;
+            }
+
+            .logo img {
+                height: 34px;
+            }
+
+            .main-content {
+                padding: 1.25rem 1rem;
+            }
+
+            .safety-overview {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+
+            .memberships-list {
+                grid-template-columns: 1fr;
+            }
+
+            .footer {
+                flex-direction: column;
+                gap: 0.5rem;
+                text-align: center;
+                padding: 1.5rem;
+            }
+
+            .footer-social { order: -1; }
+        }
+
+        .search-overlay .mobile-nav-header img {
+            transform: none;
+            filter: invert(1);
+            mix-blend-mode: screen;
+        }
+
+        /* Section heading: small label over a bold/light title (same as home and careers) */
+        .safety-section { padding-top: 1rem; }
+
+        .section-heading {
+            margin: 0.5rem 0 1.1rem;
+            font-size: clamp(1.6rem, 3vw, 2.4rem);
+            font-weight: 300;
+            line-height: 1.05;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+        }
+
+        .section-heading strong { font-weight: 700; }
+
+        /* Ruled list: short heading + one line, divided by thin rules */
+        .ruled-list {
+            list-style: none;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            column-gap: 2rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+        }
+
+        .ruled-list li {
+            padding: 0.8rem 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.15);
+            line-height: normal;
+        }
+
+        .ruled-list h3 {
+            margin-bottom: 0.3rem;
+            font-size: 0.78rem;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .ruled-list p {
+            font-size: 0.9rem;
+            line-height: 1.55;
+            color: var(--text-dark);
+        }
+
+        /* Photo spots: framed like the service-page photos. Until a photo is added they show a label and a dashed inner frame.
+           To add one, replace the <svg> and <span> inside the <figure> with <img src="..." alt="...">. */
+        .photo-slot {
+            position: relative;
+            margin: 0;
+            aspect-ratio: 4 / 3;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 0.6rem;
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            background: rgba(15, 20, 25, 0.45);
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        .photo-slot::after {
+            content: '';
+            position: absolute;
+            inset: 14px;
+            border: 1px dashed rgba(255, 255, 255, 0.25);
+            pointer-events: none;
+        }
+
+        .photo-slot:has(img)::after { border: 1px solid rgba(255, 255, 255, 0.35); }
+
+        .photo-slot svg { width: 26px; height: 26px; }
+
+        .photo-slot span {
+            padding: 0 2rem;
+            font-size: 0.68rem;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-align: center;
+            text-transform: uppercase;
+        }
+
+        /* black and white, colour on hover (same as the service-page photos) */
+        .photo-slot img {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: grayscale(1) contrast(1.05) brightness(0.85);
+            transition: filter 0.8s ease;
+        }
+
+        .photo-slot:hover img { filter: grayscale(0) contrast(1) brightness(1); }
+
+        /* Memberships list beside the certificate */
+        .memberships-section {
+            display: grid;
+            grid-template-columns: minmax(0, 1.7fr) minmax(0, 1fr);
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .memberships-list { column-gap: 2rem; }
+
+        /* Three on-site photos above the protocols, one over each column */
+        .photo-row {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            column-gap: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        /* Coordinator headshot: an <img> placed in either circle/box replaces the initials */
+        .coordinator-photo,
+        .coordinator-modal-photo { overflow: hidden; }
+
+        .coordinator-photo img,
+        .coordinator-modal-photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center 25%;
+        }
+
+        /* card circle: a little closer on the face */
+        .coordinator-photo img { transform: scale(1.25); transform-origin: 50% 35%; }
+
+        /* pop-up portrait: keep the top of her head in frame */
+        .coordinator-modal-photo img { object-position: center top; }
+
+        /* With a headshot, the pop-up puts a portrait photo beside the text; on phones it stacks in a 4:3 box */
+        .coordinator-modal-inner:has(.coordinator-modal-photo img) {
+            display: grid;
+            grid-template-columns: 260px minmax(0, 1fr);
+            width: min(780px, 92vw);
+        }
+
+        .coordinator-modal-inner:has(.coordinator-modal-photo img) .coordinator-modal-photo {
+            height: auto;
+            border: 0;
+            border-right: 1px solid rgba(255, 255, 255, 0.14);
+        }
+
+        @media (max-width: 700px) {
+            .coordinator-modal-inner:has(.coordinator-modal-photo img) {
+                grid-template-columns: 1fr;
+                width: min(480px, 90vw);
+                overflow-y: auto;
+            }
+
+            .coordinator-modal-info { max-height: none; overflow-y: visible; }
+
+            .coordinator-modal-inner:has(.coordinator-modal-photo img) .coordinator-modal-photo {
+                aspect-ratio: 4 / 3;
+                border-right: 0;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.14);
+            }
+        }
+
+        @media (max-width: 968px) {
+            .ruled-list { grid-template-columns: 1fr; }
+            .memberships-section { grid-template-columns: 1fr; gap: 2rem; }
+            .memberships-section .photo-slot { max-width: 480px; }
+            .photo-row { column-gap: 1rem; }
+        }
+
+        @media (max-width: 700px) {
+            .photo-row { grid-template-columns: 1fr; row-gap: 1rem; }
+            .photo-row .photo-slot { aspect-ratio: 16 / 9; }
+        }
+
+        @media (max-width: 700px) {
+            .safety-section { padding-top: 0.5rem; }
+            .section-heading { font-size: clamp(1.4rem, 6.5vw, 2rem); letter-spacing: 0.08em; }
+        }
+
+        /* ===== Coming-soon look (matches index, apply-now and contact-us). Kept last so it wins over the rules above. ===== */
+        /* Panels: frosted glass card, same as the apply-now form card */
+        .coordinator-card {
+            background: rgba(15, 20, 25, 0.45);
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            -webkit-backdrop-filter: blur(14px);
+            backdrop-filter: blur(14px);
+        }
+
+        /* Nav: links sit on the right next to the search icon, as on the coming-soon pages */
+        .nav-menu { justify-content: flex-end; }
+
+        @media (min-width: 1201px) {
+            .nav-item > a { padding-left: 1.125rem; padding-right: 1.125rem; }
+            .nav-item > a:hover::after,
+            .nav-item.active > a::after { width: calc(100% - 2.25rem); }
+        }
+
+        .nav-right { margin-left: 0.75rem; }
+
+        /* 96px header, same height as the coming-soon pages (tablet and phone keep their own) */
+        @media (min-width: 969px) {
+            .nav-container,
+            .nav-item > a { height: 96px; }
+            .nav-item > a::after { bottom: 34px; }
+
+        }
+
+        /* Logo sits centred in the header like the coming-soon pages (inline img sat 4px high) */
+        .logo img { display: block; }
+
+        /* What We Do dropdown: every service, in a dark panel under the menu item (hover or keyboard focus) */
+        .nav-item.has-dropdown { position: relative; }
+
+        .nav-dropdown {
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            min-width: 270px;
+            margin: 0;
+            padding: 0.4rem 0;
+            list-style: none;
+            background: rgba(15, 20, 25, 0.92);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            -webkit-backdrop-filter: blur(14px);
+            backdrop-filter: blur(14px);
+            opacity: 0;
+            visibility: hidden;
+            transform: translate(-50%, 6px);
+            transition: opacity 0.25s ease, transform 0.25s ease, visibility 0.25s;
+            z-index: 10;
+        }
+
+        .nav-item.has-dropdown:hover .nav-dropdown,
+        .nav-item.has-dropdown:focus-within .nav-dropdown {
+            opacity: 1;
+            visibility: visible;
+            transform: translate(-50%, 0);
+        }
+
+        .nav-dropdown li + li { border-top: 1px solid rgba(255, 255, 255, 0.1); }
+
+        .nav-dropdown a {
+            display: block;
+            padding: 0.8rem 1.4rem;
+            color: var(--primary-white);
+            font-size: 0.72rem;
+            font-weight: 500;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            text-decoration: none;
+            white-space: nowrap;
+            opacity: 0.75;
+            transition: var(--transition);
+        }
+
+        .nav-dropdown a:hover,
+        .nav-dropdown a:focus-visible { opacity: 1; background: rgba(255, 255, 255, 0.06); }
+
+        /* Footer: plain bottom bar, no divider, pinned to the bottom of short pages */
+        body {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .footer {
+            margin-top: auto;
+            border-top: none;
+            line-height: normal;
+        }
+
+        /* Year in the copyright line is faded once more, as on the coming-soon pages */
+        .footer p span { opacity: 0.65; }
+
+        @media (max-width: 700px) {
+            .footer {
+                flex-direction: column;
+                gap: 0.75rem;
+                text-align: center;
+                padding: 2rem 1.25rem 1.5rem;
+            }
+        }
+
+        /* Left-aligned page heading: small spaced eyebrow over a large bold/light title */
+        .eyebrow,
+        .page-title { line-height: normal; }
+
+        .eyebrow {
+            font-size: 0.8rem;
+            font-weight: 500;
+            letter-spacing: 0.5em;
+            text-transform: uppercase;
+            opacity: 0.75;
+        }
+
+        .page-title {
+            margin: 0.5rem 0 clamp(0.75rem, 2.5vh, 1.5rem);
+            padding-bottom: 0;
+            font-size: clamp(2rem, min(5vw, 7vh), 3.75rem);
+            font-weight: 300;
+            line-height: 1.05;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+        }
+
+        .page-title strong { font-weight: 700; }
+
+        /* Heading block that opens team, projects and safety (clears the fixed header) */
+        .page-heading { padding: calc(96px + 3rem) 3rem 0; }
+        .page-heading .page-title { margin-bottom: 0; }
+
+        /* Same centred 1200px column as careers and contact (width: 100% because the body is a flex column) */
+        .page-heading,
+        .main-content {
+            width: 100%;
+            max-width: calc(1200px + 6rem);
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        @media (max-width: 968px) {
+            .page-heading { padding: calc(70px + 2rem) 2rem 0; }
+        }
+
+        @media (max-width: 700px) {
+
+            .eyebrow { font-size: 0.72rem; letter-spacing: 0.3em; }
+            .page-title { margin: 0.5rem 0 1.25rem; font-size: clamp(1.6rem, 7.5vw, 2.4rem); letter-spacing: 0.08em; }
+
+        }
+
+        @media (max-width: 600px) {
+            .page-heading { padding: calc(48px + 1.5rem) 1.5rem 0; }
+        }
+
+        /* Search results link straight to these sections; keep them clear of the fixed header */
+        #memberships, #protocols, #credentials { scroll-margin-top: 96px; }
+
+        /* "View profile" line at the bottom of the coordinator card */
+        .coordinator-view {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.4rem;
+            width: 100%;
+            margin-top: 0.85rem;
+            padding-top: 0.85rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.15);
+            font-size: 0.82rem;
+            font-weight: 600;
+            color: var(--text-dark);
+        }
+
+        /* Credentials: the award and the memberships heading use the same small uppercase label as the protocols */
+        #credentials { padding-top: 2.5rem; }
+        #credentials .memberships-section { margin-bottom: 0; align-items: start; }
+
+        .credential-award {
+            margin-bottom: 1.5rem;
+            padding: 0.8rem 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.15);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+        }
+
+        .credential-award h3,
+        .credentials-subheading {
+            margin-bottom: 0.3rem;
+            font-size: 0.78rem;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .credential-award p { font-size: 0.9rem; line-height: 1.55; }
+
+        .credentials-subheading { margin-bottom: 0.5rem; }
+
+        @media (max-width: 700px) {
+            #credentials { padding-top: 1.5rem; }
+
+            /* Coordinator card: compact on phones - small photo beside the name instead of a tall centred card */
+            .coordinator-card {
+                display: grid;
+                grid-template-columns: 64px 1fr;
+                column-gap: 1rem;
+                align-items: center;
+                padding: 1rem;
+                text-align: left;
+            }
+
+            .coordinator-photo { grid-row: 1 / span 4; width: 64px; height: 64px; margin: 0; }
+            .coordinator-name { margin-bottom: 0.2rem; font-size: 1rem; }
+            .coordinator-credentials { justify-self: start; margin-bottom: 0.2rem; }
+            .coordinator-view { justify-content: flex-start; margin-top: 0.4rem; padding-top: 0; border-top: none; }
+        }
+
+        /* Privacy policy: readable line length, sections divided by thin rules */
+        .policy section { max-width: 760px; padding: 1.1rem 0; border-top: 1px solid rgba(255, 255, 255, 0.15); }
+        .policy section:last-child { border-bottom: 1px solid rgba(255, 255, 255, 0.15); }
+        .policy-updated { margin-bottom: 1.25rem; font-size: 0.85rem; opacity: 0.75; }
+        .policy h2 { margin-bottom: 0.5rem; font-size: 0.78rem; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; }
+        .policy p, .policy li { font-size: 0.95rem; line-height: 1.65; color: var(--text-dark); }
+        .policy p + p, .policy p + ul, .policy ul + p { margin-top: 0.6rem; }
+        .policy ul { padding-left: 1.2rem; }
+        .policy li + li { margin-top: 0.35rem; }
+        .policy a { color: inherit; text-decoration: underline; text-underline-offset: 2px; }
+
+        /* Privacy link in the footer, same faded look as the copyright */
+        .footer p a { color: inherit; text-decoration: none; }
+        .footer p a:hover { text-decoration: underline; }
+
+        /* Equal-width sides keep the social icons centred however long the copyright line is (phones stack the footer instead) */
+        @media (min-width: 701px) {
+            .footer > .footer-credit, .footer > p { flex: 1 1 0; }
+            .footer > p { text-align: right; }
+        }
+
+        /* Visitors who turn on "reduce motion" in their device settings get a still page */
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+                scroll-behavior: auto !important;
+            }
+        }
+
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header" id="header">
+        <nav class="nav-container">
+            <div class="nav-left">
+                <div class="logo">
+                    <a href="index.html">
+                        <img src="logo.png" alt="Degner Construction Logo">
+                    </a>
+                </div>
+                <ul class="nav-menu">
+                    <li class="nav-item has-dropdown">
+                        <a href="index.html#services">What We Do</a>
+                        <ul class="nav-dropdown">
+                            <li><a href="general-contracting.html">General Contracting</a></li>
+                            <li><a href="water-sanitary-storm.html">Water, Sanitary &amp; Storm</a></li>
+                            <li><a href="earthworks.html">Earthworks</a></li>
+                            <li><a href="infrastructure-renewal.html">Infrastructure Renewal</a></li>
+                            <li><a href="lift-station-construction.html">Lift Station Construction</a></li>
+                            <li><a href="project-management.html">Project Management</a></li>
+                            <li><a href="survey-drone.html">Survey &amp; Drone</a></li>
+                        </ul>
+                    </li>
+                    <!-- Projects page hidden: <li class="nav-item"><a href="projects.html">Our Projects</a></li> -->
+                    <li class="nav-item"><a href="team.html">Our Team</a></li>
+                    <li class="nav-item"><a href="safety.html">Safety</a></li>
+                    <li class="nav-item"><a href="careers.html">Careers</a></li>
+                    <li class="nav-item"><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+            <div class="nav-right">
+                <button class="search-toggle" id="searchToggle">
+                    <svg width="20" height="20" fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd"/>
+                    </svg>
+                </button>
+            </div>
+            <div class="mobile-menu-toggle" id="mobileToggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Search Overlay -->
+    <div class="search-overlay" id="searchOverlay">
+        <div class="search-container">
+            <div class="mobile-nav-header">
+                <img src="logo.png" alt="Degner Construction" style="height: 36px;">
+                <button class="search-close" id="searchClose">&times;</button>
+            </div>
+            <input type="text" class="search-input" placeholder="Search projects, services, careers...">
+            <div class="search-suggestions"></div>
+        </div>
+    </div>
+
+    <!-- Mobile Navigation -->
+    <nav class="mobile-nav" id="mobileNav">
+        <div class="mobile-nav-header">
+            <img src="logo.png" alt="Degner Construction" style="height: 36px;">
+            <button class="mobile-nav-close" id="mobileNavClose">&times;</button>
+        </div>
+        <ul class="mobile-nav-menu">
+            <li><a href="index.html#services">What We Do <span>→</span></a></li>
+            <!-- Projects page hidden: <li><a href="projects.html">Our Projects <span>→</span></a></li> -->
+            <li><a href="team.html">Our Team <span>→</span></a></li>
+            <li><a href="safety.html">Safety <span>→</span></a></li>
+            <li><a href="careers.html">Careers <span>→</span></a></li>
+            <li><a href="contact.html">Contact <span>→</span></a></li>
+        </ul>
+    </nav>
+
+    <!-- Page Heading -->
+    <div class="page-heading">
+        <p class="eyebrow">Legal</p>
+        <h1 class="page-title"><strong>Privacy</strong> Policy</h1>
+    </div>
+
+    <!-- Main Content -->
+    <main class="main-content policy">
+        <p class="policy-updated">Last updated October 22, 2026</p>
+
+        <section>
+            <h2>Who we are</h2>
+            <p>Degner Construction Incorporated is a municipal infrastructure contractor based at 27575 Ellis Road, Acheson, Alberta. This policy explains what personal information our website collects, why we collect it, and what we do with it. We follow Alberta's <em>Personal Information Protection Act</em> (PIPA).</p>
+        </section>
+
+        <section>
+            <h2>What we collect</h2>
+            <p>We only collect what you choose to send us.</p>
+            <ul>
+                <li><strong>Contact and quote forms:</strong> your name, email address, phone number if you include it, and your message.</li>
+                <li><strong>Job applications:</strong> your name, email address, phone number, the position you are applying for, your resume, and your cover letter if you include one.</li>
+                <li><strong>Email and phone:</strong> anything you send us directly.</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>How we use it</h2>
+            <p>We use your information to answer your question, prepare a quote, or review your application and get back to you about it. We do not sell, rent or trade your personal information, and we do not use it for marketing.</p>
+        </section>
+
+        <section>
+            <h2>Services we use</h2>
+            <ul>
+                <li><strong>Web3Forms</strong> delivers our website forms to our email. Your submission passes through their servers, which may be outside Canada, so it may be subject to the laws of other countries.</li>
+                <li><strong>Microsoft 365</strong> is where we receive and keep email.</li>
+                <li><strong>Cloudflare Web Analytics</strong> counts visits to our pages so we can see how the site is used. It does not use cookies and does not identify you.</li>
+                <li><strong>Google Maps</strong> shows the map on our Contact page. Google may set its own cookies when the map loads.</li>
+                <li><strong>Facebook, Instagram and LinkedIn</strong> links take you to those sites, which have their own privacy policies.</li>
+            </ul>
+            <p>Our own website does not set cookies.</p>
+        </section>
+
+        <section>
+            <h2>How long we keep it</h2>
+            <p>We keep messages for as long as we need them to deal with your request. If we do not hire you, we delete your application within 12 months.</p>
+        </section>
+
+        <section>
+            <h2>How we protect it</h2>
+            <p>Only the people at Degner who need your information can see it, and we take reasonable steps to keep it safe.</p>
+        </section>
+
+        <section>
+            <h2>Your rights</h2>
+            <p>You can ask to see the personal information we have about you, ask us to correct it, or ask us to delete it. Email <a href="mailto:info@degner.ca">info@degner.ca</a> and we will reply within 45 days, as PIPA requires.</p>
+            <p>If you are not satisfied with our answer, you can contact the <a href="https://oipc.ab.ca/" target="_blank" rel="noopener">Office of the Information and Privacy Commissioner of Alberta</a>.</p>
+        </section>
+
+        <section>
+            <h2>Changes</h2>
+            <p>We may update this policy from time to time. The date at the top shows when it last changed.</p>
+        </section>
+
+        <section>
+            <h2>Contact</h2>
+            <p>Questions about this policy or your information: <a href="mailto:info@degner.ca">info@degner.ca</a> or <a href="tel:780-960-8723">780-960-8723</a>, or by mail to 27575 Ellis Road, Acheson, AB T7X 5A4.</p>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <span class="footer-credit">Designed by Emet Solutions</span>
+        <div class="footer-social">
+            <a href="https://www.instagram.com/degnerconstructioninc/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+            </a>
+            <a href="https://www.facebook.com/degnerconstruction/" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+            </a>
+            <a href="https://www.linkedin.com/company/degner-construction/?originalSubdomain=ca" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+            </a>
+        </div>
+        <p>&copy; <span id="footer-year"></span> Degner Construction Incorporated &nbsp;&middot;&nbsp; <a href="privacy.html">Privacy Policy</a></p>
+    </footer>
+
+    <script>
+        document.getElementById('footer-year').textContent = new Date().getFullYear();
+
+
+        // Header Scroll Effect
+        window.addEventListener('scroll', function() {
+            const header = document.getElementById('header');
+            if (window.scrollY > 100) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // Logo — always go to top of homepage
+        document.querySelector('.logo a').addEventListener('click', function(e) {
+            const onHome = window.location.pathname.endsWith('index.html') || window.location.pathname === '/' || window.location.pathname.endsWith('/');
+            if (onHome) { e.preventDefault(); window.scrollTo({ top: 0, behavior: 'smooth' }); }
+        });
+
+        // Mobile menu functionality
+        const mobileToggle = document.getElementById('mobileToggle');
+        const mobileNav = document.getElementById('mobileNav');
+        const mobileNavClose = document.getElementById('mobileNavClose');
+
+        mobileToggle.addEventListener('click', function() {
+            this.classList.toggle('active');
+            mobileNav.classList.toggle('active');
+            document.body.style.overflow = mobileNav.classList.contains('active') ? 'hidden' : '';
+        });
+
+        mobileNavClose.addEventListener('click', function() {
+            mobileToggle.classList.remove('active');
+            mobileNav.classList.remove('active');
+            document.body.style.overflow = '';
+        });
+
+        document.addEventListener('click', function(e) {
+            if (mobileNav.classList.contains('active') && !mobileNav.contains(e.target) && !mobileToggle.contains(e.target)) {
+                mobileToggle.classList.remove('active');
+                mobileNav.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+        });
+
+        document.querySelectorAll('.mobile-nav-menu a').forEach(link => {
+            link.addEventListener('click', function() {
+                mobileToggle.classList.remove('active');
+                mobileNav.classList.remove('active');
+                document.body.style.overflow = '';
+            });
+        });
+
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                if (coordModal.classList.contains('active')) { coordModal.classList.remove('active'); document.body.style.overflow = ''; return; }
+                mobileToggle.classList.remove('active');
+                mobileNav.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                const href = this.getAttribute('href');
+                if (!href || href === '#') return;
+                e.preventDefault();
+                const target = document.querySelector(href);
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+    <script src="search.js" defer></script>
+    <!-- Cloudflare Web Analytics --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "258e2f246a47468e9b9df96162d03ba8"}'></script><!-- End Cloudflare Web Analytics -->
+</body>
+</html>
