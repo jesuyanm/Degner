@@ -1255,6 +1255,16 @@
             .coordinator-view { justify-content: flex-start; margin-top: 0.4rem; padding-top: 0; border-top: none; }
         }
 
+        /* Visitors who turn on "reduce motion" in their device settings get a still page */
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+                scroll-behavior: auto !important;
+            }
+        }
+
     </style>
 </head>
 <body>

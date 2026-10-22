@@ -291,6 +291,16 @@
             .bottom-bar { flex-direction: column; gap: 0.75rem; text-align: center; padding: 2rem 0 1.5rem; }
             .social { order: -1; }
         }
+        /* Visitors who turn on "reduce motion" in their device settings get a still page */
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+                scroll-behavior: auto !important;
+            }
+        }
+
     </style>
 </head>
 <body>
