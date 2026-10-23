@@ -182,6 +182,26 @@
         }
 
         .contact-form { display: flex; flex-direction: column; gap: 0.9rem; }
+        /* General inquiry or quote request. Quotes go to the estimating inbox (their own Web3Forms key) */
+        .inquiry-type { display: grid; grid-template-columns: 1fr 1fr; border: 1px solid rgba(255, 255, 255, 0.3); }
+        .inquiry-type label { position: relative; cursor: pointer; }
+        .inquiry-type label + label { border-left: 1px solid rgba(255, 255, 255, 0.3); }
+        .inquiry-type input { position: absolute; opacity: 0; pointer-events: none; }
+        .inquiry-type span {
+            display: block;
+            padding: 0.75rem 0.5rem;
+            font-size: 0.72rem;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-align: center;
+            text-transform: uppercase;
+            color: rgba(255, 255, 255, 0.7);
+            transition: var(--transition);
+        }
+        .inquiry-type label:hover span { color: #FFFFFF; }
+        .inquiry-type input:checked + span { color: #0a0a0a; background: #FFFFFF; }
+        .inquiry-type input:focus-visible + span { outline: 2px solid currentColor; outline-offset: -5px; }
+
         .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 0.9rem; }
 
         .contact-form input[type="text"],
@@ -373,7 +393,8 @@
                     <svg fill="currentColor" viewBox="0 0 20 20"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
                     <div>
                         <strong>Quote Requests</strong>
-                        <a href="mailto:estimating@degner.ca">estimating@degner.ca</a>
+                        <a href="?type=quote" class="apply-btn quote-btn">Request a Quote</a>
+                        or email <a href="mailto:estimating@degner.ca">estimating@degner.ca</a>
                     </div>
                 </div>
 
@@ -392,6 +413,11 @@
                     <input type="hidden" name="access_key" value="4842575e-96ab-4d1e-9b46-cd40cc620894">
                     <input type="hidden" name="from_name" value="Degner Website">
                     <input type="checkbox" name="botcheck" style="display:none;">
+
+                    <div class="inquiry-type" role="radiogroup" aria-label="What is this about?">
+                        <label><input type="radio" name="inquiry_type" value="General inquiry" checked><span>General Inquiry</span></label>
+                        <label><input type="radio" name="inquiry_type" value="Quote request"><span>Request a Quote</span></label>
+                    </div>
 
                     <div class="form-row">
                         <input type="text" name="name" maxlength="100" autocomplete="name" placeholder="Your Name" required>
@@ -461,6 +487,39 @@
         // Our checks replace the browser's own, which let things like a@b through
         document.querySelector('.contact-form').noValidate = true;
 
+        // Quote requests go to the estimating inbox, everything else to the general one (separate Web3Forms keys).
+        // Links can pick the type: contact.html?type=quote&subject=Earthworks
+        const FORM_KEYS = { general: '4842575e-96ab-4d1e-9b46-cd40cc620894', quote: '7b0335e6-7e13-4a9d-a237-0e7824f07a2a' };
+
+        function isQuote(form) {
+            return form.querySelector('[name="inquiry_type"]:checked').value === 'Quote request';
+        }
+
+        function applyInquiryType(form) {
+            const quote = isQuote(form);
+            form.querySelector('[name="access_key"]').value = quote ? FORM_KEYS.quote : FORM_KEYS.general;
+            form.querySelector('[name="from_name"]').value = quote ? 'Degner Quote Requests' : 'Degner Website';
+            form.querySelector('[name="subject"]').placeholder = quote ? 'Project or service' : 'Subject';
+        }
+
+        (function () {
+            const form = document.querySelector('.contact-form');
+            form.querySelectorAll('[name="inquiry_type"]').forEach(r => r.addEventListener('change', () => applyInquiryType(form)));
+            const params = new URLSearchParams(window.location.search);
+            if (params.get('type') === 'quote') form.querySelector('[value="Quote request"]').checked = true;
+            applyInquiryType(form);
+        })();
+
+        // "Request a Quote" in the details column switches the form to a quote request instead of reloading the page
+        document.querySelectorAll('.quote-btn').forEach(btn => btn.addEventListener('click', e => {
+            e.preventDefault();
+            const form = document.querySelector('.contact-form');
+            form.querySelector('[value="Quote request"]').checked = true;
+            applyInquiryType(form);
+            form.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            form.querySelector('[name="name"]').focus({ preventScroll: true });
+        }));
+
         document.querySelector('.contact-form').addEventListener('submit', async function (e) {
             e.preventDefault();
             const form = this;
@@ -473,7 +532,7 @@
             let serverMsg = '';
             try {
                 const data = new FormData(form);
-                data.set('subject', 'Website inquiry: ' + data.get('subject'));
+                data.set('subject', (isQuote(form) ? 'Quote request: ' : 'Website inquiry: ') + data.get('subject'));
                 const res = await fetch(form.action, { method: 'POST', body: data, headers: { 'Accept': 'application/json' } });
                 const json = await res.json();
                 if (!json.success) { serverMsg = json.message || ''; throw new Error('failed'); }
