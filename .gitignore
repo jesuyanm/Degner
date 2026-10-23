@@ -12,3 +12,9 @@ dev/upload-test/
 
 # Full-size camera originals (15-25 MB each); the site uses web-sized copies
 source-media/camera-originals/
+
+# Staff resumes (personal; used only as a source for the site text)
+source-media/documents/*.docx
+
+# Full-size originals of the older job-site photos (4-7 MB each); the site uses web-sized copies
+source-media/photo-originals/

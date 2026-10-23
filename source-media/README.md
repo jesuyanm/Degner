@@ -61,3 +61,45 @@ Files with "ai-mockup" or "mockup-ai" in the name are AI-generated placeholders 
 | michelle.jpeg | headshot-michelle-gregoire-ai-mockup.jpeg |
 | shaun.jpeg | headshot-shaun-andreas-ai-mockup.jpeg |
 | tom.jpeg | headshot-tom-thornton-ai-mockup.jpeg |
+
+## Older job-site photos (photo-originals/, kept locally, not on GitHub)
+
+Phone and drone photos from 2014 to 2020, added Oct 23 2026. Files ending in -bw are black-and-white copies that came with them. Before launch, clean up any garbage, grease or mess showing in these photos.
+
+| Original file | Now called | Used on the site as |
+|---|---|---|
+| 20160729_153315.jpg | excavators-on-graded-site.jpg | project-excavators-on-graded-site.jpg |
+| 20170713_111728.jpg | pipe-trench-with-excavators.jpg | project-pipe-trench-with-excavators.jpg |
+| 20160804_113854.jpg | excavators-digging-large-cut.jpg | project-excavators-digging-large-cut.jpg |
+| IMG_20200515_161145.jpg | trench-in-mountain-town.jpg | project-trench-in-mountain-town.jpg |
+| IMG_20180824_105050-BW.jpg | lift-station-interior-bw.jpg | project-lift-station-interior-bw.jpg |
+| DJI_0358.JPG | crew-meeting-aerial.jpg | project-crew-meeting-aerial.jpg |
+| DJI_0312.JPG | subdivision-aerial.jpg | project-subdivision-aerial.jpg |
+| 20160729_153238.jpg | equipment-fleet-on-site.jpg | project-equipment-fleet-on-site.jpg |
+| DJI_0834.JPG | pipe-trench-aerial.jpg | project-pipe-trench-aerial.jpg |
+| 20170712_171527.jpg | manhole-placed-in-trench.jpg | project-manhole-placed-in-trench.jpg |
+| 20170523_101040.jpg | deep-excavation-with-crew.jpg | project-deep-excavation-with-crew.jpg |
+| PXL_20200925_154922223.jpg | excavators-in-subdivision.jpg | project-excavators-in-subdivision.jpg |
+| 20170612_163042.jpg | shoring-beside-building.jpg | project-shoring-beside-building.jpg |
+| IMG_20180606_154201.jpg | excavator-on-residential-street.jpg | project-excavator-on-residential-street.jpg |
+| IMG_00000273 BW.jpg | deep-trench-with-ladders-bw.jpg | project-deep-trench-with-ladders-bw.jpg |
+| 20200908_161000.jpg | excavator-beside-apartments.jpg | project-excavator-beside-apartments.jpg |
+| 20160729_153404.jpg | excavator-fleet-lineup.jpg | not used (a truck mirror is in the frame) |
+| IMG_20141104_074907_hdr.jpg | excavator-at-sunset.jpg | not used (same photo as excavator-at-sunset.png) |
+| 20170612_163042-BW.jpg, 20170713_111728-BW.jpg, 20200908_161000-BW.jpg, DJI_0312-BW.jpg, DJI_0834-BW.jpg, IMG_20200515_161145-BW.jpg | same names as their colour versions, ending in -bw | not used (the site greys photos itself) |
+
+The 9T6A camera files that came with them again were exact copies of camera-originals/ and were removed.
+
+## Projects page stand-ins (retired Oct 23 2026)
+
+The project-*.jpg files here were stand-ins on the Projects page cards before the older job-site photos above replaced them.
+
+## Safety documents (documents/)
+
+| Original file | Used on the site as |
+|---|---|
+| Company Safety Policy 2026.jpg | company-safety-policy.jpg |
+| Environmental Policy 2026.jpg | environmental-policy.jpg |
+| COR Certification Expiry-October 15 2027.pdf | cor-certificate.pdf (+ cor-certificate.jpg preview) |
+| SFC-20250321-1615 (2) (1).pdf | safety-fitness-certificate.pdf (+ safety-fitness-certificate.jpg preview) |
+| Michelle Gregoire - DEGNER Corporate Resume.docx | source for her profile text only; kept locally, not on GitHub |
