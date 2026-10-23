@@ -199,7 +199,7 @@
             background:
                 radial-gradient(ellipse at 50% 45%, rgba(15, 20, 25, 0.45), rgba(15, 20, 25, 0.94) 85%),
                 linear-gradient(rgba(15, 20, 25, 0.6), rgba(15, 20, 25, 0.6)),
-                url('pic4.jpg') center / cover no-repeat;
+                url('backdrop-excavators-trench.jpg') center / cover no-repeat;
             filter: grayscale(1) contrast(1.1);
             animation: drift 30s ease-in-out infinite alternate;
             animation-delay: var(--drift-delay, 0s);
@@ -959,8 +959,13 @@
             color: var(--text-dark);
         }
 
+        /* Long file names are cut short with "..." instead of stretching the form */
+        .opportunities-right, .resume-form > *, .resume-form .form-row > * { min-width: 0; }
+        .file-upload-text { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+
         .file-upload-hint {
             margin-left: auto;
+            white-space: nowrap;
             font-size: 0.78rem;
             color: var(--text-light);
         }
@@ -988,71 +993,10 @@
             margin-top: 0.4rem;
         }
 
-        .file-modal {
-            position: fixed;
-            inset: 0;
-            z-index: 9999;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .file-modal-backdrop {
-            position: absolute;
-            inset: 0;
-            background: rgba(0,0,0,0.55);
-        }
-
-        .file-modal-box {
-            position: relative;
-            z-index: 1;
-            background: #0d0d0d;
-            border-radius: 0;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
-            width: 90vw;
-            max-width: 860px;
-            height: 85vh;
-            display: flex;
-            flex-direction: column;
-            overflow: hidden;
-            border: 1px solid rgba(255, 255, 255, 0.14);
-        }
-
-        .file-modal-header {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 0.85rem 1.1rem;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.14);
-            flex-shrink: 0;
-        }
-
-        .file-modal-title {
-            font-size: 0.9rem;
-            font-weight: 500;
-            color: var(--text-dark);
-            overflow: hidden;
-            text-overflow: ellipsis;
-            white-space: nowrap;
-        }
-
-        .file-modal-close {
-            background: none;
-            border: none;
-            cursor: pointer;
-            color: var(--text-gray);
-            padding: 0.2rem;
-            display: flex;
-            flex-shrink: 0;
-        }
-
-        .file-modal-close:hover { color: var(--text-dark); }
-
-        .file-modal-frame {
-            flex: 1;
-            width: 100%;
-            border: none;
-        }
+        /* PDF preview shown right under the upload box (laptops; phones get a new tab) */
+        .file-inline-preview { margin-top: 0.6rem; border: 1px solid rgba(255, 255, 255, 0.14); }
+        .file-inline-preview[hidden] { display: none; }
+        .file-inline-preview iframe { display: block; width: 100%; height: min(240px, 32vh); border: none; background: #fff; }
 
         .file-preview-note {
             font-size: 0.8rem;
@@ -1508,6 +1452,14 @@
             }
         }
 
+
+        /* Phones: the page must never slide sideways. clip (unlike hidden) keeps sticky headers working */
+        html { overflow-x: clip; }
+
+        /* iPhones zoom in on fields with text under 16px, which then lets the page drift around */
+        @media (max-width: 700px) {
+            input, textarea, select { font-size: 16px !important; }
+        }
     </style>
 </head>
 <body>
@@ -1615,25 +1567,25 @@
 
                     <div class="resume-form-block">
                         <form class="resume-form" action="https://api.web3forms.com/submit" method="POST" enctype="multipart/form-data">
-                            <input type="hidden" name="access_key" value="355c0fee-b620-40db-9e21-7b7888cfde86">
+                            <input type="hidden" name="access_key" value="c22b537e-c5f9-4fc6-a8d9-759729d1b7bc">
                             <input type="hidden" name="from_name" value="Degner Careers">
                             <input type="checkbox" name="botcheck" style="display:none;">
 
                             <div class="form-row">
                                 <div class="form-field">
-                                    <input type="text" name="name" placeholder="Full Name" required>
+                                    <input type="text" name="name" maxlength="100" autocomplete="name" placeholder="Full Name" required>
                                 </div>
                                 <div class="form-field">
-                                    <input type="email" name="email" placeholder="Email" required>
+                                    <input type="email" name="email" maxlength="254" autocomplete="email" placeholder="Email" required>
                                 </div>
                             </div>
 
                             <div class="form-row">
                                 <div class="form-field">
-                                    <input type="tel" name="phone" placeholder="Phone">
+                                    <input type="tel" name="phone" maxlength="30" autocomplete="tel" placeholder="Phone">
                                 </div>
                                 <div class="form-field">
-                                    <input type="text" name="position" placeholder="Position Interested In">
+                                    <input type="text" name="position" maxlength="100" placeholder="Position Interested In">
                                 </div>
                             </div>
 
@@ -1645,9 +1597,9 @@
                                 </label>
                                 <input type="file" id="resume-upload" name="resume" accept=".pdf,.doc,.docx" style="display:none;">
                                 <div class="file-preview-row" style="display:none;">
-                                    <button type="button" class="file-preview-toggle">
+                                    <button type="button" class="file-preview-toggle" aria-expanded="false">
                                         <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
-                                        Preview
+                                        <span class="file-preview-label">Preview</span>
                                     </button>
                                     <span class="file-preview-note" style="display:none;">DOC/DOCX can't be previewed in the browser — open it on your device to review.</span>
                                     <button type="button" class="file-clear-btn">
@@ -1665,9 +1617,9 @@
                                 </label>
                                 <input type="file" id="cover-letter-upload" name="cover_letter" accept=".pdf,.doc,.docx" style="display:none;">
                                 <div class="file-preview-row" style="display:none;">
-                                    <button type="button" class="file-preview-toggle">
+                                    <button type="button" class="file-preview-toggle" aria-expanded="false">
                                         <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
-                                        Preview
+                                        <span class="file-preview-label">Preview</span>
                                     </button>
                                     <span class="file-preview-note" style="display:none;">DOC/DOCX can't be previewed in the browser — open it on your device to review.</span>
                                     <button type="button" class="file-clear-btn">
@@ -1709,19 +1661,19 @@
             <p class="eyebrow">Our culture</p>
             <h2 class="section-heading"><strong>Life</strong> at Degner</h2>
             <div class="culture-gallery">
-                <div class="culture-item" style="background-image: url('pic6.jpg');">
+                <div class="culture-item" style="background-image: url('team-meeting.jpg');">
                     <div class="culture-overlay">
                         <h3>Team Collaboration</h3>
                         <p>Regular team meetings ensure everyone is aligned and informed</p>
                     </div>
                 </div>
-                <div class="culture-item" style="background-image: url('pic7.jpg');">
+                <div class="culture-item" style="background-image: url('excavators-northern-lights.jpg');">
                     <div class="culture-overlay">
                         <h3>Modern Equipment</h3>
                         <p>Work with state-of-the-art construction equipment and technology</p>
                     </div>
                 </div>
-                <div class="culture-item" style="background-image: url('pic10.jpg');">
+                <div class="culture-item" style="background-image: url('operator-at-loader-controls.jpg');">
                     <div class="culture-overlay">
                         <h3>Career Growth</h3>
                         <p>Ongoing training and development opportunities for advancement</p>
@@ -1731,20 +1683,6 @@
         </section>
 
     </main>
-
-    <!-- File preview modal -->
-    <div id="file-preview-modal" class="file-modal" style="display:none;" role="dialog" aria-modal="true" aria-label="File preview">
-        <div class="file-modal-backdrop"></div>
-        <div class="file-modal-box">
-            <div class="file-modal-header">
-                <span class="file-modal-title"></span>
-                <button type="button" class="file-modal-close" aria-label="Close preview">
-                    <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
-                </button>
-            </div>
-            <iframe class="file-modal-frame" title="File preview"></iframe>
-        </div>
-    </div>
 
     <!-- Footer -->
     <footer class="footer">
@@ -1837,31 +1775,52 @@
         const MAX_SIZE_MB = 5;
         const MAX_SIZE_BYTES = MAX_SIZE_MB * 1024 * 1024;
 
-        // File preview modal
-        const previewModal = document.getElementById('file-preview-modal');
-        const modalFrame = previewModal.querySelector('.file-modal-frame');
-        const modalTitle = previewModal.querySelector('.file-modal-title');
-        const modalClose = previewModal.querySelector('.file-modal-close');
-        const modalBackdrop = previewModal.querySelector('.file-modal-backdrop');
+        // The heading and the form are centred against each other, so anything that changes the form's height
+        // (choosing a file, a preview, an error) would move both. Once the page has loaded, pin both columns
+        // where they are so the form only ever grows or shrinks at the bottom. Phones stack them, so no pinning there.
+        (function () {
+            const wrap = document.querySelector('.opportunities-container');
+            const cols = [...wrap.children];
+            let anchor = null, offsets = [];
 
-        function openModal(url, filename) {
-            modalFrame.src = url;
-            modalTitle.textContent = filename;
-            previewModal.style.display = 'flex';
-            document.body.style.overflow = 'hidden';
-        }
+            // Position on the page, ignoring the fade-in animation
+            function pageTop(el) {
+                let y = 0;
+                for (let n = el; n; n = n.offsetParent) y += n.offsetTop;
+                return y;
+            }
 
-        function closeModal() {
-            previewModal.style.display = 'none';
-            modalFrame.src = '';
-            document.body.style.overflow = '';
-        }
+            function release() {
+                anchor = null;
+                cols.forEach(col => { col.style.marginTop = ''; });
+                wrap.style.alignItems = '';
+            }
 
-        modalClose.addEventListener('click', closeModal);
-        modalBackdrop.addEventListener('click', closeModal);
-        document.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape' && previewModal.style.display === 'flex') closeModal();
-        });
+            function pin() {
+                release();
+                if (getComputedStyle(wrap).gridTemplateColumns.split(' ').length < 2) return;
+                const top = pageTop(wrap) + parseFloat(getComputedStyle(wrap).paddingTop);
+                offsets = cols.map(col => pageTop(col) - top);
+                cols.forEach((col, i) => { col.style.marginTop = offsets[i] + 'px'; });
+                wrap.style.alignItems = 'start';
+                anchor = pageTop(cols[0]);
+            }
+
+            // The page around the columns can re-centre as the form grows, so nudge them back into place
+            function settle() {
+                if (anchor === null) return;
+                for (let i = 0; i < 8; i++) {
+                    const drift = anchor - pageTop(cols[0]);
+                    if (Math.abs(drift) < 0.5) break;
+                    cols.forEach((col, k) => { col.style.marginTop = (offsets[k] += drift) + 'px'; });
+                }
+            }
+
+            (document.fonts ? document.fonts.ready : Promise.resolve()).then(pin);
+            new ResizeObserver(settle).observe(cols[1]);
+            let resizeTimer;
+            window.addEventListener('resize', () => { clearTimeout(resizeTimer); resizeTimer = setTimeout(pin, 150); });
+        })();
 
         function setupFileUpload(inputEl, defaultText) {
             if (!inputEl) return { validate: () => true };
@@ -1872,6 +1831,13 @@
             const previewNote = field.querySelector('.file-preview-note');
             const previewToggle = field.querySelector('.file-preview-toggle');
             const clearBtn = field.querySelector('.file-clear-btn');
+            const previewLabel = previewToggle.querySelector('.file-preview-label');
+            const panel = document.createElement('div');
+            panel.className = 'file-inline-preview';
+            panel.hidden = true;
+            panel.innerHTML = '<iframe title="File preview"></iframe>';
+            field.appendChild(panel);
+            const panelFrame = panel.querySelector('iframe');
             let errorEl = null;
             let objectUrl = null;
 
@@ -1890,7 +1856,15 @@
                 label.classList.remove('has-error');
             }
 
+            function hidePanel() {
+                panel.hidden = true;
+                panelFrame.src = 'about:blank';
+                previewLabel.textContent = 'Preview';
+                previewToggle.setAttribute('aria-expanded', 'false');
+            }
+
             function clearPreview() {
+                hidePanel();
                 if (objectUrl) { URL.revokeObjectURL(objectUrl); objectUrl = null; }
                 if (previewRow) previewRow.style.display = 'none';
             }
@@ -1915,8 +1889,16 @@
             }
 
             if (clearBtn) clearBtn.addEventListener('click', reset);
+            // On laptops the PDF opens on the page under the upload box; phones and tablets
+            // often show a blank box there, so they get a new tab
             if (previewToggle) previewToggle.addEventListener('click', function() {
-                if (objectUrl) openModal(objectUrl, inputEl.files[0].name);
+                if (!objectUrl) return;
+                if (!window.matchMedia('(hover: hover) and (pointer: fine)').matches) { window.open(objectUrl, '_blank', 'noopener'); return; }
+                if (!panel.hidden) { hidePanel(); return; }
+                panelFrame.src = objectUrl;
+                panel.hidden = false;
+                previewLabel.textContent = 'Hide preview';
+                previewToggle.setAttribute('aria-expanded', 'true');
             });
 
             inputEl.addEventListener('change', function() {
@@ -1955,10 +1937,47 @@
         const coverLetterUpload = setupFileUpload(document.getElementById('cover-letter-upload'), 'Upload Cover Letter (Optional)');
 
         // Resume form submission
+
+        // Check each field before sending. The browser shows the message on the first field that needs fixing.
+        const FIELD_RULES = {
+            name:     { required: 'Please enter your name.', max: 100,
+                        test: v => /^[\p{L}][\p{L} '’.,-]*$/u.test(v), msg: 'Please use letters only in your name.' },
+            email:    { required: 'Please enter your email address.', max: 254,
+                        test: v => /^[^\s@]+@[^\s@]+\.[a-z]{2,}$/i.test(v), msg: 'Please enter a valid email address, like name@example.com.' },
+            phone:    { max: 30,
+                        test: v => /^\+?[\d\s().-]+$/.test(v) && /^\d{10,15}$/.test(v.replace(/\D/g, '')), msg: 'Please enter a valid phone number, like 780-555-1234.' },
+            position: { max: 100 },
+            subject:  { required: 'Please enter a subject.', max: 150 },
+            message:  { required: 'Please enter a message.', max: 5000,
+                        test: v => v.length >= 10, msg: 'Please add a little more detail to your message.' },
+        };
+
+        function checkFields(form) {
+            for (const el of form.querySelectorAll('input[name], textarea[name]')) {
+                const rule = FIELD_RULES[el.name];
+                if (!rule) continue;
+                el.value = el.value.trim();
+                const v = el.value;
+                let msg = '';
+                if (!v) msg = rule.required || '';
+                else if (v.length > rule.max) msg = 'This is too long. Please keep it under ' + rule.max + ' characters.';
+                else if (rule.test && !rule.test(v)) msg = rule.msg;
+                el.setCustomValidity(msg);
+                if (msg) {
+                    el.reportValidity();
+                    el.addEventListener('input', () => el.setCustomValidity(''), { once: true });
+                    return false;
+                }
+            }
+            return true;
+        }
+        // Our checks replace the browser's own, which let things like a@b through
+        document.querySelector('.resume-form').noValidate = true;
         const resumeForm = document.querySelector('.resume-form');
         if (resumeForm) {
             resumeForm.addEventListener('submit', async function(e) {
                 e.preventDefault();
+                if (!checkFields(resumeForm)) return;
                 const resumeOk = resumeUpload.validate();
                 const coverOk = coverLetterUpload.validate();
                 if (!resumeOk || !coverOk) return;

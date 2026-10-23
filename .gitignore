@@ -9,3 +9,6 @@ forms/sent-log.php
 
 # Test copy of send.php that emails the Yahoo address
 dev/upload-test/
+
+# Full-size camera originals (15-25 MB each); the site uses web-sized copies
+source-media/camera-originals/

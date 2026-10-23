@@ -47,7 +47,7 @@
             background:
                 radial-gradient(ellipse at 50% 45%, rgba(15,20,25,0.35), rgba(15,20,25,0.92) 85%),
                 linear-gradient(rgba(15,20,25,0.55), rgba(15,20,25,0.55)),
-                url('pic4.jpg') center / cover no-repeat;
+                url('backdrop-excavators-trench.jpg') center / cover no-repeat;
             filter: grayscale(1) contrast(1.1);
             animation: drift 30s ease-in-out infinite alternate;
             animation-delay: var(--drift-delay, 0s);
@@ -240,6 +240,14 @@
             }
         }
 
+
+        /* Phones: the page must never slide sideways. clip (unlike hidden) keeps sticky headers working */
+        html { overflow-x: clip; }
+
+        /* iPhones zoom in on fields with text under 16px, which then lets the page drift around */
+        @media (max-width: 700px) {
+            input, textarea, select { font-size: 16px !important; }
+        }
     </style>
 </head>
 <body>

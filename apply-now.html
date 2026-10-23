@@ -45,7 +45,7 @@
             background:
                 radial-gradient(ellipse at 50% 45%, rgba(15,20,25,0.45), rgba(15,20,25,0.94) 85%),
                 linear-gradient(rgba(15,20,25,0.6), rgba(15,20,25,0.6)),
-                url('pic4.jpg') center / cover no-repeat;
+                url('backdrop-excavators-trench.jpg') center / cover no-repeat;
             filter: grayscale(1) contrast(1.1);
             animation: drift 30s ease-in-out infinite alternate;
             animation-delay: var(--drift-delay, 0s);
@@ -141,6 +141,9 @@
         }
 
 
+        /* Stops a long file name from stretching the form past the edge of the screen */
+        .apply-card, .apply-form > *, .form-row > * { min-width: 0; }
+
         .apply-card {
             padding: 2rem;
             border: 1px solid rgba(255, 255, 255, 0.25);
@@ -213,6 +216,20 @@
         .file-label svg { flex-shrink: 0; }
         .file-label .name { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
         .file-label .hint { font-size: 0.75rem; opacity: 0.6; white-space: nowrap; }
+        .file-label.has-file .hint { display: none; }
+
+        .file-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 0.4rem 1rem; margin-top: 0.45rem; font-size: 0.8rem; }
+        .file-actions[hidden] { display: none; }
+        .file-actions button { padding: 0; font: inherit; color: var(--white); background: none; border: none; text-decoration: underline; text-underline-offset: 2px; cursor: pointer; }
+        .file-actions button[hidden] { display: none; }
+        .file-actions button:focus:not(:focus-visible) { outline: none; }
+        .file-remove { margin-left: auto; }
+        .file-note { opacity: 0.7; }
+
+        /* PDF preview shown right under the upload box (laptops; phones get a new tab) */
+        .file-inline-preview { margin-top: 0.6rem; border: 1px solid rgba(255, 255, 255, 0.14); }
+        .file-inline-preview[hidden] { display: none; }
+        .file-inline-preview iframe { display: block; width: 100%; height: min(240px, 32vh); border: none; background: #fff; }
 
         .file-error { margin-top: 0.35rem; font-size: 0.8rem; color: #ffb4a8; }
 
@@ -315,6 +332,14 @@
             }
         }
 
+
+        /* Phones: the page must never slide sideways. clip (unlike hidden) keeps sticky headers working */
+        html { overflow-x: clip; }
+
+        /* iPhones zoom in on fields with text under 16px, which then lets the page drift around */
+        @media (max-width: 700px) {
+            input, textarea, select { font-size: 16px !important; }
+        }
     </style>
 </head>
 <body>
@@ -356,17 +381,17 @@
                 </div>
 
                 <form class="apply-form" action="https://api.web3forms.com/submit" method="POST" enctype="multipart/form-data">
-                    <input type="hidden" name="access_key" value="355c0fee-b620-40db-9e21-7b7888cfde86">
+                    <input type="hidden" name="access_key" value="c22b537e-c5f9-4fc6-a8d9-759729d1b7bc">
                     <input type="hidden" name="from_name" value="Degner Careers">
                     <input type="checkbox" name="botcheck" style="display:none;">
 
                     <div class="form-row">
-                        <input type="text" name="name" placeholder="Full Name" required>
-                        <input type="email" name="email" placeholder="Email" required>
+                        <input type="text" name="name" maxlength="100" autocomplete="name" placeholder="Full Name" required>
+                        <input type="email" name="email" maxlength="254" autocomplete="email" placeholder="Email" required>
                     </div>
                     <div class="form-row">
-                        <input type="tel" name="phone" placeholder="Phone">
-                        <input type="text" name="position" placeholder="Position Interested In">
+                        <input type="tel" name="phone" maxlength="30" autocomplete="tel" placeholder="Phone">
+                        <input type="text" name="position" maxlength="100" placeholder="Position Interested In">
                     </div>
 
                     <div>
@@ -376,6 +401,12 @@
                             <span class="hint">PDF, DOC, DOCX — max 5 MB</span>
                         </label>
                         <input type="file" id="resume-upload" name="resume" accept=".pdf,.doc,.docx" style="display:none;">
+                        <div class="file-actions" hidden>
+                            <button type="button" class="file-preview" aria-expanded="false">Preview</button>
+                            <span class="file-note">Word files can't be previewed here. Open it on your device to check it.</span>
+                            <button type="button" class="file-remove">Remove</button>
+                        </div>
+                        <div class="file-inline-preview" hidden><iframe title="File preview"></iframe></div>
                     </div>
 
                     <div>
@@ -385,6 +416,12 @@
                             <span class="hint">PDF, DOC, DOCX — max 5 MB</span>
                         </label>
                         <input type="file" id="cover-upload" name="cover_letter" accept=".pdf,.doc,.docx" style="display:none;">
+                        <div class="file-actions" hidden>
+                            <button type="button" class="file-preview" aria-expanded="false">Preview</button>
+                            <span class="file-note">Word files can't be previewed here. Open it on your device to check it.</span>
+                            <button type="button" class="file-remove">Remove</button>
+                        </div>
+                        <div class="file-inline-preview" hidden><iframe title="File preview"></iframe></div>
                     </div>
 
                     <button type="submit" class="form-submit">Submit Application</button>
@@ -413,14 +450,138 @@
     <script>
         document.getElementById('footer-year').textContent = new Date().getFullYear();
 
+        // Check each field before sending. The browser shows the message on the first field that needs fixing.
+        const FIELD_RULES = {
+            name:     { required: 'Please enter your name.', max: 100,
+                        test: v => /^[\p{L}][\p{L} '’.,-]*$/u.test(v), msg: 'Please use letters only in your name.' },
+            email:    { required: 'Please enter your email address.', max: 254,
+                        test: v => /^[^\s@]+@[^\s@]+\.[a-z]{2,}$/i.test(v), msg: 'Please enter a valid email address, like name@example.com.' },
+            phone:    { max: 30,
+                        test: v => /^\+?[\d\s().-]+$/.test(v) && /^\d{10,15}$/.test(v.replace(/\D/g, '')), msg: 'Please enter a valid phone number, like 780-555-1234.' },
+            position: { max: 100 },
+            subject:  { required: 'Please enter a subject.', max: 150 },
+            message:  { required: 'Please enter a message.', max: 5000,
+                        test: v => v.length >= 10, msg: 'Please add a little more detail to your message.' },
+        };
+
+        function checkFields(form) {
+            for (const el of form.querySelectorAll('input[name], textarea[name]')) {
+                const rule = FIELD_RULES[el.name];
+                if (!rule) continue;
+                el.value = el.value.trim();
+                const v = el.value;
+                let msg = '';
+                if (!v) msg = rule.required || '';
+                else if (v.length > rule.max) msg = 'This is too long. Please keep it under ' + rule.max + ' characters.';
+                else if (rule.test && !rule.test(v)) msg = rule.msg;
+                el.setCustomValidity(msg);
+                if (msg) {
+                    el.reportValidity();
+                    el.addEventListener('input', () => el.setCustomValidity(''), { once: true });
+                    return false;
+                }
+            }
+            return true;
+        }
+        // Our checks replace the browser's own, which let things like a@b through
+        document.querySelector('.apply-form').noValidate = true;
+
         const MAX_BYTES = 5 * 1024 * 1024;
         const ALLOWED = ['pdf', 'doc', 'docx'];
+
+        // The heading and the form are centred against each other, so anything that changes the form's height
+        // (choosing a file, a preview, an error) would move both. Once the page has loaded, pin both columns
+        // where they are so the form only ever grows or shrinks at the bottom. Phones stack them, so no pinning there.
+        (function () {
+            const wrap = document.querySelector('.apply-body');
+            const cols = [...wrap.children];
+            let anchor = null, offsets = [];
+
+            // Position on the page, ignoring the fade-in animation
+            function pageTop(el) {
+                let y = 0;
+                for (let n = el; n; n = n.offsetParent) y += n.offsetTop;
+                return y;
+            }
+
+            function release() {
+                anchor = null;
+                cols.forEach(col => { col.style.marginTop = ''; });
+                wrap.style.alignItems = '';
+            }
+
+            function pin() {
+                release();
+                if (getComputedStyle(wrap).gridTemplateColumns.split(' ').length < 2) return;
+                const top = pageTop(wrap) + parseFloat(getComputedStyle(wrap).paddingTop);
+                offsets = cols.map(col => pageTop(col) - top);
+                cols.forEach((col, i) => { col.style.marginTop = offsets[i] + 'px'; });
+                wrap.style.alignItems = 'start';
+                anchor = pageTop(cols[0]);
+            }
+
+            // The page around the columns can re-centre as the form grows, so nudge them back into place
+            function settle() {
+                if (anchor === null) return;
+                for (let i = 0; i < 8; i++) {
+                    const drift = anchor - pageTop(cols[0]);
+                    if (Math.abs(drift) < 0.5) break;
+                    cols.forEach((col, k) => { col.style.marginTop = (offsets[k] += drift) + 'px'; });
+                }
+            }
+
+            (document.fonts ? document.fonts.ready : Promise.resolve()).then(pin);
+            new ResizeObserver(settle).observe(cols[1]);
+            let resizeTimer;
+            window.addEventListener('resize', () => { clearTimeout(resizeTimer); resizeTimer = setTimeout(pin, 150); });
+        })();
 
         // Returns a function that validates the input and returns true if OK
         function setupFile(input) {
             const label = input.parentElement.querySelector('.file-label');
             const name = label.querySelector('.name');
             const wrap = input.parentElement;
+            const actions = wrap.querySelector('.file-actions');
+            const previewBtn = actions.querySelector('.file-preview');
+            const note = actions.querySelector('.file-note');
+            const panel = wrap.querySelector('.file-inline-preview');
+            const panelFrame = panel.querySelector('iframe');
+            let url = null;
+
+            function hidePanel() {
+                panel.hidden = true;
+                panelFrame.src = 'about:blank';
+                previewBtn.textContent = 'Preview';
+                previewBtn.setAttribute('aria-expanded', 'false');
+            }
+
+            // Applicants can check a PDF before sending; Word files can't be shown in a browser
+            function setActions(file) {
+                hidePanel();
+                if (url) { URL.revokeObjectURL(url); url = null; }
+                actions.hidden = !file;
+                if (!file) return;
+                const isPdf = file.name.split('.').pop().toLowerCase() === 'pdf';
+                if (isPdf) url = URL.createObjectURL(file);
+                previewBtn.hidden = !isPdf;
+                note.hidden = isPdf;
+            }
+
+            // On laptops the PDF opens on the page under the upload box; phones and tablets
+            // often show a blank box there, so they get a new tab
+            previewBtn.addEventListener('click', () => {
+                if (!url) return;
+                if (!window.matchMedia('(hover: hover) and (pointer: fine)').matches) { window.open(url, '_blank', 'noopener'); return; }
+                if (!panel.hidden) { hidePanel(); return; }
+                panelFrame.src = url;
+                panel.hidden = false;
+                previewBtn.textContent = 'Hide preview';
+                previewBtn.setAttribute('aria-expanded', 'true');
+            });
+            actions.querySelector('.file-remove').addEventListener('click', () => {
+                input.value = '';
+                input.dispatchEvent(new Event('change'));
+            });
 
             function showError(msg) {
                 let err = wrap.querySelector('.file-error');
@@ -439,9 +600,10 @@
             input.addEventListener('change', () => {
                 showError('');
                 const file = input.files[0];
-                if (!file) { label.classList.remove('has-file'); name.textContent = name.dataset.default; return; }
+                if (!file) { label.classList.remove('has-file'); name.textContent = name.dataset.default; setActions(null); return; }
                 const msg = check(file);
                 if (msg) {
+                    setActions(null);
                     showError(msg);
                     input.value = '';
                     label.classList.remove('has-file');
@@ -449,6 +611,7 @@
                 } else {
                     label.classList.add('has-file');
                     name.textContent = file.name;
+                    setActions(file);
                 }
             });
         }
@@ -459,6 +622,7 @@
         document.querySelector('.apply-form').addEventListener('submit', async function (e) {
             e.preventDefault();
             const form = this;
+            if (!checkFields(form)) return;
             const btn = form.querySelector('.form-submit');
             const firstName = form.querySelector('[name="name"]').value.trim().split(' ')[0]
                 .replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));

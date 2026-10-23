@@ -93,7 +93,7 @@
             background:
                 radial-gradient(ellipse at 50% 45%, rgba(15, 20, 25, 0.45), rgba(15, 20, 25, 0.94) 85%),
                 linear-gradient(rgba(15, 20, 25, 0.6), rgba(15, 20, 25, 0.6)),
-                url('pic4.jpg') center / cover no-repeat;
+                url('backdrop-excavators-trench.jpg') center / cover no-repeat;
             filter: grayscale(1) contrast(1.1);
             animation: drift 30s ease-in-out infinite alternate;
             animation-delay: var(--drift-delay, 0s);
@@ -542,7 +542,7 @@
 
         .project-card:hover { border-color: rgba(255, 255, 255, 0.45); }
 
-        /* photo: black and white with a thin inner frame, colour on hover (same as the service pages) */
+        /* photo: in colour with a thin inner frame (same as the service pages) */
         .project-photo {
             position: relative;
             margin: 0;
@@ -578,11 +578,8 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
-            filter: grayscale(1) contrast(1.05) brightness(0.85);
-            transition: filter 0.8s ease;
         }
 
-        .project-card:hover .project-photo img { filter: grayscale(0) contrast(1) brightness(1); }
 
         .project-body {
             display: flex;
@@ -944,6 +941,14 @@
             }
         }
 
+
+        /* Phones: the page must never slide sideways. clip (unlike hidden) keeps sticky headers working */
+        html { overflow-x: clip; }
+
+        /* iPhones zoom in on fields with text under 16px, which then lets the page drift around */
+        @media (max-width: 700px) {
+            input, textarea, select { font-size: 16px !important; }
+        }
     </style>
 </head>
 <body>
@@ -1044,7 +1049,7 @@
 
         <div class="project-grid" id="projectGrid">
             <article class="project-card" data-service="general-contracting">
-                <figure class="project-photo"><img src="project-sample-7.jpg" alt="Degner crew and equipment on a job site" width="800" height="600" loading="lazy" decoding="async"></figure>
+                <figure class="project-photo"><img src="project-excavator-blue-sky.jpg" alt="Degner crew and equipment on a job site" width="800" height="600" loading="lazy" decoding="async"></figure>
                 <div class="project-body">
                     <span class="project-service">General Contracting</span>
                     <h3 class="project-title">MLC Arterial Roadway</h3>
@@ -1054,7 +1059,7 @@
                 </div>
             </article>
             <article class="project-card" data-service="water-sanitary-storm">
-                <figure class="project-photo"><img src="project-sample-2.jpg" alt="Degner crew and equipment on a job site" width="800" height="600" loading="lazy" decoding="async"></figure>
+                <figure class="project-photo"><img src="project-pipe-crew-in-trench.jpg" alt="Degner crew and equipment on a job site" width="800" height="600" loading="lazy" decoding="async"></figure>
                 <div class="project-body">
                     <span class="project-service">Water, Sanitary &amp; Storm</span>
                     <h3 class="project-title">Schonsee Stage 14 Offsite</h3>
@@ -1064,7 +1069,7 @@
                 </div>
             </article>
             <article class="project-card project-card--placeholder" data-service="earthworks">
-                <figure class="project-photo"><img src="project-sample-12.jpg" alt="Degner crew and equipment on a job site" width="800" height="600" loading="lazy" decoding="async"></figure>
+                <figure class="project-photo"><img src="project-two-excavators-overcast.jpg" alt="Degner crew and equipment on a job site" width="800" height="600" loading="lazy" decoding="async"></figure>
                 <div class="project-body">
                     <span class="project-service">Earthworks</span>
                     <h3 class="project-title">Project to be added</h3>
@@ -1074,7 +1079,7 @@
                 </div>
             </article>
             <article class="project-card" data-service="infrastructure-renewal">
-                <figure class="project-photo"><img src="project-sample-2.jpg" alt="Degner crew and equipment on a job site" width="800" height="600" loading="lazy" decoding="async"></figure>
+                <figure class="project-photo"><img src="project-pipe-crew-in-trench.jpg" alt="Degner crew and equipment on a job site" width="800" height="600" loading="lazy" decoding="async"></figure>
                 <div class="project-body">
                     <span class="project-service">Infrastructure Renewal</span>
                     <h3 class="project-title">Canada Lands Infrastructure Renewal</h3>
@@ -1084,7 +1089,7 @@
                 </div>
             </article>
             <article class="project-card project-card--placeholder" data-service="lift-station-construction">
-                <figure class="project-photo"><img src="project-sample-3.jpg" alt="Degner crew and equipment on a job site" width="800" height="600" loading="lazy" decoding="async"></figure>
+                <figure class="project-photo"><img src="project-concrete-pipe-install.jpg" alt="Degner crew and equipment on a job site" width="800" height="600" loading="lazy" decoding="async"></figure>
                 <div class="project-body">
                     <span class="project-service">Lift Station Construction</span>
                     <h3 class="project-title">Project to be added</h3>
@@ -1094,7 +1099,7 @@
                 </div>
             </article>
             <article class="project-card project-card--placeholder" data-service="project-management">
-                <figure class="project-photo"><img src="project-sample-6.jpg" alt="The Degner team in a project meeting" width="800" height="600" loading="lazy" decoding="async"></figure>
+                <figure class="project-photo"><img src="project-team-meeting.jpg" alt="The Degner team in a project meeting" width="800" height="600" loading="lazy" decoding="async"></figure>
                 <div class="project-body">
                     <span class="project-service">Project Management</span>
                     <h3 class="project-title">Project to be added</h3>
@@ -1104,7 +1109,7 @@
                 </div>
             </article>
             <article class="project-card project-card--placeholder" data-service="survey-drone">
-                <figure class="project-photo"><img src="project-sample-5.jpg" alt="Degner crew and equipment on a job site" width="800" height="600" loading="lazy" decoding="async"></figure>
+                <figure class="project-photo"><img src="project-excavator-at-sunset.jpg" alt="Degner crew and equipment on a job site" width="800" height="600" loading="lazy" decoding="async"></figure>
                 <div class="project-body">
                     <span class="project-service">Survey &amp; Drone</span>
                     <h3 class="project-title">Project to be added</h3>
@@ -1116,7 +1121,7 @@
 
             <!-- More projects from the previous website, kept here to swap in later:
             <article class="project-card" data-service="general-contracting">
-                <figure class="project-photo"><img src="project-sample-4.jpg" alt="Degner crew and equipment on a job site" width="800" height="600" loading="lazy" decoding="async"></figure>
+                <figure class="project-photo"><img src="project-excavators-in-trench-cut.jpg" alt="Degner crew and equipment on a job site" width="800" height="600" loading="lazy" decoding="async"></figure>
                 <div class="project-body">
                     <span class="project-service">General Contracting</span>
                     <h3 class="project-title">Melcor Collector Roadway</h3>
@@ -1126,7 +1131,7 @@
                 </div>
             </article>
             <article class="project-card" data-service="water-sanitary-storm">
-                <figure class="project-photo"><img src="project-sample-1.jpg" alt="Degner crew and equipment on a job site" width="800" height="600" loading="lazy" decoding="async"></figure>
+                <figure class="project-photo"><img src="project-excavators-beside-building.jpg" alt="Degner crew and equipment on a job site" width="800" height="600" loading="lazy" decoding="async"></figure>
                 <div class="project-body">
                     <span class="project-service">Water, Sanitary &amp; Storm</span>
                     <h3 class="project-title">St. Albert Sedimentation Control</h3>
@@ -1136,7 +1141,7 @@
                 </div>
             </article>
             <article class="project-card" data-service="water-sanitary-storm">
-                <figure class="project-photo"><img src="project-sample-3.jpg" alt="Degner crew and equipment on a job site" width="800" height="600" loading="lazy" decoding="async"></figure>
+                <figure class="project-photo"><img src="project-concrete-pipe-install.jpg" alt="Degner crew and equipment on a job site" width="800" height="600" loading="lazy" decoding="async"></figure>
                 <div class="project-body">
                     <span class="project-service">Water, Sanitary &amp; Storm</span>
                     <h3 class="project-title">Rohit Lands</h3>
@@ -1146,7 +1151,7 @@
                 </div>
             </article>
             <article class="project-card" data-service="water-sanitary-storm">
-                <figure class="project-photo"><img src="project-sample-12.jpg" alt="Degner crew and equipment on a job site" width="800" height="600" loading="lazy" decoding="async"></figure>
+                <figure class="project-photo"><img src="project-two-excavators-overcast.jpg" alt="Degner crew and equipment on a job site" width="800" height="600" loading="lazy" decoding="async"></figure>
                 <div class="project-body">
                     <span class="project-service">Water, Sanitary &amp; Storm</span>
                     <h3 class="project-title">Qualico Communities</h3>
@@ -1156,7 +1161,7 @@
                 </div>
             </article>
             <article class="project-card" data-service="water-sanitary-storm">
-                <figure class="project-photo"><img src="project-sample-9.jpg" alt="Degner crew and equipment on a job site" width="800" height="600" loading="lazy" decoding="async"></figure>
+                <figure class="project-photo"><img src="project-dozer-northern-lights.jpg" alt="Degner crew and equipment on a job site" width="800" height="600" loading="lazy" decoding="async"></figure>
                 <div class="project-body">
                     <span class="project-service">Water, Sanitary &amp; Storm</span>
                     <h3 class="project-title">Brookfield Residential</h3>
@@ -1166,7 +1171,7 @@
                 </div>
             </article>
             <article class="project-card" data-service="water-sanitary-storm">
-                <figure class="project-photo"><img src="project-sample-5.jpg" alt="Degner crew and equipment on a job site" width="800" height="600" loading="lazy" decoding="async"></figure>
+                <figure class="project-photo"><img src="project-excavator-at-sunset.jpg" alt="Degner crew and equipment on a job site" width="800" height="600" loading="lazy" decoding="async"></figure>
                 <div class="project-body">
                     <span class="project-service">Water, Sanitary &amp; Storm</span>
                     <h3 class="project-title">Melcor Mixed Development</h3>
@@ -1176,7 +1181,7 @@
                 </div>
             </article>
             <article class="project-card" data-service="water-sanitary-storm">
-                <figure class="project-photo"><img src="project-sample-8.jpg" alt="Degner crew and equipment on a job site" width="800" height="600" loading="lazy" decoding="async"></figure>
+                <figure class="project-photo"><img src="project-excavator-booms-northern-lights.jpg" alt="Degner crew and equipment on a job site" width="800" height="600" loading="lazy" decoding="async"></figure>
                 <div class="project-body">
                     <span class="project-service">Water, Sanitary &amp; Storm</span>
                     <h3 class="project-title">Qualico Fort Saskatchewan</h3>
@@ -1186,7 +1191,7 @@
                 </div>
             </article>
             <article class="project-card" data-service="water-sanitary-storm">
-                <figure class="project-photo"><img src="project-sample-10.jpg" alt="Degner crew and equipment on a job site" width="800" height="600" loading="lazy" decoding="async"></figure>
+                <figure class="project-photo"><img src="project-operator-in-loader-cab.jpg" alt="Degner crew and equipment on a job site" width="800" height="600" loading="lazy" decoding="async"></figure>
                 <div class="project-body">
                     <span class="project-service">Water, Sanitary &amp; Storm</span>
                     <h3 class="project-title">Qualico Spruce Grove</h3>
@@ -1196,7 +1201,7 @@
                 </div>
             </article>
             <article class="project-card" data-service="infrastructure-renewal">
-                <figure class="project-photo"><img src="project-sample-4.jpg" alt="Degner crew and equipment on a job site" width="800" height="600" loading="lazy" decoding="async"></figure>
+                <figure class="project-photo"><img src="project-excavators-in-trench-cut.jpg" alt="Degner crew and equipment on a job site" width="800" height="600" loading="lazy" decoding="async"></figure>
                 <div class="project-body">
                     <span class="project-service">Infrastructure Renewal</span>
                     <h3 class="project-title">Edmonton Watermain Renewal</h3>

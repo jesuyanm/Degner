@@ -45,7 +45,7 @@
             background:
                 radial-gradient(ellipse at 50% 45%, rgba(15,20,25,0.45), rgba(15,20,25,0.94) 85%),
                 linear-gradient(rgba(15,20,25,0.6), rgba(15,20,25,0.6)),
-                url('pic4.jpg') center / cover no-repeat;
+                url('backdrop-excavators-trench.jpg') center / cover no-repeat;
             filter: grayscale(1) contrast(1.1);
             animation: drift 30s ease-in-out infinite alternate;
             animation-delay: var(--drift-delay, 0s);
@@ -309,6 +309,14 @@
             }
         }
 
+
+        /* Phones: the page must never slide sideways. clip (unlike hidden) keeps sticky headers working */
+        html { overflow-x: clip; }
+
+        /* iPhones zoom in on fields with text under 16px, which then lets the page drift around */
+        @media (max-width: 700px) {
+            input, textarea, select { font-size: 16px !important; }
+        }
     </style>
 </head>
 <body>
@@ -381,16 +389,16 @@
 
             <div class="contact-form-block">
                 <form class="contact-form" action="https://api.web3forms.com/submit" method="POST">
-                    <input type="hidden" name="access_key" value="355c0fee-b620-40db-9e21-7b7888cfde86">
+                    <input type="hidden" name="access_key" value="4842575e-96ab-4d1e-9b46-cd40cc620894">
                     <input type="hidden" name="from_name" value="Degner Website">
                     <input type="checkbox" name="botcheck" style="display:none;">
 
                     <div class="form-row">
-                        <input type="text" name="name" placeholder="Your Name" required>
-                        <input type="email" name="email" placeholder="E-mail address" required>
+                        <input type="text" name="name" maxlength="100" autocomplete="name" placeholder="Your Name" required>
+                        <input type="email" name="email" maxlength="254" autocomplete="email" placeholder="E-mail address" required>
                     </div>
-                    <input type="text" name="subject" placeholder="Subject" required>
-                    <textarea name="message" placeholder="Message" required></textarea>
+                    <input type="text" name="subject" maxlength="150" placeholder="Subject" required>
+                    <textarea name="message" maxlength="5000" placeholder="Message" required></textarea>
                     <button type="submit" class="form-submit">Send Inquiry</button>
                     <p class="form-privacy">We only use your details to reply to you. See our <a href="coming-soon-privacy.html">Privacy Policy</a>.</p>
                 </form>
@@ -417,9 +425,46 @@
     <script>
         document.getElementById('footer-year').textContent = new Date().getFullYear();
 
+        // Check each field before sending. The browser shows the message on the first field that needs fixing.
+        const FIELD_RULES = {
+            name:     { required: 'Please enter your name.', max: 100,
+                        test: v => /^[\p{L}][\p{L} '’.,-]*$/u.test(v), msg: 'Please use letters only in your name.' },
+            email:    { required: 'Please enter your email address.', max: 254,
+                        test: v => /^[^\s@]+@[^\s@]+\.[a-z]{2,}$/i.test(v), msg: 'Please enter a valid email address, like name@example.com.' },
+            phone:    { max: 30,
+                        test: v => /^\+?[\d\s().-]+$/.test(v) && /^\d{10,15}$/.test(v.replace(/\D/g, '')), msg: 'Please enter a valid phone number, like 780-555-1234.' },
+            position: { max: 100 },
+            subject:  { required: 'Please enter a subject.', max: 150 },
+            message:  { required: 'Please enter a message.', max: 5000,
+                        test: v => v.length >= 10, msg: 'Please add a little more detail to your message.' },
+        };
+
+        function checkFields(form) {
+            for (const el of form.querySelectorAll('input[name], textarea[name]')) {
+                const rule = FIELD_RULES[el.name];
+                if (!rule) continue;
+                el.value = el.value.trim();
+                const v = el.value;
+                let msg = '';
+                if (!v) msg = rule.required || '';
+                else if (v.length > rule.max) msg = 'This is too long. Please keep it under ' + rule.max + ' characters.';
+                else if (rule.test && !rule.test(v)) msg = rule.msg;
+                el.setCustomValidity(msg);
+                if (msg) {
+                    el.reportValidity();
+                    el.addEventListener('input', () => el.setCustomValidity(''), { once: true });
+                    return false;
+                }
+            }
+            return true;
+        }
+        // Our checks replace the browser's own, which let things like a@b through
+        document.querySelector('.contact-form').noValidate = true;
+
         document.querySelector('.contact-form').addEventListener('submit', async function (e) {
             e.preventDefault();
             const form = this;
+            if (!checkFields(form)) return;
             const btn = form.querySelector('.form-submit');
             const firstName = form.querySelector('[name="name"]').value.trim().split(' ')[0]
                 .replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));

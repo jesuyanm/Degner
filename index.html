@@ -203,7 +203,7 @@
             background:
                 radial-gradient(ellipse at 50% 45%, rgba(15, 20, 25, 0.45), rgba(15, 20, 25, 0.94) 85%),
                 linear-gradient(rgba(15, 20, 25, 0.6), rgba(15, 20, 25, 0.6)),
-                url('pic4.jpg') center / cover no-repeat;
+                url('backdrop-excavators-trench.jpg') center / cover no-repeat;
             filter: grayscale(1) contrast(1.1);
             animation: drift 30s ease-in-out infinite alternate;
             animation-delay: var(--drift-delay, 0s);
@@ -911,7 +911,7 @@
 
         @media (max-width: 700px) {
             .hero { padding-bottom: 0; }
-            .hero-title { font-size: clamp(2rem, 10vw, 3rem); letter-spacing: 0.18em; padding-left: 0.18em; }
+            .hero-title { font-size: clamp(1.6rem, 8vw, 3rem); letter-spacing: 0.14em; padding-left: 0.14em; }
             .hero-title strong { display: block; }
             .scroll-cue { display: none; }
             .section.home-section { padding: 1.5rem 1rem 0.25rem; }
@@ -1193,6 +1193,17 @@
             }
         }
 
+
+        /* Phones: the page must never slide sideways. clip (unlike hidden) keeps sticky headers working */
+        html { overflow-x: clip; }
+        @media (max-width: 360px) {
+            .hero-content { padding: 0 1rem; }
+        }
+
+        /* iPhones zoom in on fields with text under 16px, which then lets the page drift around */
+        @media (max-width: 700px) {
+            input, textarea, select { font-size: 16px !important; }
+        }
     </style>
 </head>
 <body>
@@ -1323,10 +1334,10 @@
         <p class="eyebrow">Industry</p>
         <h2 class="section-heading"><strong>Our</strong> Memberships</h2>
         <div class="member-logos">
-            <a href="https://www.youracsa.ca/" target="_blank" rel="noopener"><img loading="lazy" decoding="async" src="pic14-web.png" alt="Alberta Construction Safety Association"></a>
-            <a href="https://www.bildedmonton.com/" target="_blank" rel="noopener"><img loading="lazy" decoding="async" src="pic15.png" alt="Urban Development Institute Edmonton Region"></a>
-            <a href="https://www.arhca.ab.ca/" target="_blank" rel="noopener"><img loading="lazy" decoding="async" src="pic16.png" alt="Alberta Roadbuilders &amp; Heavy Construction Association"></a>
-            <a href="https://www.edmca.com/" target="_blank" rel="noopener"><img loading="lazy" decoding="async" src="pic17.png" alt="Edmonton Construction Association"></a>
+            <a href="https://www.youracsa.ca/" target="_blank" rel="noopener"><img loading="lazy" decoding="async" src="logo-acsa.png" alt="Alberta Construction Safety Association"></a>
+            <a href="https://www.bildedmonton.com/" target="_blank" rel="noopener"><img loading="lazy" decoding="async" src="logo-bild-edmonton-metro.png" alt="Urban Development Institute Edmonton Region"></a>
+            <a href="https://www.arhca.ab.ca/" target="_blank" rel="noopener"><img loading="lazy" decoding="async" src="logo-arhca.png" alt="Alberta Roadbuilders &amp; Heavy Construction Association"></a>
+            <a href="https://www.edmca.com/" target="_blank" rel="noopener"><img loading="lazy" decoding="async" src="logo-eca.png" alt="Edmonton Construction Association"></a>
         </div>
     </section>
 
