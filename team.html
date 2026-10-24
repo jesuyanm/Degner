@@ -1089,6 +1089,40 @@
         .nav-dropdown .nav-sub li + li { border-top: 0; }
         .nav-dropdown .nav-sub a { padding: 0.45rem 1.4rem 0.45rem 2.6rem; font-size: 0.66rem; letter-spacing: 1.5px; }
 
+        /* Department tabs above the groups, same look as the General Inquiry / Request a Quote toggle on the contact page */
+        .team-tabs {
+            max-width: 1400px;
+            margin: 0 auto 2.25rem;
+            display: grid;
+            grid-template-columns: repeat(5, minmax(0, 1fr));
+            gap: 1px;
+            background: rgba(255, 255, 255, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+        .team-tabs button {
+            padding: 0.8rem 0.5rem;
+            background: #0F1419;
+            border: 0;
+            border-radius: 0;
+            color: rgba(255, 255, 255, 0.7);
+            font-family: inherit;
+            font-size: 0.72rem;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        .team-tabs button:hover { color: #FFFFFF; }
+        .team-tabs button[aria-selected="true"] { color: #0a0a0a; background: #FFFFFF; }
+        .team-tabs button:focus-visible { outline: 2px solid currentColor; outline-offset: -5px; }
+        /* phones: All across the top, the four departments two by two */
+        @media (max-width: 700px) {
+            .team-tabs { grid-template-columns: 1fr 1fr; margin-bottom: 1.5rem; }
+            .team-tabs button:first-child { grid-column: 1 / -1; }
+            .team-tabs button { letter-spacing: 1.5px; }
+        }
+
         /* Team groups (Leadership, Project, Administrative, Safety); the Our Team menu links to each one */
         .team-section { max-width: 1400px; margin: 0 auto; scroll-margin-top: 120px; }
         .team-section + .team-section { margin-top: 3rem; }
@@ -1321,6 +1355,15 @@
 
     <!-- Main Content -->
     <main class="main-content">
+        <!-- Department tabs: All shows everyone; the Our Team menu links (team.html#project-team etc.) open a tab -->
+        <div class="team-tabs" role="tablist" aria-label="Departments">
+            <button type="button" role="tab" data-dept="all" aria-selected="true">All</button>
+            <button type="button" role="tab" data-dept="leadership" aria-selected="false">Leadership Team</button>
+            <button type="button" role="tab" data-dept="project-team" aria-selected="false">Project Team</button>
+            <button type="button" role="tab" data-dept="administrative-staff" aria-selected="false">Administrative Staff</button>
+            <button type="button" role="tab" data-dept="safety-team" aria-selected="false">Safety</button>
+        </div>
+
         <section class="team-section" id="leadership">
             <h2 class="team-section-heading"><strong>Leadership</strong> Team</h2>
             <div class="team-grid">
@@ -1512,16 +1555,17 @@
         const prevBtn = document.getElementById('modalPrev');
         const nextBtn = document.getElementById('modalNext');
 
-        const membersData = Array.from(document.querySelectorAll('.team-member')).map(m => ({
+        const toData = m => ({
             initials: m.dataset.initials,
             photo: m.dataset.photo,
             name: m.dataset.name,
             credentials: m.dataset.credentials,
             title: m.dataset.title,
             bio: m.dataset.bio
-        }));
-
-        const total = membersData.length;
+        });
+        // only the people in the department being shown
+        const visibleMembers = () => Array.from(document.querySelectorAll('.team-section:not([hidden]) .team-member'));
+        let membersData = [];
         let allCards = [];
         let navTarget = -1;
 
@@ -1638,7 +1682,34 @@
             scrollToIdx(nearestIdx(), 'instant');
         });
 
-        document.querySelectorAll('.team-member').forEach((m, i) => m.addEventListener('click', () => openModal(i)));
+        document.querySelectorAll('.team-member').forEach(m => m.addEventListener('click', () => {
+            const shown = visibleMembers();
+            membersData = shown.map(toData);
+            openModal(shown.indexOf(m));
+        }));
+
+        // Department tabs: the tabs and the address (#project-team etc.) stay in step
+        const teamTabs = document.querySelectorAll('.team-tabs [data-dept]');
+        const teamSections = document.querySelectorAll('.team-section');
+
+        function showDepartment(id) {
+            if (!document.querySelector('.team-section#' + CSS.escape(id))) id = 'all';
+            teamSections.forEach(sec => { sec.hidden = id !== 'all' && sec.id !== id; });
+            teamTabs.forEach(tab => tab.setAttribute('aria-selected', String(tab.dataset.dept === id)));
+        }
+
+        teamTabs.forEach(tab => tab.addEventListener('click', () => {
+            showDepartment(tab.dataset.dept);
+            history.replaceState(null, '', tab.dataset.dept === 'all' ? location.pathname + location.search : '#' + tab.dataset.dept);
+        }));
+
+        function departmentFromAddress() {
+            showDepartment(location.hash.slice(1) || 'all');
+            // keep the tabs in view instead of jumping past them to the group
+            if (location.hash) requestAnimationFrame(() => window.scrollTo(0, 0));
+        }
+        window.addEventListener('hashchange', departmentFromAddress);
+        departmentFromAddress();
         prevBtn.addEventListener('click', () => navigate(-1));
         nextBtn.addEventListener('click', () => navigate(1));
         document.getElementById('teamModalClose').addEventListener('click', closeModal);
