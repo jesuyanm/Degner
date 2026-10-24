@@ -894,7 +894,7 @@
         .ruled-list h3 {
             margin-bottom: 0.3rem;
             font-size: 0.78rem;
-            font-weight: 600;
+            font-weight: 700;
             letter-spacing: 2px;
             text-transform: uppercase;
         }
@@ -956,13 +956,8 @@
 
         .photo-slot:hover img { filter: grayscale(0) contrast(1) brightness(1); }
 
-        /* Memberships list beside the certificate */
-        .memberships-section {
-            display: grid;
-            grid-template-columns: minmax(0, 1.7fr) minmax(0, 1fr);
-            gap: 3rem;
-            align-items: center;
-        }
+        /* Memberships list: two columns, full width */
+        .memberships-section { max-width: 900px; }
 
         .memberships-list { column-gap: 2rem; }
 
@@ -974,42 +969,6 @@
             margin-bottom: 1.5rem;
         }
 
-        /* Policies and certificates: each card opens the full document in a new tab */
-        .doc-card {
-            display: flex;
-            flex-direction: column;
-            gap: 0.25rem;
-            color: var(--text-dark);
-            text-decoration: none;
-        }
-
-        .doc-card .photo-slot { margin-bottom: 0.5rem; }
-
-        /* documents: show the top of the page (logo and title) */
-        .doc-card .photo-slot img { object-position: center top; }
-
-        .doc-card:hover .photo-slot img,
-        .doc-card:focus-visible .photo-slot img { filter: grayscale(0) contrast(1) brightness(1); }
-
-        .doc-name {
-            font-size: 0.78rem;
-            font-weight: 600;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-        }
-
-        .doc-meta { font-size: 0.85rem; color: var(--text-gray); }
-
-        .doc-card:hover .doc-meta { color: var(--text-dark); }
-
-        .doc-heading { margin-top: 2.5rem; }
-
-        .doc-row {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            column-gap: 2rem;
-            row-gap: 1.5rem;
-        }
 
         /* Coordinator headshot: an <img> placed in either circle/box replaces the initials */
         .coordinator-photo,
@@ -1060,17 +1019,12 @@
 
         @media (max-width: 968px) {
             .ruled-list { grid-template-columns: 1fr; }
-            .memberships-section { grid-template-columns: 1fr; gap: 2rem; }
-            .memberships-section .photo-slot { max-width: 480px; }
             .photo-row { column-gap: 1rem; }
-            .doc-row { column-gap: 1rem; }
         }
 
         @media (max-width: 700px) {
             .photo-row { grid-template-columns: 1fr; row-gap: 1rem; }
             .photo-row .photo-slot { aspect-ratio: 16 / 9; }
-            .doc-row { grid-template-columns: 1fr; }
-            .doc-row .photo-slot { aspect-ratio: 16 / 9; }
         }
 
         @media (max-width: 700px) {
@@ -1109,7 +1063,7 @@
         /* Logo sits centred in the header like the coming-soon pages (inline img sat 4px high) */
         .logo img { display: block; }
 
-        /* What We Do dropdown: every service, in a dark panel under the menu item (hover or keyboard focus) */
+        /* What We Do and Our Team dropdowns: a solid dark panel under the menu item (hover or keyboard focus) */
         .nav-item.has-dropdown { position: relative; }
 
         .nav-dropdown {
@@ -1120,10 +1074,8 @@
             margin: 0;
             padding: 0.4rem 0;
             list-style: none;
-            background: rgba(15, 20, 25, 0.92);
+            background: #0F1419;
             border: 1px solid rgba(255, 255, 255, 0.18);
-            -webkit-backdrop-filter: blur(14px);
-            backdrop-filter: blur(14px);
             opacity: 0;
             visibility: hidden;
             transform: translate(-50%, 6px);
@@ -1150,12 +1102,17 @@
             text-transform: uppercase;
             text-decoration: none;
             white-space: nowrap;
-            opacity: 0.75;
+            opacity: 1;
             transition: var(--transition);
         }
 
         .nav-dropdown a:hover,
         .nav-dropdown a:focus-visible { opacity: 1; background: rgba(255, 255, 255, 0.06); }
+
+        /* Sub-services sit indented under their main service */
+        .nav-dropdown .nav-sub { list-style: none; margin: -0.4rem 0 0; padding: 0 0 0.4rem; }
+        .nav-dropdown .nav-sub li + li { border-top: 0; }
+        .nav-dropdown .nav-sub a { padding: 0.45rem 1.4rem 0.45rem 2.6rem; font-size: 0.66rem; letter-spacing: 1.5px; }
 
         /* Footer: plain bottom bar, no divider, pinned to the bottom of short pages */
         body {
@@ -1253,7 +1210,7 @@
 
         /* Credentials: the award and the memberships heading use the same small uppercase label as the protocols */
         #credentials { padding-top: 2.5rem; }
-        #credentials .memberships-section { margin-bottom: 0; align-items: start; }
+        #credentials .memberships-section { margin-bottom: 0; }
 
         .credential-award {
             margin-bottom: 1.5rem;
@@ -1266,7 +1223,7 @@
         .credentials-subheading {
             margin-bottom: 0.3rem;
             font-size: 0.78rem;
-            font-weight: 600;
+            font-weight: 700;
             letter-spacing: 2px;
             text-transform: uppercase;
         }
@@ -1347,17 +1304,36 @@
                     <li class="nav-item has-dropdown">
                         <a href="index.html#services">What We Do</a>
                         <ul class="nav-dropdown">
-                            <li><a href="general-contracting.html">General Contracting</a></li>
-                            <li><a href="water-sanitary-storm.html">Water, Sanitary &amp; Storm</a></li>
-                            <li><a href="earthworks.html">Earthworks</a></li>
-                            <li><a href="infrastructure-renewal.html">Infrastructure Renewal</a></li>
-                            <li><a href="lift-station-construction.html">Lift Station Construction</a></li>
-                            <li><a href="project-management.html">Project Management</a></li>
-                            <li><a href="survey-drone.html">Survey &amp; Drone</a></li>
+                            <li><a href="general-contracting.html">General Contracting</a>
+                                <ul class="nav-sub">
+                                    <li><a href="lift-station-construction.html">Lift Station Construction</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="water-sanitary-storm.html">Water, Sanitary &amp; Storm</a>
+                                <ul class="nav-sub">
+                                    <li><a href="deep-utilities-installation.html">Deep Utilities Installation</a></li>
+                                    <li><a href="infrastructure-renewal.html">Infrastructure Renewal</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="earthworks.html">Earthworks</a>
+                                <ul class="nav-sub">
+                                    <li><a href="detailed-excavation.html">Detailed Excavation</a></li>
+                                    <li><a href="bulk-earthworks.html">Bulk Earthworks</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="survey-drone.html">Survey, Drone &amp; Machine Control</a></li>
                         </ul>
                     </li>
                     <!-- Projects page hidden: <li class="nav-item"><a href="projects.html">Our Projects</a></li> -->
-                    <li class="nav-item"><a href="team.html">Our Team</a></li>
+                    <li class="nav-item has-dropdown">
+                        <a href="team.html">Our Team</a>
+                        <ul class="nav-dropdown">
+                            <li><a href="team.html#leadership">Leadership Team</a></li>
+                            <li><a href="team.html#project-team">Project Team</a></li>
+                            <li><a href="team.html#administrative-staff">Administrative Staff</a></li>
+                            <li><a href="team.html#safety-team">Safety</a></li>
+                        </ul>
+                    </li>
                     <li class="nav-item active"><a href="safety.html">Safety</a></li>
                     <li class="nav-item"><a href="careers.html">Careers</a></li>
                     <li class="nav-item"><a href="contact.html">Contact</a></li>
@@ -1435,7 +1411,7 @@
             <p class="eyebrow">On site</p>
             <h2 class="section-heading"><strong>Safety</strong> Protocols</h2>
             <div class="photo-row">
-                <figure class="photo-slot"><img src="safety-crew-in-ppe.jpg" alt="Two Degner crew members in hard hats and high-visibility vests walking past an excavator" width="1200" height="900" loading="lazy" decoding="async"></figure>
+                <figure class="photo-slot"><img src="safety-crew-in-ppe.jpg" alt="A Degner foreman and a crew member in hard hats and high-visibility vests walking past an excavator" width="1200" height="900" loading="lazy" decoding="async"></figure>
                 <figure class="photo-slot"><img src="safety-three-point-contact.jpg" alt="A Degner worker using the handrail to climb onto an excavator" width="1200" height="900" loading="lazy" decoding="async"></figure>
                 <figure class="photo-slot"><img src="safety-foreman-watching-loader.jpg" alt="A Degner foreman watching a track loader from a safe distance" width="1200" height="900" loading="lazy" decoding="async"></figure>
             </div>
@@ -1452,7 +1428,7 @@
             </ul>
         </section>
 
-        <!-- Credentials: award, memberships, the COR certificate, and the policies and certificates -->
+        <!-- Credentials: award and memberships -->
         <section class="safety-section" id="credentials">
             <p class="eyebrow">Recognition</p>
             <h2 class="section-heading"><strong>Our</strong> Credentials</h2>
@@ -1468,31 +1444,9 @@
                         <li><strong>Alberta Construction Safety Association (ACSA)</strong></li>
                         <li><strong>Alberta Roadbuilders &amp; Heavy Construction Association (ARHCA)</strong></li>
                         <li><strong>Edmonton Construction Association (ECA)</strong></li>
+                        <li><strong>ISNetworld</strong>, contractor prequalification</li>
                     </ul>
                 </div>
-                <a class="doc-card" href="cor-certificate.pdf" target="_blank" rel="noopener">
-                    <figure class="photo-slot"><img src="cor-certificate.jpg" alt="Degner Construction's Certificate of Recognition from the Alberta Construction Safety Association and the Government of Alberta" width="1400" height="1082" loading="lazy" decoding="async"></figure>
-                    <span class="doc-name">Certificate of Recognition (COR)</span>
-                    <span class="doc-meta">Valid to October 15, 2027 &middot; View PDF</span>
-                </a>
-            </div>
-            <h3 class="credentials-subheading doc-heading">Policies &amp; Certificates</h3>
-            <div class="doc-row">
-                <a class="doc-card" href="company-safety-policy.jpg" target="_blank" rel="noopener">
-                    <figure class="photo-slot"><img src="company-safety-policy.jpg" alt="Degner's Company Safety Policy, signed by Dale Degner, Owner and President" width="1224" height="1584" loading="lazy" decoding="async"></figure>
-                    <span class="doc-name">Company Safety Policy</span>
-                    <span class="doc-meta">Signed January 1, 2026 &middot; View</span>
-                </a>
-                <a class="doc-card" href="environmental-policy.jpg" target="_blank" rel="noopener">
-                    <figure class="photo-slot"><img src="environmental-policy.jpg" alt="Degner's Environmental Policy, signed by Dale Degner, Owner and President" width="1224" height="1584" loading="lazy" decoding="async"></figure>
-                    <span class="doc-name">Environmental Policy</span>
-                    <span class="doc-meta">Signed January 1, 2026 &middot; View</span>
-                </a>
-                <a class="doc-card" href="safety-fitness-certificate.pdf" target="_blank" rel="noopener">
-                    <figure class="photo-slot"><img src="safety-fitness-certificate.jpg" alt="Degner Construction's Alberta Safety Fitness Certificate" width="1400" height="1812" loading="lazy" decoding="async"></figure>
-                    <span class="doc-name">Safety Fitness Certificate</span>
-                    <span class="doc-meta">Valid to February 29, 2028 &middot; View PDF</span>
-                </a>
             </div>
         </section>
 
@@ -1508,7 +1462,7 @@
                 <div class="coordinator-modal-credentials">NCSO · COR Peer Auditor · H&amp;S Administrator</div>
                 <div class="coordinator-modal-title">Safety Coordinator</div>
                 <p class="coordinator-modal-bio">Michelle is our Safety Coordinator. She holds a National Construction Safety Officer (NCSO) designation and is a COR Peer Auditor, with safety training through the Alberta Construction Safety Association and the University of New Brunswick. She is a member of the Alberta Society of Health and Safety Professionals (ASHSP).</p>
-                <p class="coordinator-modal-bio">She has been with Degner since 2020 and has worked in construction safety for almost ten years. She runs our health and safety program day to day, including site inspections, hazard assessments, and making sure our work meets provincial and federal safety regulations.</p>
+                <p class="coordinator-modal-bio">She has been with Degner since 2020 and has over 20 years of safety experience, both in the office and on site. She runs our health and safety program day to day, including site inspections, hazard assessments, and making sure our work meets provincial and federal safety regulations.</p>
                 <p class="coordinator-modal-bio">If you have a safety question about one of our sites, she is the person to talk to.</p>
             </div>
         </div>

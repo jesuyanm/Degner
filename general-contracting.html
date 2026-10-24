@@ -23,7 +23,7 @@
     <meta property="og:title" content="General Contracting in Alberta | Degner Construction">
     <meta property="og:description" content="General contracting for municipal infrastructure projects in Alberta. Degner Construction manages the work from start to finish and delivers on schedule.">
     <meta property="og:url" content="https://degner.ca/general-contracting">
-    <meta property="og:image" content="https://degner.ca/service-general-contracting.jpg">
+    <meta property="og:image" content="https://degner.ca/project-trench-in-mountain-town.jpg">
     <meta property="og:image:alt" content="General Contracting by Degner Construction">
     <meta property="og:locale" content="en_CA">
 
@@ -31,7 +31,7 @@
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="General Contracting in Alberta | Degner Construction">
     <meta name="twitter:description" content="General contracting for municipal infrastructure projects in Alberta. Degner Construction manages the work from start to finish and delivers on schedule.">
-    <meta name="twitter:image" content="https://degner.ca/service-general-contracting.jpg">
+    <meta name="twitter:image" content="https://degner.ca/project-trench-in-mountain-town.jpg">
 
     <!-- Structured Data -->
     <script type="application/ld+json">
@@ -45,7 +45,7 @@
           "serviceType": "General Contracting",
           "description": "General contracting for municipal infrastructure projects in Alberta. Degner Construction manages the work from start to finish and delivers on schedule.",
           "url": "https://degner.ca/general-contracting",
-          "image": "https://degner.ca/service-general-contracting.jpg",
+          "image": "https://degner.ca/project-trench-in-mountain-town.jpg",
           "areaServed": {
             "@type": "AdministrativeArea",
             "name": "Alberta"
@@ -631,7 +631,7 @@
         /* Logo sits centred in the header like the coming-soon pages (inline img sat 4px high) */
         .logo img { display: block; }
 
-        /* What We Do dropdown: every service, in a dark panel under the menu item (hover or keyboard focus) */
+        /* What We Do and Our Team dropdowns: a solid dark panel under the menu item (hover or keyboard focus) */
         .nav-item.has-dropdown { position: relative; }
 
         .nav-dropdown {
@@ -642,10 +642,8 @@
             margin: 0;
             padding: 0.4rem 0;
             list-style: none;
-            background: rgba(15, 20, 25, 0.92);
+            background: #0F1419;
             border: 1px solid rgba(255, 255, 255, 0.18);
-            -webkit-backdrop-filter: blur(14px);
-            backdrop-filter: blur(14px);
             opacity: 0;
             visibility: hidden;
             transform: translate(-50%, 6px);
@@ -672,12 +670,24 @@
             text-transform: uppercase;
             text-decoration: none;
             white-space: nowrap;
-            opacity: 0.75;
+            opacity: 1;
             transition: var(--transition);
         }
 
         .nav-dropdown a:hover,
         .nav-dropdown a:focus-visible { opacity: 1; background: rgba(255, 255, 255, 0.06); }
+
+        /* Sub-services sit indented under their main service */
+        .nav-dropdown .nav-sub { list-style: none; margin: -0.4rem 0 0; padding: 0 0 0.4rem; }
+        .nav-dropdown .nav-sub li + li { border-top: 0; }
+        .nav-dropdown .nav-sub a { padding: 0.45rem 1.4rem 0.45rem 2.6rem; font-size: 0.66rem; letter-spacing: 1.5px; }
+
+        /* Sub-services listed under the intro on a main service page */
+        .service-branches { list-style: none; max-width: 760px; margin: 1.5rem 0 0; padding: 0; border-top: 1px solid rgba(255, 255, 255, 0.15); }
+        .service-branches li { border-bottom: 1px solid rgba(255, 255, 255, 0.15); }
+        .service-branches a { display: flex; justify-content: space-between; align-items: center; gap: 1rem; padding: 0.75rem 0; color: var(--text-dark); text-decoration: none; font-size: 0.78rem; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; transition: var(--transition); }
+        .service-branches a:hover { padding-left: 0.4rem; }
+        .service-branches svg { width: 18px; height: 18px; flex-shrink: 0; }
 
         /* Service page heading: title and blurb beside a photo (black and white, colour on hover) */
         .service-hero {
@@ -920,17 +930,36 @@
                     <li class="nav-item has-dropdown active">
                         <a href="index.html#services">What We Do</a>
                         <ul class="nav-dropdown">
-                            <li><a href="general-contracting.html">General Contracting</a></li>
-                            <li><a href="water-sanitary-storm.html">Water, Sanitary &amp; Storm</a></li>
-                            <li><a href="earthworks.html">Earthworks</a></li>
-                            <li><a href="infrastructure-renewal.html">Infrastructure Renewal</a></li>
-                            <li><a href="lift-station-construction.html">Lift Station Construction</a></li>
-                            <li><a href="project-management.html">Project Management</a></li>
-                            <li><a href="survey-drone.html">Survey &amp; Drone</a></li>
+                            <li><a href="general-contracting.html">General Contracting</a>
+                                <ul class="nav-sub">
+                                    <li><a href="lift-station-construction.html">Lift Station Construction</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="water-sanitary-storm.html">Water, Sanitary &amp; Storm</a>
+                                <ul class="nav-sub">
+                                    <li><a href="deep-utilities-installation.html">Deep Utilities Installation</a></li>
+                                    <li><a href="infrastructure-renewal.html">Infrastructure Renewal</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="earthworks.html">Earthworks</a>
+                                <ul class="nav-sub">
+                                    <li><a href="detailed-excavation.html">Detailed Excavation</a></li>
+                                    <li><a href="bulk-earthworks.html">Bulk Earthworks</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="survey-drone.html">Survey, Drone &amp; Machine Control</a></li>
                         </ul>
                     </li>
                     <!-- Projects page hidden: <li class="nav-item"><a href="projects.html">Our Projects</a></li> -->
-                    <li class="nav-item"><a href="team.html">Our Team</a></li>
+                    <li class="nav-item has-dropdown">
+                        <a href="team.html">Our Team</a>
+                        <ul class="nav-dropdown">
+                            <li><a href="team.html#leadership">Leadership Team</a></li>
+                            <li><a href="team.html#project-team">Project Team</a></li>
+                            <li><a href="team.html#administrative-staff">Administrative Staff</a></li>
+                            <li><a href="team.html#safety-team">Safety</a></li>
+                        </ul>
+                    </li>
                     <li class="nav-item"><a href="safety.html">Safety</a></li>
                     <li class="nav-item"><a href="careers.html">Careers</a></li>
                     <li class="nav-item"><a href="contact.html">Contact</a></li>
@@ -985,10 +1014,13 @@
             <p class="eyebrow">What We Do</p>
             <h1 class="page-title"><strong>General</strong> Contracting</h1>
             <p class="service-intro">We provide general contracting for municipal infrastructure projects, managing the work from start to finish and coordinating each stage to deliver a quality result on schedule.</p>
+            <ul class="service-branches">
+                <li><a href="lift-station-construction.html">Lift Station Construction<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></li>
+            </ul>
             <a class="section-cta" href="contact.html?type=quote&subject=General+Contracting">Request a Quote</a>
         </div>
         <figure class="service-photo">
-            <img src="service-general-contracting.jpg" alt="Two Degner crew members walking past an excavator on site" width="1400" height="1050">
+            <img src="project-trench-in-mountain-town.jpg" alt="Two Degner excavators and a dump truck digging a long trench below snow-capped mountains, with a crew member in the trench" width="1200" height="900">
         </figure>
     </div>
 

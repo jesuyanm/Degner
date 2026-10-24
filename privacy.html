@@ -1068,7 +1068,7 @@
         /* Logo sits centred in the header like the coming-soon pages (inline img sat 4px high) */
         .logo img { display: block; }
 
-        /* What We Do dropdown: every service, in a dark panel under the menu item (hover or keyboard focus) */
+        /* What We Do and Our Team dropdowns: a solid dark panel under the menu item (hover or keyboard focus) */
         .nav-item.has-dropdown { position: relative; }
 
         .nav-dropdown {
@@ -1079,10 +1079,8 @@
             margin: 0;
             padding: 0.4rem 0;
             list-style: none;
-            background: rgba(15, 20, 25, 0.92);
+            background: #0F1419;
             border: 1px solid rgba(255, 255, 255, 0.18);
-            -webkit-backdrop-filter: blur(14px);
-            backdrop-filter: blur(14px);
             opacity: 0;
             visibility: hidden;
             transform: translate(-50%, 6px);
@@ -1109,12 +1107,17 @@
             text-transform: uppercase;
             text-decoration: none;
             white-space: nowrap;
-            opacity: 0.75;
+            opacity: 1;
             transition: var(--transition);
         }
 
         .nav-dropdown a:hover,
         .nav-dropdown a:focus-visible { opacity: 1; background: rgba(255, 255, 255, 0.06); }
+
+        /* Sub-services sit indented under their main service */
+        .nav-dropdown .nav-sub { list-style: none; margin: -0.4rem 0 0; padding: 0 0 0.4rem; }
+        .nav-dropdown .nav-sub li + li { border-top: 0; }
+        .nav-dropdown .nav-sub a { padding: 0.45rem 1.4rem 0.45rem 2.6rem; font-size: 0.66rem; letter-spacing: 1.5px; }
 
         /* Footer: plain bottom bar, no divider, pinned to the bottom of short pages */
         body {
@@ -1319,17 +1322,36 @@
                     <li class="nav-item has-dropdown">
                         <a href="index.html#services">What We Do</a>
                         <ul class="nav-dropdown">
-                            <li><a href="general-contracting.html">General Contracting</a></li>
-                            <li><a href="water-sanitary-storm.html">Water, Sanitary &amp; Storm</a></li>
-                            <li><a href="earthworks.html">Earthworks</a></li>
-                            <li><a href="infrastructure-renewal.html">Infrastructure Renewal</a></li>
-                            <li><a href="lift-station-construction.html">Lift Station Construction</a></li>
-                            <li><a href="project-management.html">Project Management</a></li>
-                            <li><a href="survey-drone.html">Survey &amp; Drone</a></li>
+                            <li><a href="general-contracting.html">General Contracting</a>
+                                <ul class="nav-sub">
+                                    <li><a href="lift-station-construction.html">Lift Station Construction</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="water-sanitary-storm.html">Water, Sanitary &amp; Storm</a>
+                                <ul class="nav-sub">
+                                    <li><a href="deep-utilities-installation.html">Deep Utilities Installation</a></li>
+                                    <li><a href="infrastructure-renewal.html">Infrastructure Renewal</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="earthworks.html">Earthworks</a>
+                                <ul class="nav-sub">
+                                    <li><a href="detailed-excavation.html">Detailed Excavation</a></li>
+                                    <li><a href="bulk-earthworks.html">Bulk Earthworks</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="survey-drone.html">Survey, Drone &amp; Machine Control</a></li>
                         </ul>
                     </li>
                     <!-- Projects page hidden: <li class="nav-item"><a href="projects.html">Our Projects</a></li> -->
-                    <li class="nav-item"><a href="team.html">Our Team</a></li>
+                    <li class="nav-item has-dropdown">
+                        <a href="team.html">Our Team</a>
+                        <ul class="nav-dropdown">
+                            <li><a href="team.html#leadership">Leadership Team</a></li>
+                            <li><a href="team.html#project-team">Project Team</a></li>
+                            <li><a href="team.html#administrative-staff">Administrative Staff</a></li>
+                            <li><a href="team.html#safety-team">Safety</a></li>
+                        </ul>
+                    </li>
                     <li class="nav-item"><a href="safety.html">Safety</a></li>
                     <li class="nav-item"><a href="careers.html">Careers</a></li>
                     <li class="nav-item"><a href="contact.html">Contact</a></li>

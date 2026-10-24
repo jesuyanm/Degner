@@ -1038,7 +1038,7 @@
         /* Logo sits centred in the header like the coming-soon pages (inline img sat 4px high) */
         .logo img { display: block; }
 
-        /* What We Do dropdown: every service, in a dark panel under the menu item (hover or keyboard focus) */
+        /* What We Do and Our Team dropdowns: a solid dark panel under the menu item (hover or keyboard focus) */
         .nav-item.has-dropdown { position: relative; }
 
         .nav-dropdown {
@@ -1049,10 +1049,8 @@
             margin: 0;
             padding: 0.4rem 0;
             list-style: none;
-            background: rgba(15, 20, 25, 0.92);
+            background: #0F1419;
             border: 1px solid rgba(255, 255, 255, 0.18);
-            -webkit-backdrop-filter: blur(14px);
-            backdrop-filter: blur(14px);
             opacity: 0;
             visibility: hidden;
             transform: translate(-50%, 6px);
@@ -1079,12 +1077,35 @@
             text-transform: uppercase;
             text-decoration: none;
             white-space: nowrap;
-            opacity: 0.75;
+            opacity: 1;
             transition: var(--transition);
         }
 
         .nav-dropdown a:hover,
         .nav-dropdown a:focus-visible { opacity: 1; background: rgba(255, 255, 255, 0.06); }
+
+        /* Sub-services sit indented under their main service */
+        .nav-dropdown .nav-sub { list-style: none; margin: -0.4rem 0 0; padding: 0 0 0.4rem; }
+        .nav-dropdown .nav-sub li + li { border-top: 0; }
+        .nav-dropdown .nav-sub a { padding: 0.45rem 1.4rem 0.45rem 2.6rem; font-size: 0.66rem; letter-spacing: 1.5px; }
+
+        /* Team groups (Leadership, Project, Administrative, Safety); the Our Team menu links to each one */
+        .team-section { max-width: 1400px; margin: 0 auto; scroll-margin-top: 120px; }
+        .team-section + .team-section { margin-top: 3rem; }
+        .team-section-heading {
+            margin: 0 0 1.25rem;
+            padding-bottom: 0.6rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+            font-size: clamp(1.05rem, 2vw, 1.4rem);
+            font-weight: 300;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+        }
+        .team-section-heading strong { font-weight: 700; }
+
+
+        @media (max-width: 968px) { .team-section { scroll-margin-top: 90px; } .team-section + .team-section { margin-top: 2.5rem; } }
+        @media (max-width: 600px) { .team-section { scroll-margin-top: 64px; } .team-section + .team-section { margin-top: 2rem; } }
 
         /* Footer: plain bottom bar, no divider, pinned to the bottom of short pages */
         body {
@@ -1214,17 +1235,36 @@
                     <li class="nav-item has-dropdown">
                         <a href="index.html#services">What We Do</a>
                         <ul class="nav-dropdown">
-                            <li><a href="general-contracting.html">General Contracting</a></li>
-                            <li><a href="water-sanitary-storm.html">Water, Sanitary &amp; Storm</a></li>
-                            <li><a href="earthworks.html">Earthworks</a></li>
-                            <li><a href="infrastructure-renewal.html">Infrastructure Renewal</a></li>
-                            <li><a href="lift-station-construction.html">Lift Station Construction</a></li>
-                            <li><a href="project-management.html">Project Management</a></li>
-                            <li><a href="survey-drone.html">Survey &amp; Drone</a></li>
+                            <li><a href="general-contracting.html">General Contracting</a>
+                                <ul class="nav-sub">
+                                    <li><a href="lift-station-construction.html">Lift Station Construction</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="water-sanitary-storm.html">Water, Sanitary &amp; Storm</a>
+                                <ul class="nav-sub">
+                                    <li><a href="deep-utilities-installation.html">Deep Utilities Installation</a></li>
+                                    <li><a href="infrastructure-renewal.html">Infrastructure Renewal</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="earthworks.html">Earthworks</a>
+                                <ul class="nav-sub">
+                                    <li><a href="detailed-excavation.html">Detailed Excavation</a></li>
+                                    <li><a href="bulk-earthworks.html">Bulk Earthworks</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="survey-drone.html">Survey, Drone &amp; Machine Control</a></li>
                         </ul>
                     </li>
                     <!-- Projects page hidden: <li class="nav-item"><a href="projects.html">Our Projects</a></li> -->
-                    <li class="nav-item active"><a href="team.html">Our Team</a></li>
+                    <li class="nav-item has-dropdown active">
+                        <a href="team.html">Our Team</a>
+                        <ul class="nav-dropdown">
+                            <li><a href="team.html#leadership">Leadership Team</a></li>
+                            <li><a href="team.html#project-team">Project Team</a></li>
+                            <li><a href="team.html#administrative-staff">Administrative Staff</a></li>
+                            <li><a href="team.html#safety-team">Safety</a></li>
+                        </ul>
+                    </li>
                     <li class="nav-item"><a href="safety.html">Safety</a></li>
                     <li class="nav-item"><a href="careers.html">Careers</a></li>
                     <li class="nav-item"><a href="contact.html">Contact</a></li>
@@ -1281,74 +1321,162 @@
 
     <!-- Main Content -->
     <main class="main-content">
-        <div class="team-grid">
-            <div class="team-member"
-                data-initials="DD"
-                data-name="Dale Degner"
-                data-credentials="BCom., MBA"
-                data-title="President"
-                data-bio="With over two decades of leadership in the construction industry, Dale brings strategic vision and operational excellence to every project. His MBA background combined with hands-on construction experience ensures that Degner Construction remains at the forefront of municipal infrastructure development. Dale's commitment to building community value drives the company's mission and values.">
-                <div class="team-photo"><span>DD</span></div>
-                <h3 class="team-name">Dale Degner</h3>
-                <div class="team-credentials">BCom., MBA</div>
-                <div class="team-title">President</div>
-                <span class="team-view-bio">View profile <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg></span>
-            </div>
+        <section class="team-section" id="leadership">
+            <h2 class="team-section-heading"><strong>Leadership</strong> Team</h2>
+            <div class="team-grid">
+                <div class="team-member"
+                    data-initials="DD"
+                    data-name="Dale Degner"
+                    data-credentials="BCom., MBA"
+                    data-title="President"
+                    data-bio="With over two decades of leadership in the construction industry, Dale brings strategic vision and operational excellence to every project. His MBA background combined with hands-on construction experience ensures that Degner Construction remains at the forefront of municipal infrastructure development. Dale's commitment to building community value drives the company's mission and values.">
+                    <div class="team-photo"><span>DD</span></div>
+                    <h3 class="team-name">Dale Degner</h3>
+                    <div class="team-credentials">BCom., MBA</div>
+                    <div class="team-title">President</div>
+                    <span class="team-view-bio">View profile <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg></span>
+                </div>
 
-            <div class="team-member"
-                data-initials="SA"
-                data-photo="shaun-andreas-wide.jpg"
-                data-name="Shaun Andreas"
-                data-credentials="CET, MBA"
-                data-title="General Manager"
-                data-bio="Shaun's technical expertise as a Certified Engineering Technologist ensures that every project meets the highest standards of quality and safety. With extensive experience in project management and field operations, he oversees the seamless execution of complex municipal infrastructure projects. His attention to detail and commitment to excellence make him an invaluable leader in our organization.">
-                <div class="team-photo"><img src="shaun-andreas.jpg" alt="Shaun Andreas" width="480" height="480"></div>
-                <h3 class="team-name">Shaun Andreas</h3>
-                <div class="team-credentials">CET, MBA</div>
-                <div class="team-title">General Manager</div>
-                <span class="team-view-bio">View profile <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg></span>
-            </div>
+                <div class="team-member"
+                    data-initials="SA"
+                    data-photo="shaun-andreas-wide.jpg"
+                    data-name="Shaun Andreas"
+                    data-credentials="CET, MBA"
+                    data-title="General Manager"
+                    data-bio="Shaun's technical expertise as a Certified Engineering Technologist ensures that every project meets the highest standards of quality and safety. With extensive experience in project management and field operations, he oversees the seamless execution of complex municipal infrastructure projects. His attention to detail and commitment to excellence make him an invaluable leader in our organization.">
+                    <div class="team-photo"><img src="shaun-andreas.jpg" alt="Shaun Andreas" width="480" height="480"></div>
+                    <h3 class="team-name">Shaun Andreas</h3>
+                    <div class="team-credentials">CET, MBA</div>
+                    <div class="team-title">General Manager</div>
+                    <span class="team-view-bio">View profile <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg></span>
+                </div>
 
-            <div class="team-member"
-                data-initials="TT"
-                data-photo="tom-thornton-wide.jpg"
-                data-name="Tom Thornton"
-                data-credentials="GSC"
-                data-title="Operations Manager"
-                data-bio="Tom's operational expertise ensures that our field operations run smoothly and efficiently. With deep knowledge of construction processes and equipment management, he coordinates resources and personnel to maximize productivity while maintaining our high safety standards. His hands-on approach and problem-solving abilities make him essential to our daily operations and project success.">
-                <div class="team-photo"><img src="tom-thornton.jpg" alt="Tom Thornton" width="480" height="480"></div>
-                <h3 class="team-name">Tom Thornton</h3>
-                <div class="team-credentials">GSC</div>
-                <div class="team-title">Operations Manager</div>
-                <span class="team-view-bio">View profile <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg></span>
+                <div class="team-member"
+                    data-initials="TT"
+                    data-photo="tom-thornton-wide.jpg"
+                    data-name="Tom Thornton"
+                    data-credentials="GSC"
+                    data-title="Operations Manager"
+                    data-bio="Tom's operational expertise ensures that our field operations run smoothly and efficiently. With deep knowledge of construction processes and equipment management, he coordinates resources and personnel to maximize productivity while maintaining our high safety standards. His hands-on approach and problem-solving abilities make him essential to our daily operations and project success.">
+                    <div class="team-photo"><img src="tom-thornton.jpg" alt="Tom Thornton" width="480" height="480"></div>
+                    <h3 class="team-name">Tom Thornton</h3>
+                    <div class="team-credentials">GSC</div>
+                    <div class="team-title">Operations Manager</div>
+                    <span class="team-view-bio">View profile <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg></span>
+                </div>
             </div>
+        </section>
 
-            <div class="team-member"
-                data-initials="MD"
-                data-name="Matt Dudka"
-                data-credentials="CET"
-                data-title="Project Manager"
-                data-bio="Matt combines technical proficiency with exceptional project management skills to deliver infrastructure projects on time and within budget. His Certified Engineering Technologist credentials and practical field experience enable him to navigate complex project challenges while maintaining clear communication with clients and stakeholders. Matt's dedication to innovative solutions drives project success.">
-                <div class="team-photo"><span>MD</span></div>
-                <h3 class="team-name">Matt Dudka</h3>
-                <div class="team-credentials">CET</div>
-                <div class="team-title">Project Manager</div>
-                <span class="team-view-bio">View profile <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg></span>
-            </div>
+        <section class="team-section" id="project-team">
+            <h2 class="team-section-heading"><strong>Project</strong> Team</h2>
+            <div class="team-grid">
+                <div class="team-member"
+                    data-initials="MD"
+                    data-name="Matt Dudka"
+                    data-credentials="CET"
+                    data-title="Project Manager"
+                    data-bio="Matt combines technical proficiency with exceptional project management skills to deliver infrastructure projects on time and within budget. His Certified Engineering Technologist credentials and practical field experience enable him to navigate complex project challenges while maintaining clear communication with clients and stakeholders. Matt's dedication to innovative solutions drives project success.">
+                    <div class="team-photo"><span>MD</span></div>
+                    <h3 class="team-name">Matt Dudka</h3>
+                    <div class="team-credentials">CET</div>
+                    <div class="team-title">Project Manager</div>
+                    <span class="team-view-bio">View profile <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg></span>
+                </div>
 
-            <div class="team-member"
-                data-initials="ED"
-                data-name="Evan Dirk"
-                data-credentials="CET"
-                data-title="Project Manager"
-                data-bio="Evan brings extensive project management experience to Degner Construction, backed by his Civil Engineering Technology diploma from NAIT. With a background spanning over a decade in construction project coordination and management, he delivers municipal infrastructure projects with precision and professionalism. Evan's hands-on expertise and commitment to quality make him a key contributor to our team's continued success.">
-                <div class="team-photo"><span>ED</span></div>
-                <h3 class="team-name">Evan Dirk</h3>
-                <div class="team-credentials">CET</div>
-                <div class="team-title">Project Manager</div>
-                <span class="team-view-bio">View profile <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg></span>
+                <div class="team-member"
+                    data-initials="ED"
+                    data-name="Evan Dirk"
+                    data-credentials="CET"
+                    data-title="Project Manager"
+                    data-bio="Evan brings extensive project management experience to Degner Construction, backed by his Civil Engineering Technology diploma from NAIT. With a background spanning over a decade in construction project coordination and management, he delivers municipal infrastructure projects with precision and professionalism. Evan's hands-on expertise and commitment to quality make him a key contributor to our team's continued success.">
+                    <div class="team-photo"><span>ED</span></div>
+                    <h3 class="team-name">Evan Dirk</h3>
+                    <div class="team-credentials">CET</div>
+                    <div class="team-title">Project Manager</div>
+                    <span class="team-view-bio">View profile <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg></span>
+                </div>
+
+                <!-- Placeholder: replace the initials, name, credentials, title and bio (in both places), and add data-photo / <img> when there is a headshot -->
+                <div class="team-member"
+                    data-initials="E1"
+                    data-name="Employee 1"
+                    data-credentials="CET"
+                    data-title="Project Coordinator"
+                    data-bio="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.">
+                    <div class="team-photo"><span>E1</span></div>
+                    <h3 class="team-name">Employee 1</h3>
+                    <div class="team-credentials">CET</div>
+                    <div class="team-title">Project Coordinator</div>
+                    <span class="team-view-bio">View profile <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg></span>
+                </div>
+
+                <!-- Placeholder: replace the initials, name, credentials, title and bio (in both places), and add data-photo / <img> when there is a headshot -->
+                <div class="team-member"
+                    data-initials="E2"
+                    data-name="Employee 2"
+                    data-credentials="CET"
+                    data-title="Project Coordinator"
+                    data-bio="Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim.">
+                    <div class="team-photo"><span>E2</span></div>
+                    <h3 class="team-name">Employee 2</h3>
+                    <div class="team-credentials">CET</div>
+                    <div class="team-title">Project Coordinator</div>
+                    <span class="team-view-bio">View profile <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg></span>
+                </div>
             </div>
-        </div>
+        </section>
+
+        <section class="team-section" id="administrative-staff">
+            <h2 class="team-section-heading"><strong>Administrative</strong> Staff</h2>
+            <div class="team-grid">
+                <!-- Placeholder: replace the initials, name, credentials, title and bio (in both places), and add data-photo / <img> when there is a headshot -->
+                <div class="team-member"
+                    data-initials="E1"
+                    data-name="Employee 1"
+                    data-credentials="BCom."
+                    data-title="Office Manager"
+                    data-bio="Curabitur pretium tincidunt lacus, nulla gravida orci a odio. Nullam varius, turpis et commodo pharetra, est eros bibendum elit, nec luctus magna felis sollicitudin mauris integer in mauris.">
+                    <div class="team-photo"><span>E1</span></div>
+                    <h3 class="team-name">Employee 1</h3>
+                    <div class="team-credentials">BCom.</div>
+                    <div class="team-title">Office Manager</div>
+                    <span class="team-view-bio">View profile <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg></span>
+                </div>
+
+                <!-- Placeholder: replace the initials, name, credentials, title and bio (in both places), and add data-photo / <img> when there is a headshot -->
+                <div class="team-member"
+                    data-initials="E2"
+                    data-name="Employee 2"
+                    data-credentials="CPB"
+                    data-title="Accounts &amp; Payroll Administrator"
+                    data-bio="Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante donec eu libero.">
+                    <div class="team-photo"><span>E2</span></div>
+                    <h3 class="team-name">Employee 2</h3>
+                    <div class="team-credentials">CPB</div>
+                    <div class="team-title">Accounts &amp; Payroll Administrator</div>
+                    <span class="team-view-bio">View profile <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg></span>
+                </div>
+            </div>
+        </section>
+
+        <section class="team-section" id="safety-team">
+            <h2 class="team-section-heading"><strong>Safety</strong></h2>
+            <div class="team-grid">
+                <div class="team-member"
+                    data-initials="MG"
+                    data-photo="michelle-gregoire-wide.jpg"
+                    data-name="Michelle Gregoire"
+                    data-credentials="NCSO"
+                    data-title="Safety Coordinator"
+                    data-bio="Michelle holds a National Construction Safety Officer (NCSO) designation and is a COR Peer Auditor. She has been with Degner since 2020 and has over 20 years of safety experience, both in the office and on site. She runs our health and safety program day to day, including site inspections, hazard assessments, and making sure our work meets provincial and federal safety regulations.">
+                    <div class="team-photo"><img src="michelle-gregoire.jpg" alt="Michelle Gregoire" width="600" height="600"></div>
+                    <h3 class="team-name">Michelle Gregoire</h3>
+                    <div class="team-credentials">NCSO</div>
+                    <div class="team-title">Safety Coordinator</div>
+                    <span class="team-view-bio">View profile <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg></span>
+                </div>
+            </div>
+        </section>
     </main>
 
     <!-- Team Modal Carousel -->
