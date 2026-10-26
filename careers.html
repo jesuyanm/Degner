@@ -717,48 +717,89 @@
             color: rgba(255, 255, 255, 0.75);
         }
 
-        /* Life at Degner: one row of photos; hover shows the caption */
+        /* Life at Degner: one large photo beside two stacked ones; the photo zooms slowly on hover */
         .culture-gallery {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 1.25rem;
+            gap: 1rem;
         }
 
-        /* fixed 3:2 rectangle at every width, instead of a fixed height that turned square on narrow screens */
         .culture-item {
             position: relative;
-            aspect-ratio: 3 / 2;
+            height: 200px;
             overflow: hidden;
-            background-size: cover;
-            background-position: center;
-            transition: var(--transition);
+            background: #111;
+            border: 1px solid rgba(255, 255, 255, 0.12);
         }
 
+        .culture-item::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: var(--img) center / cover no-repeat;
+            transition: transform 1.2s cubic-bezier(0.2, 0.6, 0.2, 1);
+        }
+
+        .culture-item:hover::before { transform: scale(1.07); }
+
+
+        /* title always visible over a gradient; the description slides open on hover (always shown on touch screens) */
         .culture-overlay {
             position: absolute;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            padding: 1rem 1.25rem;
-            background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
-            transform: translateY(100%);
-            transition: var(--transition);
+            inset: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 1rem 1.1rem;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.85) 0%, rgba(0, 0, 0, 0.35) 45%, rgba(0, 0, 0, 0) 75%);
+            transition: background 0.4s ease;
         }
 
-        .culture-item:hover .culture-overlay { transform: translateY(0); }
+        .culture-item:hover .culture-overlay {
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.92) 0%, rgba(0, 0, 0, 0.55) 60%, rgba(0, 0, 0, 0.15) 100%);
+        }
 
         .culture-overlay h3 {
-            margin-bottom: 0.25rem;
-            font-size: 0.78rem;
+            position: relative;
+            margin-bottom: 0;
+            padding-top: 0.75rem;
+            font-size: 0.85rem;
             font-weight: 600;
-            letter-spacing: 2px;
+            letter-spacing: 2.5px;
             text-transform: uppercase;
         }
 
-        .culture-overlay p { font-size: 0.85rem; line-height: 1.4; opacity: 0.9; }
+        .culture-overlay h3::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 28px;
+            height: 2px;
+            background: var(--primary-white);
+            transition: width 0.4s ease;
+        }
 
-        @media (max-width: 1100px) {
-            .culture-item { aspect-ratio: 4 / 3; }
+        .culture-item:hover .culture-overlay h3::before { width: 56px; }
+
+        .culture-overlay p {
+            max-height: 0;
+            margin-top: 0;
+            font-size: 0.88rem;
+            line-height: 1.5;
+            opacity: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease, margin-top 0.4s ease, opacity 0.4s ease;
+        }
+
+        .culture-item:hover .culture-overlay p {
+            max-height: 6rem;
+            margin-top: 0.5rem;
+            opacity: 0.92;
+        }
+
+        @media (hover: none) {
+            .culture-overlay p { max-height: 6rem; margin-top: 0.5rem; opacity: 0.92; }
         }
 
         @media (max-width: 900px) {
@@ -770,7 +811,7 @@
             .section-heading { font-size: clamp(1.4rem, 6.5vw, 2rem); letter-spacing: 0.08em; }
             .benefits-list { grid-template-columns: 1fr; }
             .culture-gallery { grid-template-columns: 1fr; gap: 0.75rem; }
-            .culture-item { aspect-ratio: 3 / 2; }
+            .culture-item { height: 170px; }
         }
 
         .resume-form-block {
@@ -1699,19 +1740,19 @@
             <p class="eyebrow">Our culture</p>
             <h2 class="section-heading"><strong>Life</strong> at Degner</h2>
             <div class="culture-gallery">
-                <div class="culture-item" style="background-image: url('team-meeting.jpg');">
+                <div class="culture-item" style="--img: url('team-meeting.jpg');">
                     <div class="culture-overlay">
                         <h3>Team Collaboration</h3>
                         <p>Regular team meetings ensure everyone is aligned and informed</p>
                     </div>
                 </div>
-                <div class="culture-item" style="background-image: url('excavators-northern-lights.jpg');">
+                <div class="culture-item" style="--img: url('excavators-northern-lights.jpg');">
                     <div class="culture-overlay">
                         <h3>Modern Equipment</h3>
                         <p>Work with state-of-the-art construction equipment and technology</p>
                     </div>
                 </div>
-                <div class="culture-item" style="background-image: url('operator-at-loader-controls.jpg');">
+                <div class="culture-item" style="--img: url('operator-at-loader-controls.jpg');">
                     <div class="culture-overlay">
                         <h3>Career Growth</h3>
                         <p>Ongoing training and development opportunities for advancement</p>

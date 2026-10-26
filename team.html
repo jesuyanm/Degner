@@ -878,6 +878,56 @@
             #modalNext { right: 0.5rem; }
         }
 
+        /* Carousel polish: accent line, credentials tag, side cards clickable */
+        .team-modal-photo { height: 240px; position: relative; }
+
+        .team-modal-photo::after {
+            content: "";
+            position: absolute;
+            inset: auto 0 0 0;
+            height: 60px;
+            background: linear-gradient(transparent, #0d0d0d);
+        }
+
+        .team-modal-info { padding: 1.5rem 1.75rem 1.75rem; position: relative; }
+
+        .team-modal-info::before {
+            content: "";
+            display: block;
+            width: 40px;
+            height: 2px;
+            margin-bottom: 1rem;
+            background: var(--primary-white);
+        }
+
+        .team-modal-name { font-size: 1.35rem; letter-spacing: 0.02em; }
+
+        .team-modal-credentials {
+            display: inline-block;
+            margin: 0.2rem 0 0.5rem;
+            padding: 0.12rem 0.65rem;
+            border: 1px solid rgba(255, 255, 255, 0.28);
+            font-size: 0.7rem;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+        }
+
+        .team-modal-title {
+            display: block;
+            font-style: normal;
+            font-size: 0.8rem;
+            font-weight: 500;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .team-modal-inner:not(.active-card) { cursor: pointer; }
+
+        @media (max-width: 700px) {
+            .team-modal-photo { height: 180px; }
+            .team-modal-info { padding: 1.25rem; }
+        }
+
         /* Footer */
         .footer {
             background: transparent;
@@ -1136,6 +1186,61 @@
             text-transform: uppercase;
         }
         .team-section-heading strong { font-weight: 700; }
+
+        /* Polish: short white accent on each heading, softer cards, bigger headshots with a ring, tidier credentials */
+        .team-section-heading { position: relative; padding-bottom: 0.9rem; margin-bottom: 1.5rem; }
+        .team-section-heading::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: -1px;
+            width: 56px;
+            height: 2px;
+            background: var(--primary-white);
+        }
+
+        .team-member {
+            padding: 1.75rem 1.25rem 1.25rem;
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.06) 0%, rgba(15, 20, 25, 0.45) 55%);
+            border-color: rgba(255, 255, 255, 0.18);
+        }
+
+        .team-photo {
+            width: 104px;
+            height: 104px;
+            margin-bottom: 1.1rem;
+            border: 1px solid rgba(255, 255, 255, 0.35);
+            box-shadow: 0 0 0 5px rgba(255, 255, 255, 0.05);
+        }
+
+        .team-member:hover { transform: translateY(-5px); border-color: rgba(255, 255, 255, 0.45); }
+        .team-member:hover .team-photo { transform: scale(1.04); box-shadow: 0 0 0 7px rgba(255, 255, 255, 0.09); }
+
+        .team-name { margin-bottom: 0.35rem; font-size: 1.05rem; letter-spacing: 0.02em; }
+
+        .team-credentials {
+            background: transparent;
+            border: 1px solid rgba(255, 255, 255, 0.28);
+            padding: 0.12rem 0.65rem;
+            letter-spacing: 1.5px;
+            margin-bottom: 0.55rem;
+        }
+
+        .team-title {
+            font-size: 0.78rem;
+            font-weight: 500;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            opacity: 0.85;
+        }
+
+        .team-view-bio { letter-spacing: 1px; opacity: 0.7; }
+        .team-member:hover .team-view-bio { opacity: 1; }
+
+        @media (max-width: 600px) {
+            .team-photo { width: 72px; height: 72px; margin-bottom: 0.8rem; }
+            .team-title { font-size: 0.68rem; letter-spacing: 1px; }
+        }
 
 
         @media (max-width: 968px) { .team-section { scroll-margin-top: 90px; } .team-section + .team-section { margin-top: 2.5rem; } }
@@ -1619,8 +1724,7 @@
         function updateActive(idx) {
             allCards.forEach((c, i) => c.classList.toggle('active-card', i === idx));
             prevBtn.style.display = idx <= 0 ? 'none' : 'flex';
-            nextBtn.style.display = idx >= allCards.length - 1 ? 'none' : 'flex';
-        }
+            nextBtn.style.display = idx >= allCards.length - 1 ? 'none' : 'flex';        }
 
         function openModal(index) {
             buildCards();
@@ -1712,6 +1816,22 @@
         departmentFromAddress();
         prevBtn.addEventListener('click', () => navigate(-1));
         nextBtn.addEventListener('click', () => navigate(1));
+        // keyboard: arrows move, Escape closes
+        document.addEventListener('keydown', e => {
+            if (!modal.classList.contains('active')) return;
+            if (e.key === 'ArrowLeft') navigate(-1);
+            else if (e.key === 'ArrowRight') navigate(1);
+            else if (e.key === 'Escape') closeModal();
+        });
+        // clicking a faded side card brings it to the centre
+        trackWrapper.addEventListener('click', e => {
+            const card = e.target.closest('.team-modal-inner');
+            if (!card || card.classList.contains('active-card')) return;
+            const i = allCards.indexOf(card);
+            navTarget = i;
+            updateActive(i);
+            scrollToIdx(i);
+        });
         document.getElementById('teamModalClose').addEventListener('click', closeModal);
         modal.addEventListener('click', e => { if (e.target === modal) closeModal(); });
 
