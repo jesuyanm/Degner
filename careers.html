@@ -2241,5 +2241,28 @@
     </script>
     <script src="search.js" defer></script>
     <!-- Cloudflare Web Analytics --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "258e2f246a47468e9b9df96162d03ba8"}'></script><!-- End Cloudflare Web Analytics -->
+<script>
+    // Remember where the visitor was, so Back / Forward returns to the same spot
+    (function () {
+        var key = 'scroll:' + location.pathname;
+        var root = document.documentElement;
+        if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+        var save = function () { try { sessionStorage.setItem(key, String(window.scrollY)); } catch (e) {} };
+        var timer;
+        window.addEventListener('scroll', function () { clearTimeout(timer); timer = setTimeout(save, 150); }, { passive: true });
+        window.addEventListener('pagehide', save);
+        var nav = performance.getEntriesByType('navigation')[0];
+        if (!nav || nav.type !== 'back_forward') return;
+        var y = parseFloat(sessionStorage.getItem(key));
+        if (!y) return;
+        var restore = function () {
+            root.style.scrollBehavior = 'auto';
+            window.scrollTo(0, y);
+            root.style.scrollBehavior = '';
+        };
+        restore();
+        window.addEventListener('load', restore);
+    })();
+</script>
 </body>
 </html>
