@@ -919,10 +919,10 @@
         }
 
         @media (max-width: 700px) {
-            .hero { padding-bottom: 0; }
+            .hero { padding: 64px 0; }
+            .hero-content { width: 100%; }
             .hero-title { font-size: clamp(1.6rem, 8vw, 3rem); letter-spacing: 0.14em; padding-left: 0.14em; }
             .hero-title strong { display: block; }
-            .scroll-cue { display: none; }
             .section.home-section { padding: 1.5rem 1rem 0.25rem; }
             .section-heading { font-size: clamp(1.4rem, 6.5vw, 2rem); letter-spacing: 0.08em; }
             .ruled-list { grid-template-columns: 1fr; }
@@ -1063,6 +1063,7 @@
             scroll-behavior: smooth;
         }
 
+        .mobile-nav .mobile-nav-header img,
         .search-overlay .mobile-nav-header img {
             transform: none;
             filter: invert(1);
