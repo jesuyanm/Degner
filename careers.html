@@ -1550,6 +1550,8 @@
         .mobile-nav { padding-top: calc(2rem + env(safe-area-inset-top)); }
         body { padding-left: env(safe-area-inset-left); padding-right: env(safe-area-inset-right); }
         /* backdrop picture runs under the status bar / notch / island too */
+        /* neutral dark grey like the picture edge, so the strip Safari paints over the status bar blends in */
+        body { background-color: #141414; }
         body::before, .bg { top: calc(-1 * env(safe-area-inset-top)); bottom: calc(-1 * env(safe-area-inset-bottom)); }
     </style>
 </head>
