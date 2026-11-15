@@ -1555,6 +1555,8 @@
         body::before, .bg { top: calc(-1 * env(safe-area-inset-top)); bottom: calc(-1 * env(safe-area-inset-bottom)); }
         /* top of the picture fades out of a solid band, so the strip iOS paints over the status bar has no visible edge */
         body::after { content: ""; position: fixed; top: 0; left: 0; right: 0; height: calc(env(safe-area-inset-top) + 90px); z-index: -1; pointer-events: none; background: linear-gradient(#141414 calc(env(safe-area-inset-top) + 10px), transparent); }
+        /* scrolled header: solid, same colour as the strip over the status bar */
+        .header.scrolled { background: #141414; -webkit-backdrop-filter: none; backdrop-filter: none; }
     </style>
 </head>
 <body>
@@ -1624,7 +1626,7 @@
     <div class="search-overlay" id="searchOverlay">
         <div class="search-container">
             <div class="mobile-nav-header">
-                <img src="logo.png" alt="Degner Construction" style="height: 36px;">
+                <a href="index.html" aria-label="Degner Construction home"><img src="logo.png" alt="Degner Construction" style="height: 36px; display: block;"></a>
                 <button class="search-close" id="searchClose">&times;</button>
             </div>
             <input type="text" class="search-input" placeholder="Search careers, benefits, opportunities...">
@@ -1635,7 +1637,7 @@
     <!-- Mobile Navigation -->
     <nav class="mobile-nav" id="mobileNav">
         <div class="mobile-nav-header">
-            <img src="logo.png" alt="Degner Construction" style="height: 36px;">
+            <a href="index.html" aria-label="Degner Construction home"><img src="logo.png" alt="Degner Construction" style="height: 36px; display: block;"></a>
             <button class="mobile-nav-close" id="mobileNavClose">&times;</button>
         </div>
         <ul class="mobile-nav-menu">
