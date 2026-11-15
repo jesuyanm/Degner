@@ -1261,6 +1261,8 @@
         /* neutral dark grey like the picture edge, so the strip Safari paints over the status bar blends in */
         body { background-color: #141414; }
         body::before, .bg { top: calc(-1 * env(safe-area-inset-top)); bottom: calc(-1 * env(safe-area-inset-bottom)); }
+        /* top of the picture fades out of a solid band, so the strip iOS paints over the status bar has no visible edge */
+        body::after { content: ""; position: fixed; top: 0; left: 0; right: 0; height: calc(env(safe-area-inset-top) + 90px); z-index: -1; pointer-events: none; background: linear-gradient(#141414 calc(env(safe-area-inset-top) + 10px), transparent); }
     </style>
 </head>
 <body>
