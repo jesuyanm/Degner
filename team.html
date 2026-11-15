@@ -1467,7 +1467,6 @@
         @media (max-width: 600px) { .team-all { grid-template-columns: repeat(3, 1fr); gap: 0.4rem; } }
 
         /* Team tiles: background-removed people on the plain dark page, each standing in a thin hexagon outline, head free to rise above it. Name, credentials and title appear on hover */
-        body::before { display: none; }
         .team-all { --g: 1.6rem; grid-template-columns: repeat(5, 1fr); gap: 0 var(--g); max-width: 1200px; padding: 0 9% 0 0; }
         .team-member {
             position: relative;
@@ -1695,30 +1694,6 @@
             .team-caption { opacity: 0; transform: none; transition: opacity 0.25s ease; }
             .team-member.tapped .team-caption { opacity: 1; }
         }
-        /* Excavator photo behind the heading and tabs, coloured like the backdrop on the other pages. The fade into the plain page is part of the image itself (not a mask), so the slow drift stays smooth */
-        body { position: relative; }
-        body::before {
-            display: block;
-            position: absolute;
-            inset: 0 0 auto 0;
-            height: 560px;
-            z-index: -1;
-            background:
-                linear-gradient(to bottom, rgba(30, 30, 30, 0) 30%, rgb(30, 30, 30) 100%),
-                radial-gradient(ellipse at 50% 45%, rgba(15, 20, 25, 0.45), rgba(15, 20, 25, 0.94) 85%),
-                linear-gradient(rgba(15, 20, 25, 0.6), rgba(15, 20, 25, 0.6)),
-                url('backdrop-excavators-trench.jpg') center 35% / cover no-repeat;
-            filter: grayscale(1) contrast(1.1);
-            animation: drift 30s ease-in-out infinite alternate;
-            animation-delay: var(--drift-delay, 0s);
-            -webkit-mask-image: none;
-            mask-image: none;
-            will-change: transform;
-        }
-        @media (max-width: 700px) { body::before { height: 440px; } }
-        /* Plain part of the page: the neutral near-black the other pages show through their backdrop, not the blue-tinted base colour */
-        html { background: #141414; }
-        body { background: transparent; }
         .team-tabs button { background: #0d0d0d; }
         .team-tabs button[aria-selected="true"] { background: #FFFFFF; }
         /* Load animation: line by line. The heading rises first, then the tabs, then each row of photos in turn, all slow and smooth like the Careers page, over the backdrop's gentle drift */
@@ -2407,16 +2382,6 @@
         });
         document.getElementById('teamModalClose').addEventListener('click', closeModal);
         modal.addEventListener('click', e => { if (e.target === modal) closeModal(); });
-
-        // Header Scroll Effect
-        window.addEventListener('scroll', function() {
-            const header = document.getElementById('header');
-            if (window.scrollY > 4) {
-                header.classList.add('scrolled');
-            } else {
-                header.classList.remove('scrolled');
-            }
-        });
 
         // Logo — always go to top of homepage
         document.querySelector('.logo a').addEventListener('click', function(e) {
