@@ -1764,6 +1764,8 @@
         body { padding-left: env(safe-area-inset-left); padding-right: env(safe-area-inset-right); }
         /* backdrop picture runs under the status bar / notch / island too */
         body::before, .bg { top: calc(-1 * env(safe-area-inset-top)); bottom: calc(-1 * env(safe-area-inset-bottom)); }
+        /* top of the picture fades out of a solid band, so the strip iOS paints over the status bar has no visible edge */
+        body::after { content: ""; position: fixed; top: 0; left: 0; right: 0; height: calc(env(safe-area-inset-top) + 90px); z-index: -1; pointer-events: none; background: linear-gradient(#0b0b0b calc(env(safe-area-inset-top) + 10px), transparent); }
     </style>
 </head>
 <body>
