@@ -1006,7 +1006,7 @@
     <style>/* Phone safe areas: the page may draw behind the status bar / notch; the header and menu start below it */
         .header { padding-top: env(safe-area-inset-top); padding-left: env(safe-area-inset-left); padding-right: env(safe-area-inset-right); }
         .mobile-nav { padding-top: calc(2rem + env(safe-area-inset-top)); }
-        body { padding-left: env(safe-area-inset-left); padding-right: env(safe-area-inset-right); }
+        body { padding-left: env(safe-area-inset-left); padding-right: env(safe-area-inset-right); padding-top: env(safe-area-inset-top); }
         /* backdrop picture runs under the status bar / notch / island too */
         /* neutral dark grey like the picture edge, so the strip Safari paints over the status bar blends in */
         body { background-color: #141414; }
@@ -1086,6 +1086,7 @@
             </div>
         </nav>
     </header>
+    <script>(function(){var h=document.getElementById("header");function u(){h.classList.toggle("scrolled",(window.pageYOffset||document.documentElement.scrollTop||0)>4)}window.addEventListener("scroll",u,{passive:true});u();})();</script>
 
     <!-- Search Overlay -->
     <div class="search-overlay" id="searchOverlay">
