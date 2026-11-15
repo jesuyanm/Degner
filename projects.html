@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <title>Our Projects | Degner Construction</title>
     <link rel="icon" href="favicon-32.png?v=3" type="image/png" sizes="32x32">
     <link rel="icon" href="favicon-48.png?v=4" type="image/png" sizes="48x48">
@@ -989,6 +989,11 @@
             .footer-social a, .social a { width: 34px; height: 34px; }
             .footer-credit, .bottom-bar > span { order: 1; }
         }
+    </style>
+    <style>/* Phone safe areas: the page may draw behind the status bar / notch; the header and menu start below it */
+        .header { padding-top: env(safe-area-inset-top); padding-left: env(safe-area-inset-left); padding-right: env(safe-area-inset-right); }
+        .mobile-nav { padding-top: calc(2rem + env(safe-area-inset-top)); }
+        body { padding-left: env(safe-area-inset-left); padding-right: env(safe-area-inset-right); }
     </style>
 </head>
 <body>
