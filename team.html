@@ -1768,8 +1768,8 @@
         body::after { content: ""; position: fixed; top: 0; left: 0; right: 0; height: calc(env(safe-area-inset-top) + 90px); z-index: -1; pointer-events: none; background: linear-gradient(#0b0b0b calc(env(safe-area-inset-top) + 10px), transparent); }
         /* scrolled header: solid, same colour as the strip over the status bar */
         .header.scrolled { background: #0b0b0b; -webkit-backdrop-filter: none; backdrop-filter: none; }
-        /* slightly bigger nav bar on phones */
-        @media (max-width: 600px) { .nav-container { height: 60px; } .logo img { height: 42px; } }
+        /* a bit more room below the logo on phones (logo size unchanged) */
+        @media (max-width: 600px) { .nav-container { height: 60px; padding-bottom: 12px; } }
     </style>
 </head>
 <body>
