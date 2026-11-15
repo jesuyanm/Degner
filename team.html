@@ -1704,7 +1704,7 @@
             height: 560px;
             z-index: -1;
             background:
-                linear-gradient(to bottom, rgba(30, 30, 30, 0) 30%, rgb(30, 30, 30) 100%),
+                linear-gradient(to bottom, rgba(22, 22, 22, 0) 30%, rgb(22, 22, 22) 100%),
                 radial-gradient(ellipse at 50% 45%, rgba(15, 20, 25, 0.45), rgba(15, 20, 25, 0.94) 85%),
                 linear-gradient(rgba(15, 20, 25, 0.6), rgba(15, 20, 25, 0.6)),
                 url('backdrop-excavators-trench.jpg') center 35% / cover no-repeat;
@@ -1717,7 +1717,7 @@
         }
         @media (max-width: 700px) { body::before { height: 440px; } }
         /* Plain part of the page: the neutral near-black the other pages show through their backdrop, not the blue-tinted base colour */
-        html { background: #141414; }
+        html { background: #0b0b0b; }
         body { background: transparent; }
         .team-tabs button { background: #0d0d0d; }
         .team-tabs button[aria-selected="true"] { background: #FFFFFF; }
@@ -1765,9 +1765,9 @@
         /* backdrop picture runs under the status bar / notch / island too */
         body::before, .bg { top: calc(-1 * env(safe-area-inset-top)); bottom: calc(-1 * env(safe-area-inset-bottom)); }
         /* top of the picture fades out of a solid band, so the strip iOS paints over the status bar has no visible edge */
-        body::after { content: ""; position: fixed; top: 0; left: 0; right: 0; height: calc(env(safe-area-inset-top) + 90px); z-index: -1; pointer-events: none; background: linear-gradient(#141414 calc(env(safe-area-inset-top) + 10px), transparent); }
+        body::after { content: ""; position: fixed; top: 0; left: 0; right: 0; height: calc(env(safe-area-inset-top) + 90px); z-index: -1; pointer-events: none; background: linear-gradient(#0b0b0b calc(env(safe-area-inset-top) + 10px), transparent); }
         /* scrolled header: solid, same colour as the strip over the status bar */
-        .header.scrolled { background: #141414; -webkit-backdrop-filter: none; backdrop-filter: none; }
+        .header.scrolled { background: #0b0b0b; -webkit-backdrop-filter: none; backdrop-filter: none; }
         /* shoulders fade out softly at the sides as well as the bottom, so no box shows around each person */
         .team-photo img { -webkit-mask-image: linear-gradient(#000 62%, transparent 99%), linear-gradient(90deg, transparent 0, #000 14%, #000 86%, transparent 100%); mask-image: linear-gradient(#000 62%, transparent 99%), linear-gradient(90deg, transparent 0, #000 14%, #000 86%, transparent 100%); -webkit-mask-composite: source-in; mask-composite: intersect; }
         /* a bit more room below the logo on phones (logo size unchanged) */
