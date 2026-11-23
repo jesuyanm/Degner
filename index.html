@@ -768,6 +768,8 @@
         .section-heading strong { font-weight: 700; }
 
         /* Ruled list: three columns of short heading + one line, divided by thin rules (like the careers benefits) */
+        .ruled-list a.apply-btn { display: inline-block; margin-right: 0.35rem; padding: 0.25rem 0.9rem; border: 1px solid rgba(255,255,255,0.5); font-size: 0.68rem; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; text-decoration: none; transition: background 0.2s, color 0.2s; }
+        .ruled-list a.apply-btn:hover { background: #fff; color: #0a0a0a; border-color: #fff; }
         .ruled-list {
             list-style: none;
             display: grid;
@@ -1412,7 +1414,7 @@ html.pv body::after { content: ""; position: fixed; top: 0; left: 0; right: 0; h
             <li><h3>Address</h3><p>27575 Ellis Road, Acheson, Alberta T7X 5A4</p></li>
             <li><h3>Hours</h3><p>Monday &ndash; Friday, 8:00 AM &ndash; 5:00 PM <span class="hours-sep">&nbsp;&middot;&nbsp; </span><span style="white-space:nowrap">Weekends closed</span></p></li>
             <li><h3>Quote Requests</h3><p><a href="mailto:estimating@degner.ca">estimating@degner.ca</a></p></li>
-            <li><h3>Careers</h3><p><a href="careers.html">Apply now</a> or email us at <a href="mailto:hr@degner.ca">hr@degner.ca</a></p></li>
+            <li><h3>Careers</h3><p><a class="apply-btn" href="careers.html">Apply Now</a> or email us at <a href="mailto:hr@degner.ca">hr@degner.ca</a></p></li>
         </ul>
         <a class="section-cta" href="contact.html?type=quote">Request a Quote</a>
     </section>
